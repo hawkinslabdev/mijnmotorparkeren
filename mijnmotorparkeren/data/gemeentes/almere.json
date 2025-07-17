@@ -18,7 +18,7 @@
         "motorcycleSpecific": {
             "dedicatedSpots": [],
             "allowedOnSidewalk": true,
-            "freeInPaidZones": null,
+            "freeInPaidZones": false,
             "notes": "Parkeren op de stoep wordt gedoogd, mits dit geen hinder oplevert. In de betaald parkeerzones is parkeren voor motoren niet gratis."
         }
     },
@@ -26,7 +26,8 @@
     "sources": [
         {
             "type": "official",
-            "url": "https://www.almere.nl/parkeren",
+            "url": "#",
+            "name": "Handhaver Openbare Ruimte van Gemeente Almere",
             "date": "2025-07-07"
         }
     ]
