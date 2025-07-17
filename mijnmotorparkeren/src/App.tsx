@@ -232,11 +232,31 @@ const App: React.FC = () => {
   return (
     <>
       <Seo
-        title={selectedCity ? `Parkeerregels in ${selectedCity.name}` : selectedGemeente ? `Parkeerregels in ${selectedGemeente.name}` : 'MijnMotorParkeren.nl'}
-        description={selectedCity ? `Bekijk de parkeerregels voor ${selectedCity.name} (gemeente ${selectedCity.parent}) op MijnMotorParkeren.nl` : selectedGemeente ? `Bekijk de parkeerregels voor ${selectedGemeente.name} op MijnMotorParkeren.nl` : 'Bekijk het parkeerbeleid voor jouw motor in Nederlandse gemeenten'}
+        title={selectedCity ? `Motor parkeren in ${selectedCity.name} | Parkeerregels` : selectedGemeente ? `Motor parkeren in ${selectedGemeente.name} | Parkeerregels` : 'Motor parkeren Nederland | MijnMotorParkeren.nl'}
+        description={selectedCity ? `Alles over motor parkeren in ${selectedCity.name} (gemeente ${selectedCity.parent}). Bekijk de parkeerregels voor motoren op MijnMotorParkeren.nl.` : selectedGemeente ? `Alles over motor parkeren in ${selectedGemeente.name}. Bekijk de parkeerregels voor motoren op MijnMotorParkeren.nl.` : 'Bekijk het parkeerbeleid voor motor parkeren in Nederlandse gemeenten. Vind alle regels op MijnMotorParkeren.nl.'}
         canonical={typeof window !== 'undefined' ? window.location.href : undefined}
         image={typeof window !== 'undefined' ? `${window.location.origin}/android-chrome-512x512.png` : undefined}
       />
+      {/* SEO Structured Data for motor parkeren */}
+      {(selectedGemeente || selectedCity) && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: selectedCity ? `Motor parkeren in ${selectedCity.name}` : `Motor parkeren in ${selectedGemeente?.name}`,
+            description: selectedCity
+              ? `Alles over motor parkeren in ${selectedCity.name} (gemeente ${selectedCity.parent}). Bekijk de parkeerregels voor motoren op MijnMotorParkeren.nl.`
+              : `Alles over motor parkeren in ${selectedGemeente?.name}. Bekijk de parkeerregels voor motoren op MijnMotorParkeren.nl.`,
+            url: typeof window !== 'undefined' ? window.location.href : undefined,
+            inLanguage: 'nl-NL',
+            isPartOf: 'https://mijnmotorparkeren.nl',
+            about: 'motor parkeren',
+            keywords: selectedCity
+              ? `motor parkeren, ${selectedCity.name}, parkeerregels, motor, stoep, gemeente ${selectedCity.parent}`
+              : `motor parkeren, ${selectedGemeente?.name}, parkeerregels, motor, stoep, gemeente`,
+          })}
+        </script>
+      )}
       <div className="viewport-full bg-gray-50 flex flex-col">
         <Header onSearchOpen={() => setSearchOpen(true)} />
         

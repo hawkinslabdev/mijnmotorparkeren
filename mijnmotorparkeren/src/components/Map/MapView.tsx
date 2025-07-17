@@ -53,7 +53,7 @@ const ParkingLegend: React.FC = () => {
         </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded border-2 border-red-600 bg-red-100"></div>
-          <span>Alleen (betaald) parkeren</span>
+          <span>Alleen (betaald) in het vak</span>
         </div>
       </div>
       <div className="mt-3 pt-2 border-t border-gray-200 text-xs text-gray-600">
