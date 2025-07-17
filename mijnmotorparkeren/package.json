@@ -31,6 +31,7 @@
     "react-dom": "^19.1.0",
     "react-helmet-async": "^2.0.5",
     "react-leaflet": "^5.0.0",
+    "react-router-dom": "^7.7.0",
     "stable": "^0.1.8",
     "tailwind-merge": "^3.3.1",
     "workbox-build": "^7.3.0",

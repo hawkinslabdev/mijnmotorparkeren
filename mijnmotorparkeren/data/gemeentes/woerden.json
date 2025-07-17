@@ -26,16 +26,9 @@
             "dedicatedSpots": [],
             "allowedOnSidewalk": null,
             "freeInPaidZones": null,
-            "notes": "Informatie niet beschikbaar. Wij hebben Gemeente Woerden gevraagd om informatie over het parkeren van een motorfiets, maar tot op heden nog geen reactie op mogen ontvangen of deze reactie is nog niet verwerkt."
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
         }
     },
     "lastUpdated": null,
-    "sources": [
-        {
-            "type": "community",
-            "name": "MotorOpDeStoep.nl",
-            "url": "https://motoropdestoep.nl/gemeente/woerden",
-            "date": "2025-07-08"
-        }
-    ]
+    "sources": []
 }

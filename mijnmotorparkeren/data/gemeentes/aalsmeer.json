@@ -33,7 +33,8 @@
     "sources": [
         {
             "type": "official",
-            "url": "https://www.aalsmeer.nl/parkeren",
+            "url": "#",
+            "name": "Beleidsmedewerker van gemeente Aalsmeer",
             "date": "2025-01-07"
         }
     ]
