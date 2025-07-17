@@ -1,0 +1,16 @@
+{
+    "id": "noordoostpolder",
+    "name": "Gemeente Noordoostpolder",
+    "province": "Flevoland",
+    "coordinates": {
+        "lat": 52.711,
+        "lng": 5.779
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "id": "geertruidenberg",
+    "name": "Gemeente Geertruidenberg",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.698,
+        "lng": 4.892
+    },
+    "boundaries": {
+        "coordinates": [[[4.918,51.72],[4.933,51.677],[4.925,51.673],[4.88,51.674],[4.842,51.68],[4.824,51.711],[4.837,51.713],[4.873,51.72],[4.918,51.72]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

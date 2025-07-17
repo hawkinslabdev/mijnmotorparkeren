@@ -1,0 +1,38 @@
+{
+    "id": "hattem",
+    "name": "Gemeente Hattem",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.468,
+        "lng": 6.073
+    },
+    "boundaries": {
+        "coordinates": [[[6.104,52.454],[6.063,52.451],[6.023,52.444],[6.035,52.462],[6.033,52.478],[6.001,52.5],[6.028,52.51],[6.054,52.5],[6.071,52.482],[6.102,52.466],[6.104,52.454]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

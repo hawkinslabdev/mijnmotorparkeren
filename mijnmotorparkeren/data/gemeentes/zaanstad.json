@@ -1,0 +1,38 @@
+{
+    "id": "zaanstad",
+    "name": "Gemeente Zaanstad",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.457,
+        "lng": 4.7513
+    },
+    "boundaries": {
+        "coordinates": [[[4.782,52.52],[4.79,52.519],[4.799,52.491],[4.837,52.48],[4.853,52.47],[4.843,52.452],[4.863,52.43],[4.856,52.417],[4.739,52.431],[4.722,52.433],[4.675,52.456],[4.698,52.471],[4.708,52.486],[4.72,52.495],[4.753,52.511],[4.752,52.521],[4.782,52.52]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "rucphen",
+    "name": "Gemeente Rucphen",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.534,
+        "lng": 4.523
+    },
+    "boundaries": {
+        "coordinates": [[[4.592,51.561],[4.625,51.552],[4.639,51.524],[4.611,51.508],[4.58,51.511],[4.59,51.497],[4.556,51.486],[4.548,51.473],[4.538,51.482],[4.487,51.477],[4.502,51.517],[4.514,51.518],[4.523,51.543],[4.499,51.545],[4.5,51.559],[4.509,51.569],[4.537,51.566],[4.533,51.549],[4.592,51.561]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

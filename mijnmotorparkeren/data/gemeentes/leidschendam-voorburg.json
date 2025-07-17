@@ -1,0 +1,38 @@
+{
+    "id": "leidschendam-voorburg",
+    "name": "Gemeente Leidschendam-Voorburg",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.099,
+        "lng": 4.429
+    },
+    "boundaries": {
+        "coordinates": [[[4.473,52.119],[4.492,52.09],[4.457,52.079],[4.421,52.063],[4.404,52.078],[4.356,52.068],[4.335,52.075],[4.373,52.095],[4.401,52.112],[4.428,52.101],[4.464,52.127],[4.473,52.119]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "berg-en-dal",
+    "name": "Gemeente Berg en Dal",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.825,
+        "lng": 5.978
+    },
+    "boundaries": {
+        "coordinates": [[[6.063,51.865],[6.055,51.852],[6.036,51.843],[5.987,51.831],[5.963,51.837],[5.945,51.824],[5.979,51.798],[5.991,51.766],[5.953,51.748],[5.938,51.742],[5.915,51.753],[5.893,51.778],[5.879,51.81],[5.899,51.825],[5.885,51.848],[5.887,51.865],[5.924,51.875],[5.955,51.857],[5.981,51.86],[5.993,51.875],[6.017,51.881],[6.046,51.871],[6.063,51.865]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep gedoogd, mits er voldoende ruimte overblijft voor voetgangers en rolstoelgebruikers. Parkeer je op een parkeerplaats (waarvoor betaald parkeren geldt), dan moet je wel betalen."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": []
+}

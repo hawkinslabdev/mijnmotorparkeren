@@ -1,0 +1,38 @@
+{
+    "id": "dinkelland",
+    "name": "Gemeente Dinkelland",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.368,
+        "lng": 6.915
+    },
+    "boundaries": {
+        "coordinates": [[[7.072,52.373],[7.008,52.364],[6.971,52.38],[6.963,52.363],[6.97,52.349],[6.938,52.333],[6.901,52.333],[6.895,52.325],[6.861,52.306],[6.86,52.299],[6.894,52.294],[6.912,52.286],[6.883,52.283],[6.868,52.273],[6.84,52.276],[6.846,52.291],[6.819,52.301],[6.802,52.314],[6.774,52.319],[6.759,52.332],[6.783,52.36],[6.818,52.365],[6.864,52.364],[6.862,52.408],[6.853,52.427],[6.897,52.433],[6.929,52.434],[6.949,52.433],[6.947,52.437],[6.961,52.444],[6.978,52.466],[6.994,52.465],[7.011,52.429],[7.035,52.404],[7.059,52.399],[7.072,52.373]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

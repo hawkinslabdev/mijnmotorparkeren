@@ -1,0 +1,38 @@
+{
+    "id": "tynaarlo",
+    "name": "Gemeente Tynaarlo",
+    "province": "Drenthe",
+    "coordinates": {
+        "lat": 53.112,
+        "lng": 6.574
+    },
+    "boundaries": {
+        "coordinates": [[[6.695,53.121],[6.737,53.119],[6.777,53.095],[6.748,53.081],[6.699,53.065],[6.672,53.065],[6.643,53.047],[6.649,53.026],[6.631,53.026],[6.604,53.033],[6.608,53.048],[6.6,53.061],[6.555,53.059],[6.547,53.035],[6.524,53.046],[6.505,53.046],[6.513,53.072],[6.491,53.097],[6.48,53.121],[6.539,53.133],[6.534,53.17],[6.513,53.197],[6.53,53.195],[6.548,53.181],[6.564,53.158],[6.581,53.164],[6.588,53.146],[6.619,53.132],[6.635,53.106],[6.695,53.121]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

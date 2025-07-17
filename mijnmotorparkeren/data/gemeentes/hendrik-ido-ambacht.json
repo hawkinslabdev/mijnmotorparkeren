@@ -1,0 +1,38 @@
+{
+    "id": "hendrik-ido-ambacht",
+    "name": "Gemeente Hendrik-Ido-Ambacht",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.8442,
+        "lng": 4.6389
+    },
+    "boundaries": {
+        "coordinates": [[[4.673,51.839],[4.67,51.824],[4.662,51.832],[4.637,51.825],[4.6,51.839],[4.605,51.848],[4.647,51.857],[4.635,51.87],[4.673,51.839]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

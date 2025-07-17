@@ -1,0 +1,38 @@
+{
+    "id": "peel-en-maas",
+    "name": "Gemeente Peel en Maas",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.332,
+        "lng": 6.008
+    },
+    "boundaries": {
+        "coordinates": [[[6.073,51.396],[6.09,51.389],[6.078,51.378],[6.1,51.357],[6.123,51.343],[6.115,51.322],[6.085,51.297],[6.049,51.287],[6.028,51.268],[6.01,51.266],[6.008,51.278],[5.955,51.3],[5.908,51.313],[5.878,51.317],[5.852,51.321],[5.832,51.338],[5.84,51.347],[5.87,51.353],[5.931,51.385],[5.958,51.378],[6.019,51.382],[6.073,51.396]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

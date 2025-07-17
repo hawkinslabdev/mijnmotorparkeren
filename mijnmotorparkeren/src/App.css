@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+/* Custom styles for the app */
+.gemeente-boundary {
+  transition: all 0.2s ease;
+}
+
+.gemeente-boundary:hover {
+  fill-opacity: 0.5 !important;
+}
+
+/* Ensures the app always fills the visible viewport, even with iOS toolbars present */
+.viewport-full {
+  min-height: 100vh;
+}
+@supports (min-height: 100svh) {
+  .viewport-full {
+    min-height: 100svh;
+  }
+}

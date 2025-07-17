@@ -1,0 +1,38 @@
+{
+    "id": "sliedrecht",
+    "name": "Gemeente Sliedrecht",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.8211,
+        "lng": 4.7765
+    },
+    "boundaries": {
+        "coordinates": [[[4.803,51.846],[4.811,51.819],[4.766,51.816],[4.73,51.822],[4.743,51.841],[4.803,51.846]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

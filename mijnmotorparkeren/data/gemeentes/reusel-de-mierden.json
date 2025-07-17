@@ -1,0 +1,21 @@
+{
+    "id": "reusel-de-mierden",
+    "name": "Gemeente Reusel-De Mierden",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.372,
+        "lng": 5.164
+    },
+    "boundaries": {
+        "coordinates": [[[5.191,51.43],[5.195,51.4],[5.194,51.345],[5.2,51.323],[5.163,51.31],[5.134,51.316],[5.132,51.347],[5.117,51.361],[5.071,51.393],[5.102,51.429],[5.191,51.43]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

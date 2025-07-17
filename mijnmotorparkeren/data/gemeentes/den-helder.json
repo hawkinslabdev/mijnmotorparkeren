@@ -1,0 +1,16 @@
+{
+    "id": "den-helder",
+    "name": "Gemeente Den Helder",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.958,
+        "lng": 4.759
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

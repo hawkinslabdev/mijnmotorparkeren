@@ -1,0 +1,38 @@
+{
+    "id": "oude-ijsselstreek",
+    "name": "Gemeente Oude IJsselstreek",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.95,
+        "lng": 6.527
+    },
+    "boundaries": {
+        "coordinates": [[[6.527,51.966],[6.517,51.948],[6.505,51.946],[6.489,51.913],[6.472,51.907],[6.484,51.879],[6.464,51.855],[6.451,51.865],[6.429,51.865],[6.391,51.873],[6.388,51.862],[6.408,51.854],[6.407,51.828],[6.363,51.835],[6.345,51.851],[6.306,51.849],[6.299,51.868],[6.332,51.875],[6.311,51.9],[6.316,51.913],[6.29,51.925],[6.306,51.939],[6.331,51.926],[6.361,51.923],[6.38,51.936],[6.416,51.973],[6.448,51.97],[6.468,51.978],[6.527,51.966]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

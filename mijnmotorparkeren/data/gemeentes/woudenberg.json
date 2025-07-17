@@ -1,0 +1,38 @@
+{
+    "id": "woudenberg",
+    "name": "Gemeente Woudenberg",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.0805,
+        "lng": 5.4162
+    },
+    "boundaries": {
+        "coordinates": [[[5.496,52.072],[5.498,52.057],[5.446,52.045],[5.435,52.048],[5.437,52.072],[5.332,52.084],[5.298,52.096],[5.322,52.102],[5.341,52.095],[5.401,52.089],[5.405,52.104],[5.432,52.097],[5.444,52.107],[5.472,52.101],[5.486,52.115],[5.494,52.111],[5.486,52.094],[5.459,52.08],[5.484,52.07],[5.496,52.072]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "hardenberg",
+    "name": "Gemeente Hardenberg",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.571,
+        "lng": 6.596
+    },
+    "boundaries": {
+        "coordinates": [[[6.71,52.628],[6.727,52.615],[6.719,52.589],[6.767,52.564],[6.752,52.559],[6.727,52.563],[6.716,52.549],[6.681,52.553],[6.705,52.521],[6.698,52.486],[6.669,52.495],[6.642,52.471],[6.611,52.467],[6.595,52.48],[6.61,52.493],[6.55,52.515],[6.534,52.529],[6.522,52.561],[6.505,52.576],[6.488,52.569],[6.415,52.57],[6.403,52.591],[6.323,52.593],[6.303,52.597],[6.328,52.659],[6.364,52.643],[6.384,52.612],[6.434,52.626],[6.453,52.614],[6.47,52.625],[6.519,52.614],[6.514,52.646],[6.529,52.655],[6.553,52.666],[6.615,52.674],[6.629,52.67],[6.708,52.649],[6.71,52.628]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

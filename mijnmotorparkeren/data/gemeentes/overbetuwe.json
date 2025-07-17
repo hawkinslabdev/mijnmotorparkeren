@@ -1,0 +1,38 @@
+{
+    "id": "overbetuwe",
+    "name": "Gemeente Overbetuwe",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.93,
+        "lng": 5.83
+    },
+    "boundaries": {
+        "coordinates": [[[5.898,51.934],[5.891,51.907],[5.857,51.895],[5.817,51.87],[5.798,51.876],[5.726,51.887],[5.707,51.893],[5.706,51.908],[5.66,51.93],[5.666,51.953],[5.682,51.959],[5.723,51.964],[5.746,51.97],[5.778,51.959],[5.835,51.974],[5.83,51.945],[5.872,51.942],[5.898,51.934]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

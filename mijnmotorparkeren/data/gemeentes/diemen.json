@@ -1,0 +1,16 @@
+{
+    "id": "diemen",
+    "name": "Gemeente Diemen",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.343,
+        "lng": 4.963
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

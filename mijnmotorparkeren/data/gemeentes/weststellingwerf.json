@@ -1,0 +1,38 @@
+{
+    "id": "weststellingwerf",
+    "name": "Gemeente Weststellingwerf",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 52.8867,
+        "lng": 5.9917
+    },
+    "boundaries": {
+        "coordinates": [[[6.12,52.854],[6.031,52.815],[6.025,52.823],[5.997,52.817],[5.972,52.842],[5.93,52.835],[5.924,52.824],[5.898,52.808],[5.876,52.801],[5.844,52.805],[5.82,52.817],[5.857,52.871],[5.886,52.894],[5.911,52.898],[5.938,52.912],[5.959,52.927],[6.002,52.934],[6.038,52.918],[6.085,52.936],[6.111,52.913],[6.145,52.928],[6.201,52.939],[6.214,52.926],[6.247,52.923],[6.207,52.891],[6.12,52.854]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

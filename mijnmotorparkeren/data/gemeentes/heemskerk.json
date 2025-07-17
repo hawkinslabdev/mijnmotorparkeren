@@ -1,0 +1,16 @@
+{
+    "id": "heemskerk",
+    "name": "Gemeente Heemskerk",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.511,
+        "lng": 4.671
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

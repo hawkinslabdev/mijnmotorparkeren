@@ -1,0 +1,16 @@
+{
+    "id": "beverwijk",
+    "name": "Gemeente Beverwijk",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.483,
+        "lng": 4.656
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

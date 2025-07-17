@@ -1,0 +1,21 @@
+{
+    "id": "druten",
+    "name": "Gemeente Druten",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.872,
+        "lng": 5.637
+    },
+    "boundaries": {
+        "coordinates": [[[5.685,51.896],[5.668,51.866],[5.636,51.867],[5.636,51.847],[5.61,51.836],[5.585,51.839],[5.568,51.877],[5.531,51.895],[5.556,51.901],[5.626,51.899],[5.685,51.896]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,16 @@
+{
+    "id": "heerhugowaard",
+    "name": "Gemeente Heerhugowaard",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.67,
+        "lng": 4.83
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

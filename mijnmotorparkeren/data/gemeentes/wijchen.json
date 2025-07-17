@@ -1,0 +1,45 @@
+{
+    "id": "wijchen",
+    "name": "Gemeente Wijchen",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.815,
+        "lng": 5.69
+    },
+    "boundaries": {
+        "coordinates": [[[5.765,51.832],[5.792,51.799],[5.801,51.795],[5.781,51.784],[5.732,51.778],[5.73,51.773],[5.711,51.775],[5.694,51.788],[5.657,51.798],[5.635,51.82],[5.598,51.828],[5.61,51.836],[5.636,51.847],[5.636,51.867],[5.668,51.866],[5.68,51.861],[5.678,51.843],[5.765,51.832]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Binnen Wijchen hebben wij geen uitzondering gemaakt zoals in Amsterdam. Dit betekent dat er niet op het trottoir geparkeerd mag worden met een gemotoriseerd voertuigen. Voor betaald parkeren geldt dat er voor motoren betaald moet worden voor het verkrijgen van een parkeerrecht."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Beleidsadviseur Verkeer & Vervoer van de Gemeente Wijchen",
+            "date": "2025-01-07"
+        }
+    ]
+}

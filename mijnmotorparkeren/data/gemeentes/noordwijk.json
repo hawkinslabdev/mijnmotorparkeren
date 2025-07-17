@@ -1,0 +1,41 @@
+{
+    "id": "noordwijk",
+    "name": "Gemeente Noordwijk",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.239,
+        "lng": 4.444
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "De gemeente Noordwijk heeft geen aanvullend beleid op het parkeren van motoren maar volgt de landelijke wetgeving. Dat wil zeggen dat motoren niet op de stoep mogen worden geparkeerd. In een betaald parkeren gebied dient voor het verkrijgen van een parkeerrecht betaald te worden."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Medewerker Team Verkeer van Gemeente Noordwijk",
+            "date": "2025-01-07"
+        }
+    ]
+}

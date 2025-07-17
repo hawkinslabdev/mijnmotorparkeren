@@ -1,0 +1,38 @@
+{
+    "id": "bronckhorst",
+    "name": "Gemeente Bronckhorst",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.071,
+        "lng": 6.37
+    },
+    "boundaries": {
+        "coordinates": [[[6.424,52.097],[6.401,52.084],[6.415,52.051],[6.439,52.025],[6.462,52.022],[6.476,51.988],[6.468,51.978],[6.448,51.97],[6.416,51.973],[6.39,51.968],[6.354,51.975],[6.319,51.994],[6.279,51.985],[6.26,51.987],[6.25,51.976],[6.205,51.98],[6.16,51.981],[6.159,52],[6.161,52.014],[6.177,52.019],[6.176,52.039],[6.152,52.042],[6.122,52.035],[6.116,52.049],[6.137,52.059],[6.171,52.079],[6.178,52.091],[6.218,52.098],[6.236,52.114],[6.258,52.11],[6.278,52.122],[6.328,52.138],[6.358,52.136],[6.369,52.124],[6.393,52.131],[6.392,52.113],[6.424,52.097]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "uithoorn",
+    "name": "Gemeente Uithoorn",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.2378,
+        "lng": 4.8261
+    },
+    "boundaries": {
+        "coordinates": [[[4.852,52.242],[4.829,52.231],[4.795,52.227],[4.729,52.21],[4.724,52.217],[4.773,52.241],[4.771,52.25],[4.795,52.261],[4.852,52.242]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

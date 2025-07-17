@@ -1,0 +1,16 @@
+{
+    "id": "purmerend",
+    "name": "Gemeente Purmerend",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.509,
+        "lng": 4.946
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

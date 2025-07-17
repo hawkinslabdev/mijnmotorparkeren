@@ -1,0 +1,38 @@
+{
+    "id": "steenwijkerland",
+    "name": "Gemeente Steenwijkerland",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.79,
+        "lng": 5.957
+    },
+    "boundaries": {
+        "coordinates": [[[6.173,52.773],[6.156,52.763],[6.12,52.75],[6.159,52.692],[6.12,52.668],[6.086,52.663],[6.055,52.65],[6.018,52.643],[5.983,52.658],[5.934,52.676],[5.965,52.694],[5.943,52.715],[5.922,52.751],[5.88,52.773],[5.85,52.785],[5.819,52.788],[5.795,52.807],[5.82,52.817],[5.844,52.805],[5.876,52.801],[5.898,52.808],[5.924,52.824],[5.93,52.835],[5.972,52.842],[5.997,52.817],[6.025,52.823],[6.031,52.815],[6.12,52.854],[6.137,52.839],[6.202,52.794],[6.173,52.773]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

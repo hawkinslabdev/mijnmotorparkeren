@@ -1,0 +1,38 @@
+{
+    "id": "raalte",
+    "name": "Gemeente Raalte",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.383,
+        "lng": 6.273
+    },
+    "boundaries": {
+        "coordinates": [[[6.162,52.474],[6.17,52.469],[6.236,52.466],[6.278,52.457],[6.292,52.435],[6.35,52.425],[6.381,52.43],[6.39,52.428],[6.405,52.416],[6.389,52.38],[6.357,52.377],[6.343,52.37],[6.334,52.351],[6.356,52.318],[6.327,52.302],[6.267,52.301],[6.235,52.32],[6.223,52.347],[6.197,52.352],[6.204,52.387],[6.23,52.39],[6.222,52.408],[6.231,52.423],[6.177,52.431],[6.155,52.453],[6.144,52.468],[6.162,52.474]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

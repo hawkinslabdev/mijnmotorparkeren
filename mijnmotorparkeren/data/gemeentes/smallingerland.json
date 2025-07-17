@@ -1,0 +1,38 @@
+{
+    "id": "smallingerland",
+    "name": "Gemeente Smallingerland",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 53.16,
+        "lng": 6.035
+    },
+    "boundaries": {
+        "coordinates": [[[6.186,53.129],[6.125,53.101],[6.104,53.077],[6.089,53.071],[6.024,53.073],[6.002,53.081],[5.981,53.078],[5.928,53.078],[5.895,53.079],[5.875,53.085],[5.886,53.094],[5.882,53.107],[5.934,53.109],[5.943,53.122],[6.013,53.154],[6.08,53.157],[6.105,53.152],[6.122,53.145],[6.148,53.158],[6.177,53.16],[6.175,53.136],[6.186,53.129]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

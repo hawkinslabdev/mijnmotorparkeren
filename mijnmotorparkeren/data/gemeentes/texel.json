@@ -1,0 +1,38 @@
+{
+    "id": "texel",
+    "name": "Gemeente Texel",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 53.0565,
+        "lng": 4.8074
+    },
+    "boundaries": {
+        "coordinates": [[[4.881,53.155],[4.908,53.135],[4.9,53.125],[4.897,53.079],[4.873,53.065],[4.873,53.055],[4.847,53.034],[4.819,53.029],[4.785,53.002],[4.737,52.989],[4.714,52.997],[4.709,53.022],[4.724,53.068],[4.758,53.106],[4.841,53.183],[4.861,53.183],[4.881,53.155]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

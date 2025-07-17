@@ -1,0 +1,38 @@
+{
+    "id": "hengelo",
+    "name": "Gemeente Hengelo",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.265,
+        "lng": 6.793
+    },
+    "boundaries": {
+        "coordinates": [[[6.84,52.276],[6.843,52.254],[6.82,52.244],[6.814,52.229],[6.774,52.238],[6.756,52.217],[6.767,52.191],[6.712,52.206],[6.702,52.217],[6.712,52.226],[6.724,52.253],[6.753,52.252],[6.743,52.283],[6.776,52.293],[6.802,52.314],[6.819,52.301],[6.846,52.291],[6.84,52.276]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

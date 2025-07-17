@@ -1,0 +1,38 @@
+{
+    "id": "wassenaar",
+    "name": "Gemeente Wassenaar",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.1461,
+        "lng": 4.4029
+    },
+    "boundaries": {
+        "coordinates": [[[4.44,52.156],[4.443,52.145],[4.401,52.112],[4.373,52.095],[4.358,52.106],[4.344,52.098],[4.303,52.129],[4.374,52.187],[4.412,52.163],[4.44,52.156]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

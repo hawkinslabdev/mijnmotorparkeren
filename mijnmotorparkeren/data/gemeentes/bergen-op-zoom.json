@@ -1,0 +1,21 @@
+{
+    "id": "bergen-op-zoom",
+    "name": "Gemeente Bergen op Zoom",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.528,
+        "lng": 4.287
+    },
+    "boundaries": {
+        "coordinates": [[[4.318,51.551],[4.33,51.528],[4.352,51.514],[4.35,51.503],[4.373,51.488],[4.362,51.476],[4.367,51.457],[4.311,51.46],[4.283,51.44],[4.265,51.44],[4.23,51.489],[4.219,51.505],[4.236,51.55],[4.252,51.571],[4.318,51.551]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

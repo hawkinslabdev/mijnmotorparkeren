@@ -1,0 +1,21 @@
+{
+    "id": "laarbeek",
+    "name": "Gemeente Laarbeek",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.537,
+        "lng": 5.617
+    },
+    "boundaries": {
+        "coordinates": [[[5.684,51.508],[5.656,51.507],[5.635,51.495],[5.61,51.509],[5.577,51.499],[5.558,51.509],[5.547,51.538],[5.533,51.558],[5.584,51.563],[5.622,51.553],[5.652,51.57],[5.684,51.508]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

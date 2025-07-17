@@ -1,0 +1,38 @@
+{
+    "id": "elburg",
+    "name": "Gemeente Elburg",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.418,
+        "lng": 5.868
+    },
+    "boundaries": {
+        "coordinates": [[[5.924,52.391],[5.912,52.387],[5.876,52.358],[5.865,52.36],[5.821,52.391],[5.812,52.403],[5.771,52.396],[5.757,52.407],[5.811,52.436],[5.817,52.457],[5.842,52.471],[5.878,52.453],[5.872,52.443],[5.9,52.42],[5.924,52.391]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

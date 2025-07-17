@@ -1,0 +1,38 @@
+{
+    "id": "baarle-nassau",
+    "name": "Gemeente Baarle-Nassau",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.437,
+        "lng": 4.927
+    },
+    "boundaries": {
+        "coordinates": [[[5.01,51.458],[5.004,51.445],[4.963,51.422],[4.929,51.396],[4.886,51.417],[4.84,51.415],[4.789,51.409],[4.771,51.415],[4.767,51.431],[4.787,51.433],[4.829,51.423],[4.823,51.449],[4.836,51.461],[4.842,51.481],[4.891,51.478],[4.945,51.457],[4.977,51.461],[5.01,51.458]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

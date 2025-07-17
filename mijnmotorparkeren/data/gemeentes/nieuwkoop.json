@@ -1,0 +1,38 @@
+{
+    "id": "nieuwkoop",
+    "name": "Gemeente Nieuwkoop",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.1506,
+        "lng": 4.7765
+    },
+    "boundaries": {
+        "coordinates": [[[4.892,52.162],[4.874,52.156],[4.875,52.139],[4.855,52.137],[4.833,52.145],[4.813,52.14],[4.792,52.122],[4.739,52.107],[4.759,52.135],[4.742,52.163],[4.706,52.152],[4.681,52.168],[4.689,52.192],[4.708,52.205],[4.729,52.21],[4.795,52.227],[4.814,52.202],[4.844,52.18],[4.892,52.162]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

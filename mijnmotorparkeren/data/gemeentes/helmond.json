@@ -1,0 +1,38 @@
+{
+    "id": "helmond",
+    "name": "Gemeente Helmond",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.484,
+        "lng": 5.661
+    },
+    "boundaries": {
+        "coordinates": [[[5.684,51.508],[5.708,51.502],[5.722,51.485],[5.736,51.472],[5.717,51.466],[5.73,51.444],[5.718,51.439],[5.694,51.439],[5.672,51.458],[5.656,51.457],[5.608,51.45],[5.585,51.461],[5.605,51.471],[5.586,51.479],[5.577,51.499],[5.61,51.509],[5.635,51.495],[5.656,51.507],[5.684,51.508]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

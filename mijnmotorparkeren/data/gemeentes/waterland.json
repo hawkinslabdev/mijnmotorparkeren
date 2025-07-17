@@ -1,0 +1,38 @@
+{
+    "id": "waterland",
+    "name": "Gemeente Waterland",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.4426,
+        "lng": 5.0402
+    },
+    "boundaries": {
+        "coordinates": [[[4.998,52.495],[5.025,52.485],[5.059,52.486],[5.068,52.472],[5.048,52.455],[5.049,52.439],[5.078,52.437],[5.087,52.437],[5.093,52.44],[5.093,52.452],[5.103,52.467],[5.133,52.46],[5.095,52.448],[5.094,52.441],[5.092,52.437],[5.068,52.417],[5.049,52.415],[5,52.425],[4.948,52.422],[4.951,52.437],[4.948,52.484],[4.958,52.471],[4.974,52.47],[4.998,52.495]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

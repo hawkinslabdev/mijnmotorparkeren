@@ -1,0 +1,38 @@
+{
+    "id": "borger-odoorn",
+    "name": "Gemeente Borger-Odoorn",
+    "province": "Drenthe",
+    "coordinates": {
+        "lat": 52.924,
+        "lng": 6.872
+    },
+    "boundaries": {
+        "coordinates": [[[7.027,52.919],[7.046,52.916],[7.015,52.873],[6.958,52.862],[6.95,52.849],[6.869,52.819],[6.85,52.805],[6.827,52.82],[6.766,52.85],[6.736,52.879],[6.725,52.937],[6.728,52.955],[6.789,52.963],[6.839,52.978],[6.936,52.993],[7.016,52.925],[7.027,52.919]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

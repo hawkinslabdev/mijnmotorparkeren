@@ -1,0 +1,38 @@
+{
+    "id": "beekdaelen",
+    "name": "Gemeente Beekdaelen",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.94,
+        "lng": 5.95
+    },
+    "boundaries": {
+        "coordinates": [[[6.006,50.958],[5.965,50.961],[5.936,50.946],[5.928,50.937],[5.896,50.92],[5.923,50.904],[5.881,50.883],[5.862,50.882],[5.8,50.886],[5.802,50.914],[5.842,50.92],[5.856,50.943],[5.84,50.95],[5.845,50.964],[5.874,50.963],[5.897,50.975],[5.955,50.988],[5.966,50.98],[6.027,50.981],[6.006,50.958]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

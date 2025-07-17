@@ -1,0 +1,45 @@
+{
+    "id": "gorinchem",
+    "name": "Gemeente Gorinchem",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.8367,
+        "lng": 4.9748
+    },
+    "boundaries": {
+        "coordinates": [[[4.999,51.852],[5.009,51.843],[5.031,51.841],[5.026,51.819],[5,51.821],[4.927,51.828],[4.925,51.84],[4.943,51.845],[4.938,51.864],[4.959,51.863],[4.999,51.852]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep niet gedoogd. Voor motoren dient in een betaald parkeren gebied betaald moeten worden voor het verkrijgen van een parkeerrecht."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Parkeerregisseur Team Stadsontwikkeling",
+            "date": "2025-01-07"
+        }
+    ]
+}

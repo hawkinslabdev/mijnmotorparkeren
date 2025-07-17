@@ -1,0 +1,21 @@
+{
+    "id": "gennep",
+    "name": "Gemeente Gennep",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.701,
+        "lng": 5.995
+    },
+    "boundaries": {
+        "coordinates": [[[6.032,51.676],[6.015,51.662],[5.977,51.644],[5.963,51.657],[5.965,51.676],[5.955,51.709],[5.919,51.718],[5.938,51.742],[5.953,51.748],[5.955,51.738],[5.994,51.738],[6.045,51.717],[6.026,51.709],[6.032,51.676]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

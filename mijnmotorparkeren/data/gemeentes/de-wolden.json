@@ -1,0 +1,38 @@
+{
+    "id": "de-wolden",
+    "name": "Gemeente De Wolden",
+    "province": "Drenthe",
+    "coordinates": {
+        "lat": 52.745,
+        "lng": 6.377
+    },
+    "boundaries": {
+        "coordinates": [[[6.447,52.786],[6.446,52.776],[6.41,52.765],[6.423,52.743],[6.407,52.707],[6.451,52.707],[6.449,52.694],[6.486,52.694],[6.5,52.674],[6.531,52.672],[6.529,52.655],[6.514,52.646],[6.519,52.614],[6.47,52.625],[6.453,52.614],[6.434,52.626],[6.384,52.612],[6.364,52.643],[6.328,52.659],[6.323,52.67],[6.298,52.666],[6.266,52.668],[6.287,52.699],[6.249,52.708],[6.217,52.703],[6.216,52.719],[6.231,52.742],[6.252,52.758],[6.297,52.766],[6.293,52.778],[6.309,52.795],[6.341,52.799],[6.361,52.783],[6.394,52.777],[6.447,52.786]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

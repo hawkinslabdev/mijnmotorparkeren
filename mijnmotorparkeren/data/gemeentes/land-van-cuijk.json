@@ -1,0 +1,38 @@
+{
+    "id": "land-van-cuijk",
+    "name": "Gemeente Land van Cuijk",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.715,
+        "lng": 5.9
+    },
+    "boundaries": {
+        "coordinates": [[[5.864,51.758],[5.88,51.75],[5.885,51.728],[5.919,51.718],[5.955,51.709],[5.965,51.676],[5.963,51.657],[5.977,51.644],[6.02,51.622],[6.026,51.596],[6.04,51.582],[6.048,51.558],[6.032,51.552],[6.004,51.57],[5.935,51.554],[5.907,51.552],[5.891,51.56],[5.838,51.566],[5.801,51.579],[5.787,51.598],[5.759,51.594],[5.75,51.623],[5.734,51.678],[5.7,51.711],[5.711,51.73],[5.698,51.739],[5.703,51.75],[5.691,51.759],[5.711,51.775],[5.73,51.773],[5.745,51.759],[5.78,51.752],[5.852,51.759],[5.864,51.758]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

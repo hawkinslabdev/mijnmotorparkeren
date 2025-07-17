@@ -1,0 +1,38 @@
+{
+    "id": "waddinxveen",
+    "name": "Gemeente Waddinxveen",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.0451,
+        "lng": 4.6514
+    },
+    "boundaries": {
+        "coordinates": [[[4.66,52.064],[4.677,52.044],[4.706,52.04],[4.681,52.028],[4.667,52.013],[4.649,52.021],[4.625,52.015],[4.591,52.035],[4.607,52.045],[4.607,52.066],[4.607,52.077],[4.637,52.074],[4.66,52.064]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

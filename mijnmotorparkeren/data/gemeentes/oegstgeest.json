@@ -1,0 +1,38 @@
+{
+    "id": "oegstgeest",
+    "name": "Gemeente Oegstgeest",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.1794,
+        "lng": 4.4696
+    },
+    "boundaries": {
+        "coordinates": [[[4.498,52.184],[4.455,52.171],[4.448,52.162],[4.446,52.179],[4.459,52.183],[4.463,52.2],[4.491,52.204],[4.498,52.184]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

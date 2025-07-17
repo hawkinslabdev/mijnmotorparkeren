@@ -1,0 +1,38 @@
+{
+    "id": "lopik",
+    "name": "Gemeente Lopik",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 51.9725,
+        "lng": 4.9491
+    },
+    "boundaries": {
+        "coordinates": [[[5.063,51.991],[5.036,51.971],[4.998,51.978],[4.968,51.959],[4.94,51.963],[4.926,51.951],[4.914,51.942],[4.878,51.938],[4.86,51.968],[4.835,51.986],[4.91,52.011],[4.92,52.01],[4.995,52.022],[5.02,52.026],[5.034,52.004],[5.063,51.991]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

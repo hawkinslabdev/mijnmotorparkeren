@@ -1,0 +1,21 @@
+{
+    "id": "roerdalen",
+    "name": "Gemeente Roerdalen",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.139,
+        "lng": 6.062
+    },
+    "boundaries": {
+        "coordinates": [[[6.036,51.097],[6.022,51.113],[5.985,51.121],[5.972,51.115],[5.927,51.114],[5.914,51.133],[5.955,51.159],[5.984,51.176],[5.998,51.168],[6.04,51.161],[6.064,51.166],[6.073,51.183],[6.082,51.172],[6.113,51.175],[6.165,51.194],[6.181,51.186],[6.139,51.173],[6.175,51.158],[6.163,51.149],[6.126,51.145],[6.092,51.135],[6.076,51.119],[6.036,51.097]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

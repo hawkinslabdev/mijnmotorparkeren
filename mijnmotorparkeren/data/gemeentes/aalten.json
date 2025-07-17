@@ -1,0 +1,38 @@
+{
+    "id": "aalten",
+    "name": "Gemeente Aalten",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.928,
+        "lng": 6.58
+    },
+    "boundaries": {
+        "coordinates": [[[6.639,51.963],[6.629,51.95],[6.634,51.935],[6.659,51.929],[6.669,51.914],[6.638,51.904],[6.586,51.894],[6.556,51.882],[6.501,51.868],[6.464,51.855],[6.484,51.879],[6.472,51.907],[6.489,51.913],[6.505,51.946],[6.517,51.948],[6.527,51.966],[6.559,51.974],[6.629,51.967],[6.639,51.963]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

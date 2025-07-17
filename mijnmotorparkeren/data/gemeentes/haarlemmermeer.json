@@ -1,0 +1,45 @@
+{
+    "id": "haarlemmermeer",
+    "name": "Gemeente Haarlemmermeer",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.3087,
+        "lng": 4.6903
+    },
+    "boundaries": {
+        "coordinates": [[[4.819,52.326],[4.81,52.306],[4.765,52.277],[4.726,52.263],[4.702,52.244],[4.67,52.231],[4.633,52.216],[4.603,52.215],[4.558,52.219],[4.554,52.222],[4.563,52.235],[4.573,52.271],[4.588,52.28],[4.612,52.314],[4.611,52.322],[4.617,52.331],[4.64,52.339],[4.671,52.35],[4.671,52.37],[4.686,52.384],[4.669,52.401],[4.682,52.414],[4.722,52.433],[4.739,52.431],[4.729,52.401],[4.757,52.397],[4.756,52.356],[4.791,52.342],[4.819,52.326]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep gedoogd, mits er voldoende ruimte overblijft voor voetgangers en rolstoelgebruikers. Parkeer je op een parkeerplaats (waarvoor betaald parkeren geldt), dan moet je wel betalen."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Medewerker Handhaving En Toezicht",
+            "date": "2025-01-07"
+        }
+    ]
+}

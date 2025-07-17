@@ -1,0 +1,38 @@
+{
+    "id": "hof-van-twente",
+    "name": "Gemeente Hof van Twente",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.242,
+        "lng": 6.591
+    },
+    "boundaries": {
+        "coordinates": [[[6.712,52.206],[6.697,52.196],[6.672,52.198],[6.634,52.186],[6.645,52.174],[6.612,52.163],[6.59,52.182],[6.555,52.177],[6.518,52.181],[6.492,52.177],[6.479,52.183],[6.429,52.223],[6.416,52.242],[6.43,52.252],[6.491,52.276],[6.523,52.283],[6.554,52.283],[6.568,52.27],[6.605,52.271],[6.626,52.29],[6.658,52.295],[6.691,52.308],[6.712,52.304],[6.743,52.283],[6.753,52.252],[6.724,52.253],[6.712,52.226],[6.702,52.217],[6.712,52.206]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

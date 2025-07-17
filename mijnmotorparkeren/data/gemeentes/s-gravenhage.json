@@ -1,0 +1,43 @@
+{
+    "id": "s-gravenhage",
+    "name": "Gemeente 's-Gravenhage",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.0705,
+        "lng": 4.3007
+    },
+    "boundaries": {
+        "coordinates": [[[4.303,52.129],[4.344,52.098],[4.358,52.106],[4.373,52.095],[4.335,52.075],[4.356,52.068],[4.404,52.078],[4.421,52.063],[4.422,52.052],[4.394,52.054],[4.373,52.041],[4.38,52.027],[4.358,52.027],[4.34,52.062],[4.291,52.042],[4.308,52.018],[4.287,52.023],[4.273,52.036],[4.248,52.025],[4.235,52.039],[4.212,52.034],[4.196,52.056],[4.225,52.074],[4.261,52.103],[4.303,52.129]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": true,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": true,
+            "notes": "Motoren en brommobielen mogen overal parkeren waar personenauto's ook mogen parkeren. Motoren hoeven hier niet voor te betalen. "
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "name": "Gemeente 's-Gravenhage",
+            "url": "https://www.denhaag.nl/nl/parkeren/parkeren-in-de-binnenstad/"
+        }
+    ]
+}

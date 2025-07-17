@@ -1,0 +1,16 @@
+{
+    "id": "ameland",
+    "name": "Gemeente Ameland",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 53.45,
+        "lng": 5.78
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

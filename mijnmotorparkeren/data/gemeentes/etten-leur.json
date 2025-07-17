@@ -1,0 +1,45 @@
+{
+    "id": "etten-leur",
+    "name": "Gemeente Etten-Leur",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.583,
+        "lng": 4.638
+    },
+    "boundaries": {
+        "coordinates": [[[4.694,51.545],[4.652,51.522],[4.639,51.524],[4.625,51.552],[4.592,51.561],[4.597,51.59],[4.614,51.608],[4.601,51.625],[4.629,51.624],[4.665,51.634],[4.658,51.62],[4.664,51.604],[4.682,51.599],[4.694,51.568],[4.694,51.545]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep niet gedoogd, omdat hier geen gedoogdafspraken over gemaakt zijn. Ook voor motoren dient in een betaald parkeren gebied betaald moeten worden voor het verkrijgen van een parkeerrecht."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Medewerker Klantcontactcentrum van Gemeente Etten-Leur",
+            "date": "2025-01-07"
+        }
+    ]
+}

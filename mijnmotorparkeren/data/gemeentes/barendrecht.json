@@ -1,0 +1,38 @@
+{
+    "id": "barendrecht",
+    "name": "Gemeente Barendrecht",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.8566,
+        "lng": 4.5346
+    },
+    "boundaries": {
+        "coordinates": [[[4.571,51.847],[4.554,51.83],[4.525,51.83],[4.489,51.835],[4.49,51.851],[4.48,51.862],[4.494,51.869],[4.532,51.869],[4.549,51.874],[4.571,51.847]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

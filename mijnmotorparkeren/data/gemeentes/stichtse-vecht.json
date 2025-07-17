@@ -1,0 +1,38 @@
+{
+    "id": "stichtse-vecht",
+    "name": "Gemeente Stichtse Vecht",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.206,
+        "lng": 5.032
+    },
+    "boundaries": {
+        "coordinates": [[[5.064,52.281],[5.033,52.275],[5.027,52.264],[5.057,52.237],[5.042,52.231],[5.034,52.213],[5.046,52.166],[5.115,52.18],[5.119,52.172],[5.095,52.155],[5.121,52.146],[5.107,52.133],[5.087,52.136],[5.061,52.123],[5.048,52.13],[5.033,52.117],[5.003,52.141],[4.97,52.122],[4.944,52.128],[4.91,52.162],[4.929,52.167],[4.967,52.2],[4.98,52.227],[5.007,52.232],[5.022,52.283],[5.064,52.281]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

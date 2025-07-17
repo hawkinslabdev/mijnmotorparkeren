@@ -1,0 +1,44 @@
+{
+    "id": "katwijk",
+    "name": "Gemeente Katwijk",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.201,
+        "lng": 4.419
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": true,
+            "areas": [
+                "Centrum",
+                "Boulevard"
+            ],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep wordt gedoogd tenzij hinderlijk. In parkeervakken in betaald parkeren zone: betalen verplicht."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "community",
+            "name": "Team Mobiliteit van de Gemeente Gemeente Katwijk",
+            "url": "#",
+            "date": "2025-01-21"
+        }
+    ]
+}

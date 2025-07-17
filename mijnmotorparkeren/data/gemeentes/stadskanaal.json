@@ -1,0 +1,38 @@
+{
+    "id": "stadskanaal",
+    "name": "Gemeente Stadskanaal",
+    "province": "Groningen",
+    "coordinates": {
+        "lat": 52.9895,
+        "lng": 7.0339
+    },
+    "boundaries": {
+        "coordinates": [[[7.015,53.072],[7.034,53.065],[7.077,53.064],[7.086,53.042],[7.08,53.03],[7.1,53.016],[7.072,53.004],[7.07,52.953],[7.063,52.931],[7.036,52.929],[7.027,52.919],[7.016,52.925],[6.936,52.993],[6.861,53.041],[6.881,53.047],[6.908,53.039],[6.936,53.02],[6.956,53.014],[7.01,53.074],[7.015,53.072]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

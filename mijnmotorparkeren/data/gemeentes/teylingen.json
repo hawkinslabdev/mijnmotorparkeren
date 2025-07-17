@@ -1,0 +1,38 @@
+{
+    "id": "teylingen",
+    "name": "Gemeente Teylingen",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.217,
+        "lng": 4.523
+    },
+    "boundaries": {
+        "coordinates": [[[4.554,52.222],[4.558,52.219],[4.56,52.2],[4.547,52.199],[4.538,52.18],[4.518,52.182],[4.498,52.184],[4.491,52.204],[4.463,52.2],[4.464,52.216],[4.466,52.225],[4.513,52.255],[4.525,52.236],[4.554,52.222]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

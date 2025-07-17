@@ -1,0 +1,38 @@
+{
+    "id": "vaals",
+    "name": "Gemeente Vaals",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.78,
+        "lng": 5.98
+    },
+    "boundaries": {
+        "coordinates": [[[5.936,50.757],[5.943,50.773],[5.942,50.79],[5.977,50.803],[6.002,50.784],[6.028,50.774],[6.021,50.754],[5.974,50.755],[5.959,50.762],[5.936,50.757]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

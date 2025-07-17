@@ -1,0 +1,3 @@
+"use strict";
+// build-search-index.ts
+// ...stub script...

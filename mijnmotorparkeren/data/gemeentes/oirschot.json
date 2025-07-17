@@ -1,0 +1,38 @@
+{
+    "id": "oirschot",
+    "name": "Gemeente Oirschot",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.501,
+        "lng": 5.287
+    },
+    "boundaries": {
+        "coordinates": [[[5.357,51.545],[5.349,51.517],[5.356,51.496],[5.391,51.486],[5.391,51.472],[5.369,51.465],[5.335,51.466],[5.298,51.455],[5.248,51.446],[5.238,51.429],[5.207,51.435],[5.191,51.43],[5.21,51.466],[5.22,51.473],[5.228,51.499],[5.251,51.51],[5.224,51.517],[5.244,51.526],[5.253,51.54],[5.273,51.553],[5.308,51.546],[5.333,51.551],[5.357,51.545]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

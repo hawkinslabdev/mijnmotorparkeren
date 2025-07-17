@@ -1,0 +1,38 @@
+{
+    "id": "montferland",
+    "name": "Gemeente Montferland",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.94,
+        "lng": 6.306
+    },
+    "boundaries": {
+        "coordinates": [[[6.306,51.939],[6.29,51.925],[6.316,51.913],[6.311,51.9],[6.332,51.875],[6.299,51.868],[6.28,51.874],[6.262,51.868],[6.215,51.868],[6.184,51.883],[6.191,51.892],[6.168,51.901],[6.091,51.939],[6.09,51.968],[6.105,51.967],[6.145,51.981],[6.163,51.955],[6.193,51.941],[6.221,51.945],[6.302,51.944],[6.306,51.939]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

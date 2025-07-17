@@ -1,0 +1,16 @@
+{
+    "id": "lisse",
+    "name": "Gemeente Lisse",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.26,
+        "lng": 4.556
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "id": "dantumadiel",
+    "name": "Gemeente Dantumadiel",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 53.28,
+        "lng": 6.04
+    },
+    "boundaries": {
+        "coordinates": [[[6.044,53.244],[6.02,53.241],[5.985,53.231],[5.956,53.228],[5.943,53.25],[5.926,53.252],[5.882,53.277],[5.907,53.288],[5.897,53.302],[5.964,53.323],[5.976,53.307],[6.021,53.309],[6.022,53.324],[6.067,53.324],[6.072,53.297],[6.054,53.291],[6.044,53.244]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

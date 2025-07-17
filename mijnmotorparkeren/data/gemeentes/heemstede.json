@@ -1,0 +1,38 @@
+{
+    "id": "heemstede",
+    "name": "Gemeente Heemstede",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.3499,
+        "lng": 4.6228
+    },
+    "boundaries": {
+        "coordinates": [[[4.64,52.339],[4.617,52.331],[4.611,52.322],[4.59,52.329],[4.606,52.363],[4.637,52.361],[4.64,52.339]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "de-ronde-venen",
+    "name": "Gemeente De Ronde Venen",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.236,
+        "lng": 4.936
+    },
+    "boundaries": {
+        "coordinates": [[[5.022,52.283],[5.007,52.232],[4.98,52.227],[4.967,52.2],[4.929,52.167],[4.91,52.162],[4.892,52.162],[4.844,52.18],[4.814,52.202],[4.795,52.227],[4.829,52.231],[4.852,52.242],[4.87,52.253],[4.911,52.253],[4.929,52.268],[4.934,52.281],[4.955,52.278],[4.984,52.29],[5.022,52.283]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

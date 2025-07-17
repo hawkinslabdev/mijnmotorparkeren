@@ -1,0 +1,21 @@
+{
+    "id": "goes",
+    "name": "Gemeente Goes",
+    "province": "Zeeland",
+    "coordinates": {
+        "lat": 51.522,
+        "lng": 3.872
+    },
+    "boundaries": {
+        "coordinates": [[[3.865,51.541],[3.867,51.542],[3.927,51.544],[3.94,51.525],[3.971,51.528],[3.965,51.506],[3.926,51.492],[3.913,51.479],[3.842,51.485],[3.804,51.484],[3.767,51.498],[3.706,51.502],[3.745,51.512],[3.728,51.524],[3.734,51.54],[3.754,51.548],[3.792,51.541],[3.822,51.548],[3.849,51.54],[3.865,51.541]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

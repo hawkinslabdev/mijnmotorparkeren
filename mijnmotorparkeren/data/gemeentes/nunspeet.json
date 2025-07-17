@@ -1,0 +1,38 @@
+{
+    "id": "nunspeet",
+    "name": "Gemeente Nunspeet",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.344,
+        "lng": 5.782
+    },
+    "boundaries": {
+        "coordinates": [[[5.876,52.358],[5.865,52.351],[5.881,52.335],[5.841,52.304],[5.852,52.28],[5.851,52.269],[5.821,52.273],[5.749,52.268],[5.755,52.283],[5.744,52.298],[5.751,52.317],[5.706,52.328],[5.712,52.332],[5.696,52.361],[5.679,52.379],[5.7,52.381],[5.757,52.407],[5.771,52.396],[5.812,52.403],[5.821,52.391],[5.865,52.36],[5.876,52.358]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

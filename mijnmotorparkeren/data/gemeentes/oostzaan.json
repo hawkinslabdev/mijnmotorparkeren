@@ -1,0 +1,38 @@
+{
+    "id": "oostzaan",
+    "name": "Gemeente Oostzaan",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.4392,
+        "lng": 4.8749
+    },
+    "boundaries": {
+        "coordinates": [[[4.906,52.48],[4.893,52.457],[4.899,52.424],[4.863,52.43],[4.843,52.452],[4.853,52.47],[4.906,52.48]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

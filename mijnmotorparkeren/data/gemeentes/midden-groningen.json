@@ -1,0 +1,38 @@
+{
+    "id": "midden-groningen",
+    "name": "Gemeente Midden-Groningen",
+    "province": "Groningen",
+    "coordinates": {
+        "lat": 53.17,
+        "lng": 6.91
+    },
+    "boundaries": {
+        "coordinates": [[[6.911,53.243],[6.929,53.213],[6.904,53.167],[6.929,53.169],[6.95,53.159],[6.965,53.111],[6.962,53.11],[6.959,53.12],[6.886,53.129],[6.866,53.124],[6.823,53.126],[6.802,53.119],[6.814,53.071],[6.777,53.095],[6.737,53.119],[6.695,53.121],[6.689,53.155],[6.639,53.186],[6.667,53.202],[6.684,53.202],[6.718,53.242],[6.698,53.256],[6.773,53.283],[6.814,53.298],[6.846,53.29],[6.887,53.298],[6.887,53.279],[6.909,53.279],[6.911,53.243]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

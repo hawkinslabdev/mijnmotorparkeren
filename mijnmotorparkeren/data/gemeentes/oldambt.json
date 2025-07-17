@@ -1,0 +1,38 @@
+{
+    "id": "oldambt",
+    "name": "Gemeente Oldambt",
+    "province": "Groningen",
+    "coordinates": {
+        "lat": 53.21,
+        "lng": 7.09
+    },
+    "boundaries": {
+        "coordinates": [[[7.093,53.257],[7.156,53.243],[7.206,53.236],[7.217,53.215],[7.218,53.198],[7.189,53.155],[7.174,53.148],[7.14,53.155],[7.107,53.144],[7.08,53.144],[7.03,53.115],[6.988,53.116],[6.965,53.111],[6.95,53.159],[6.929,53.169],[6.904,53.167],[6.929,53.213],[6.911,53.243],[6.929,53.237],[6.952,53.256],[6.997,53.267],[7.013,53.267],[7.022,53.253],[7.04,53.26],[7.068,53.242],[7.093,53.257]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "zwijndrecht",
+    "name": "Gemeente Zwijndrecht",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.8175,
+        "lng": 4.6333
+    },
+    "boundaries": {
+        "coordinates": [[[4.67,51.824],[4.672,51.821],[4.642,51.806],[4.621,51.801],[4.57,51.811],[4.554,51.83],[4.571,51.847],[4.6,51.839],[4.637,51.825],[4.662,51.832],[4.67,51.824]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

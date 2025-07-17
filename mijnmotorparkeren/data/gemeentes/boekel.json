@@ -1,0 +1,21 @@
+{
+    "id": "boekel",
+    "name": "Gemeente Boekel",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.606,
+        "lng": 5.693
+    },
+    "boundaries": {
+        "coordinates": [[[5.75,51.623],[5.759,51.594],[5.699,51.584],[5.651,51.582],[5.643,51.606],[5.627,51.623],[5.665,51.629],[5.75,51.623]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

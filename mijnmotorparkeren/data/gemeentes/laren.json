@@ -1,0 +1,38 @@
+{
+    "id": "laren",
+    "name": "Gemeente Laren (NH.)",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.2568,
+        "lng": 5.2275
+    },
+    "boundaries": {
+        "coordinates": [[[5.244,52.255],[5.225,52.225],[5.219,52.212],[5.189,52.248],[5.204,52.267],[5.226,52.268],[5.244,52.255]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

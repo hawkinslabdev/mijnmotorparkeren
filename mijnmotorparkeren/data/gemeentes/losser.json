@@ -1,0 +1,38 @@
+{
+    "id": "losser",
+    "name": "Gemeente Losser",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.301,
+        "lng": 7.005
+    },
+    "boundaries": {
+        "coordinates": [[[7.072,52.373],[7.072,52.352],[7.056,52.338],[7.048,52.32],[7.026,52.292],[7.028,52.278],[7.042,52.256],[7.066,52.241],[7.061,52.235],[7.019,52.225],[7.003,52.229],[6.981,52.221],[6.966,52.23],[6.973,52.249],[6.969,52.267],[6.939,52.284],[6.95,52.308],[6.938,52.333],[6.97,52.349],[6.963,52.363],[6.971,52.38],[7.008,52.364],[7.072,52.373]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

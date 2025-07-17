@@ -1,0 +1,38 @@
+{
+    "id": "ermelo",
+    "name": "Gemeente Ermelo",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.289,
+        "lng": 5.661
+    },
+    "boundaries": {
+        "coordinates": [[[5.749,52.268],[5.761,52.248],[5.726,52.243],[5.684,52.241],[5.676,52.251],[5.642,52.271],[5.588,52.279],[5.548,52.292],[5.576,52.327],[5.609,52.319],[5.63,52.327],[5.671,52.304],[5.706,52.328],[5.751,52.317],[5.744,52.298],[5.755,52.283],[5.749,52.268]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

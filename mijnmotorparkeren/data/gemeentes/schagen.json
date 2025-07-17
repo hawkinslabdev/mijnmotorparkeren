@@ -1,0 +1,38 @@
+{
+    "id": "schagen",
+    "name": "Gemeente Schagen",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.7892,
+        "lng": 4.7985
+    },
+    "boundaries": {
+        "coordinates": [[[4.848,52.72],[4.805,52.714],[4.779,52.731],[4.771,52.702],[4.729,52.691],[4.716,52.71],[4.69,52.733],[4.646,52.757],[4.68,52.81],[4.709,52.884],[4.771,52.879],[4.759,52.849],[4.783,52.851],[4.81,52.836],[4.835,52.808],[4.829,52.775],[4.807,52.77],[4.85,52.726],[4.848,52.72]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

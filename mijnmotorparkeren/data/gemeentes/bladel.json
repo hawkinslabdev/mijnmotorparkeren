@@ -1,0 +1,38 @@
+{
+    "id": "bladel",
+    "name": "Gemeente Bladel",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.374,
+        "lng": 5.253
+    },
+    "boundaries": {
+        "coordinates": [[[5.238,51.429],[5.281,51.405],[5.307,51.406],[5.311,51.391],[5.289,51.389],[5.275,51.363],[5.286,51.336],[5.263,51.319],[5.241,51.306],[5.2,51.323],[5.194,51.345],[5.195,51.4],[5.191,51.43],[5.207,51.435],[5.238,51.429]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

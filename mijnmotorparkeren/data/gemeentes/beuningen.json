@@ -1,0 +1,38 @@
+{
+    "id": "beuningen",
+    "name": "Gemeente Beuningen",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.862,
+        "lng": 5.768
+    },
+    "boundaries": {
+        "coordinates": [[[5.765,51.832],[5.678,51.843],[5.68,51.861],[5.668,51.866],[5.685,51.896],[5.707,51.893],[5.726,51.887],[5.798,51.876],[5.817,51.87],[5.806,51.85],[5.765,51.832]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

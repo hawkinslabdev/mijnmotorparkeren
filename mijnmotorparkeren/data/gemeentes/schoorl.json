@@ -1,0 +1,41 @@
+{
+    "id": "schoorl",
+    "name": "Gemeente Schoorl",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.701,
+        "lng": 4.69
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": true,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Geen informatie beschikbaar. De pagina voor Schoorl bestaat niet op motoropdestoep.nl."
+        }
+    },
+    "lastUpdated": null,
+    "sources": [
+        {
+            "type": "community",
+            "name": "MotorOpDeStoep.nl",
+            "url": "https://motoropdestoep.nl/gemeente/schoorl",
+            "date": "2025-07-08"
+        }
+    ]
+}

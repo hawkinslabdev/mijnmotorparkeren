@@ -1,0 +1,38 @@
+{
+    "id": "scherpenzeel",
+    "name": "Gemeente Scherpenzeel",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.089,
+        "lng": 5.505
+    },
+    "boundaries": {
+        "coordinates": [[[5.532,52.102],[5.537,52.089],[5.523,52.078],[5.496,52.072],[5.484,52.07],[5.459,52.08],[5.486,52.094],[5.494,52.111],[5.532,52.102]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

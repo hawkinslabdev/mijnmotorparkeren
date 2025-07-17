@@ -1,0 +1,38 @@
+{
+    "id": "neder-betuwe",
+    "name": "Gemeente Neder-Betuwe",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.93,
+        "lng": 5.6
+    },
+    "boundaries": {
+        "coordinates": [[[5.666,51.953],[5.66,51.93],[5.706,51.908],[5.707,51.893],[5.685,51.896],[5.626,51.899],[5.556,51.901],[5.531,51.895],[5.509,51.89],[5.464,51.889],[5.456,51.903],[5.472,51.908],[5.453,51.923],[5.494,51.919],[5.554,51.923],[5.549,51.942],[5.576,51.943],[5.587,51.951],[5.606,51.943],[5.63,51.936],[5.65,51.95],[5.666,51.953]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

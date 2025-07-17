@@ -1,0 +1,38 @@
+{
+    "id": "rheden",
+    "name": "Gemeente Rheden",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.04,
+        "lng": 6.07
+    },
+    "boundaries": {
+        "coordinates": [[[6.137,52.059],[6.116,52.049],[6.122,52.035],[6.132,52.025],[6.126,52.01],[6.11,51.996],[6.094,51.993],[6.064,52.015],[6.028,51.996],[6.015,51.997],[6.002,51.981],[5.99,51.974],[5.961,51.988],[5.952,52],[5.975,52.003],[5.98,52.018],[5.996,52.026],[5.978,52.054],[5.998,52.054],[6.006,52.066],[6.024,52.067],[6.068,52.088],[6.103,52.078],[6.137,52.059]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

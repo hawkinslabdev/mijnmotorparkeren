@@ -1,0 +1,38 @@
+{
+    "id": "berkelland",
+    "name": "Gemeente Berkelland",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.116,
+        "lng": 6.591
+    },
+    "boundaries": {
+        "coordinates": [[[6.645,52.174],[6.671,52.166],[6.674,52.143],[6.663,52.13],[6.716,52.118],[6.761,52.119],[6.751,52.085],[6.735,52.075],[6.696,52.07],[6.688,52.044],[6.662,52.052],[6.659,52.063],[6.606,52.065],[6.596,52.043],[6.572,52.031],[6.539,52.025],[6.517,52.042],[6.48,52.033],[6.462,52.022],[6.439,52.025],[6.415,52.051],[6.401,52.084],[6.424,52.097],[6.455,52.108],[6.481,52.11],[6.492,52.124],[6.481,52.142],[6.492,52.177],[6.518,52.181],[6.555,52.177],[6.59,52.182],[6.612,52.163],[6.645,52.174]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

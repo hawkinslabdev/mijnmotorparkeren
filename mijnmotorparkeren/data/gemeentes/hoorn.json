@@ -1,0 +1,38 @@
+{
+    "id": "hoorn",
+    "name": "Gemeente Hoorn",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.6423,
+        "lng": 5.0602
+    },
+    "boundaries": {
+        "coordinates": [[[5.092,52.679],[5.117,52.65],[5.101,52.635],[5.089,52.643],[5.068,52.635],[5.046,52.642],[5.019,52.63],[5.037,52.648],[5.035,52.667],[5.092,52.679]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

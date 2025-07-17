@@ -1,0 +1,38 @@
+{
+    "id": "eemnes",
+    "name": "Gemeente Eemnes",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.2607,
+        "lng": 5.2615
+    },
+    "boundaries": {
+        "coordinates": [[[5.306,52.278],[5.331,52.274],[5.324,52.253],[5.311,52.246],[5.312,52.233],[5.301,52.224],[5.225,52.225],[5.244,52.255],[5.266,52.282],[5.306,52.278]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

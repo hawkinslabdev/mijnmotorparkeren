@@ -1,0 +1,38 @@
+{
+    "id": "midden-delfland",
+    "name": "Gemeente Midden-Delfland",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.97,
+        "lng": 4.316
+    },
+    "boundaries": {
+        "coordinates": [[[4.326,52.013],[4.341,52.003],[4.324,51.99],[4.338,51.974],[4.403,51.966],[4.379,51.963],[4.351,51.952],[4.315,51.937],[4.293,51.921],[4.259,51.928],[4.24,51.943],[4.234,51.953],[4.277,51.965],[4.302,51.981],[4.265,51.996],[4.31,52.016],[4.326,52.013]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

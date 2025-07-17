@@ -1,0 +1,38 @@
+{
+    "id": "arnhem",
+    "name": "Gemeente Arnhem",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.985,
+        "lng": 5.898
+    },
+    "boundaries": {
+        "coordinates": [[[5.952,52],[5.961,51.988],[5.99,51.974],[5.952,51.965],[5.955,51.949],[5.932,51.959],[5.898,51.934],[5.872,51.942],[5.83,51.945],[5.835,51.974],[5.864,51.971],[5.864,51.996],[5.803,52.004],[5.813,52.024],[5.85,52.052],[5.899,52.05],[5.91,52.062],[5.946,52.078],[5.956,52.073],[5.937,52.049],[5.941,52.011],[5.952,52]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

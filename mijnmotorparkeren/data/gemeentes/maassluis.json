@@ -1,0 +1,38 @@
+{
+    "id": "maassluis",
+    "name": "Gemeente Maassluis",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.9233,
+        "lng": 4.25
+    },
+    "boundaries": {
+        "coordinates": [[[4.24,51.943],[4.259,51.928],[4.293,51.921],[4.268,51.905],[4.236,51.917],[4.213,51.934],[4.22,51.941],[4.24,51.943]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "zundert",
+    "name": "Gemeente Zundert",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.478,
+        "lng": 4.637
+    },
+    "boundaries": {
+        "coordinates": [[[4.734,51.486],[4.693,51.452],[4.667,51.444],[4.67,51.426],[4.63,51.426],[4.575,51.433],[4.535,51.423],[4.53,51.45],[4.548,51.473],[4.556,51.486],[4.59,51.497],[4.58,51.511],[4.611,51.508],[4.639,51.524],[4.652,51.522],[4.694,51.545],[4.704,51.55],[4.742,51.531],[4.742,51.506],[4.734,51.486]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

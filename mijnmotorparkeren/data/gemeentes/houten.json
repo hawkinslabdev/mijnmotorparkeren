@@ -1,0 +1,38 @@
+{
+    "id": "houten",
+    "name": "Gemeente Houten",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.0283,
+        "lng": 5.1683
+    },
+    "boundaries": {
+        "coordinates": [[[5.153,52.057],[5.161,52.046],[5.179,52.046],[5.201,52.032],[5.202,52.017],[5.229,52.011],[5.243,51.999],[5.256,51.971],[5.23,51.976],[5.206,51.959],[5.18,51.967],[5.147,51.977],[5.14,51.994],[5.12,52],[5.128,52.025],[5.122,52.03],[5.127,52.055],[5.153,52.057]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

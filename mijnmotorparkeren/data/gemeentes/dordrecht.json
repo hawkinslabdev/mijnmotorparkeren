@@ -1,0 +1,38 @@
+{
+    "id": "dordrecht",
+    "name": "Gemeente Dordrecht",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.8133,
+        "lng": 4.6901
+    },
+    "boundaries": {
+        "coordinates": [[[4.73,51.822],[4.766,51.816],[4.811,51.819],[4.885,51.816],[4.846,51.799],[4.797,51.8],[4.774,51.793],[4.755,51.782],[4.737,51.756],[4.676,51.725],[4.645,51.719],[4.644,51.719],[4.637,51.717],[4.636,51.717],[4.624,51.721],[4.631,51.742],[4.627,51.785],[4.621,51.801],[4.642,51.806],[4.672,51.821],[4.73,51.822]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "tytsjerksteradiel",
+    "name": "Gemeente Tytsjerksteradiel",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 53.21,
+        "lng": 5.98
+    },
+    "boundaries": {
+        "coordinates": [[[6.02,53.241],[6.027,53.23],[6.086,53.215],[6.085,53.194],[6.115,53.176],[6.105,53.152],[6.08,53.157],[6.013,53.154],[5.943,53.122],[5.909,53.145],[5.932,53.161],[5.926,53.168],[5.862,53.172],[5.853,53.189],[5.858,53.204],[5.898,53.209],[5.88,53.233],[5.859,53.243],[5.832,53.243],[5.83,53.258],[5.839,53.275],[5.861,53.288],[5.882,53.277],[5.926,53.252],[5.943,53.25],[5.956,53.228],[5.985,53.231],[6.02,53.241]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

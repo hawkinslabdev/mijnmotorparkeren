@@ -1,0 +1,38 @@
+{
+    "id": "someren",
+    "name": "Gemeente Someren",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.395,
+        "lng": 5.701
+    },
+    "boundaries": {
+        "coordinates": [[[5.77,51.334],[5.672,51.315],[5.655,51.354],[5.639,51.389],[5.639,51.422],[5.656,51.457],[5.672,51.458],[5.694,51.439],[5.703,51.413],[5.736,51.389],[5.77,51.334]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

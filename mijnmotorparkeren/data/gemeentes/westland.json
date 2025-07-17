@@ -1,0 +1,11 @@
+{
+    "id": "westland",
+    "name": "Gemeente Westland",
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

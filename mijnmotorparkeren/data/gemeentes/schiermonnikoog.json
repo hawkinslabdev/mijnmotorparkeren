@@ -1,0 +1,16 @@
+{
+    "id": "schiermonnikoog",
+    "name": "Gemeente Schiermonnikoog",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 53.484,
+        "lng": 6.162
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

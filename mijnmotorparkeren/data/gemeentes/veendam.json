@@ -1,0 +1,38 @@
+{
+    "id": "veendam",
+    "name": "Gemeente Veendam",
+    "province": "Groningen",
+    "coordinates": {
+        "lat": 53.1066,
+        "lng": 6.8795
+    },
+    "boundaries": {
+        "coordinates": [[[6.962,53.11],[6.961,53.096],[6.931,53.073],[6.924,53.058],[6.933,53.05],[6.908,53.039],[6.881,53.047],[6.861,53.041],[6.814,53.071],[6.802,53.119],[6.823,53.126],[6.866,53.124],[6.886,53.129],[6.959,53.12],[6.962,53.11]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

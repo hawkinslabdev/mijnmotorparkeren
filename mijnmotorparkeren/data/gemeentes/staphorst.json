@@ -1,0 +1,38 @@
+{
+    "id": "staphorst",
+    "name": "Gemeente Staphorst",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.645,
+        "lng": 6.211
+    },
+    "boundaries": {
+        "coordinates": [[[6.266,52.668],[6.298,52.666],[6.323,52.67],[6.328,52.659],[6.303,52.597],[6.202,52.585],[6.183,52.588],[6.147,52.584],[6.131,52.581],[6.106,52.604],[6.096,52.631],[6.104,52.656],[6.12,52.668],[6.159,52.692],[6.163,52.68],[6.183,52.675],[6.202,52.685],[6.221,52.683],[6.266,52.668]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

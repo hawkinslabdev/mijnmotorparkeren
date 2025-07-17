@@ -1,0 +1,38 @@
+{
+    "id": "tiel",
+    "name": "Gemeente Tiel",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.895,
+        "lng": 5.414
+    },
+    "boundaries": {
+        "coordinates": [[[5.453,51.923],[5.472,51.908],[5.456,51.903],[5.464,51.889],[5.445,51.884],[5.423,51.866],[5.415,51.852],[5.38,51.862],[5.328,51.857],[5.339,51.874],[5.4,51.899],[5.411,51.912],[5.453,51.923]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

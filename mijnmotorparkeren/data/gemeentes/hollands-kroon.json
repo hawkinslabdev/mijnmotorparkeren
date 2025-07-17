@@ -1,0 +1,38 @@
+{
+    "id": "hollands-kroon",
+    "name": "Gemeente Hollands Kroon",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.8669,
+        "lng": 4.9472
+    },
+    "boundaries": {
+        "coordinates": [[[5.104,52.774],[5.07,52.768],[5.045,52.753],[4.997,52.752],[4.944,52.754],[4.899,52.707],[4.848,52.72],[4.85,52.726],[4.807,52.77],[4.829,52.775],[4.835,52.808],[4.81,52.836],[4.783,52.851],[4.759,52.849],[4.771,52.879],[4.795,52.913],[4.807,52.913],[4.875,52.888],[4.935,52.903],[4.968,52.93],[5.054,52.941],[5.166,53],[5.167,52.999],[5.039,52.931],[5.049,52.924],[5.114,52.846],[5.104,52.774]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

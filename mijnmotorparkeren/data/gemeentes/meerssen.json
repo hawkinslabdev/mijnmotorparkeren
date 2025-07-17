@@ -1,0 +1,45 @@
+{
+    "id": "meerssen",
+    "name": "Gemeente Meerssen",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.89,
+        "lng": 5.77
+    },
+    "boundaries": {
+        "coordinates": [[[5.772,50.929],[5.775,50.911],[5.802,50.914],[5.8,50.886],[5.778,50.884],[5.763,50.867],[5.733,50.875],[5.715,50.908],[5.746,50.943],[5.772,50.929]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Binnen de gemeente Meerssen is geen apart beleid maar gelden gewoon de verkeerregels: Een motor parkeren moet officieel volgens de wettelijke verkeersregels op de rijbaan, net zoals alle andere gemotoriseerde voertuigen. Als er parkeervakken zijn moet je je motor daarin zetten. Op de stoep mag de motor volgens de wet niet worden geparkeerd."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Medewerker Klantcontactcentrum van Gemeente Meerssen",
+            "date": "2025-01-07"
+        }
+    ]
+}

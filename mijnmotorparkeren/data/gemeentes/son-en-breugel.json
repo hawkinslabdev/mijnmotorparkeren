@@ -1,0 +1,38 @@
+{
+    "id": "son-en-breugel",
+    "name": "Gemeente Son en Breugel",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.521,
+        "lng": 5.471
+    },
+    "boundaries": {
+        "coordinates": [[[5.531,51.525],[5.546,51.513],[5.511,51.497],[5.443,51.494],[5.448,51.512],[5.424,51.534],[5.487,51.542],[5.5,51.521],[5.531,51.525]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

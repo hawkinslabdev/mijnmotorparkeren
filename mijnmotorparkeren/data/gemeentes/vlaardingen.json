@@ -1,0 +1,38 @@
+{
+    "id": "vlaardingen",
+    "name": "Gemeente Vlaardingen",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.9122,
+        "lng": 4.3417
+    },
+    "boundaries": {
+        "coordinates": [[[4.371,51.899],[4.331,51.894],[4.296,51.897],[4.268,51.905],[4.293,51.921],[4.315,51.937],[4.351,51.952],[4.36,51.939],[4.371,51.899]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

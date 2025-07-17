@@ -1,0 +1,21 @@
+{
+    "id": "waalwijk",
+    "name": "Gemeente Waalwijk",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.698,
+        "lng": 5.032
+    },
+    "boundaries": {
+        "coordinates": [[[5.082,51.722],[5.109,51.709],[5.102,51.677],[5.061,51.671],[5.049,51.662],[4.992,51.676],[4.987,51.655],[4.958,51.652],[4.954,51.671],[4.933,51.677],[4.918,51.72],[4.958,51.723],[5.009,51.713],[5.054,51.712],[5.082,51.722]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

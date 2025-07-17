@@ -1,0 +1,16 @@
+{
+    "id": "zandvoort",
+    "name": "Gemeente Zandvoort",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.374,
+        "lng": 4.533
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

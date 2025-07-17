@@ -1,0 +1,55 @@
+{
+    "id": "zeewolde",
+    "name": "Gemeente Zeewolde",
+    "province": "Flevoland",
+    "coordinates": {
+        "lat": 52.33,
+        "lng": 5.54
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": [
+                {
+                    "location": "Verbod parkeren in schoolzones tijdens schooltijden",
+                    "times": "07:30-08:30, 15:00-16:00"
+                }
+            ]
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [
+                {
+                    "location": "Parkeergarage Ravelijn",
+                    "spots": 3,
+                    "coordinates": {
+                        "lat": 52.332,
+                        "lng": 5.545
+                    }
+                }
+            ],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": null,
+            "notes": "Motoren kunnen in heel Zeewolde gratis parkeren. Parkeren op de stoep is toegestaan als het voetgangers niet hindert. Er zijn geen betaalde parkeerzones (voor motorvoertuigen)."
+        }
+    },
+    "lastUpdated": "2025-07-12",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Zeewolde",
+            "url": "https://www.zeewolde.nl/parkeren",
+            "date": "2025-07-07"
+        }
+    ]
+}

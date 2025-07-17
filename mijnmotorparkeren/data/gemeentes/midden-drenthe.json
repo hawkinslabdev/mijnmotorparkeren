@@ -1,0 +1,38 @@
+{
+    "id": "midden-drenthe",
+    "name": "Gemeente Midden-Drenthe",
+    "province": "Drenthe",
+    "coordinates": {
+        "lat": 52.943,
+        "lng": 6.516
+    },
+    "boundaries": {
+        "coordinates": [[[6.562,52.947],[6.586,52.919],[6.667,52.909],[6.675,52.905],[6.686,52.875],[6.715,52.868],[6.728,52.854],[6.704,52.847],[6.708,52.836],[6.69,52.823],[6.692,52.811],[6.675,52.797],[6.661,52.801],[6.587,52.736],[6.558,52.745],[6.566,52.766],[6.513,52.762],[6.491,52.771],[6.492,52.793],[6.455,52.801],[6.46,52.814],[6.48,52.837],[6.451,52.85],[6.431,52.85],[6.431,52.868],[6.42,52.882],[6.36,52.895],[6.386,52.916],[6.369,52.922],[6.393,52.933],[6.428,52.972],[6.413,52.986],[6.488,53.005],[6.497,52.983],[6.486,52.973],[6.497,52.952],[6.536,52.933],[6.543,52.955],[6.562,52.947]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

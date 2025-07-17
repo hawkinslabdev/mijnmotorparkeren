@@ -1,0 +1,38 @@
+{
+    "id": "geldrop-mierlo",
+    "name": "Gemeente Geldrop-Mierlo",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.44,
+        "lng": 5.601
+    },
+    "boundaries": {
+        "coordinates": [[[5.585,51.461],[5.608,51.45],[5.656,51.457],[5.639,51.422],[5.599,51.418],[5.564,51.405],[5.526,51.405],[5.525,51.428],[5.547,51.434],[5.566,51.441],[5.585,51.461]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

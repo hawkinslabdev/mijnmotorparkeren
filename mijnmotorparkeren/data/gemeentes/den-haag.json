@@ -1,0 +1,34 @@
+{
+    "id": "den-haag",
+    "name": "Gemeente Den Haag",
+    "parkingRules": {
+        "free": true,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": true,
+            "notes": "Motoren en brommobielen mogen overal parkeren waar personenauto's ook mogen parkeren. Motoren hoeven hier niet voor te betalen. "
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "name": "Gemeente 's-Gravenhage",
+            "url": "https://www.denhaag.nl/nl/parkeren/parkeren-in-de-binnenstad/"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "id": "harlingen",
+    "name": "Gemeente Harlingen",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 53.1741,
+        "lng": 5.4124
+    },
+    "boundaries": {
+        "coordinates": [[[5.472,53.147],[5.421,53.154],[5.412,53.152],[5.411,53.176],[5.438,53.21],[5.458,53.2],[5.485,53.2],[5.48,53.176],[5.487,53.165],[5.472,53.147]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

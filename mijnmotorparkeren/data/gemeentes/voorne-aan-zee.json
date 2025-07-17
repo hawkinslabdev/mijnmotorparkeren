@@ -1,0 +1,21 @@
+{
+    "id": "voorne-aan-zee",
+    "name": "Gemeente Voorne aan Zee",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.857,
+        "lng": 4.12
+    },
+    "boundaries": {
+        "coordinates": [[[4.239,51.873],[4.198,51.85],[4.197,51.835],[4.22,51.828],[4.212,51.814],[4.194,51.804],[4.182,51.805],[4.156,51.823],[4.131,51.82],[4.094,51.829],[4.074,51.843],[4.049,51.832],[4.068,51.849],[4.029,51.886],[4.053,51.918],[4.04,51.924],[3.994,51.916],[4.064,51.932],[4.108,51.936],[4.163,51.927],[4.22,51.896],[4.239,51.873]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

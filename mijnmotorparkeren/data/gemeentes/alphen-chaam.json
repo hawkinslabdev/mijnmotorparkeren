@@ -1,0 +1,45 @@
+{
+    "id": "alphen-chaam",
+    "name": "Gemeente Alphen-Chaam",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.501,
+        "lng": 4.899
+    },
+    "boundaries": {
+        "coordinates": [[[4.963,51.526],[4.992,51.512],[4.988,51.483],[5.017,51.475],[5.01,51.458],[4.977,51.461],[4.945,51.457],[4.891,51.478],[4.842,51.481],[4.821,51.483],[4.815,51.495],[4.76,51.502],[4.747,51.515],[4.77,51.527],[4.831,51.55],[4.863,51.557],[4.866,51.538],[4.911,51.51],[4.957,51.519],[4.963,51.526]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Voor motoren maken we geen uitzondering als het gaat om parkeren op de stoep of in betaalde parkeerzones. Als wegbeheerder volgen wij de wetgeving en staan wij het niet toe om te parkeren op de stoep wanneer dit wettelijk verboden is."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Team Verkeer van de Gemeente Alphen-Chaam",
+            "date": "2025-01-07"
+        }
+    ]
+}

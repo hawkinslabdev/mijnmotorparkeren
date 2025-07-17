@@ -1,0 +1,38 @@
+{
+    "id": "ouder-amstel",
+    "name": "Gemeente Ouder-Amstel",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.2944,
+        "lng": 4.9074
+    },
+    "boundaries": {
+        "coordinates": [[[4.945,52.327],[4.929,52.309],[4.955,52.278],[4.934,52.281],[4.929,52.268],[4.911,52.253],[4.87,52.253],[4.879,52.279],[4.908,52.307],[4.909,52.318],[4.913,52.331],[4.95,52.339],[4.945,52.327]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

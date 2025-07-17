@@ -1,0 +1,38 @@
+{
+    "id": "noordenveld",
+    "name": "Gemeente Noordenveld",
+    "province": "Drenthe",
+    "coordinates": {
+        "lat": 53.135,
+        "lng": 6.443
+    },
+    "boundaries": {
+        "coordinates": [[[6.513,53.197],[6.534,53.17],[6.539,53.133],[6.48,53.121],[6.491,53.097],[6.513,53.072],[6.505,53.046],[6.496,53.031],[6.504,53.016],[6.488,53.005],[6.413,52.986],[6.363,53.034],[6.368,53.067],[6.332,53.075],[6.305,53.081],[6.315,53.094],[6.344,53.087],[6.383,53.15],[6.408,53.178],[6.443,53.188],[6.463,53.2],[6.486,53.204],[6.513,53.197]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "oldenzaal",
+    "name": "Gemeente Oldenzaal",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.313,
+        "lng": 6.93
+    },
+    "boundaries": {
+        "coordinates": [[[6.938,52.333],[6.95,52.308],[6.939,52.284],[6.912,52.286],[6.894,52.294],[6.86,52.299],[6.861,52.306],[6.895,52.325],[6.901,52.333],[6.938,52.333]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

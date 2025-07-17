@@ -1,0 +1,38 @@
+{
+    "id": "enkhuizen",
+    "name": "Gemeente Enkhuizen",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.7033,
+        "lng": 5.2913
+    },
+    "boundaries": {
+        "coordinates": [[[5.272,52.746],[5.283,52.74],[5.288,52.715],[5.299,52.703],[5.287,52.691],[5.287,52.69],[5.259,52.687],[5.258,52.716],[5.255,52.742],[5.272,52.746]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

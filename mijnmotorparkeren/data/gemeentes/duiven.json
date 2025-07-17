@@ -1,0 +1,38 @@
+{
+    "id": "duiven",
+    "name": "Gemeente Duiven",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.936,
+        "lng": 6.012
+    },
+    "boundaries": {
+        "coordinates": [[[5.987,51.913],[5.966,51.939],[5.984,51.943],[5.984,51.972],[6.002,51.978],[6.034,51.971],[6.061,51.982],[6.058,51.958],[6.043,51.917],[5.987,51.913]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

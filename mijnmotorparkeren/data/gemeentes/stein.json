@@ -1,0 +1,38 @@
+{
+    "id": "stein",
+    "name": "Gemeente Stein",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.949,
+        "lng": 5.788
+    },
+    "boundaries": {
+        "coordinates": [[[5.788,50.949],[5.772,50.929],[5.746,50.943],[5.742,50.961],[5.72,50.962],[5.766,50.998],[5.773,51.019],[5.788,50.949]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

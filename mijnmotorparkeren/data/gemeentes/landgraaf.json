@@ -1,0 +1,38 @@
+{
+    "id": "landgraaf",
+    "name": "Gemeente Landgraaf",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.92,
+        "lng": 6.08
+    },
+    "boundaries": {
+        "coordinates": [[[6.08,50.906],[6.043,50.9],[6.031,50.872],[6.017,50.87],[5.997,50.893],[5.993,50.91],[6.012,50.926],[6.018,50.935],[6.082,50.922],[6.08,50.906]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

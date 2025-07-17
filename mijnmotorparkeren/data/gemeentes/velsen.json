@@ -1,0 +1,38 @@
+{
+    "id": "velsen",
+    "name": "Gemeente Velsen",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.4599,
+        "lng": 4.6297
+    },
+    "boundaries": {
+        "coordinates": [[[4.675,52.456],[4.722,52.433],[4.682,52.414],[4.651,52.429],[4.632,52.412],[4.624,52.422],[4.588,52.434],[4.56,52.438],[4.554,52.461],[4.605,52.467],[4.6,52.474],[4.564,52.468],[4.581,52.489],[4.653,52.477],[4.675,52.456]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

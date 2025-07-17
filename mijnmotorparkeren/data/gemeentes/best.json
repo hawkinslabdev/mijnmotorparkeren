@@ -1,0 +1,38 @@
+{
+    "id": "best",
+    "name": "Gemeente Best",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.522,
+        "lng": 5.406
+    },
+    "boundaries": {
+        "coordinates": [[[5.424,51.534],[5.448,51.512],[5.443,51.494],[5.412,51.485],[5.391,51.486],[5.356,51.496],[5.349,51.517],[5.357,51.545],[5.404,51.548],[5.424,51.534]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

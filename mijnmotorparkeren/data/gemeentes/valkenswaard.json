@@ -1,0 +1,38 @@
+{
+    "id": "valkenswaard",
+    "name": "Gemeente Valkenswaard",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.344,
+        "lng": 5.462
+    },
+    "boundaries": {
+        "coordinates": [[[5.516,51.378],[5.527,51.367],[5.494,51.355],[5.496,51.347],[5.474,51.334],[5.491,51.314],[5.485,51.3],[5.465,51.285],[5.442,51.282],[5.417,51.262],[5.388,51.285],[5.394,51.309],[5.424,51.331],[5.42,51.359],[5.423,51.375],[5.439,51.366],[5.516,51.378]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

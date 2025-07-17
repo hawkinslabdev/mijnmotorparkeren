@@ -1,0 +1,38 @@
+{
+    "id": "noardeast-fryslan",
+    "name": "Gemeente Noardeast-Fryslân",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 53.32,
+        "lng": 6.09
+    },
+    "boundaries": {
+        "coordinates": [[[6.191,53.411],[6.162,53.408],[6.155,53.392],[6.162,53.369],[6.221,53.342],[6.254,53.348],[6.273,53.345],[6.287,53.341],[6.281,53.313],[6.294,53.308],[6.279,53.303],[6.254,53.289],[6.247,53.268],[6.232,53.257],[6.195,53.27],[6.178,53.26],[6.141,53.264],[6.044,53.244],[6.054,53.291],[6.072,53.297],[6.067,53.324],[6.022,53.324],[6.021,53.309],[5.976,53.307],[5.964,53.323],[5.897,53.302],[5.907,53.288],[5.882,53.277],[5.861,53.288],[5.839,53.275],[5.817,53.276],[5.763,53.294],[5.735,53.295],[5.749,53.314],[5.722,53.322],[5.717,53.339],[5.756,53.353],[5.779,53.356],[5.86,53.384],[5.888,53.391],[5.933,53.388],[6.016,53.403],[6.095,53.408],[6.139,53.404],[6.177,53.415],[6.191,53.411]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

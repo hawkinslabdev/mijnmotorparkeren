@@ -1,0 +1,38 @@
+{
+    "id": "winterswijk",
+    "name": "Gemeente Winterswijk",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.972,
+        "lng": 6.719
+    },
+    "boundaries": {
+        "coordinates": [[[6.719,51.972],[6.75,51.98],[6.77,51.96],[6.78,51.94],[6.77,51.92],[6.75,51.91],[6.73,51.91],[6.71,51.92],[6.69,51.94],[6.69,51.96],[6.71,51.97],[6.719,51.972]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

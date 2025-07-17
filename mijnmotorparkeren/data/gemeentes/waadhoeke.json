@@ -1,0 +1,45 @@
+{
+    "id": "waadhoeke",
+    "name": "Gemeente Waadhoeke",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 53.25,
+        "lng": 5.75
+    },
+    "boundaries": {
+        "coordinates": [[[5.735,53.295],[5.721,53.28],[5.735,53.247],[5.73,53.235],[5.735,53.211],[5.745,53.198],[5.738,53.173],[5.685,53.182],[5.66,53.164],[5.632,53.133],[5.637,53.124],[5.619,53.136],[5.596,53.126],[5.575,53.134],[5.551,53.134],[5.528,53.146],[5.484,53.137],[5.472,53.147],[5.487,53.165],[5.48,53.176],[5.485,53.2],[5.458,53.2],[5.438,53.21],[5.483,53.241],[5.527,53.257],[5.562,53.285],[5.587,53.3],[5.643,53.319],[5.717,53.339],[5.722,53.322],[5.749,53.314],[5.735,53.295]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "In onze gemeente wordt het parkeren op de stoep gedoogd, zolang dit geen hinder veroorzaakt. De stoep is in de eerste plaats bedoeld voor voetgangers, die hun route onbelemmerd moeten kunnen vervolgen. Als een handhaver constateert dat er hinderlijk is geparkeerd, kan er handhavend worden opgetreden. Parkeren op een parkeerplaats waar betaald parkeren geldt, is alleen toegestaan als er voor betaald wordt."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Beleidsadviseur Verkeer & Vervoer van de Gemeente Waadhoeke",
+            "date": "2025-01-07"
+        }
+    ]
+}

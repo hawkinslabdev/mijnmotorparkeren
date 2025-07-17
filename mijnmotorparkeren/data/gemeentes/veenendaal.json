@@ -1,0 +1,45 @@
+{
+    "id": "veenendaal",
+    "name": "Gemeente Veenendaal",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.0284,
+        "lng": 5.5563
+    },
+    "boundaries": {
+        "coordinates": [[[5.558,52.049],[5.587,52.031],[5.589,52.009],[5.57,51.997],[5.553,51.999],[5.513,52.019],[5.529,52.04],[5.558,52.049]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Er zijn geen duidelijk beleid binnen de gemeente Veenendaal afgegeven. Parkeren op de stoep wordt mogelijk niet gedoogd, en er zal voor plekken waar betaald parkeren geldt betaald moeten worden."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Team Toezicht en Handhaving van de Gemeente Veenendaal",
+            "date": "2025-01-07"
+        }
+    ]
+}

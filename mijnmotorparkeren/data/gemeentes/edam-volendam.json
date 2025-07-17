@@ -1,0 +1,38 @@
+{
+    "id": "edam-volendam",
+    "name": "Gemeente Edam-Volendam",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.5117,
+        "lng": 5.0484
+    },
+    "boundaries": {
+        "coordinates": [[[5.059,52.486],[5.025,52.485],[4.998,52.495],[5.025,52.522],[5.009,52.528],[4.992,52.52],[4.957,52.529],[4.977,52.547],[4.977,52.561],[4.996,52.574],[4.98,52.587],[4.955,52.58],[4.95,52.595],[5.005,52.598],[5.02,52.612],[5.031,52.567],[5.055,52.545],[5.066,52.523],[5.086,52.504],[5.059,52.486]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

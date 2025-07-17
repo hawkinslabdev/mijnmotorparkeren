@@ -1,0 +1,40 @@
+{
+    "id": "aalsmeer",
+    "name": "Gemeente Aalsmeer",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.26,
+        "lng": 4.75
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Een motorfiets mag, zolang het overige verkeer niet wordt gehinderd, op het trottoir of op een verbreding daarvan worden geparkeerd. Voor het parkeren van een motor op het trottoir hoeft geen parkeergeld te worden betaald."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "https://www.aalsmeer.nl/parkeren",
+            "date": "2025-01-07"
+        }
+    ]
+}

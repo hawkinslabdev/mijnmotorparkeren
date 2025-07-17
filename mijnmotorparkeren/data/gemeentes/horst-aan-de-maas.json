@@ -1,0 +1,43 @@
+{
+    "id": "horst-aan-de-maas",
+    "name": "Gemeente Horst aan de Maas",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.468,
+        "lng": 6.073
+    },
+    "boundaries": {
+        "coordinates": [[[6.141,51.52],[6.169,51.503],[6.167,51.486],[6.176,51.461],[6.157,51.445],[6.157,51.419],[6.135,51.416],[6.116,51.421],[6.078,51.42],[6.073,51.396],[6.019,51.382],[5.958,51.378],[5.931,51.385],[5.875,51.447],[5.953,51.464],[5.994,51.475],[6.035,51.482],[6.074,51.495],[6.067,51.524],[6.107,51.518],[6.122,51.51],[6.141,51.52]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": null,
+            "notes": "Wij zijn een kleine gemeente en hebben wat dat betreft ook niet echt hier een beleid in. In de praktijk houdt dat in dat wij ook niet optreden tegen een motorfiets op de stoep. Er zijn geen betaalde parkeerplaatsen in de gemeente."
+        }
+    },
+    "lastUpdated": "2025-07-16",
+    "sources": [
+        {
+            "name": "Coördinator Toezicht en Handhaving van de Gemeente Horst aan de Maas",
+            "url": "https://motoropdestoep.nl/gemeente/horst-aan-de-maas"
+        }
+    ]
+}

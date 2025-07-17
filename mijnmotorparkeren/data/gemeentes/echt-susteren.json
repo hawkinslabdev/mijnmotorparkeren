@@ -1,0 +1,38 @@
+{
+    "id": "echt-susteren",
+    "name": "Gemeente Echt-Susteren",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.093,
+        "lng": 5.927
+    },
+    "boundaries": {
+        "coordinates": [[[5.914,51.133],[5.927,51.114],[5.972,51.115],[5.985,51.121],[6.022,51.113],[6.036,51.097],[6.01,51.091],[5.97,51.061],[5.968,51.045],[5.938,51.035],[5.913,51.067],[5.867,51.046],[5.877,51.032],[5.853,51.029],[5.849,51.046],[5.827,51.048],[5.824,51.067],[5.799,51.06],[5.804,51.077],[5.795,51.09],[5.824,51.092],[5.834,51.1],[5.851,51.109],[5.872,51.135],[5.914,51.133]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

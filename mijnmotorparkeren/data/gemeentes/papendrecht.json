@@ -1,0 +1,38 @@
+{
+    "id": "papendrecht",
+    "name": "Gemeente Papendrecht",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.8322,
+        "lng": 4.6876
+    },
+    "boundaries": {
+        "coordinates": [[[4.743,51.841],[4.73,51.822],[4.672,51.821],[4.67,51.824],[4.673,51.839],[4.683,51.848],[4.707,51.841],[4.743,51.841]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

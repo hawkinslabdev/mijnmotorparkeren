@@ -1,0 +1,38 @@
+{
+    "id": "haarlem",
+    "name": "Gemeente Haarlem",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.3813,
+        "lng": 4.6367
+    },
+    "boundaries": {
+        "coordinates": [[[4.682,52.414],[4.669,52.401],[4.686,52.384],[4.671,52.37],[4.671,52.35],[4.64,52.339],[4.637,52.361],[4.606,52.363],[4.6,52.377],[4.622,52.388],[4.632,52.412],[4.651,52.429],[4.682,52.414]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

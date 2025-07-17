@@ -1,0 +1,38 @@
+{
+    "id": "deventer",
+    "name": "Gemeente Deventer",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.255,
+        "lng": 6.163
+    },
+    "boundaries": {
+        "coordinates": [[[6.327,52.302],[6.329,52.281],[6.377,52.259],[6.382,52.246],[6.338,52.236],[6.339,52.227],[6.217,52.226],[6.166,52.231],[6.148,52.228],[6.124,52.251],[6.13,52.261],[6.112,52.278],[6.101,52.301],[6.108,52.298],[6.172,52.309],[6.206,52.321],[6.235,52.32],[6.267,52.301],[6.327,52.302]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

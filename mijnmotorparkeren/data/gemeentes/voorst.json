@@ -1,0 +1,38 @@
+{
+    "id": "voorst",
+    "name": "Gemeente Voorst",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.235,
+        "lng": 6.104
+    },
+    "boundaries": {
+        "coordinates": [[[6.101,52.301],[6.112,52.278],[6.13,52.261],[6.124,52.251],[6.148,52.228],[6.166,52.231],[6.189,52.217],[6.184,52.204],[6.157,52.198],[6.194,52.176],[6.193,52.17],[6.185,52.161],[6.16,52.162],[6.106,52.152],[6.076,52.144],[6.049,52.185],[6.054,52.201],[6.047,52.221],[6.033,52.224],[6.028,52.249],[6.036,52.269],[6.043,52.279],[6.035,52.295],[6.053,52.331],[6.074,52.331],[6.084,52.302],[6.101,52.301]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

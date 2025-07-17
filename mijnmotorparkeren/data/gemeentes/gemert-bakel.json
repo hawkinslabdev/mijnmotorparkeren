@@ -1,0 +1,38 @@
+{
+    "id": "gemert-bakel",
+    "name": "Gemeente Gemert-Bakel",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.576,
+        "lng": 5.735
+    },
+    "boundaries": {
+        "coordinates": [[[5.838,51.566],[5.853,51.504],[5.774,51.489],[5.722,51.485],[5.708,51.502],[5.684,51.508],[5.652,51.57],[5.651,51.582],[5.699,51.584],[5.759,51.594],[5.787,51.598],[5.801,51.579],[5.838,51.566]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

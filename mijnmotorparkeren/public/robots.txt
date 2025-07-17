@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mijnmotorparkeren.nl/sitemap.xml
+
+User-agent: Googlebot
+Disallow: /private

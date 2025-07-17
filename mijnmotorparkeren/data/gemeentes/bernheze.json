@@ -1,0 +1,21 @@
+{
+    "id": "bernheze",
+    "name": "Gemeente Bernheze",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.691,
+        "lng": 5.537
+    },
+    "boundaries": {
+        "coordinates": [[[5.581,51.731],[5.6,51.708],[5.597,51.691],[5.576,51.68],[5.562,51.663],[5.57,51.651],[5.524,51.63],[5.497,51.627],[5.466,51.643],[5.423,51.654],[5.445,51.664],[5.457,51.688],[5.492,51.706],[5.474,51.729],[5.534,51.741],[5.581,51.731]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

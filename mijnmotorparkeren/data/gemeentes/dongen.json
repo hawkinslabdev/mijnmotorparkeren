@@ -1,0 +1,38 @@
+{
+    "id": "dongen",
+    "name": "Gemeente Dongen",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.646,
+        "lng": 4.954
+    },
+    "boundaries": {
+        "coordinates": [[[4.987,51.655],[5.004,51.608],[4.948,51.611],[4.912,51.615],[4.91,51.629],[4.933,51.651],[4.925,51.673],[4.933,51.677],[4.954,51.671],[4.958,51.652],[4.987,51.655]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

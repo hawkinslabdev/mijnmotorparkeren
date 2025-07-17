@@ -1,0 +1,38 @@
+{
+    "id": "pijnacker-nootdorp",
+    "name": "Gemeente Pijnacker-Nootdorp",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.021,
+        "lng": 4.426
+    },
+    "boundaries": {
+        "coordinates": [[[4.422,52.052],[4.451,52.049],[4.477,52.032],[4.457,52.022],[4.459,52.002],[4.428,51.976],[4.408,51.968],[4.397,51.979],[4.386,52.005],[4.395,52.011],[4.38,52.027],[4.373,52.041],[4.394,52.054],[4.422,52.052]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

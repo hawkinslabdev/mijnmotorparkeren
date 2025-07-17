@@ -1,0 +1,38 @@
+{
+    "id": "landsmeer",
+    "name": "Gemeente Landsmeer",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.4306,
+        "lng": 4.9143
+    },
+    "boundaries": {
+        "coordinates": [[[4.948,52.484],[4.951,52.437],[4.948,52.422],[4.931,52.412],[4.899,52.424],[4.893,52.457],[4.906,52.48],[4.921,52.49],[4.948,52.484]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

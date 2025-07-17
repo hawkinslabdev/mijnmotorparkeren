@@ -1,0 +1,38 @@
+{
+    "id": "groningen",
+    "name": "Gemeente Groningen",
+    "province": "Groningen",
+    "coordinates": {
+        "lat": 53.2194,
+        "lng": 6.5665
+    },
+    "boundaries": {
+        "coordinates": [[[6.773,53.283],[6.698,53.256],[6.718,53.242],[6.684,53.202],[6.667,53.202],[6.639,53.186],[6.689,53.155],[6.695,53.121],[6.635,53.106],[6.619,53.132],[6.588,53.146],[6.581,53.164],[6.564,53.158],[6.548,53.181],[6.53,53.195],[6.513,53.197],[6.486,53.204],[6.463,53.2],[6.48,53.246],[6.508,53.258],[6.554,53.262],[6.619,53.249],[6.626,53.266],[6.654,53.309],[6.69,53.298],[6.709,53.31],[6.765,53.298],[6.773,53.283]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

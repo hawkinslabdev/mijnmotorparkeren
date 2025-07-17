@@ -1,0 +1,45 @@
+{
+    "id": "zuidplas",
+    "name": "Gemeente Zuidplas",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.995,
+        "lng": 4.61
+    },
+    "boundaries": {
+        "coordinates": [[[4.667,52.013],[4.659,52.005],[4.689,51.996],[4.668,51.979],[4.633,51.97],[4.646,51.954],[4.635,51.938],[4.619,51.933],[4.584,51.965],[4.599,51.988],[4.579,51.99],[4.572,51.972],[4.548,51.973],[4.546,51.992],[4.555,52.006],[4.565,52.059],[4.607,52.066],[4.607,52.045],[4.591,52.035],[4.625,52.015],[4.649,52.021],[4.667,52.013]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Binnen gemeente Zuidplas wordt het parkeren op de stoep gedoogd, mits het geen hinder oplevert (voor bijvoorbeeld voetgangers). Voor betaald parkeren geldt dat er voor motoren betaald moet worden voor het verkrijgen van een parkeerrecht."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Verkeerskundige namens de gemeente Zuidplas",
+            "date": "2025-01-07"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "id": "voorschoten",
+    "name": "Gemeente Voorschoten",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.1275,
+        "lng": 4.4489
+    },
+    "boundaries": {
+        "coordinates": [[[4.464,52.127],[4.428,52.101],[4.401,52.112],[4.443,52.145],[4.465,52.149],[4.464,52.127]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

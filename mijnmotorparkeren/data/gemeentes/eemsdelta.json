@@ -1,0 +1,38 @@
+{
+    "id": "eemsdelta",
+    "name": "Gemeente Eemsdelta",
+    "province": "Groningen",
+    "coordinates": {
+        "lat": 53.35,
+        "lng": 6.95
+    },
+    "boundaries": {
+        "coordinates": [[[7.093,53.257],[7.068,53.242],[7.04,53.26],[7.022,53.253],[7.013,53.267],[6.997,53.267],[6.952,53.256],[6.929,53.237],[6.911,53.243],[6.909,53.279],[6.887,53.279],[6.887,53.298],[6.846,53.29],[6.814,53.298],[6.773,53.283],[6.765,53.298],[6.709,53.31],[6.69,53.298],[6.654,53.309],[6.62,53.314],[6.596,53.347],[6.626,53.351],[6.626,53.361],[6.664,53.367],[6.697,53.363],[6.748,53.395],[6.779,53.411],[6.792,53.404],[6.844,53.422],[6.874,53.408],[6.888,53.396],[6.897,53.356],[6.934,53.333],[6.968,53.319],[7.027,53.302],[7.084,53.298],[7.078,53.267],[7.093,53.257]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "hellendoorn",
+    "name": "Gemeente Hellendoorn",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.388,
+        "lng": 6.451
+    },
+    "boundaries": {
+        "coordinates": [[[6.576,52.418],[6.516,52.406],[6.513,52.382],[6.496,52.376],[6.499,52.364],[6.468,52.326],[6.461,52.32],[6.422,52.326],[6.356,52.318],[6.334,52.351],[6.343,52.37],[6.357,52.377],[6.389,52.38],[6.405,52.416],[6.39,52.428],[6.429,52.439],[6.45,52.461],[6.475,52.441],[6.511,52.437],[6.543,52.451],[6.572,52.447],[6.596,52.455],[6.598,52.439],[6.576,52.418]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

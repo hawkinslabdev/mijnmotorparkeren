@@ -1,0 +1,31 @@
+{
+    "id": "lelystad",
+    "name": "Gemeente Lelystad",
+    "province": "Flevoland",
+    "coordinates": {
+        "lat": 52.508,
+        "lng": 5.474
+    },
+    "boundaries": {
+        "coordinates": [[[5.573,52.596],[5.587,52.563],[5.591,52.5],[5.606,52.485],[5.565,52.47],[5.586,52.448],[5.567,52.436],[5.589,52.411],[5.578,52.41],[5.537,52.385],[5.509,52.398],[5.439,52.443],[5.398,52.42],[5.351,52.4],[5.276,52.423],[5.258,52.435],[5.378,52.487],[5.395,52.491],[5.435,52.511],[5.426,52.53],[5.427,52.538],[5.438,52.555],[5.446,52.561],[5.467,52.572],[5.455,52.594],[5.399,52.649],[5.36,52.674],[5.305,52.69],[5.287,52.69],[5.287,52.691],[5.302,52.692],[5.354,52.678],[5.361,52.674],[5.4,52.649],[5.456,52.594],[5.469,52.57],[5.44,52.556],[5.428,52.538],[5.448,52.535],[5.456,52.55],[5.501,52.556],[5.559,52.592],[5.573,52.596]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": null,
+            "notes": "De gemeente schrijft: `Wij hebben als gemeente geen actieve handhavingsbeleid hiervoor. Wij treden alleen op bij excessen. Dit houdt in dat we handhavend optreden wanneer er hinderlijk geparkeerd wordt.`"
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Lelystad",
+            "url": "https://www.lelystad.nl/parkeren",
+            "date": "2025-07-15"
+        }
+    ]
+}

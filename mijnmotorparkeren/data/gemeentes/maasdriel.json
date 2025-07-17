@@ -1,0 +1,21 @@
+{
+    "id": "maasdriel",
+    "name": "Gemeente Maasdriel",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.789,
+        "lng": 5.312
+    },
+    "boundaries": {
+        "coordinates": [[[5.415,51.821],[5.402,51.821],[5.369,51.79],[5.354,51.755],[5.296,51.737],[5.283,51.74],[5.245,51.734],[5.231,51.741],[5.206,51.741],[5.186,51.742],[5.184,51.756],[5.207,51.769],[5.27,51.774],[5.266,51.793],[5.288,51.8],[5.282,51.821],[5.305,51.824],[5.339,51.807],[5.361,51.806],[5.401,51.838],[5.415,51.821]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "amersfoort",
+    "name": "Gemeente Amersfoort",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.156,
+        "lng": 5.3878
+    },
+    "boundaries": {
+        "coordinates": [[[5.396,52.219],[5.41,52.219],[5.439,52.202],[5.44,52.171],[5.48,52.166],[5.481,52.151],[5.442,52.161],[5.424,52.158],[5.397,52.134],[5.37,52.132],[5.356,52.137],[5.311,52.108],[5.306,52.11],[5.331,52.127],[5.331,52.136],[5.35,52.176],[5.324,52.183],[5.314,52.203],[5.331,52.215],[5.393,52.206],[5.396,52.219]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep mag wettelijk gezien niet, maar vaak wel gedoogd wordt als je de overige voetgangers niet hindert en deze onbelemmerd op de stoep kunnen blijven lopen langs jouw motorfiets."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": []
+}

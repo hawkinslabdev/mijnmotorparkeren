@@ -1,0 +1,132 @@
+{
+    "id": "eersel",
+    "name": "Gemeente Eersel",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.41,
+        "lng": 5.32
+    },
+    "boundaries": {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        5.369,
+                        51.465
+                    ],
+                    [
+                        5.357,
+                        51.454
+                    ],
+                    [
+                        5.357,
+                        51.438
+                    ],
+                    [
+                        5.34,
+                        51.426
+                    ],
+                    [
+                        5.319,
+                        51.424
+                    ],
+                    [
+                        5.324,
+                        51.406
+                    ],
+                    [
+                        5.354,
+                        51.409
+                    ],
+                    [
+                        5.371,
+                        51.398
+                    ],
+                    [
+                        5.389,
+                        51.376
+                    ],
+                    [
+                        5.346,
+                        51.358
+                    ],
+                    [
+                        5.347,
+                        51.337
+                    ],
+                    [
+                        5.292,
+                        51.318
+                    ],
+                    [
+                        5.263,
+                        51.319
+                    ],
+                    [
+                        5.286,
+                        51.336
+                    ],
+                    [
+                        5.275,
+                        51.363
+                    ],
+                    [
+                        5.289,
+                        51.389
+                    ],
+                    [
+                        5.311,
+                        51.391
+                    ],
+                    [
+                        5.307,
+                        51.406
+                    ],
+                    [
+                        5.281,
+                        51.405
+                    ],
+                    [
+                        5.238,
+                        51.429
+                    ],
+                    [
+                        5.248,
+                        51.446
+                    ],
+                    [
+                        5.298,
+                        51.455
+                    ],
+                    [
+                        5.335,
+                        51.466
+                    ],
+                    [
+                        5.369,
+                        51.465
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "statcode": "GM0770",
+            "jrstatcode": "2025GM0770",
+            "statnaam": "Eersel",
+            "rubriek": "gemeente",
+            "id": 201,
+            "FID": "gemeente_gegeneraliseerd.ef8cc975-10dd-4db6-8675-d6f3b0b42463"
+        },
+        "id": "GM0770"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

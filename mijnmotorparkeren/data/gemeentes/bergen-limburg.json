@@ -1,0 +1,42 @@
+{
+    "id": "bergen-limburg",
+    "name": "Gemeente Bergen (L.)",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.555,
+        "lng": 6.137
+    },
+    "boundaries": {
+        "coordinates": [[[6.213,51.508],[6.169,51.503],[6.141,51.52],[6.12,51.532],[6.112,51.546],[6.081,51.547],[6.048,51.558],[6.04,51.582],[6.026,51.596],[6.02,51.622],[5.977,51.644],[6.015,51.662],[6.032,51.676],[6.088,51.66],[6.117,51.657],[6.091,51.606],[6.121,51.593],[6.131,51.581],[6.157,51.567],[6.177,51.539],[6.2,51.527],[6.213,51.508]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": null,
+            "notes": "In deze gemeente (gemeente Bergen, Limburg) wordt er niet actief op gehandhaafd. Dat kan/zal wel het geval zijn wanneer sprake is van bijv. een melding of constatering van overlast gerelateerd aan een motor die op een trottoir parkeert."
+        }
+    },
+    "lastUpdated": "2025-07-16",
+    "sources": [
+        {
+            "name": "Gemeente Bergen (L)"
+        }
+    ]
+}

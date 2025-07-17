@@ -1,0 +1,38 @@
+{
+    "id": "putten",
+    "name": "Gemeente Putten",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.251,
+        "lng": 5.561
+    },
+    "boundaries": {
+        "coordinates": [[[5.548,52.292],[5.588,52.279],[5.642,52.271],[5.676,52.251],[5.684,52.241],[5.681,52.225],[5.633,52.208],[5.55,52.202],[5.516,52.234],[5.484,52.239],[5.479,52.258],[5.506,52.265],[5.527,52.264],[5.548,52.292]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

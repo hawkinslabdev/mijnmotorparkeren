@@ -1,0 +1,41 @@
+{
+    "id": "rotterdam",
+    "name": "Gemeente Rotterdam",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.9225,
+        "lng": 4.47917
+    },
+    "parkingRules": {
+        "free": true,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": true,
+            "notes": "In Rotterdam is het gedoogd om een motorfiets op de stoep te parkeren, mits dit geen hinder oplevert. Parkeren in een parkeervak is gratis voor motoren (status: 16-01-2025). Dit kan in de toekomst veranderen."
+        }
+    },
+    "lastUpdated": null,
+    "sources": [
+        {
+            "type": "community",
+            "name": "MotorOpDeStoep.nl",
+            "url": "https://motoropdestoep.nl/gemeente/rotterdam",
+            "date": "2025-01-16"
+        }
+    ]
+}

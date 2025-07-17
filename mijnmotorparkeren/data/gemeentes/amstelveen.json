@@ -1,0 +1,38 @@
+{
+    "id": "amstelveen",
+    "name": "Gemeente Amstelveen",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.3114,
+        "lng": 4.8701
+    },
+    "boundaries": {
+        "coordinates": [[[4.909,52.318],[4.908,52.307],[4.879,52.279],[4.87,52.253],[4.852,52.242],[4.795,52.261],[4.824,52.29],[4.81,52.306],[4.819,52.326],[4.856,52.33],[4.856,52.322],[4.896,52.322],[4.909,52.318]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Een motor mag op de stoep worden geparkeerd, dat wordt gedoogd. Daarbij is het wel van belang dat de doorgang niet wordt geblokkeerd. Het parkeren op een betaald parkeren plaats is alleen tegen betaling toegestaan in Amstelveen."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "gouda",
+    "name": "Gemeente Gouda",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.0111,
+        "lng": 4.7111
+    },
+    "boundaries": {
+        "coordinates": [[[4.751,52.014],[4.689,51.996],[4.659,52.005],[4.667,52.013],[4.681,52.028],[4.706,52.04],[4.72,52.026],[4.744,52.023],[4.751,52.014]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

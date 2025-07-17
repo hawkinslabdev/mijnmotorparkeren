@@ -1,0 +1,61 @@
+{
+    "id": "delft",
+    "name": "Gemeente Delft",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.0116,
+        "lng": 4.3571
+    },
+    "boundaries": {
+        "coordinates": [[[4.38,52.027],[4.395,52.011],[4.386,52.005],[4.397,51.979],[4.408,51.968],[4.403,51.966],[4.338,51.974],[4.324,51.99],[4.341,52.003],[4.326,52.013],[4.358,52.027],[4.38,52.027]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+        "dedicatedSpots": [
+                {
+                    "location": "Kampveldgarage",
+                    "spots": null,
+                    "coordinates": {
+                        "lat": 52.014928626822,
+                        "lng": 4.35166792530308
+                    }
+                },
+                {
+                    "location": "Marktgarage",
+                    "spots": null,
+                    "coordinates": {
+                        "lat": 52.014417739418285,
+                        "lng": 4.365921782975937
+                    }                }
+            ],            
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "De binnenstad van Delft is een autoluw gebied. Dit gebied is alleen toegankelijk voor ontheffinghouders. Het is niet wenselijk dat u uw motor in het autoluwe gebied parkeert. In de overige gebieden van Delft kunt u uw motor parkeren aan de zijkant van de weg, in een parkeervak of op de stoep. Als u op de stoep parkeert dient u ervoor te zorgen dat u overige weggebruikers (voetgangers, kinderwagens of rolstoelen) niet hindert. Een motor met zijspan mag om die reden niet op de stoep staan. Staat uw motor in een vak voor betaald parkeren? Dan moet u een parkeerbewijs kopen. Op plaatsen voor vergunninghouders heeft u een parkeervergunning nodig."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "https://parkerendelft.com/parkeerloket/motor/",
+            "name": "Website van de Gemeente Delft",
+            "date": "2025-07-15"
+        }
+    ]
+}

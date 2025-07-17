@@ -1,0 +1,38 @@
+{
+    "id": "maasgouw",
+    "name": "Gemeente Maasgouw",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.164,
+        "lng": 5.882
+    },
+    "boundaries": {
+        "coordinates": [[[5.951,51.201],[5.932,51.19],[5.922,51.172],[5.955,51.159],[5.914,51.133],[5.872,51.135],[5.851,51.109],[5.834,51.1],[5.81,51.118],[5.84,51.131],[5.856,51.145],[5.836,51.154],[5.826,51.167],[5.874,51.191],[5.884,51.213],[5.894,51.216],[5.926,51.204],[5.951,51.201]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

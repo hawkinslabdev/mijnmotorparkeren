@@ -1,0 +1,45 @@
+{
+    "id": "goirle",
+    "name": "Gemeente Goirle",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.511,
+        "lng": 5.048
+    },
+    "boundaries": {
+        "coordinates": [[[5.11,51.539],[5.088,51.511],[5.052,51.487],[5.05,51.471],[5.039,51.48],[5.017,51.475],[4.988,51.483],[4.992,51.512],[4.963,51.526],[4.975,51.54],[5.022,51.538],[5.031,51.53],[5.06,51.538],[5.096,51.535],[5.11,51.539]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep niet gedoogd. Ook voor motoren dient in een betaald parkeren gebied betaald moeten worden voor het verkrijgen van een parkeerrecht."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Verkeerskundige van Gemeente Goirle",
+            "date": "2025-01-07"
+        }
+    ]
+}

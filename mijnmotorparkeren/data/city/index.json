@@ -1,0 +1,44 @@
+{
+  "lastUpdated": "2025-07-15",
+  "cities": [
+    {
+      "id": "nieuw-vennep",
+      "name": "Nieuw-Vennep",
+      "parent": "haarlemmermeer",
+      "province": "Noord-Holland",
+      "coordinates": {
+        "lat": 52.2631,
+        "lng": 4.6303
+      },
+      "reference": "city/nieuw-vennep.json",
+      "postalCodes": ["2151", "2152"],
+      "alternativeNames": ["Nieuw Vennep"]
+    },
+    {
+      "id": "almere-poort",
+      "name": "Almere Poort",
+      "parent": "almere",
+      "province": "Flevoland",
+      "coordinates": {
+        "lat": 52.375892,
+        "lng": 5.225754
+      },
+      "reference": "city/almere-poort.json",
+      "postalCodes": ["1361", "1362", "1363"],
+      "alternativeNames": ["Poort", "Almere-Poort"]
+    },
+    {
+      "id": "apeldoorn",
+      "name": "Apeldoorn",
+      "parent": "apeldoorn",
+      "province": "Gelderland",
+      "coordinates": {
+        "lat": 52.211157,
+        "lng": 5.969923
+      },
+      "reference": "city/apeldoorn.json",
+      "postalCodes": [],
+      "alternativeNames": ["Apeldoorn"]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+    "id": "renswoude",
+    "name": "Gemeente Renswoude",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.0734,
+        "lng": 5.5406
+    },
+    "boundaries": {
+        "coordinates": [[[5.55,52.105],[5.563,52.078],[5.558,52.049],[5.529,52.04],[5.516,52.054],[5.498,52.057],[5.496,52.072],[5.523,52.078],[5.537,52.089],[5.532,52.102],[5.55,52.105]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

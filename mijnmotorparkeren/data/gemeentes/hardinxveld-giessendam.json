@@ -1,0 +1,38 @@
+{
+    "id": "hardinxveld-giessendam",
+    "name": "Gemeente Hardinxveld-Giessendam",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.8321,
+        "lng": 4.8609
+    },
+    "boundaries": {
+        "coordinates": [[[4.925,51.84],[4.927,51.828],[4.885,51.816],[4.811,51.819],[4.803,51.846],[4.838,51.861],[4.848,51.833],[4.883,51.833],[4.925,51.84]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

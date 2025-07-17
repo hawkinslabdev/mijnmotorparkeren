@@ -1,0 +1,38 @@
+{
+    "id": "vijfheerenlanden",
+    "name": "Gemeente Vijfheerenlanden",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 51.942,
+        "lng": 5.09
+    },
+    "boundaries": {
+        "coordinates": [[[5.18,51.967],[5.142,51.925],[5.113,51.888],[5.088,51.888],[5.081,51.876],[5.055,51.873],[5.059,51.858],[5.027,51.859],[5.024,51.881],[4.999,51.884],[4.995,51.902],[4.956,51.916],[4.939,51.929],[4.926,51.951],[4.94,51.963],[4.968,51.959],[4.998,51.978],[5.036,51.971],[5.063,51.991],[5.078,51.997],[5.103,52.003],[5.12,52],[5.14,51.994],[5.147,51.977],[5.18,51.967]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": true,
+            "notes": "Als u uw motor op de stoep parkeert, hoeft u geen parkeergeld te betalen. Zorg wel dat u de doorgang niet blokkeert of een onveilige situatie veroorzaakt. Voetgangers maar bijvoorbeeld ook mensen met een rolstoel of kinderwagen, gehandicaptenvoertuigen en hulpdiensten moeten er nog langs kunnen. Betaald parkeren in een betaalzone is ook niet nodig voor een motor, u heeft geen mogelijkheid om een kaartje veilig in het zicht toonbaar te maken (geen voorruit)."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": []
+}

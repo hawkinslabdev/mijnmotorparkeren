@@ -1,0 +1,40 @@
+{
+    "id": "hilversum",
+    "name": "Gemeente Hilversum",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.2292,
+        "lng": 5.1809
+    },
+    "boundaries": {
+        "coordinates": [[[5.201,52.268],[5.204,52.267],[5.189,52.248],[5.219,52.212],[5.216,52.204],[5.193,52.178],[5.124,52.181],[5.146,52.201],[5.128,52.224],[5.142,52.225],[5.14,52.254],[5.119,52.274],[5.102,52.28],[5.105,52.285],[5.144,52.274],[5.138,52.26],[5.162,52.26],[5.201,52.268]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": null,
+            "notes": "In de gemeente Hilversum wordt het parkeren van motoren op de stoep of het trottoir gedoogd, zolang dit geen hinder oplevert voor andere weggebruikers, zoals mindervaliden, rolstoelgebruikers, mensen met kinderwagens, enzovoort. Er wordt gehandhaafd bij situaties van hinderlijk parkeren."
+        }
+    },
+    "lastUpdated": "2025-07-12",
+    "sources": [
+        "Cluster Parkeren van de Gemeente Hilversum"
+    ]
+}

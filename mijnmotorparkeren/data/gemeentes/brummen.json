@@ -1,0 +1,38 @@
+{
+    "id": "brummen",
+    "name": "Gemeente Brummen",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.09,
+        "lng": 6.155
+    },
+    "boundaries": {
+        "coordinates": [[[6.185,52.161],[6.182,52.153],[6.147,52.158],[6.151,52.144],[6.173,52.145],[6.192,52.114],[6.215,52.109],[6.218,52.098],[6.178,52.091],[6.171,52.079],[6.137,52.059],[6.103,52.078],[6.068,52.088],[6.024,52.067],[6.006,52.066],[6.009,52.074],[6.034,52.098],[6.052,52.124],[6.07,52.131],[6.076,52.144],[6.106,52.152],[6.16,52.162],[6.185,52.161]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "kerkrade",
+    "name": "Gemeente Kerkrade",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.87,
+        "lng": 6.04
+    },
+    "boundaries": {
+        "coordinates": [[[6.018,50.844],[6.001,50.858],[6.017,50.87],[6.031,50.872],[6.043,50.9],[6.08,50.906],[6.075,50.893],[6.088,50.872],[6.074,50.847],[6.034,50.851],[6.018,50.844]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

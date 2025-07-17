@@ -1,0 +1,38 @@
+{
+    "id": "veere",
+    "name": "Gemeente Veere",
+    "province": "Zeeland",
+    "coordinates": {
+        "lat": 51.573,
+        "lng": 3.613
+    },
+    "boundaries": {
+        "coordinates": [[[[3.634,51.589],[3.635,51.587],[3.628,51.575],[3.644,51.56],[3.67,51.55],[3.68,51.534],[3.659,51.519],[3.593,51.532],[3.584,51.52],[3.58,51.489],[3.587,51.479],[3.527,51.463],[3.496,51.494],[3.46,51.51],[3.433,51.528],[3.438,51.542],[3.552,51.59],[3.599,51.594],[3.634,51.589]]],[[[3.683,51.601],[3.681,51.6],[3.683,51.623],[3.719,51.65],[3.722,51.65],[3.714,51.635],[3.687,51.622],[3.683,51.601]]]],
+        "type": "MultiPolygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

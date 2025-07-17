@@ -1,0 +1,38 @@
+{
+    "id": "medemblik",
+    "name": "Gemeente Medemblik",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.7718,
+        "lng": 5.1087
+    },
+    "boundaries": {
+        "coordinates": [[[5.272,52.746],[5.255,52.742],[5.258,52.716],[5.22,52.718],[5.187,52.707],[5.125,52.691],[5.092,52.679],[5.035,52.667],[5.021,52.664],[4.979,52.68],[4.988,52.713],[5.011,52.723],[4.999,52.735],[4.997,52.752],[5.045,52.753],[5.07,52.768],[5.104,52.774],[5.146,52.742],[5.18,52.741],[5.193,52.755],[5.258,52.753],[5.272,52.746]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

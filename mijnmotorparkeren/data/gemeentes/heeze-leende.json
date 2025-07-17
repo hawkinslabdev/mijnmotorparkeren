@@ -1,0 +1,21 @@
+{
+    "id": "heeze-leende",
+    "name": "Gemeente Heeze-Leende",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.364,
+        "lng": 5.601
+    },
+    "boundaries": {
+        "coordinates": [[[5.655,51.354],[5.64,51.347],[5.631,51.328],[5.605,51.332],[5.568,51.321],[5.516,51.295],[5.485,51.3],[5.491,51.314],[5.474,51.334],[5.496,51.347],[5.494,51.355],[5.527,51.367],[5.516,51.378],[5.505,51.4],[5.526,51.405],[5.564,51.405],[5.599,51.418],[5.639,51.422],[5.639,51.389],[5.655,51.354]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

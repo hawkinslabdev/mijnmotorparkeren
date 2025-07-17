@@ -1,0 +1,21 @@
+{
+    "id": "loon-op-zand",
+    "name": "Gemeente Loon op Zand",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.654,
+        "lng": 5.047
+    },
+    "boundaries": {
+        "coordinates": [[[5.106,51.636],[5.094,51.611],[5.004,51.608],[4.987,51.655],[4.992,51.676],[5.049,51.662],[5.061,51.671],[5.102,51.677],[5.106,51.636]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

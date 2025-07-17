@@ -1,0 +1,38 @@
+{
+    "id": "tubbergen",
+    "name": "Gemeente Tubbergen",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.406,
+        "lng": 6.784
+    },
+    "boundaries": {
+        "coordinates": [[[6.947,52.437],[6.949,52.433],[6.929,52.434],[6.897,52.433],[6.853,52.427],[6.862,52.408],[6.864,52.364],[6.818,52.365],[6.783,52.36],[6.759,52.332],[6.721,52.341],[6.713,52.374],[6.699,52.394],[6.67,52.417],[6.677,52.444],[6.692,52.447],[6.718,52.478],[6.775,52.46],[6.854,52.46],[6.862,52.451],[6.889,52.447],[6.906,52.442],[6.942,52.435],[6.947,52.437]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

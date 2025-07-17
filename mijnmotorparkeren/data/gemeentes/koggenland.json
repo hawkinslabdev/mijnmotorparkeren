@@ -1,0 +1,38 @@
+{
+    "id": "koggenland",
+    "name": "Gemeente Koggenland",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.6368,
+        "lng": 4.9563
+    },
+    "boundaries": {
+        "coordinates": [[[4.979,52.68],[5.021,52.664],[5.035,52.667],[5.037,52.648],[5.019,52.63],[5.02,52.612],[5.005,52.598],[4.95,52.595],[4.954,52.613],[4.927,52.607],[4.922,52.611],[4.884,52.613],[4.888,52.627],[4.873,52.634],[4.863,52.653],[4.876,52.686],[4.9,52.698],[4.906,52.686],[4.949,52.674],[4.979,52.68]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

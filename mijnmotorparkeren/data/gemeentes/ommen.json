@@ -1,0 +1,38 @@
+{
+    "id": "ommen",
+    "name": "Gemeente Ommen",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.518,
+        "lng": 6.42
+    },
+    "boundaries": {
+        "coordinates": [[[6.595,52.48],[6.554,52.488],[6.505,52.491],[6.504,52.482],[6.464,52.475],[6.45,52.461],[6.429,52.439],[6.39,52.428],[6.381,52.43],[6.371,52.45],[6.343,52.457],[6.344,52.482],[6.332,52.512],[6.362,52.525],[6.323,52.593],[6.403,52.591],[6.415,52.57],[6.488,52.569],[6.505,52.576],[6.522,52.561],[6.534,52.529],[6.55,52.515],[6.61,52.493],[6.595,52.48]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,21 @@
+{
+    "id": "halderberge",
+    "name": "Gemeente Halderberge",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.606,
+        "lng": 4.522
+    },
+    "boundaries": {
+        "coordinates": [[[4.601,51.625],[4.614,51.608],[4.597,51.59],[4.592,51.561],[4.533,51.549],[4.537,51.566],[4.509,51.569],[4.5,51.559],[4.458,51.561],[4.444,51.569],[4.433,51.583],[4.427,51.612],[4.438,51.617],[4.461,51.614],[4.48,51.62],[4.502,51.609],[4.519,51.608],[4.56,51.629],[4.601,51.625]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

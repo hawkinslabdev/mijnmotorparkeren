@@ -1,0 +1,38 @@
+{
+    "id": "leiden",
+    "name": "Gemeente Leiden",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.1601,
+        "lng": 4.497
+    },
+    "boundaries": {
+        "coordinates": [[[4.524,52.147],[4.473,52.119],[4.464,52.127],[4.465,52.149],[4.443,52.145],[4.44,52.156],[4.448,52.162],[4.455,52.171],[4.498,52.184],[4.518,52.182],[4.515,52.161],[4.524,52.147]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

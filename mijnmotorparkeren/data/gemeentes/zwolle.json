@@ -1,0 +1,38 @@
+{
+    "id": "zwolle",
+    "name": "Gemeente Zwolle",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.512,
+        "lng": 6.094
+    },
+    "boundaries": {
+        "coordinates": [[[6.202,52.585],[6.211,52.568],[6.183,52.519],[6.19,52.481],[6.162,52.474],[6.144,52.468],[6.155,52.453],[6.14,52.442],[6.11,52.441],[6.104,52.454],[6.102,52.466],[6.071,52.482],[6.054,52.5],[6.028,52.51],[6.03,52.538],[6.004,52.55],[6.033,52.559],[6.063,52.567],[6.089,52.552],[6.11,52.561],[6.141,52.552],[6.167,52.565],[6.147,52.584],[6.183,52.588],[6.202,52.585]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,16 @@
+{
+    "id": "hillegom",
+    "name": "Gemeente Hillegom",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.294,
+        "lng": 4.583
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

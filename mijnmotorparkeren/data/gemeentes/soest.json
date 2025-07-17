@@ -1,0 +1,38 @@
+{
+    "id": "soest",
+    "name": "Gemeente Soest",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.173,
+        "lng": 5.2916
+    },
+    "boundaries": {
+        "coordinates": [[[5.314,52.203],[5.324,52.183],[5.35,52.176],[5.331,52.136],[5.331,52.127],[5.306,52.11],[5.282,52.112],[5.256,52.136],[5.243,52.17],[5.27,52.189],[5.314,52.203]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

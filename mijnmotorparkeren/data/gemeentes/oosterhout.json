@@ -1,0 +1,21 @@
+{
+    "id": "oosterhout",
+    "name": "Gemeente Oosterhout",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.637,
+        "lng": 4.872
+    },
+    "boundaries": {
+        "coordinates": [[[4.925,51.673],[4.933,51.651],[4.91,51.629],[4.912,51.615],[4.914,51.598],[4.864,51.579],[4.843,51.586],[4.843,51.617],[4.818,51.632],[4.788,51.637],[4.794,51.642],[4.781,51.664],[4.842,51.68],[4.88,51.674],[4.925,51.673]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

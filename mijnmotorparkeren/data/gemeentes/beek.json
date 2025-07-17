@@ -1,0 +1,38 @@
+{
+    "id": "beek",
+    "name": "Gemeente Beek",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.95,
+        "lng": 5.84
+    },
+    "boundaries": {
+        "coordinates": [[[5.84,50.95],[5.856,50.943],[5.842,50.92],[5.802,50.914],[5.775,50.911],[5.772,50.929],[5.788,50.949],[5.813,50.955],[5.84,50.95]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

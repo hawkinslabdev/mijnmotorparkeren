@@ -1,0 +1,38 @@
+{
+    "id": "pekela",
+    "name": "Gemeente Pekela",
+    "province": "Groningen",
+    "coordinates": {
+        "lat": 53.1,
+        "lng": 7.03
+    },
+    "boundaries": {
+        "coordinates": [[[7.03,53.115],[7.043,53.102],[7.015,53.072],[7.01,53.074],[6.956,53.014],[6.936,53.02],[6.908,53.039],[6.933,53.05],[6.924,53.058],[6.931,53.073],[6.961,53.096],[6.962,53.11],[6.965,53.111],[6.988,53.116],[7.03,53.115]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

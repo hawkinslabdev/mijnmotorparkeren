@@ -1,0 +1,40 @@
+{
+    "id": "alkmaar",
+    "name": "Gemeente Alkmaar",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.6324,
+        "lng": 4.7534
+    },
+    "boundaries": {
+        "coordinates": [[[4.873,52.634],[4.888,52.627],[4.884,52.613],[4.922,52.611],[4.927,52.607],[4.915,52.609],[4.891,52.595],[4.869,52.576],[4.859,52.559],[4.834,52.539],[4.79,52.519],[4.782,52.52],[4.778,52.534],[4.782,52.557],[4.745,52.568],[4.752,52.592],[4.737,52.594],[4.739,52.614],[4.715,52.625],[4.71,52.642],[4.752,52.671],[4.742,52.681],[4.779,52.676],[4.774,52.648],[4.808,52.634],[4.83,52.633],[4.839,52.646],[4.873,52.634]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Een motor mag op de stoep worden geparkeerd, dat wordt gedoogd. Daarbij is het wel van belang dat de doorgang niet wordt geblokkeerd. Het parkeren op een betaald parkeren plaats is alleen tegen betaling toegestaan in Alkmaar."
+        }
+    },
+    "lastUpdated": null,
+    "sources": [
+        "Beleidsmedewerker Verkeer, Vervoer en Wegen van de Gemeente Alkmaar"
+    ]
+}

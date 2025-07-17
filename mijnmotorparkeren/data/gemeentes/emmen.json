@@ -1,0 +1,38 @@
+{
+    "id": "emmen",
+    "name": "Gemeente Emmen",
+    "province": "Drenthe",
+    "coordinates": {
+        "lat": 52.779,
+        "lng": 6.906
+    },
+    "boundaries": {
+        "coordinates": [[[7.093,52.838],[7.072,52.81],[7.064,52.723],[7.055,52.644],[7.042,52.633],[6.975,52.646],[6.939,52.638],[6.919,52.64],[6.897,52.651],[6.862,52.65],[6.849,52.699],[6.841,52.7],[6.826,52.731],[6.84,52.761],[6.831,52.778],[6.85,52.805],[6.869,52.819],[6.95,52.849],[6.958,52.862],[7.015,52.873],[7.04,52.873],[7.072,52.845],[7.093,52.838]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

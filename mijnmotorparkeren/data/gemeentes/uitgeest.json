@@ -1,0 +1,38 @@
+{
+    "id": "uitgeest",
+    "name": "Gemeente Uitgeest",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.5293,
+        "lng": 4.7095
+    },
+    "boundaries": {
+        "coordinates": [[[4.778,52.534],[4.782,52.52],[4.752,52.521],[4.753,52.511],[4.72,52.495],[4.693,52.511],[4.696,52.527],[4.695,52.544],[4.719,52.552],[4.755,52.536],[4.778,52.534]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

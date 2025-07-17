@@ -1,0 +1,38 @@
+{
+    "id": "leudal",
+    "name": "Gemeente Leudal",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.217,
+        "lng": 5.9
+    },
+    "boundaries": {
+        "coordinates": [[[6.01,51.266],[6.006,51.259],[6.002,51.234],[5.98,51.223],[5.951,51.201],[5.926,51.204],[5.894,51.216],[5.884,51.213],[5.874,51.191],[5.826,51.167],[5.779,51.159],[5.777,51.178],[5.746,51.189],[5.752,51.214],[5.782,51.22],[5.792,51.238],[5.853,51.244],[5.834,51.275],[5.851,51.292],[5.861,51.311],[5.878,51.317],[5.908,51.313],[5.955,51.3],[6.008,51.278],[6.01,51.266]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

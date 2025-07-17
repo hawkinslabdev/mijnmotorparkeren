@@ -1,0 +1,38 @@
+{
+    "id": "twenterand",
+    "name": "Gemeente Twenterand",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.439,
+        "lng": 6.623
+    },
+    "boundaries": {
+        "coordinates": [[[6.698,52.486],[6.718,52.478],[6.692,52.447],[6.677,52.444],[6.67,52.417],[6.699,52.394],[6.652,52.399],[6.599,52.384],[6.576,52.418],[6.598,52.439],[6.596,52.455],[6.572,52.447],[6.543,52.451],[6.511,52.437],[6.475,52.441],[6.45,52.461],[6.464,52.475],[6.504,52.482],[6.505,52.491],[6.554,52.488],[6.595,52.48],[6.611,52.467],[6.642,52.471],[6.669,52.495],[6.698,52.486]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

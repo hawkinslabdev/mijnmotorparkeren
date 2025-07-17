@@ -1,0 +1,38 @@
+{
+    "id": "wijk-bij-duurstede",
+    "name": "Gemeente Wijk bij Duurstede",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 51.9743,
+        "lng": 5.3422
+    },
+    "boundaries": {
+        "coordinates": [[[5.391,51.971],[5.348,51.968],[5.333,51.957],[5.27,51.965],[5.256,51.971],[5.243,51.999],[5.28,52.011],[5.291,52.008],[5.315,52.027],[5.344,52.02],[5.382,52.002],[5.378,51.986],[5.391,51.971]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

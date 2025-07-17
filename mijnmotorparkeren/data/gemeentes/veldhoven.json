@@ -1,0 +1,38 @@
+{
+    "id": "veldhoven",
+    "name": "Gemeente Veldhoven",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.414,
+        "lng": 5.401
+    },
+    "boundaries": {
+        "coordinates": [[[5.427,51.403],[5.422,51.383],[5.389,51.376],[5.371,51.398],[5.354,51.409],[5.324,51.406],[5.319,51.424],[5.34,51.426],[5.357,51.438],[5.387,51.438],[5.426,51.43],[5.427,51.403]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

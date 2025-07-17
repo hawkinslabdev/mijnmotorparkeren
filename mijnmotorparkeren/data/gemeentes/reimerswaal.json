@@ -1,0 +1,21 @@
+{
+    "id": "reimerswaal",
+    "name": "Gemeente Reimerswaal",
+    "province": "Zeeland",
+    "coordinates": {
+        "lat": 51.454,
+        "lng": 4.07
+    },
+    "boundaries": {
+        "coordinates": [[[4.218,51.488],[4.23,51.489],[4.265,51.44],[4.276,51.425],[4.264,51.416],[4.268,51.384],[4.277,51.376],[4.243,51.375],[4.232,51.395],[4.197,51.407],[4.157,51.395],[4.107,51.403],[4.062,51.414],[4.05,51.43],[3.993,51.451],[4.007,51.459],[4.005,51.505],[4.014,51.52],[4.043,51.503],[4.056,51.482],[4.093,51.446],[4.133,51.431],[4.153,51.433],[4.181,51.444],[4.223,51.439],[4.218,51.488]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

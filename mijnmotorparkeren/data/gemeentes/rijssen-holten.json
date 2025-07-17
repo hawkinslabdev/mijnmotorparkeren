@@ -1,0 +1,38 @@
+{
+    "id": "rijssen-holten",
+    "name": "Gemeente Rijssen-Holten",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.308,
+        "lng": 6.517
+    },
+    "boundaries": {
+        "coordinates": [[[6.554,52.283],[6.523,52.283],[6.491,52.276],[6.43,52.252],[6.416,52.242],[6.382,52.246],[6.377,52.259],[6.329,52.281],[6.327,52.302],[6.356,52.318],[6.422,52.326],[6.461,52.32],[6.468,52.326],[6.525,52.326],[6.545,52.318],[6.554,52.283]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

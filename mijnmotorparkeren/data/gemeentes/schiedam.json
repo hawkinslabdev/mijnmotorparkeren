@@ -1,0 +1,38 @@
+{
+    "id": "schiedam",
+    "name": "Gemeente Schiedam",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.9193,
+        "lng": 4.3889
+    },
+    "boundaries": {
+        "coordinates": [[[4.371,51.899],[4.36,51.939],[4.351,51.952],[4.379,51.963],[4.389,51.946],[4.417,51.92],[4.414,51.901],[4.371,51.899]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

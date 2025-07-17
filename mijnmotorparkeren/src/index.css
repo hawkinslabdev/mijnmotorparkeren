@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')
+layer(base);
+@import 'tailwindcss';
+
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  /* Fix for Leaflet container */
+  .leaflet-container {
+    height: 100% !important;
+    width: 100% !important;
+    font-family: inherit;
+    position: relative;
+  }
+  
+  /* Fix for z-index issues */
+  .leaflet-top,
+  .leaflet-bottom {
+    z-index: 400;
+  }
+  
+  /* Ensure map controls are clickable */
+  .leaflet-control {
+    z-index: 800;
+  }
+}
+
+/* App container fix */
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main container that holds the map */
+.min-h-screen {
+  height: 100vh !important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make the map container fill remaining space */
+.flex-1 {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  min-height: 0; /* This is important for flex children */
+}
+
+/* Debugging helper - add this temporarily to see the map container */
+.map-debug {
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.1);
+}

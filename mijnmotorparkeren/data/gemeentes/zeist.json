@@ -1,0 +1,38 @@
+{
+    "id": "zeist",
+    "name": "Gemeente Zeist",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.11,
+        "lng": 5.259
+    },
+    "boundaries": {
+        "coordinates": [[[5.243,52.17],[5.256,52.136],[5.282,52.112],[5.306,52.11],[5.311,52.108],[5.322,52.102],[5.298,52.096],[5.332,52.084],[5.32,52.07],[5.291,52.086],[5.247,52.059],[5.195,52.077],[5.193,52.086],[5.206,52.085],[5.218,52.114],[5.231,52.117],[5.225,52.166],[5.243,52.17]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

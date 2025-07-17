@@ -1,0 +1,38 @@
+{
+    "id": "asten",
+    "name": "Gemeente Asten",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.393,
+        "lng": 5.784
+    },
+    "boundaries": {
+        "coordinates": [[[5.718,51.439],[5.756,51.434],[5.788,51.413],[5.832,51.399],[5.854,51.376],[5.857,51.354],[5.87,51.353],[5.84,51.347],[5.77,51.334],[5.736,51.389],[5.703,51.413],[5.694,51.439],[5.718,51.439]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

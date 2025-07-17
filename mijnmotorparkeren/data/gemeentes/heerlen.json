@@ -1,0 +1,44 @@
+{
+    "id": "heerlen",
+    "name": "Gemeente Heerlen",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.888,
+        "lng": 5.979
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": true,
+            "areas": [
+                "Centrum",
+                "Parkeergarages"
+            ],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep is niet toegestaan. In parkeervakken geldt een betaalplicht."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "community",
+            "name": "MotorOpDeStoep.nl",
+            "url": "https://motoropdestoep.nl/gemeente/heerlen",
+            "date": "2025-01-21"
+        }
+    ]
+}

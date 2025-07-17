@@ -1,0 +1,43 @@
+{
+    "id": "aa-en-hunze",
+    "name": "Gemeente Aa en Hunze",
+    "province": "Drenthe",
+    "coordinates": {
+        "lat": 53.001,
+        "lng": 6.757
+    },
+    "boundaries": {
+        "coordinates": [[[6.814,53.071],[6.861,53.041],[6.936,52.993],[6.839,52.978],[6.789,52.963],[6.728,52.955],[6.725,52.937],[6.736,52.879],[6.715,52.868],[6.686,52.875],[6.675,52.905],[6.667,52.909],[6.586,52.919],[6.562,52.947],[6.581,52.967],[6.596,52.973],[6.616,53.008],[6.631,53.026],[6.649,53.026],[6.643,53.047],[6.672,53.065],[6.699,53.065],[6.748,53.081],[6.777,53.095],[6.814,53.071]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep wordt niet gedoogd. Motoren mogen parkeren in de reguliere parkeerplaatsen, maar moeten hiervoor betalen in de betaalzones (indien van toepassing)."
+        }
+    },
+    "lastUpdated": "2025-01-14",
+    "sources": [
+        {
+            "name": "Gemeente Aa en Hunze",
+            "url": "https://www.aaenhunze.nl/"
+        }
+    ]
+}

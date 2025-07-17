@@ -1,0 +1,38 @@
+{
+    "id": "brunssum",
+    "name": "Gemeente Brunssum",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.95,
+        "lng": 6.01
+    },
+    "boundaries": {
+        "coordinates": [[[6.006,50.958],[6.017,50.953],[6.018,50.935],[6.012,50.926],[5.928,50.937],[5.936,50.946],[5.965,50.961],[6.006,50.958]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

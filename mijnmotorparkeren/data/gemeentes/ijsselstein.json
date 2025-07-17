@@ -1,0 +1,38 @@
+{
+    "id": "ijsselstein",
+    "name": "Gemeente IJsselstein",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.022,
+        "lng": 5.032
+    },
+    "boundaries": {
+        "coordinates": [[[5.063,52.027],[5.078,51.997],[5.063,51.991],[5.034,52.004],[5.02,52.026],[4.995,52.022],[4.983,52.028],[4.99,52.052],[5.017,52.061],[5.051,52.03],[5.063,52.027]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

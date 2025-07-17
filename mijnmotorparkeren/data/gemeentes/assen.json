@@ -1,0 +1,54 @@
+{
+    "id": "assen",
+    "name": "Gemeente Assen",
+    "province": "Drenthe",
+    "coordinates": {
+        "lat": 53.002,
+        "lng": 6.564
+    },
+    "boundaries": {
+        "coordinates": [[[6.631,53.026],[6.616,53.008],[6.596,52.973],[6.581,52.967],[6.562,52.947],[6.543,52.955],[6.536,52.933],[6.497,52.952],[6.486,52.973],[6.497,52.983],[6.488,53.005],[6.504,53.016],[6.496,53.031],[6.505,53.046],[6.524,53.046],[6.547,53.035],[6.555,53.059],[6.6,53.061],[6.608,53.048],[6.604,53.033],[6.631,53.026]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [
+                {
+                    "location": "Brinkstraat",
+                    "spots": 3,
+                    "coordinates": {
+                        "lat": 52.9945,
+                        "lng": 6.5636
+                    }
+                }
+            ],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep gedoogd, mits er voldoende ruimte overblijft voor voetgangers en rolstoelgebruikers. Motoren mogen ook op reguliere parkeerplaatsen parkeren, maar moeten dan wel parkeergeld betalen (indien van toepassing)."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Wijk-Boa Centrum, Afdeling Toezicht en Handhaving",
+            "date": "2025-01-07"
+        }
+    ]
+}

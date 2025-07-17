@@ -1,0 +1,38 @@
+{
+    "id": "nuenen-gerwen-en-nederwetten",
+    "name": "Gemeente Nuenen, Gerwen en Nederwetten",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.489,
+        "lng": 5.573
+    },
+    "boundaries": {
+        "coordinates": [[[5.577,51.499],[5.586,51.479],[5.605,51.471],[5.585,51.461],[5.566,51.441],[5.547,51.434],[5.53,51.459],[5.509,51.469],[5.511,51.497],[5.546,51.513],[5.531,51.525],[5.547,51.538],[5.558,51.509],[5.577,51.499]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

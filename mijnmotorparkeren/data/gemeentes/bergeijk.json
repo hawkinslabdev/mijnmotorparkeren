@@ -1,0 +1,116 @@
+{
+    "id": "bergeijk",
+    "name": "Gemeente Bergeijk",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.31,
+        "lng": 5.34
+    },
+    "boundaries": {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        5.422,
+                        51.383
+                    ],
+                    [
+                        5.423,
+                        51.375
+                    ],
+                    [
+                        5.42,
+                        51.359
+                    ],
+                    [
+                        5.424,
+                        51.331
+                    ],
+                    [
+                        5.394,
+                        51.309
+                    ],
+                    [
+                        5.388,
+                        51.285
+                    ],
+                    [
+                        5.417,
+                        51.262
+                    ],
+                    [
+                        5.346,
+                        51.276
+                    ],
+                    [
+                        5.336,
+                        51.263
+                    ],
+                    [
+                        5.296,
+                        51.261
+                    ],
+                    [
+                        5.263,
+                        51.267
+                    ],
+                    [
+                        5.238,
+                        51.261
+                    ],
+                    [
+                        5.226,
+                        51.268
+                    ],
+                    [
+                        5.241,
+                        51.306
+                    ],
+                    [
+                        5.263,
+                        51.319
+                    ],
+                    [
+                        5.292,
+                        51.318
+                    ],
+                    [
+                        5.347,
+                        51.337
+                    ],
+                    [
+                        5.346,
+                        51.358
+                    ],
+                    [
+                        5.389,
+                        51.376
+                    ],
+                    [
+                        5.422,
+                        51.383
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "statcode": "GM1724",
+            "jrstatcode": "2025GM1724",
+            "statnaam": "Bergeijk",
+            "rubriek": "gemeente",
+            "id": 288,
+            "FID": "gemeente_gegeneraliseerd.fdd87e7a-b5c0-45a6-99cd-9dff5bd51c76"
+        },
+        "id": "GM1724"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,45 @@
+{
+    "id": "roermond",
+    "name": "Gemeente Roermond",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.215,
+        "lng": 6.021
+    },
+    "boundaries": {
+        "coordinates": [[[6.073,51.243],[6.086,51.223],[6.068,51.221],[6.073,51.183],[6.064,51.166],[6.04,51.161],[5.998,51.168],[5.984,51.176],[5.955,51.159],[5.922,51.172],[5.932,51.19],[5.951,51.201],[5.98,51.223],[6.002,51.234],[6.006,51.259],[6.038,51.246],[6.051,51.253],[6.073,51.243]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Motoren mogen binnen de gemeente Roermond niet op de stoep worden geparkeerd. Voor het parkeren op parkeerplaatsen geldt het daarvoor geldende tarief."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Medewerker Verkeer, Gemeente Roermond ",
+            "date": "2025-01-07"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "id": "alblasserdam",
+    "name": "Gemeente Alblasserdam",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.8668,
+        "lng": 4.6616
+    },
+    "boundaries": {
+        "coordinates": [[[4.683,51.848],[4.673,51.839],[4.635,51.87],[4.626,51.881],[4.664,51.875],[4.7,51.88],[4.681,51.859],[4.683,51.848]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

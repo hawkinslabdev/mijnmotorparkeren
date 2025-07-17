@@ -1,0 +1,21 @@
+{
+    "id": "heumen",
+    "name": "Gemeente Heumen",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.779,
+        "lng": 5.825
+    },
+    "boundaries": {
+        "coordinates": [[[5.893,51.778],[5.868,51.776],[5.864,51.758],[5.852,51.759],[5.78,51.752],[5.745,51.759],[5.73,51.773],[5.732,51.778],[5.781,51.784],[5.801,51.795],[5.81,51.791],[5.837,51.806],[5.879,51.81],[5.893,51.778]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

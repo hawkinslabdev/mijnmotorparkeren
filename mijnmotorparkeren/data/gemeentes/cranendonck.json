@@ -1,0 +1,38 @@
+{
+    "id": "cranendonck",
+    "name": "Gemeente Cranendonck",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.308,
+        "lng": 5.606
+    },
+    "boundaries": {
+        "coordinates": [[[5.672,51.315],[5.644,51.291],[5.626,51.274],[5.619,51.229],[5.566,51.221],[5.555,51.244],[5.558,51.262],[5.516,51.295],[5.568,51.321],[5.605,51.332],[5.631,51.328],[5.64,51.347],[5.655,51.354],[5.672,51.315]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": null,
+            "notes": "In de gemeente Cranendonck wordt het parkeren van motoren op de stoep of het trottoir gedoogd, zolang dit geen hinder oplevert voor andere weggebruikers, zoals mindervaliden, rolstoelgebruikers, mensen met kinderwagens, enzovoort. Gemeente Cranendonck kent geen betaald parkeerzones."
+        }
+    },
+    "lastUpdated": "2025-07-16",
+    "sources": []
+}

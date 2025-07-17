@@ -1,0 +1,38 @@
+{
+    "id": "de-bilt",
+    "name": "Gemeente De Bilt",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.1109,
+        "lng": 5.1811
+    },
+    "boundaries": {
+        "coordinates": [[[5.225,52.166],[5.231,52.117],[5.218,52.114],[5.206,52.085],[5.193,52.086],[5.161,52.094],[5.162,52.107],[5.149,52.118],[5.107,52.133],[5.121,52.146],[5.095,52.155],[5.119,52.172],[5.115,52.18],[5.124,52.181],[5.193,52.178],[5.216,52.204],[5.212,52.176],[5.225,52.166]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

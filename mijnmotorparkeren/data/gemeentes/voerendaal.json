@@ -1,0 +1,38 @@
+{
+    "id": "voerendaal",
+    "name": "Gemeente Voerendaal",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.86,
+        "lng": 5.969
+    },
+    "boundaries": {
+        "coordinates": [[[5.969,50.86],[5.955,50.846],[5.933,50.84],[5.925,50.849],[5.888,50.847],[5.862,50.882],[5.881,50.883],[5.923,50.904],[5.969,50.86]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

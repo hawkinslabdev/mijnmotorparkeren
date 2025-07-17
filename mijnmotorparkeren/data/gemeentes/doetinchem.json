@@ -1,0 +1,38 @@
+{
+    "id": "doetinchem",
+    "name": "Gemeente Doetinchem",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.97,
+        "lng": 6.416
+    },
+    "boundaries": {
+        "coordinates": [[[6.416,51.973],[6.38,51.936],[6.361,51.923],[6.331,51.926],[6.306,51.939],[6.302,51.944],[6.221,51.945],[6.193,51.941],[6.163,51.955],[6.145,51.981],[6.16,51.981],[6.205,51.98],[6.25,51.976],[6.26,51.987],[6.279,51.985],[6.319,51.994],[6.354,51.975],[6.39,51.968],[6.416,51.973]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

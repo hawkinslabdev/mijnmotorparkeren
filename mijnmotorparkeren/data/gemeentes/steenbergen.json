@@ -1,0 +1,21 @@
+{
+    "id": "steenbergen",
+    "name": "Gemeente Steenbergen",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.601,
+        "lng": 4.312
+    },
+    "boundaries": {
+        "coordinates": [[[4.376,51.652],[4.438,51.617],[4.427,51.612],[4.433,51.583],[4.444,51.569],[4.441,51.558],[4.378,51.544],[4.318,51.551],[4.252,51.571],[4.236,51.55],[4.228,51.564],[4.192,51.594],[4.192,51.609],[4.214,51.628],[4.237,51.634],[4.317,51.646],[4.376,51.652]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

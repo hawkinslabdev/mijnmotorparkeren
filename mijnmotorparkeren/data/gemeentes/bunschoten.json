@@ -1,0 +1,38 @@
+{
+    "id": "bunschoten",
+    "name": "Gemeente Bunschoten",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.243,
+        "lng": 5.3786
+    },
+    "boundaries": {
+        "coordinates": [[[5.331,52.274],[5.357,52.27],[5.404,52.247],[5.396,52.219],[5.393,52.206],[5.331,52.215],[5.336,52.228],[5.312,52.233],[5.311,52.246],[5.324,52.253],[5.331,52.274]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

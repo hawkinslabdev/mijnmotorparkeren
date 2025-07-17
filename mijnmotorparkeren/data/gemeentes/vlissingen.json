@@ -1,0 +1,21 @@
+{
+    "id": "vlissingen",
+    "name": "Gemeente Vlissingen",
+    "province": "Zeeland",
+    "coordinates": {
+        "lat": 51.468,
+        "lng": 3.613
+    },
+    "boundaries": {
+        "coordinates": [[[3.703,51.475],[3.706,51.471],[3.686,51.461],[3.658,51.457],[3.64,51.444],[3.575,51.439],[3.527,51.463],[3.587,51.479],[3.609,51.476],[3.629,51.481],[3.648,51.47],[3.668,51.47],[3.704,51.482],[3.706,51.477],[3.703,51.475]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

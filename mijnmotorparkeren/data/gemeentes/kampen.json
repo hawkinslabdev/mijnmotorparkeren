@@ -1,0 +1,38 @@
+{
+    "id": "kampen",
+    "name": "Gemeente Kampen",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.555,
+        "lng": 5.911
+    },
+    "boundaries": {
+        "coordinates": [[[5.988,52.624],[5.991,52.614],[5.971,52.594],[5.983,52.578],[6.013,52.586],[6.033,52.559],[6.004,52.55],[6.03,52.538],[6.028,52.51],[6.001,52.5],[5.965,52.476],[5.951,52.484],[5.926,52.474],[5.91,52.497],[5.887,52.517],[5.866,52.519],[5.864,52.52],[5.863,52.521],[5.857,52.544],[5.858,52.546],[5.829,52.587],[5.843,52.611],[5.896,52.618],[5.931,52.614],[5.962,52.624],[5.988,52.624]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

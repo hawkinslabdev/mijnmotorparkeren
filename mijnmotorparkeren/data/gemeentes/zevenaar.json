@@ -1,0 +1,38 @@
+{
+    "id": "zevenaar",
+    "name": "Gemeente Zevenaar",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.93,
+        "lng": 6.07
+    },
+    "boundaries": {
+        "coordinates": [[[6.11,51.996],[6.159,52],[6.16,51.981],[6.145,51.981],[6.105,51.967],[6.09,51.968],[6.091,51.939],[6.168,51.901],[6.157,51.905],[6.11,51.895],[6.137,51.886],[6.145,51.87],[6.167,51.862],[6.167,51.841],[6.136,51.847],[6.107,51.848],[6.063,51.865],[6.046,51.871],[6.031,51.88],[6.022,51.896],[5.987,51.913],[6.043,51.917],[6.058,51.958],[6.061,51.982],[6.034,51.971],[6.002,51.978],[6.002,51.981],[6.015,51.997],[6.028,51.996],[6.064,52.015],[6.094,51.993],[6.11,51.996]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

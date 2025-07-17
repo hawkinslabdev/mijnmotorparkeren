@@ -1,0 +1,38 @@
+{
+    "id": "heerenveen",
+    "name": "Gemeente Heerenveen",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 52.9592,
+        "lng": 5.9184
+    },
+    "boundaries": {
+        "coordinates": [[[5.928,53.078],[5.947,53.062],[5.943,53.041],[5.984,53.025],[5.98,52.998],[5.958,52.973],[6.019,52.966],[6.044,52.966],[6.07,52.974],[6.132,53.012],[6.176,53.021],[6.205,53.038],[6.202,52.99],[6.159,52.976],[6.128,52.953],[6.085,52.936],[6.038,52.918],[6.002,52.934],[5.959,52.927],[5.938,52.912],[5.897,52.963],[5.871,52.964],[5.867,52.979],[5.887,52.982],[5.866,53],[5.858,53.017],[5.798,53.05],[5.796,53.059],[5.819,53.076],[5.875,53.085],[5.895,53.079],[5.928,53.078]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

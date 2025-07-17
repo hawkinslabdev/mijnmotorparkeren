@@ -1,0 +1,72 @@
+{
+    "id": "waalre",
+    "name": "Gemeente Waalre",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.39,
+        "lng": 5.47
+    },
+    "boundaries": {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        5.505,
+                        51.4
+                    ],
+                    [
+                        5.516,
+                        51.378
+                    ],
+                    [
+                        5.439,
+                        51.366
+                    ],
+                    [
+                        5.423,
+                        51.375
+                    ],
+                    [
+                        5.422,
+                        51.383
+                    ],
+                    [
+                        5.427,
+                        51.403
+                    ],
+                    [
+                        5.436,
+                        51.405
+                    ],
+                    [
+                        5.5,
+                        51.404
+                    ],
+                    [
+                        5.505,
+                        51.4
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "statcode": "GM0866",
+            "jrstatcode": "2025GM0866",
+            "statnaam": "Waalre",
+            "rubriek": "gemeente",
+            "id": 227,
+            "FID": "gemeente_gegeneraliseerd.6913c992-d6ea-4e6b-b766-1a28032df021"
+        },
+        "id": "GM0866"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

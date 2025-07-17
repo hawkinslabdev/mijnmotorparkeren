@@ -1,0 +1,38 @@
+{
+    "id": "opsterland",
+    "name": "Gemeente Opsterland",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 53.0832,
+        "lng": 6.0944
+    },
+    "boundaries": {
+        "coordinates": [[[6.315,53.094],[6.305,53.081],[6.332,53.075],[6.281,53.064],[6.281,53.058],[6.213,53.036],[6.205,53.038],[6.176,53.021],[6.132,53.012],[6.07,52.974],[6.044,52.966],[6.019,52.966],[5.958,52.973],[5.98,52.998],[5.984,53.025],[5.943,53.041],[5.947,53.062],[5.928,53.078],[5.981,53.078],[6.002,53.081],[6.024,53.073],[6.089,53.071],[6.104,53.077],[6.125,53.101],[6.186,53.129],[6.206,53.115],[6.262,53.114],[6.291,53.1],[6.315,53.094]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

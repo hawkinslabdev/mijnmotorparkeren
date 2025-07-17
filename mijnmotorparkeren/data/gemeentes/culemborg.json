@@ -1,0 +1,41 @@
+{
+    "id": "culemborg",
+    "name": "Gemeente Culemborg",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.9583,
+        "lng": 5.2275
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Parkeren op de stoep is wettelijk niet toegestaan, in gemeente Culemborg hanteren wij geen uitzondering hierop. Motoren moeten betalen op plekken waar betaald parkeren geldt."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Team verkeer en mobiliteit van de Gemeente Culemborg",
+            "date": "2025-01-07"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "id": "oudewater",
+    "name": "Gemeente Oudewater",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.0242,
+        "lng": 4.868
+    },
+    "boundaries": {
+        "coordinates": [[[4.868,52.063],[4.896,52.05],[4.927,52.03],[4.905,52.026],[4.92,52.01],[4.91,52.011],[4.835,51.986],[4.818,52],[4.857,52.006],[4.847,52.018],[4.803,52.014],[4.799,52.022],[4.81,52.027],[4.829,52.05],[4.868,52.063]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

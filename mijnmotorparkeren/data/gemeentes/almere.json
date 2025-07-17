@@ -1,0 +1,33 @@
+{
+    "id": "almere",
+    "name": "Gemeente Almere",
+    "province": "Flevoland",
+    "coordinates": {
+        "lat": 52.36,
+        "lng": 5.22
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": true,
+            "areas": [
+                "centrum"
+            ]
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": null,
+            "notes": "Parkeren op de stoep wordt gedoogd, mits dit geen hinder oplevert. In de betaald parkeerzones is parkeren voor motoren niet gratis."
+        }
+    },
+    "lastUpdated": "2025-07-12",
+    "sources": [
+        {
+            "type": "official",
+            "url": "https://www.almere.nl/parkeren",
+            "date": "2025-07-07"
+        }
+    ]
+}

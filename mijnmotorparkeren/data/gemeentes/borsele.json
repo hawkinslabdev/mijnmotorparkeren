@@ -1,0 +1,21 @@
+{
+    "id": "borsele",
+    "name": "Gemeente Borsele",
+    "province": "Zeeland",
+    "coordinates": {
+        "lat": 51.468,
+        "lng": 3.825
+    },
+    "boundaries": {
+        "coordinates": [[[3.913,51.479],[3.908,51.47],[3.925,51.452],[3.926,51.434],[3.901,51.395],[3.876,51.397],[3.858,51.391],[3.812,51.386],[3.755,51.415],[3.735,51.411],[3.709,51.435],[3.705,51.45],[3.71,51.455],[3.715,51.464],[3.706,51.477],[3.704,51.482],[3.706,51.502],[3.767,51.498],[3.804,51.484],[3.842,51.485],[3.913,51.479]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

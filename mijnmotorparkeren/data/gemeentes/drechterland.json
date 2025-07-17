@@ -1,0 +1,38 @@
+{
+    "id": "drechterland",
+    "name": "Gemeente Drechterland",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.6497,
+        "lng": 5.1591
+    },
+    "boundaries": {
+        "coordinates": [[[5.246,52.686],[5.236,52.657],[5.199,52.636],[5.175,52.633],[5.159,52.623],[5.128,52.62],[5.121,52.633],[5.101,52.635],[5.117,52.65],[5.092,52.679],[5.125,52.691],[5.187,52.707],[5.209,52.684],[5.246,52.686]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,21 @@
+{
+    "id": "west-maas-en-waal",
+    "name": "Gemeente West Maas en Waal",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.857,
+        "lng": 5.522
+    },
+    "boundaries": {
+        "coordinates": [[[5.531,51.895],[5.568,51.877],[5.585,51.839],[5.61,51.836],[5.598,51.828],[5.558,51.828],[5.541,51.816],[5.486,51.829],[5.474,51.815],[5.439,51.81],[5.415,51.821],[5.401,51.838],[5.415,51.852],[5.423,51.866],[5.445,51.884],[5.464,51.889],[5.509,51.89],[5.531,51.895]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

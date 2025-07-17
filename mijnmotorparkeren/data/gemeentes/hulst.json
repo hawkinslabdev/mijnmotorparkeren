@@ -1,0 +1,21 @@
+{
+    "id": "hulst",
+    "name": "Gemeente Hulst",
+    "province": "Zeeland",
+    "coordinates": {
+        "lat": 51.323,
+        "lng": 3.995
+    },
+    "boundaries": {
+        "coordinates": [[[4.006,51.242],[3.982,51.249],[3.979,51.301],[3.953,51.308],[3.962,51.333],[3.957,51.365],[3.942,51.365],[3.955,51.367],[3.968,51.386],[3.974,51.407],[4.018,51.401],[4.053,51.366],[4.113,51.361],[4.139,51.361],[4.173,51.373],[4.206,51.374],[4.235,51.348],[4.166,51.293],[4.058,51.243],[4.006,51.242]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

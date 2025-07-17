@@ -1,0 +1,38 @@
+{
+    "id": "rhenen",
+    "name": "Gemeente Rhenen",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 51.9597,
+        "lng": 5.5761
+    },
+    "boundaries": {
+        "coordinates": [[[5.589,52.009],[5.606,51.994],[5.626,51.974],[5.627,51.952],[5.606,51.943],[5.587,51.951],[5.561,51.955],[5.54,51.967],[5.478,51.983],[5.494,51.995],[5.513,52.019],[5.553,51.999],[5.57,51.997],[5.589,52.009]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

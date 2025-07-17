@@ -1,0 +1,16 @@
+{
+    "id": "volendam",
+    "name": "Volendam (deel van Edam-Volendam)",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.494,
+        "lng": 5.07
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "id": "huizen",
+    "name": "Gemeente Huizen",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.2992,
+        "lng": 5.2413
+    },
+    "boundaries": {
+        "coordinates": [[[5.288,52.298],[5.204,52.267],[5.201,52.268],[5.192,52.29],[5.198,52.3],[5.23,52.302],[5.228,52.311],[5.248,52.312],[5.288,52.298]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

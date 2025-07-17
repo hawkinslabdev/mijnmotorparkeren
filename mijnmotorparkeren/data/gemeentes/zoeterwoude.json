@@ -1,0 +1,38 @@
+{
+    "id": "zoeterwoude",
+    "name": "Gemeente Zoeterwoude",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.1195,
+        "lng": 4.4974
+    },
+    "boundaries": {
+        "coordinates": [[[4.531,52.081],[4.504,52.093],[4.492,52.09],[4.473,52.119],[4.524,52.147],[4.551,52.138],[4.535,52.12],[4.537,52.084],[4.531,52.081]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

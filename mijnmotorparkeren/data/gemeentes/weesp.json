@@ -1,0 +1,37 @@
+{
+    "id": "weesp",
+    "name": "Weesp (Gemeente Amsterdam)",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.308,
+        "lng": 5.038
+    },
+    "boundaries": {
+        "coordinates": [[[[5.016,52.325],[5.04,52.329],[5.092,52.315],[5.105,52.285],[5.102,52.28],[5.064,52.281],[5.022,52.283],[4.984,52.29],[4.955,52.278],[4.929,52.309],[4.945,52.327],[5.016,52.325]]]],
+        "type": "MultiPolygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep gedoogd, mits er voldoende ruimte overblijft voor voetgangers en rolstoelgebruikers. Parkeer je op een parkeerplaats (waarvoor betaald parkeren geldt), dan moet je wel betalen."
+        }
+    },
+    "lastUpdated": null
+}

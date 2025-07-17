@@ -1,0 +1,45 @@
+{
+    "id": "dronten",
+    "name": "Gemeente Dronten",
+    "province": "Flevoland",
+    "coordinates": {
+        "lat": 52.525,
+        "lng": 5.718
+    },
+    "boundaries": {
+        "coordinates": [[[5.858,52.546],[5.857,52.544],[5.857,52.518],[5.848,52.493],[5.817,52.457],[5.797,52.439],[5.747,52.415],[5.72,52.416],[5.661,52.398],[5.625,52.38],[5.615,52.371],[5.623,52.409],[5.589,52.411],[5.567,52.436],[5.586,52.448],[5.565,52.47],[5.606,52.485],[5.591,52.5],[5.587,52.563],[5.573,52.596],[5.628,52.605],[5.65,52.616],[5.651,52.615],[5.655,52.597],[5.756,52.582],[5.813,52.577],[5.858,52.546]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": null,
+            "notes": "Een motor mag op de stoep worden geparkeerd, dat wordt gedoogd. Daarbij is het wel van belang dat de doorgang niet wordt geblokkeerd. Er is momenteel geen betaald parkeren in Dronten."
+        }
+    },
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Dronten",
+            "url": "https://www.dronten.nl/direct-regelen/verkeer-vervoer-parkeren/parkeren/parkeren-in-de-gemeente-dronten",
+            "date": "2025-07-10"
+        }
+    ]
+}

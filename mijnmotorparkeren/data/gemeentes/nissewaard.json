@@ -1,0 +1,21 @@
+{
+    "id": "nissewaard",
+    "name": "Gemeente Nissewaard",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.836,
+        "lng": 4.347
+    },
+    "boundaries": {
+        "coordinates": [[[4.384,51.842],[4.414,51.843],[4.432,51.837],[4.422,51.83],[4.397,51.831],[4.369,51.817],[4.354,51.819],[4.306,51.809],[4.296,51.802],[4.264,51.803],[4.247,51.785],[4.23,51.788],[4.194,51.804],[4.212,51.814],[4.22,51.828],[4.197,51.835],[4.198,51.85],[4.239,51.873],[4.265,51.865],[4.336,51.864],[4.354,51.849],[4.384,51.842]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

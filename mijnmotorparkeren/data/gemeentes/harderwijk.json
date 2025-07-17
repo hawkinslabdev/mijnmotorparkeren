@@ -1,0 +1,38 @@
+{
+    "id": "harderwijk",
+    "name": "Gemeente Harderwijk",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.343,
+        "lng": 5.646
+    },
+    "boundaries": {
+        "coordinates": [[[5.706,52.328],[5.671,52.304],[5.63,52.327],[5.609,52.319],[5.576,52.327],[5.611,52.346],[5.614,52.362],[5.615,52.363],[5.653,52.365],[5.679,52.379],[5.696,52.361],[5.712,52.332],[5.706,52.328]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

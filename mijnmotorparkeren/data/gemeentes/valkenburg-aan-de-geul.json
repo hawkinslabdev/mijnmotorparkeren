@@ -1,0 +1,38 @@
+{
+    "id": "valkenburg-aan-de-geul",
+    "name": "Gemeente Valkenburg aan de Geul",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 50.864,
+        "lng": 5.831
+    },
+    "boundaries": {
+        "coordinates": [[[5.862,50.882],[5.888,50.847],[5.859,50.834],[5.824,50.83],[5.801,50.848],[5.757,50.855],[5.763,50.867],[5.778,50.884],[5.8,50.886],[5.862,50.882]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

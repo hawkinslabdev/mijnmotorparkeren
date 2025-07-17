@@ -1,0 +1,38 @@
+{
+    "id": "montfoort",
+    "name": "Gemeente Montfoort",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.0458,
+        "lng": 4.9532
+    },
+    "boundaries": {
+        "coordinates": [[[4.999,52.066],[5.017,52.061],[4.99,52.052],[4.983,52.028],[4.995,52.022],[4.92,52.01],[4.905,52.026],[4.927,52.03],[4.896,52.05],[4.868,52.063],[4.873,52.069],[4.902,52.07],[4.936,52.08],[4.956,52.07],[4.999,52.066]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

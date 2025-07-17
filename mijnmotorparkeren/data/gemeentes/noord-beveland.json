@@ -1,0 +1,21 @@
+{
+    "id": "noord-beveland",
+    "name": "Gemeente Noord-Beveland",
+    "province": "Zeeland",
+    "coordinates": {
+        "lat": 51.579,
+        "lng": 3.719
+    },
+    "boundaries": {
+        "coordinates": [[[3.871,51.597],[3.892,51.572],[3.897,51.56],[3.873,51.555],[3.867,51.542],[3.865,51.541],[3.833,51.556],[3.806,51.548],[3.76,51.555],[3.715,51.535],[3.688,51.556],[3.655,51.569],[3.635,51.587],[3.634,51.589],[3.681,51.6],[3.683,51.601],[3.715,51.592],[3.774,51.597],[3.799,51.605],[3.835,51.606],[3.871,51.597]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

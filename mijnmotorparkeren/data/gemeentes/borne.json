@@ -1,0 +1,38 @@
+{
+    "id": "borne",
+    "name": "Gemeente Borne",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.299,
+        "lng": 6.748
+    },
+    "boundaries": {
+        "coordinates": [[[6.759,52.332],[6.774,52.319],[6.802,52.314],[6.776,52.293],[6.743,52.283],[6.712,52.304],[6.691,52.308],[6.721,52.341],[6.759,52.332]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

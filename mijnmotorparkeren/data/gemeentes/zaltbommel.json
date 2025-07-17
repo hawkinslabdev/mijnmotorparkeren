@@ -1,0 +1,21 @@
+{
+    "id": "zaltbommel",
+    "name": "Gemeente Zaltbommel",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.803,
+        "lng": 5.217
+    },
+    "boundaries": {
+        "coordinates": [[[5.282,51.821],[5.288,51.8],[5.266,51.793],[5.27,51.774],[5.207,51.769],[5.184,51.756],[5.186,51.742],[5.128,51.738],[5.138,51.751],[5.138,51.773],[5.096,51.788],[5.067,51.781],[5.048,51.798],[5.016,51.808],[5,51.821],[5.026,51.819],[5.051,51.819],[5.09,51.827],[5.14,51.814],[5.177,51.816],[5.203,51.81],[5.282,51.821]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

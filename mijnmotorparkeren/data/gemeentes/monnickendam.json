@@ -1,0 +1,16 @@
+{
+    "id": "monnickendam",
+    "name": "Gemeente Monnickendam",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.459,
+        "lng": 5.037
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

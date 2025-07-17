@@ -1,0 +1,38 @@
+{
+    "id": "hoogeveen",
+    "name": "Gemeente Hoogeveen",
+    "province": "Drenthe",
+    "coordinates": {
+        "lat": 52.722,
+        "lng": 6.476
+    },
+    "boundaries": {
+        "coordinates": [[[6.587,52.736],[6.596,52.713],[6.63,52.713],[6.629,52.67],[6.615,52.674],[6.553,52.666],[6.529,52.655],[6.531,52.672],[6.5,52.674],[6.486,52.694],[6.449,52.694],[6.451,52.707],[6.407,52.707],[6.423,52.743],[6.41,52.765],[6.446,52.776],[6.447,52.786],[6.455,52.801],[6.492,52.793],[6.491,52.771],[6.513,52.762],[6.566,52.766],[6.558,52.745],[6.587,52.736]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

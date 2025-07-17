@@ -1,0 +1,38 @@
+{
+    "id": "blaricum",
+    "name": "Gemeente Blaricum",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.2728,
+        "lng": 5.2444
+    },
+    "boundaries": {
+        "coordinates": [[[5.306,52.278],[5.266,52.282],[5.244,52.255],[5.226,52.268],[5.204,52.267],[5.288,52.298],[5.313,52.303],[5.314,52.303],[5.297,52.293],[5.306,52.278]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

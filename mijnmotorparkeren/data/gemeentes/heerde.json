@@ -1,0 +1,38 @@
+{
+    "id": "heerde",
+    "name": "Gemeente Heerde",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.404,
+        "lng": 6.09
+    },
+    "boundaries": {
+        "coordinates": [[[6.104,52.454],[6.11,52.441],[6.119,52.433],[6.111,52.408],[6.13,52.399],[6.124,52.381],[6.082,52.372],[6.078,52.364],[6.042,52.357],[6.032,52.367],[5.991,52.379],[5.951,52.398],[5.974,52.41],[6.023,52.444],[6.063,52.451],[6.104,52.454]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

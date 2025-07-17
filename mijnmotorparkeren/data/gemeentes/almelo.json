@@ -1,0 +1,38 @@
+{
+    "id": "almelo",
+    "name": "Gemeente Almelo",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.356,
+        "lng": 6.662
+    },
+    "boundaries": {
+        "coordinates": [[[6.699,52.394],[6.713,52.374],[6.721,52.341],[6.691,52.308],[6.658,52.295],[6.626,52.29],[6.632,52.302],[6.605,52.312],[6.619,52.326],[6.605,52.345],[6.615,52.363],[6.599,52.384],[6.652,52.399],[6.699,52.394]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

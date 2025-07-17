@@ -1,0 +1,38 @@
+{
+    "id": "leusden",
+    "name": "Gemeente Leusden",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.1324,
+        "lng": 5.4318
+    },
+    "boundaries": {
+        "coordinates": [[[5.486,52.115],[5.472,52.101],[5.444,52.107],[5.432,52.097],[5.405,52.104],[5.401,52.089],[5.341,52.095],[5.322,52.102],[5.311,52.108],[5.356,52.137],[5.37,52.132],[5.397,52.134],[5.424,52.158],[5.442,52.161],[5.481,52.151],[5.499,52.147],[5.498,52.13],[5.486,52.115]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

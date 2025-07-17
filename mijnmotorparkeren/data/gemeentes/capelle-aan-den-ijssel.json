@@ -1,0 +1,38 @@
+{
+    "id": "capelle-aan-den-ijssel",
+    "name": "Gemeente Capelle aan den IJssel",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.9295,
+        "lng": 4.5778
+    },
+    "boundaries": {
+        "coordinates": [[[4.619,51.933],[4.618,51.931],[4.55,51.907],[4.538,51.92],[4.566,51.926],[4.562,51.957],[4.584,51.965],[4.619,51.933]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

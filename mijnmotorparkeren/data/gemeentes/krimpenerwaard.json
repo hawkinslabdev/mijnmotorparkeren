@@ -1,0 +1,38 @@
+{
+    "id": "krimpenerwaard",
+    "name": "Gemeente Krimpenerwaard",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.963,
+        "lng": 4.755
+    },
+    "boundaries": {
+        "coordinates": [[[4.835,51.986],[4.86,51.968],[4.878,51.938],[4.832,51.939],[4.811,51.925],[4.762,51.914],[4.716,51.896],[4.673,51.89],[4.62,51.89],[4.576,51.903],[4.643,51.913],[4.618,51.931],[4.619,51.933],[4.635,51.938],[4.646,51.954],[4.633,51.97],[4.668,51.979],[4.689,51.996],[4.751,52.014],[4.785,52.016],[4.799,52.022],[4.803,52.014],[4.847,52.018],[4.857,52.006],[4.818,52],[4.835,51.986]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

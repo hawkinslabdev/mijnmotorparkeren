@@ -1,0 +1,38 @@
+{
+    "id": "wormerland",
+    "name": "Gemeente Wormerland",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.5066,
+        "lng": 4.8566
+    },
+    "boundaries": {
+        "coordinates": [[[4.921,52.49],[4.906,52.48],[4.853,52.47],[4.837,52.48],[4.799,52.491],[4.79,52.519],[4.834,52.539],[4.85,52.525],[4.91,52.517],[4.923,52.511],[4.921,52.49]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

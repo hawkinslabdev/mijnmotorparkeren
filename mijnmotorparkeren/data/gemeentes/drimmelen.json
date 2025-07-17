@@ -1,0 +1,21 @@
+{
+    "id": "drimmelen",
+    "name": "Gemeente Drimmelen",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.701,
+        "lng": 4.765
+    },
+    "boundaries": {
+        "coordinates": [[[4.837,51.713],[4.824,51.711],[4.842,51.68],[4.781,51.664],[4.794,51.642],[4.788,51.637],[4.77,51.63],[4.739,51.643],[4.699,51.638],[4.697,51.655],[4.685,51.666],[4.71,51.673],[4.697,51.688],[4.667,51.686],[4.645,51.719],[4.676,51.725],[4.699,51.722],[4.734,51.737],[4.764,51.759],[4.822,51.754],[4.851,51.756],[4.847,51.726],[4.837,51.713]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

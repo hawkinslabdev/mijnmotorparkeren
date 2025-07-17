@@ -1,0 +1,38 @@
+{
+    "id": "deurne",
+    "name": "Gemeente Deurne",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.462,
+        "lng": 5.841
+    },
+    "boundaries": {
+        "coordinates": [[[5.853,51.504],[5.861,51.492],[5.875,51.447],[5.931,51.385],[5.87,51.353],[5.857,51.354],[5.854,51.376],[5.832,51.399],[5.788,51.413],[5.756,51.434],[5.718,51.439],[5.73,51.444],[5.717,51.466],[5.736,51.472],[5.722,51.485],[5.774,51.489],[5.853,51.504]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

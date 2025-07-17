@@ -1,0 +1,38 @@
+{
+    "id": "kaag-en-braassem",
+    "name": "Gemeente Kaag en Braassem",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.2,
+        "lng": 4.629
+    },
+    "boundaries": {
+        "coordinates": [[[4.724,52.217],[4.729,52.21],[4.708,52.205],[4.689,52.192],[4.681,52.168],[4.571,52.153],[4.55,52.163],[4.538,52.18],[4.547,52.199],[4.56,52.2],[4.558,52.219],[4.603,52.215],[4.633,52.216],[4.67,52.231],[4.686,52.227],[4.704,52.234],[4.724,52.232],[4.724,52.217]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "utrechtse-heuvelrug",
+    "name": "Gemeente Utrechtse Heuvelrug",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.045,
+        "lng": 5.406
+    },
+    "boundaries": {
+        "coordinates": [[[5.332,52.084],[5.437,52.072],[5.435,52.048],[5.446,52.045],[5.498,52.057],[5.516,52.054],[5.529,52.04],[5.513,52.019],[5.494,51.995],[5.478,51.983],[5.442,51.986],[5.391,51.971],[5.378,51.986],[5.382,52.002],[5.344,52.02],[5.315,52.027],[5.291,52.008],[5.28,52.011],[5.263,52.024],[5.248,52.047],[5.247,52.059],[5.291,52.086],[5.32,52.07],[5.332,52.084]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

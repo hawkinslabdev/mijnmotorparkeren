@@ -1,0 +1,38 @@
+{
+    "id": "stede-broec",
+    "name": "Gemeente Stede Broec",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.6951,
+        "lng": 5.229
+    },
+    "boundaries": {
+        "coordinates": [[[5.246,52.686],[5.209,52.684],[5.187,52.707],[5.22,52.718],[5.258,52.716],[5.259,52.687],[5.246,52.686]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

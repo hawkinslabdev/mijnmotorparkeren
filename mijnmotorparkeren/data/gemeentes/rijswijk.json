@@ -1,0 +1,38 @@
+{
+    "id": "rijswijk",
+    "name": "Gemeente Rijswijk (ZH.)",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.0365,
+        "lng": 4.3257
+    },
+    "boundaries": {
+        "coordinates": [[[4.358,52.027],[4.326,52.013],[4.31,52.016],[4.308,52.018],[4.291,52.042],[4.34,52.062],[4.358,52.027]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

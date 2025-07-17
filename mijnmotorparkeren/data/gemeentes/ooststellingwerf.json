@@ -1,0 +1,38 @@
+{
+    "id": "ooststellingwerf",
+    "name": "Gemeente Ooststellingwerf",
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 52.9857,
+        "lng": 6.2932
+    },
+    "boundaries": {
+        "coordinates": [[[6.413,52.986],[6.428,52.972],[6.393,52.933],[6.369,52.922],[6.333,52.906],[6.303,52.925],[6.257,52.928],[6.247,52.923],[6.214,52.926],[6.201,52.939],[6.145,52.928],[6.111,52.913],[6.085,52.936],[6.128,52.953],[6.159,52.976],[6.202,52.99],[6.205,53.038],[6.213,53.036],[6.281,53.058],[6.281,53.064],[6.332,53.075],[6.368,53.067],[6.363,53.034],[6.413,52.986]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "meppel",
+    "name": "Gemeente Meppel",
+    "province": "Drenthe",
+    "coordinates": {
+        "lat": 52.701,
+        "lng": 6.197
+    },
+    "boundaries": {
+        "coordinates": [[[6.231,52.742],[6.216,52.719],[6.217,52.703],[6.249,52.708],[6.287,52.699],[6.266,52.668],[6.221,52.683],[6.202,52.685],[6.183,52.675],[6.163,52.68],[6.159,52.692],[6.12,52.75],[6.156,52.763],[6.173,52.773],[6.202,52.729],[6.219,52.748],[6.231,52.742]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

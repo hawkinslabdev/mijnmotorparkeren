@@ -1,0 +1,38 @@
+{
+    "id": "dijk-en-waard",
+    "name": "Gemeente Dijk en Waard",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.684,
+        "lng": 4.758
+    },
+    "boundaries": {
+        "coordinates": [[[4.848,52.72],[4.899,52.707],[4.9,52.698],[4.876,52.686],[4.863,52.653],[4.873,52.634],[4.839,52.646],[4.83,52.633],[4.808,52.634],[4.774,52.648],[4.779,52.676],[4.742,52.681],[4.729,52.691],[4.771,52.702],[4.779,52.731],[4.805,52.714],[4.848,52.72]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

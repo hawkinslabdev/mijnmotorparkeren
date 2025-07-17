@@ -1,0 +1,38 @@
+{
+    "id": "leiderdorp",
+    "name": "Gemeente Leiderdorp",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.1586,
+        "lng": 4.529
+    },
+    "boundaries": {
+        "coordinates": [[[4.518,52.182],[4.538,52.18],[4.55,52.163],[4.571,52.153],[4.551,52.138],[4.524,52.147],[4.515,52.161],[4.518,52.182]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

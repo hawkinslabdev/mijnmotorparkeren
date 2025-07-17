@@ -1,0 +1,98 @@
+{
+  "id": "almere-poort",
+  "parent": "almere",
+  "name": "Almere Poort",
+  "province": "Flevoland",
+  "coordinates": {
+    "lat": 52.34759458349156,
+    "lng": 5.151219948256604
+  },
+  "parkingRules": {
+    "free": null,
+    "paid": {
+      "enabled": false,
+      "areas": [],
+      "rates": {}
+    },
+    "permits": {
+      "required": false,
+      "types": []
+    },
+    "restrictions": {
+      "timeLimit": null,
+      "noParking": []
+    },
+    "motorcycleSpecific": {
+      "dedicatedSpots": [],
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": null,
+      "notes": "Motoren mogen op de stoep parkeren."
+    }
+  },
+  "area": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+                [
+                    5.156563294483533,
+                    52.362793570535075
+                ],
+                [
+                    5.134276226896986,
+                    52.35522346351544
+                ],
+                [
+                    5.1360216134267205,
+                    52.343019721013775
+                ],
+                [
+                    5.1365893020519025,
+                    52.33890189463685
+                ],
+                [
+                    5.150975180538097,
+                    52.33395652949483
+                ],
+                [
+                    5.154252002315474,
+                    52.33749006666355
+                ],
+                [
+                    5.168380721735701,
+                    52.34439534927981
+                ],
+                [
+                    5.168895573479148,
+                    52.34918218372346
+                ],
+                [
+                    5.156563294483533,
+                    52.362793570535075
+                ]
+            ]
+          ]
+        },
+        "properties": {
+          "name": "Almere Poort"
+        }
+      }
+    ]
+  },
+  "lastUpdated": "2025-07-09",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Almere Parkeerbeleid",
+      "url": "https://www.almere.nl/parkeren",
+      "date": "2025-07-09"
+    }
+  ],
+  "alternativeNames": ["Almere Poort"],
+  "overrideReason": "Almere Poort heeft geen gratis parkeren en motoren mogen op de stoep.",
+  "effectiveDate": "2025-07-01"
+}

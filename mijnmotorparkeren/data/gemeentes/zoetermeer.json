@@ -1,0 +1,38 @@
+{
+    "id": "zoetermeer",
+    "name": "Gemeente Zoetermeer",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 52.0575,
+        "lng": 4.4932
+    },
+    "boundaries": {
+        "coordinates": [[[4.531,52.081],[4.557,52.061],[4.505,52.032],[4.477,52.032],[4.451,52.049],[4.422,52.052],[4.421,52.063],[4.457,52.079],[4.492,52.09],[4.504,52.093],[4.531,52.081]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

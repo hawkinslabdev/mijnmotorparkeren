@@ -1,0 +1,21 @@
+{
+    "id": "middelburg-z",
+    "name": "Gemeente Middelburg (Z.)",
+    "province": "Zeeland",
+    "coordinates": {
+        "lat": 51.507,
+        "lng": 3.693
+    },
+    "boundaries": {
+        "coordinates": [[[3.68,51.534],[3.698,51.516],[3.728,51.524],[3.745,51.512],[3.706,51.502],[3.704,51.482],[3.668,51.47],[3.648,51.47],[3.629,51.481],[3.609,51.476],[3.587,51.479],[3.58,51.489],[3.584,51.52],[3.593,51.532],[3.659,51.519],[3.68,51.534]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

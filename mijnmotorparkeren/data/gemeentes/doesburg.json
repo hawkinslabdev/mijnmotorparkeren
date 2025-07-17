@@ -1,0 +1,38 @@
+{
+    "id": "doesburg",
+    "name": "Gemeente Doesburg",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 52.022,
+        "lng": 6.14
+    },
+    "boundaries": {
+        "coordinates": [[[6.159,52],[6.11,51.996],[6.126,52.01],[6.132,52.025],[6.122,52.035],[6.152,52.042],[6.176,52.039],[6.177,52.019],[6.161,52.014],[6.159,52]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

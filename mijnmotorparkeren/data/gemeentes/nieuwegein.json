@@ -1,0 +1,41 @@
+{
+    "id": "nieuwegein",
+    "name": "Gemeente Nieuwegein",
+    "province": "Utrecht",
+    "coordinates": {
+        "lat": 52.029,
+        "lng": 5.08
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Informatie niet beschikbaar. Wij hebben Gemeente Nieuwegein gevraagd om informatie over het parkeren van een motorfiets, maar tot op heden nog geen reactie op mogen ontvangen of deze reactie is nog niet verwerkt."
+        }
+    },
+    "lastUpdated": null,
+    "sources": [
+        {
+            "type": "community",
+            "name": "MotorOpDeStoep.nl",
+            "url": "https://motoropdestoep.nl/gemeente/nieuwegein",
+            "date": "2025-07-08"
+        }
+    ]
+}

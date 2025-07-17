@@ -1,0 +1,38 @@
+{
+    "id": "krimpen-aan-den-ijssel",
+    "name": "Gemeente Krimpen aan den IJssel",
+    "province": "Zuid-Holland",
+    "coordinates": {
+        "lat": 51.9164,
+        "lng": 4.6028
+    },
+    "boundaries": {
+        "coordinates": [[[4.576,51.903],[4.55,51.907],[4.618,51.931],[4.643,51.913],[4.576,51.903]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

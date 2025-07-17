@@ -1,0 +1,21 @@
+{
+    "id": "meierijstad",
+    "name": "Gemeente Meierijstad",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.601,
+        "lng": 5.527
+    },
+    "boundaries": {
+        "coordinates": [[[5.423,51.654],[5.466,51.643],[5.497,51.627],[5.524,51.63],[5.57,51.651],[5.627,51.623],[5.643,51.606],[5.651,51.582],[5.652,51.57],[5.622,51.553],[5.584,51.563],[5.533,51.558],[5.547,51.538],[5.531,51.525],[5.5,51.521],[5.487,51.542],[5.424,51.534],[5.404,51.548],[5.399,51.572],[5.381,51.603],[5.395,51.606],[5.375,51.634],[5.38,51.644],[5.423,51.654]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

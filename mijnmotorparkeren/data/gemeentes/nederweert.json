@@ -1,0 +1,38 @@
+{
+    "id": "nederweert",
+    "name": "Gemeente Nederweert",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.285,
+        "lng": 5.797
+    },
+    "boundaries": {
+        "coordinates": [[[5.792,51.238],[5.782,51.247],[5.744,51.265],[5.73,51.281],[5.709,51.284],[5.675,51.277],[5.644,51.291],[5.672,51.315],[5.77,51.334],[5.84,51.347],[5.832,51.338],[5.852,51.321],[5.878,51.317],[5.861,51.311],[5.851,51.292],[5.834,51.275],[5.853,51.244],[5.792,51.238]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

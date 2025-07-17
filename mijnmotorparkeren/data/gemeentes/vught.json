@@ -1,0 +1,38 @@
+{
+    "id": "vught",
+    "name": "Gemeente Vught",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.655,
+        "lng": 5.241
+    },
+    "boundaries": {
+        "coordinates": [[[5.319,51.67],[5.304,51.666],[5.319,51.65],[5.318,51.635],[5.304,51.625],[5.281,51.622],[5.269,51.613],[5.255,51.625],[5.211,51.616],[5.192,51.639],[5.16,51.64],[5.154,51.655],[5.167,51.669],[5.223,51.674],[5.226,51.69],[5.247,51.683],[5.287,51.682],[5.299,51.667],[5.319,51.67]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

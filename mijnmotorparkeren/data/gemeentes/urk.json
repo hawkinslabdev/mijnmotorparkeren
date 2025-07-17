@@ -1,0 +1,16 @@
+{
+    "id": "urk",
+    "name": "Gemeente Urk",
+    "province": "Flevoland",
+    "coordinates": {
+        "lat": 52.66,
+        "lng": 5.63
+    },
+    "lastUpdated": null,
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    }
+}

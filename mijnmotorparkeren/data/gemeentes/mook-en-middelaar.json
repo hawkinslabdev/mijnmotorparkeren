@@ -1,0 +1,21 @@
+{
+    "id": "mook-en-middelaar",
+    "name": "Gemeente Mook en Middelaar",
+    "province": "Limburg",
+    "coordinates": {
+        "lat": 51.749,
+        "lng": 5.904
+    },
+    "boundaries": {
+        "coordinates": [[[5.938,51.742],[5.919,51.718],[5.885,51.728],[5.88,51.75],[5.864,51.758],[5.868,51.776],[5.893,51.778],[5.915,51.753],[5.938,51.742]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

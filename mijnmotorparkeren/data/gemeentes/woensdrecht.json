@@ -1,0 +1,38 @@
+{
+    "id": "woensdrecht",
+    "name": "Gemeente Woensdrecht",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.409,
+        "lng": 4.338
+    },
+    "boundaries": {
+        "coordinates": [[[4.367,51.457],[4.391,51.451],[4.395,51.427],[4.392,51.408],[4.432,51.375],[4.422,51.365],[4.385,51.354],[4.341,51.358],[4.335,51.378],[4.277,51.376],[4.268,51.384],[4.264,51.416],[4.276,51.425],[4.265,51.44],[4.283,51.44],[4.311,51.46],[4.367,51.457]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

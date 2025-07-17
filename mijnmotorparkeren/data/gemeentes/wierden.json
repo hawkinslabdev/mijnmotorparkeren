@@ -1,0 +1,38 @@
+{
+    "id": "wierden",
+    "name": "Gemeente Wierden",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.359,
+        "lng": 6.593
+    },
+    "boundaries": {
+        "coordinates": [[[6.599,52.384],[6.615,52.363],[6.605,52.345],[6.619,52.326],[6.605,52.312],[6.632,52.302],[6.626,52.29],[6.605,52.271],[6.568,52.27],[6.554,52.283],[6.545,52.318],[6.525,52.326],[6.468,52.326],[6.499,52.364],[6.496,52.376],[6.513,52.382],[6.516,52.406],[6.576,52.418],[6.599,52.384]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

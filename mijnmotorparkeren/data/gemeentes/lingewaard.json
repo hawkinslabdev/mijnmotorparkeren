@@ -1,0 +1,38 @@
+{
+    "id": "lingewaard",
+    "name": "Gemeente Lingewaard",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.915,
+        "lng": 5.942
+    },
+    "boundaries": {
+        "coordinates": [[[5.955,51.949],[5.966,51.939],[5.987,51.913],[6.022,51.896],[6.031,51.88],[6.046,51.871],[6.017,51.881],[5.993,51.875],[5.981,51.86],[5.955,51.857],[5.924,51.875],[5.887,51.865],[5.871,51.889],[5.857,51.895],[5.891,51.907],[5.898,51.934],[5.932,51.959],[5.955,51.949]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "renkum",
+    "name": "Gemeente Renkum",
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.99,
+        "lng": 5.83
+    },
+    "boundaries": {
+        "coordinates": [[[5.813,52.024],[5.803,52.004],[5.864,51.996],[5.864,51.971],[5.835,51.974],[5.778,51.959],[5.746,51.97],[5.723,51.964],[5.714,51.968],[5.724,52.001],[5.745,52.02],[5.813,52.024]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

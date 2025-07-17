@@ -1,0 +1,21 @@
+{
+    "id": "kapelle",
+    "name": "Gemeente Kapelle",
+    "province": "Zeeland",
+    "coordinates": {
+        "lat": 51.511,
+        "lng": 3.963
+    },
+    "boundaries": {
+        "coordinates": [[[3.971,51.528],[4.014,51.52],[4.005,51.505],[4.007,51.459],[3.993,51.451],[3.975,51.462],[3.933,51.449],[3.926,51.451],[3.925,51.452],[3.908,51.47],[3.913,51.479],[3.926,51.492],[3.965,51.506],[3.971,51.528]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

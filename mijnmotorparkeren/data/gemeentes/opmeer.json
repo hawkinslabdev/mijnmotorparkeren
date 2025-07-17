@@ -1,0 +1,38 @@
+{
+    "id": "opmeer",
+    "name": "Gemeente Opmeer",
+    "province": "Noord-Holland",
+    "coordinates": {
+        "lat": 52.7063,
+        "lng": 4.9438
+    },
+    "boundaries": {
+        "coordinates": [[[4.997,52.752],[4.999,52.735],[5.011,52.723],[4.988,52.713],[4.979,52.68],[4.949,52.674],[4.906,52.686],[4.9,52.698],[4.899,52.707],[4.944,52.754],[4.997,52.752]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

@@ -1,0 +1,38 @@
+{
+    "id": "haaksbergen",
+    "name": "Gemeente Haaksbergen",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.156,
+        "lng": 6.738
+    },
+    "boundaries": {
+        "coordinates": [[[6.712,52.206],[6.767,52.191],[6.806,52.167],[6.828,52.171],[6.89,52.161],[6.873,52.133],[6.855,52.12],[6.761,52.119],[6.716,52.118],[6.663,52.13],[6.674,52.143],[6.671,52.166],[6.645,52.174],[6.634,52.186],[6.672,52.198],[6.697,52.196],[6.712,52.206]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

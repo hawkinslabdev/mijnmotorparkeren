@@ -1,0 +1,21 @@
+{
+    "id": "heusden",
+    "name": "Gemeente Heusden",
+    "province": "Noord-Brabant",
+    "coordinates": {
+        "lat": 51.713,
+        "lng": 5.17
+    },
+    "boundaries": {
+        "coordinates": [[[5.186,51.742],[5.206,51.741],[5.231,51.724],[5.23,51.711],[5.248,51.695],[5.226,51.69],[5.223,51.674],[5.167,51.669],[5.154,51.655],[5.16,51.64],[5.106,51.636],[5.102,51.677],[5.109,51.709],[5.082,51.722],[5.128,51.738],[5.186,51.742]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "contact": null,
+        "motorcycleSpecific": {
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}

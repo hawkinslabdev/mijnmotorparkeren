@@ -1,0 +1,38 @@
+{
+    "id": "zwartewaterland",
+    "name": "Gemeente Zwartewaterland",
+    "province": "Overijssel",
+    "coordinates": {
+        "lat": 52.586,
+        "lng": 6.096
+    },
+    "boundaries": {
+        "coordinates": [[[6.147,52.584],[6.167,52.565],[6.141,52.552],[6.11,52.561],[6.089,52.552],[6.063,52.567],[6.033,52.559],[6.013,52.586],[5.983,52.578],[5.971,52.594],[5.991,52.614],[5.988,52.624],[6.018,52.643],[6.055,52.65],[6.086,52.663],[6.12,52.668],[6.104,52.656],[6.096,52.631],[6.106,52.604],[6.131,52.581],[6.147,52.584]]],
+        "type": "Polygon"
+    },
+    "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
+        "contact": null,
+        "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
+            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+        }
+    },
+    "lastUpdated": null,
+    "sources": []
+}
