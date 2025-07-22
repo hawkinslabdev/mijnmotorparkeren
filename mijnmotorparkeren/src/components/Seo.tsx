@@ -25,6 +25,7 @@ const Seo: React.FC<SeoProps> = ({
 }) => {
   const cleanTitle = title.trim()
   const cleanDescription = description.trim()
+  // Fixed: Use correct image path that matches your actual files
   const finalImage = image || `${window.location.origin}/android-chrome-512x512.png`
 
   // Manual DOM updates as fallback (since Helmet isn't working reliably)
@@ -58,10 +59,34 @@ const Seo: React.FC<SeoProps> = ({
         newMetaTitle.content = cleanTitle
         document.head.appendChild(newMetaTitle)
       }
+
+      // Update og:image
+      const ogImage = document.querySelector('meta[property="og:image"]')
+      if (!ogImage || ogImage.getAttribute('content') !== finalImage) {
+        const existingOgImage = document.querySelector('meta[property="og:image"]')
+        if (existingOgImage) existingOgImage.remove()
+        
+        const newOgImage = document.createElement('meta')
+        newOgImage.setAttribute('property', 'og:image')
+        newOgImage.content = finalImage
+        document.head.appendChild(newOgImage)
+      }
+
+      // Update twitter:image
+      const twitterImage = document.querySelector('meta[name="twitter:image"]')
+      if (!twitterImage || twitterImage.getAttribute('content') !== finalImage) {
+        const existingTwitterImage = document.querySelector('meta[name="twitter:image"]')
+        if (existingTwitterImage) existingTwitterImage.remove()
+        
+        const newTwitterImage = document.createElement('meta')
+        newTwitterImage.name = 'twitter:image'
+        newTwitterImage.content = finalImage
+        document.head.appendChild(newTwitterImage)
+      }
     }, 100)
 
     return () => clearTimeout(timer)
-  }, [cleanTitle, cleanDescription])
+  }, [cleanTitle, cleanDescription, finalImage])
   
   return (
     <Helmet>
@@ -80,7 +105,10 @@ const Seo: React.FC<SeoProps> = ({
       <meta key={`og-desc-${cleanDescription}`} property="og:description" content={cleanDescription} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonical || window.location.href} />
-      <meta property="og:image" content={finalImage} />
+      <meta key={`og-image-${finalImage}`} property="og:image" content={finalImage} />
+      <meta property="og:image:width" content="512" />
+      <meta property="og:image:height" content="512" />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:site_name" content="MijnMotorParkeren.nl" />
       <meta property="og:locale" content="nl_NL" />
       
@@ -88,7 +116,7 @@ const Seo: React.FC<SeoProps> = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta key={`twitter-title-${cleanTitle}`} name="twitter:title" content={cleanTitle} />
       <meta key={`twitter-desc-${cleanDescription}`} name="twitter:description" content={cleanDescription} />
-      <meta name="twitter:image" content={finalImage} />
+      <meta key={`twitter-image-${finalImage}`} name="twitter:image" content={finalImage} />
       
       {/* Schema markup */}
       {schemaMarkup && (
