@@ -1,7 +1,33 @@
+# public/robots.txt
 User-agent: *
 Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_*/
+Disallow: /*.json$
 
+# Allow access to sitemap and important assets
+Allow: /sitemap.xml
+Allow: /android-chrome-*.png
+Allow: /apple-touch-icon.png
+Allow: /favicon.ico
+
+# Crawl delay to be respectful
+Crawl-delay: 1
+
+# Sitemap location
 Sitemap: https://mijnmotorparkeren.nl/sitemap.xml
 
+# Specific bot instructions
 User-agent: Googlebot
-Disallow: /private
+Disallow: /private/
+Disallow: /admin/
+Allow: /gemeente/
+Allow: /stad/
+
+User-agent: Bingbot
+Disallow: /private/
+Disallow: /admin/
+Allow: /gemeente/
+Allow: /stad/

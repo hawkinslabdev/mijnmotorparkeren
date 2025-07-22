@@ -53,7 +53,7 @@ export function useSearch(): UseSearchReturn {
     return new Fuse(gemeentes, SEARCH_OPTIONS)
   }, [gemeentes, dataLoading])
 
-  // Search function - memoized to prevent infinite loops
+  // Search function, rewritten to prevent infinite loops
   const search = useCallback((query: string): void => {
     // Don't search if component is unmounted
     if (!isMounted.current) return
@@ -64,7 +64,7 @@ export function useSearch(): UseSearchReturn {
     setCurrentQuery(query)
     
     if (!fuse) {
-      setError('Search not available - data still loading')
+      setError('Search not available, data still loading')
       setResults([])
       return
     }

@@ -26,7 +26,7 @@ export function useGemeenteData(): UseGemeenteDataReturn {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Load gemeente index - now instant since data is pre-loaded
+  // Load gemeente index, now instant since data is pre-loaded
   const loadIndex = async (): Promise<GemeenteIndex | null> => {
     try {
       if (indexCache) return indexCache
@@ -38,7 +38,7 @@ export function useGemeenteData(): UseGemeenteDataReturn {
         throw new Error('Invalid gemeente index structure')
       }
 
-      console.log(`✅ Loaded index with ${gemeenteIndex.gemeentes.length} gemeentes from bundle`)
+      console.log(`Loaded index with ${gemeenteIndex.gemeentes.length} gemeentes from bundle`)
       indexCache = gemeenteIndex as GemeenteIndex
       return indexCache
     } catch (err) {
@@ -47,7 +47,7 @@ export function useGemeenteData(): UseGemeenteDataReturn {
     }
   }
 
-  // Load individual gemeente data - now instant lookup
+  // Load individual gemeente data, now instant lookup
   const getGemeenteById = useCallback(async (id: string): Promise<Gemeente | null> => {
     try {
       // Check cache first (for API compatibility)
@@ -80,12 +80,11 @@ export function useGemeenteData(): UseGemeenteDataReturn {
     }
   }, [])
 
-  // Load all gemeente data - now instant since data is pre-loaded
+  // Load all gemeente data, now instant since data is pre-loaded
   const loadAllGemeenteData = useCallback(async (): Promise<Gemeente[]> => {
     console.log('Loading all gemeente data from bundle...')
     
     try {
-      // All data is already available, no more batching or network requests needed!
       const loadedGemeentes = [...gemeenteArray]
       
       // Validate that we have data
@@ -94,7 +93,7 @@ export function useGemeenteData(): UseGemeenteDataReturn {
         return []
       }
 
-      console.log(`✅ Successfully loaded ${loadedGemeentes.length} gemeentes from bundle`)
+      console.log(`Successfully loaded ${loadedGemeentes.length} gemeentes from bundle`)
       return loadedGemeentes
     } catch (err) {
       console.error('Error loading all gemeente data:', err)
@@ -102,7 +101,7 @@ export function useGemeenteData(): UseGemeenteDataReturn {
     }
   }, [])
 
-  // Refresh data function - simplified since data is bundled
+  // Refresh data function, simplified since data is bundled
   const refreshData = useCallback(async (): Promise<void> => {
     setLoading(true)
     setError(null)
@@ -132,7 +131,6 @@ export function useGemeenteData(): UseGemeenteDataReturn {
     }
   }, [loadAllGemeenteData])
 
-  // Initial load - now happens instantly
   useEffect(() => {
     let isMounted = true
 

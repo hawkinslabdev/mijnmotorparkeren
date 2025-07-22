@@ -1,4 +1,4 @@
-// src/data/index.ts - Load ALL data at build time via Vite
+// src/data/index.ts
 import type { Gemeente } from '../types/gemeente'
 import type { City } from '../types/city'
 

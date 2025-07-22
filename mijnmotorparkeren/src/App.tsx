@@ -13,7 +13,6 @@ import { useGeolocation } from '@hooks/useGeolocation'
 import { Gemeente } from './types/gemeente'
 import { City } from './types/city'
 import './App.css'
-import Seo from '@components/Seo'
 
 // Import the page components
 import { HomePage } from './pages/HomePage'
@@ -81,11 +80,17 @@ const AppContent: React.FC = () => {
           if (response.ok) {
             const city = await response.json()
             setSelectedCity(city)
+          } else {
+            // Handle 404 properly for SEO - don't redirect immediately
+            console.error(`City ${cityId} not found (${response.status})`)
+            setSelectedCity(null)
+            // Only redirect after a delay to allow SEO crawlers to see the error
+            setTimeout(() => navigate('/', { replace: true }), 1000)
           }
         } catch (e) {
           console.error('Error loading city data:', e)
           setSelectedCity(null)
-          navigate('/', { replace: true })
+          setTimeout(() => navigate('/', { replace: true }), 1000)
         }
       }
       loadCity()
@@ -150,7 +155,7 @@ const AppContent: React.FC = () => {
     setSearchOpen(false)
   }
 
-  // Handle close of details panel
+  // Handle close of details panel (your version)
   const handleDetailsClose = useCallback(() => {
     setSelectedGemeente(null)
     setSelectedCity(null)
@@ -159,7 +164,7 @@ const AppContent: React.FC = () => {
     navigate('/')
   }, [navigate, setSelectedGemeenteId])
 
-  // Handle share functionality with proper URLs
+  // Handle share functionality with proper URLs (your improved version)
   const [shareLoading, setShareLoading] = useState(false)
   const handleShare = async () => {
     setShareLoading(true)
@@ -226,41 +231,9 @@ const AppContent: React.FC = () => {
     )
   }
 
-  // Generate canonical URL based on current route
-  const getCanonicalUrl = () => {
-    const baseUrl = 'https://mijnmotorparkeren.nl'
-    return baseUrl + location.pathname
-  }
-
   return (
     <>
-      {/* SEO for gemeente */}
-      {selectedGemeente && (
-        <Seo
-          title={`Motor parkeren in ${selectedGemeente.name} | Parkeerregels`}
-          description={`Alles over motor parkeren in ${selectedGemeente.name}. Bekijk de parkeerregels voor motoren op MijnMotorParkeren.nl.`}
-          canonical={getCanonicalUrl()}
-          image={`${window.location.origin}/android-chrome-512x512.png`}
-        />
-      )}
-      {/* SEO for city */}
-      {selectedCity && (
-        <Seo
-          title={`Motor parkeren in ${selectedCity.name} | Parkeerregels`}
-          description={`Alles over motor parkeren in ${selectedCity.name} (gemeente ${selectedCity.parent}). Bekijk de parkeerregels voor motoren op MijnMotorParkeren.nl.`}
-          canonical={getCanonicalUrl()}
-          image={`${window.location.origin}/android-chrome-512x512.png`}
-        />
-      )}
-      {/* Fallback SEO for homepage or when no data */}
-      {!selectedGemeente && !selectedCity && (
-        <Seo
-          title="Motor parkeren Nederland | MijnMotorParkeren.nl"
-          description="Bekijk het parkeerbeleid voor motor parkeren in Nederlandse gemeenten. Vind alle regels op MijnMotorParkeren.nl."
-          canonical={getCanonicalUrl()}
-          image={`${window.location.origin}/android-chrome-512x512.png`}
-        />
-      )}
+      {/* SEO logic removed - now handled by individual route components */}
       
       <div className="viewport-full bg-gray-50 flex flex-col">
         <Header onSearchOpen={() => setSearchOpen(true)} />

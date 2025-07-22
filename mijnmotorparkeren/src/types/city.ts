@@ -9,7 +9,7 @@ export interface City {
   province: string
   coordinates: Coordinates
   parkingRules: ParkingRules  // Complete rules, overrides gemeente
-  area: FeatureCollection  // City boundary - now properly typed
+  area: FeatureCollection  // City boundary
   lastUpdated: string
   sources: Source[]
   
