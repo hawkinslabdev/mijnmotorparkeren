@@ -83,9 +83,9 @@ export const CityPage: React.FC<CityPageProps> = ({ onCitySelect }) => {
 
     return {
       title: `Motor parkeren in ${cityName} | Parkeerregels`,
-      description: `Alles over motor parkeren in ${cityName} (gemeente ${parentGemeente}). Bekijk de parkeerregels voor motoren op MijnMotorParkeren.nl.`,
+      description: `Mag de motor op de stoep in ${cityName} (gemeente ${parentGemeente})?`,
       canonical,
-      keywords: `motor parkeren ${cityName}, parkeerregels ${cityName}, motorfiets ${cityName}, ${parentGemeente}`,
+      keywords: `motor, parkeren, motor op de stoep, mijn motor parkeren, motor parkeren, ${cityName}`,
       schemaMarkup: {
         "@context": "https://schema.org",
         "@type": "Place",

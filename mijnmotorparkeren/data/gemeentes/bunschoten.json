@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": true,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "De gemeente Bunschoten heeft geen specifiek beleid voor het parkeren van motorfietsen. Na overleg met de Buitengewoon Opsporingsambtenaren (BOA's) is afgesproken dat motorfietsen die op de stoep geparkeerd staan niet worden bekeurd, zolang ze geen overlast of hinder veroorzaken voor andere weggebruikers."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-05",
+    "sources": [
+        {
+            "name": "Verkeerskundige van de Gemeente Bunschoten",
+            "url": "#",
+            "date": "2025-08-05"
+        }
+    ]
 }

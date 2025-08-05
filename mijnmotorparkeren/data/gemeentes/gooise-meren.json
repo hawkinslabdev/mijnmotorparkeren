@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Onder deze gemeente vallen de dorpen Bussum, Muiden, Muiderberg en Naarden. Hier wordt het parkeren op de stoep door een motor wordt gedoogd mits het geen overlast veroorzaakt. Dit betekent dat je motor op de stoep mag staan, zolang voetgangers er veilig langs kunnen lopen. Er geldt betaald parkeren voor motoren in de betaald parkeren zones."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-05",
+    "sources": [
+        {
+            "name": "Medewerker van de Gemeente Gooise Meren",
+            "url": "#",
+            "date": "2025-08-05"
+        }
+    ]
 }

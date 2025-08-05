@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep wordt niet gedoogd. De gemeente geeft aan geen eigen parkeerbeleid te hebben. De landelijke wetgeving is van toepassing."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-05",
+    "sources": [
+        {
+            "name": "Medewerker van de Gemeente Baarn",
+            "url": "#",
+            "date": "2025-08-05"
+        }
+    ]
 }

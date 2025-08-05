@@ -73,9 +73,9 @@ export const GemeentePage: React.FC<GemeentePageProps> = ({
 
     return {
       title: `Motor parkeren in ${gemeenteName} | Parkeerregels`,
-      description: `Motor op de stoep? Alles over parkeren in ${gemeenteName}. Bekijk de parkeerregels voor motoren op MijnMotorParkeren.nl.`,
+      description: `Mag de motor op de stoep in ${gemeenteName}?`,
       canonical,
-      keywords: `motor parkeren ${gemeenteName}, parkeerregels ${gemeenteName}, motorfiets ${gemeenteName}, motor op de stoep ${gemeenteName}, motor parkeren op straat ${gemeenteName}`,
+      keywords: `motor, parkeren, motor op de stoep, mijn motor parkeren, motor parkeren, ${gemeenteName}`,
       schemaMarkup: {
         "@context": "https://schema.org",
         "@type": "Place",

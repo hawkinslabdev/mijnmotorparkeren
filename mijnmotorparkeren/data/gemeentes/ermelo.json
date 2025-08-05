@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep niet gedoogd. In de Algemene Plaatselijke Verordening (APV) van de gemeente Ermelo staat dat het parkeren van motoren op de stoep niet is toegestaan. Dit betekent dat motoren niet op de stoep geparkeerd mogen worden."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-05",
+    "sources": [
+        {
+            "type": "official",
+            "url": "https://lokaleregelgeving.overheid.nl/CVDR703328/3",
+            "name": "Algemene plaatselijke verordening Ermelo 2023",
+            "date": "2025-08-05"
+        }
+    ]
 }

@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Het parkeren op de stoep wordt gedoogd. Staat een motor op de stoep? Dan wordt met name gekeken of deze hinderlijk staat voor andere gebruikers van de stoep. Is dat het geval dan moet de motor verwijderd. Is dat niet het geval dan kan de motor over het algemeen blijven staan."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-05",
+    "sources": [
+        {
+            "name": "Beleidsmedewerker APV v/d Gemeente Stichtse Vecht",
+            "url": "#",
+            "date": "2025-08-05"
+        }
+    ]
 }

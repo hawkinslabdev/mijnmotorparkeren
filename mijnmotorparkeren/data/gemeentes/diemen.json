@@ -6,11 +6,21 @@
         "lat": 52.343,
         "lng": 4.963
     },
-    "lastUpdated": null,
     "parkingRules": {
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Het beleid van de gemeente Diemen is dat u mag op de stoep parkeren mits deze niet hinderlijk staat (voor de voetgangers). Zorg wel dat u de doorgang niet blokkeert of een onveilige situatie veroorzaakt. Voetgangers maar bijvoorbeeld ook mensen met een rolstoel of kinderwagen en hulpdiensten moeten er langs kunnen. Als u parkeert in de gemeente Diemen zoals hierboven vermeld krijgt u geen boete."
         }
-    }
+    },
+    "lastUpdated": "2025-08-05",
+    "sources": [
+        {
+            "name": "Medewerker van de afdeling Ruimtelijke Ontwikkeling",
+            "url": "#",
+            "date": "2025-08-05"
+        }
+    ]
 }

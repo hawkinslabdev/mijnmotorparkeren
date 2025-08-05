@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": true,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "In de gemeente Nunspeet is parkeren gratis, dus u hoeft nergens parkeergeld te betalen. Voor motorfietsen gelden officieel de standaard verkeersregels uit de Wegenverkeerswet en het RVV, wat betekent dat parkeren op de stoep niet is toegestaan. In de praktijk gedoogt de gemeente dit echter wel, mits u de doorgang voor voetgangers vrijhoudt en er geen onveilige situatie ontstaat."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-05",
+    "sources": [
+        {
+            "name": "Juridisch medewerker van de Gemeente Nunspeet",
+            "url": "#",
+            "date": "2025-08-05"
+        }
+    ]
 }

@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": true,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "Motor parkeren doe je het beste gewoon in een parkeervak. Ook al handhaaft de gemeente niet streng, betekent dat niet dat je je motor zomaar op de stoep mag zetten. Officieel mag het niet, maar de gemeente heeft afspraken gemaakt met de handhavers dat zij er meestal niet op letten. Zij grijpen alleen in bij herhaalde klachten, als het echt te gek wordt, of als mensen er niet meer veilig langs kunnen. En als een motor wekenlang op dezelfde plek blijft staan, dan pakken we dat ook aan.\n\nParkeren op betaalde parkeerplaatsen is niet gratis."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-05",
+    "sources": [
+        {
+            "name": "Medewerker van de Gemeente Soest",
+            "url": "#",
+            "date": "2025-08-05"
+        }
+    ]
 }

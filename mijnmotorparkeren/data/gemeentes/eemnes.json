@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": true,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "Binnen de BEL gemeenten (Blaricum, Eemnes, Laren) is hier niets over opgenomen in de APV. De reguliere wetgeving is dus van toepassing, wat inhoudt dat motoren niet op het trottoir mogen parkeren. Echter zal handhaving hierop, zolang de voertuigen niet hinderlijk staan geparkeerd, niet de hoogste prioriteit hebben. Er wordt niet actief geverbaliseerd, mits er sprake is van overlast of gevaarlijke situaties."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-05",
+    "sources": [
+        {
+            "name": "Medewerker Openbare Ruimte van de BEL gemeenten",
+            "url": "#",
+            "date": "2025-08-05"
+        }
+    ]
 }
