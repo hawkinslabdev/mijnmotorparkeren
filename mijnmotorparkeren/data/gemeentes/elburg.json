@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": true,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "Binnen de gemeente Elburg, buiten de blauwe zone, bij het plaatsen van een motorfiets op het voetpad/trottoir, wordt hier mogelijk niet voor beboet mits daarbij geen hinder wordt veroorzaakt, waarschijnlijk niet voor worden bekeurd (met het voorbehoud dat het aan de individuele boa, of de politieambtenaar is om een dergelijke afweging te maken). De gemeente heeft immers geen (duidelijk) gedoogbeleid voor het parkeren van motorfietsen op het trottoir."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-16",
+    "sources": [
+        {
+            "name": "Team Handhaving van de Gemeente Elburg",
+            "url": "#",
+            "date": "2025-08-16"
+        }
+    ]
 }

@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": true,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "Er geldt in deze gemeente geval geen gedoogbeleid, maar tot nu toe is handhaving nog niet nodig geweest. Ontvangen we klachten over motoren op de stoep, dan zullen we wél handhaven. Zolang ze echter geen overlast veroorzaken of de doorgang blokkeren, verwachten we niet dat hier snel meldingen over binnenkomen."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-16",
+    "sources": [
+        {
+            "name": "Verkeer & Vervoer van de Gemeente Oldebroek",
+            "url": "#",
+            "date": "2025-08-16"
+        }
+    ]
 }

@@ -3,14 +3,42 @@
     "name": "Gemeente Urk",
     "province": "Flevoland",
     "coordinates": {
-        "lat": 52.66,
-        "lng": 5.63
+        "lat": 52.659,
+        "lng": 5.621
     },
-    "lastUpdated": null,
+    "boundaries": {
+        "coordinates": [[[5.63,52.638],[5.593,52.663],[5.593,52.676],[5.61,52.68],[5.642,52.678],[5.655,52.666],[5.649,52.65],[5.63,52.638]]],
+        "type": "Polygon"
+    },
     "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": null,
+            "notes": "Bezoekers mogen in de blauwe zone van het Oude Dorp van Urk met een parkeerschijf maximaal 3 uur parkeren. Op de parkeerschijf geeft u de aankomsttijd aan, zodat de buitengewoon opsporingsambtenaar (BOA) kan controleren hoelang uw voertuig daar mag staan. Voor motorfietsen geldt deze verplichting niet: u hoeft dus geen parkeerschijf te gebruiken. Wel vragen wij u uw motor zó te parkeren dat andere weg- en trottoirgebruikers geen hinder ondervinden."
         }
-    }
+    },
+    "lastUpdated": "2025-08-16",
+    "sources": [
+        {
+            "name": "Website van de Gemeente Urk",
+            "url": "https://www.urk.nl/parkeren-in-de-blauwe-zone",
+            "date": "2025-08-16"
+        }
+    ]
 }

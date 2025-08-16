@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Formeel is het in de Gemeente Barneveld niet toegestaan een motor op het trottoir te parkeren. Zolang de motor echter niet hinderlijk wordt geplaatst, treden wij hier niet tegen op."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-16",
+    "sources": [
+        {
+            "name": "Veiligheid, Vergunningen en Toezicht (VVT) van de Gemeente Barneveld",
+            "url": "#",
+            "date": "2025-08-16"
+        }
+    ]
 }

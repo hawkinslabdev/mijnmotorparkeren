@@ -1,11 +1,44 @@
 {
     "id": "nijmegen",
     "name": "Gemeente Nijmegen",
-    "lastUpdated": null,
+    "province": "Gelderland",
+    "coordinates": {
+        "lat": 51.842,
+        "lng": 5.837
+    },
+    "boundaries": {
+        "coordinates": [[[5.857,51.895],[5.871,51.889],[5.887,51.865],[5.885,51.848],[5.899,51.825],[5.879,51.81],[5.837,51.806],[5.81,51.791],[5.801,51.795],[5.792,51.799],[5.765,51.832],[5.806,51.85],[5.817,51.87],[5.857,51.895]]],
+        "type": "Polygon"
+    },
     "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "In Nijmegen is het toegestaan een motor op het trottoir te parkeren, zolang dit niet hinderlijk gebeurt. Er is geen ontheffing nodig; dit wordt in de praktijk gedoogd."
         }
-    }
+    },
+    "lastUpdated": "2025-08-16",
+    "sources": [
+        {
+            "name": "Medewerker Parkeren * Verkeersmanagement",
+            "url": "#",
+            "date": "2025-08-16"
+        }
+    ]
 }

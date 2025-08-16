@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,15 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "De gemeente Epe heeft geen expliciete beleidsregels voor het parkeren van motoren. Daarom geldt hier de landelijke regelgeving. Er is geen sprake van een gedoogbeleid. De handhaving hiervan ligt bij de dienstdoende boa en/of de politie."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-16",
+    "sources": [    {
+        "name": "Klantcontactmedewerker van Gemeente Epe",
+        "url": "#",
+        "date": "2025-08-16"
+    }]
 }

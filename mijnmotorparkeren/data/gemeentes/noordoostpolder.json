@@ -6,11 +6,33 @@
         "lat": 52.711,
         "lng": 5.779
     },
-    "lastUpdated": null,
+    "boundaries": {
+        "coordinates": [[[[5.843,52.611],[5.886,52.62],[5.896,52.618],[5.843,52.611]]],[[[5.795,52.807],[5.819,52.788],[5.85,52.785],[5.88,52.773],[5.922,52.751],[5.943,52.715],[5.965,52.694],[5.934,52.676],[5.983,52.658],[5.964,52.639],[5.832,52.613],[5.663,52.613],[5.651,52.615],[5.65,52.616],[5.63,52.638],[5.649,52.65],[5.655,52.666],[5.642,52.678],[5.61,52.68],[5.593,52.676],[5.597,52.766],[5.66,52.828],[5.713,52.838],[5.725,52.844],[5.749,52.84],[5.795,52.807]]]],
+        "type": "MultiPolygon"
+    },
     "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
             "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
         }
-    }
+    },
+    "lastUpdated": "2025-08-16",
+    "sources": []
 }

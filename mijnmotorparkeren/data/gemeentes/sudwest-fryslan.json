@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "De gemeente geeft aan dat het niet is toegestaan te parkeren op weggedeelten die bestemd zijn voor andere weggebruikers, zoals een voetpad, trottoir, fietspad of ruiterpad. Parkeren mag uitsluitend op een openbare parkeerplaats, tenzij deze is gereserveerd voor een specifieke doelgroep, zoals een gehandicaptenparkeerplaats."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-16",
+    "sources": [
+        {
+            "name": "Beleidsadviseur van de Gemeente Súdwest-Fryslân",
+            "url": "#",
+            "date": "2025-08-16"
+        }
+    ]
 }

@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "In de gemeente Zwolle mag je een motor op het trottoir parkeren, zolang je de doorgang niet belemmert en geen gevaar of hinder veroorzaakt. Voor deze parkeerplekken hoef je niet te betalen. Let er wel op dat er voldoende ruimte overblijft voor onder andere mensen met een kinderwagen, rolstoelgebruikers en hulpbehoevenden. Houd daarnaast blindengeleidestroken altijd vrij."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-16",
+    "sources": [
+        {
+            "name": "Buitengewoon Opsporingsambtenaar",
+            "url": "#",
+            "date": "2025-08-16"
+        }
+    ]
 }

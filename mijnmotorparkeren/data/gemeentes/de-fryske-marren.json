@@ -11,11 +11,28 @@
         "type": "Polygon"
     },
     "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": null,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": null,
+            "freeInPaidZones": null,
             "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
         }
     },
-    "lastUpdated": null,
+    "lastUpdated": "2025-08-16",
     "sources": []
 }

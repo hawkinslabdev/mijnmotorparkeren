@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Als een motor zó geparkeerd staat dat voetgangers geen gevaar lopen en geen hinder ondervinden, zien wij geen directe reden om te handhaven. Het uitgangspunt blijft dus: gebruik uw gezonde verstand en zorg dat u voetgangers, rolstoelgebruikers, mensen met een rollator en anderen niet belemmert."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-16",
+    "sources": [
+        {
+            "name": "Handhaving van de Gemeente Renkum",
+            "url": "#",
+            "date": "2025-08-16"
+        }
+    ]
 }

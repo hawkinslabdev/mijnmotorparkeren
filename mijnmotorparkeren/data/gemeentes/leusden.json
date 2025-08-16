@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": true,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": true,
+            "notes": "In Leusden wordt het parkeren van motorfietsen op het trottoir gedoogd, zolang dit geen hinder of onveiligheid veroorzaakt. Parkeren langs de rijbaan heeft daarbij de voorkeur."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-08-16",
+    "sources": [
+        {
+            "name": "Beleidsadviseur Verkeer & Vervoer van Gemeente Leusden",
+            "url": "#",
+            "date": "2025-08-16"
+        }
+    ]
 }
