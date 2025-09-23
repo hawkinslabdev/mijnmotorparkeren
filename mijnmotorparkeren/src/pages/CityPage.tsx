@@ -42,7 +42,7 @@ export const CityPage: React.FC<CityPageProps> = ({ onCitySelect }) => {
           setNotFound(true)
           setCity(null)
         }
-      } catch (e) {
+      } catch {
         setNotFound(true)
         setCity(null)
       } finally {
