@@ -12,10 +12,20 @@
     },
     "parkingRules": {
         "contact": null,
+        "free": false,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "Parkeren op de stoep wordt niet gedoogd door de gemeente Molenlanden. Er zijn geen specifieke regels voor motoren in betaald parkeergebied, hier geldt dat er betaald moet worden.",
+            "allowedOnSidewalk": false, 
+            "freeInPaidZones": false
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2024-09-23",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Verkeerskundige Team Beheer Buitenruimte",
+            "date": "2024-08-21"
+        }
+    ]
 }

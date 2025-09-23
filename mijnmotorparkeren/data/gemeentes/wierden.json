@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Zolang er geen onveilige situatie ontstaat en niemand hinder ondervindt, doen we (lees: Handhaving van Gemeente Wierden) hier niet moeilijk over. Mochten er toch klachten binnenkomen, dan kunnen we daarover in gesprek gaan. In de APV van Wierden is hierover bovendien niets vastgelegd."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2029-09-23",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Buitengewoon opsporingsambtenaar Gemeente Wierden",
+            "date": "2024-08-12"
+        }
+    ]
 }

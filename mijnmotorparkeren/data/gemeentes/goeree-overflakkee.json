@@ -12,10 +12,20 @@
     },
     "parkingRules": {
         "contact": null,
+        "free": false,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "Een motor moet volgens de verkeersregels op de rijbaan worden geparkeerd, net als andere gemotoriseerde voertuigen. Zijn er parkeervakken aanwezig, dan moet de motor daarin geplaatst worden. Het parkeren op de stoep is wettelijk niet toegestaan, daarmee in onze gemeente ook niet.",
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-23",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Buitengewoon Opsporingsambtenaar",
+            "date": "2025-09-23"
+        }
+    ]
 }

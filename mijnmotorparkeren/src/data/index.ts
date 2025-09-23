@@ -2,13 +2,25 @@
 import type { Gemeente } from '../types/gemeente'
 import type { City } from '../types/city'
 
-// Import all gemeente JSON files automatically
+// Use VITE_DATA_VERSION from .env for cache busting, fallback to a default date if empty
+let DATA_VERSION = import.meta.env.VITE_DATA_VERSION;
+if (!DATA_VERSION || DATA_VERSION.trim() === '') {
+  // Fallback: use a fixed default date string (e.g. project epoch or last known update)
+  DATA_VERSION = '20250101';
+}
+
+// Helper to generate versioned URLs for gemeente/city JSON files
+export function getVersionedJsonUrl(type: 'gemeentes' | 'city', id: string) {
+  return `/data/${type}/${id}.json?v=${DATA_VERSION}`;
+}
+
+// Import all gemeente JSON files automatically (static glob)
 const gemeenteModules = import.meta.glob('../../data/gemeentes/*.json', { 
   eager: true,
   import: 'default'
 })
 
-// Import all city JSON files automatically  
+// Import all city JSON files automatically (static glob)
 const cityModules = import.meta.glob('../../data/city/*.json', { 
   eager: true,
   import: 'default'

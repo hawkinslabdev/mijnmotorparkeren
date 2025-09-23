@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "De gemeente Enschede volgt hetzelfde beleid als in Amsterdam. Dit houdt in dat u uw motor op de stoep mag parkeren zonder parkeergeld te betalen, mits dit geen hinder oplevert voor het overige verkeer."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-23",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Telefonisch contact Gemeente Enschede",
+            "date": "2025-09-23"
+        }
+    ]
 }

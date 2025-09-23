@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": true,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "U kunt uw motor op de stoep parkeren. Dat mag zonder parkeervergunning en u hoeft daarvoor ook niet naar een parkeerautomaat. Uw geparkeerde motor mag anderen niet hinderen. U kunt uw motor ook parkeren in sommige buurtstallingen in de stad Groningen."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-23",
+    "sources": [
+        {
+            "type": "official",
+            "url": "https://gemeente.groningen.nl/motor-camper-aanhangwagen-of-caravan-parkeren/",
+            "name": "Website van de Gemeente Groningen",
+            "date": "2025-09-23"
+        }
+    ]
 }

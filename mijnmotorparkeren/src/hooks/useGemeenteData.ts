@@ -4,7 +4,7 @@ import { Gemeente, GemeenteIndex } from '../types/gemeente'
 import { 
   gemeenteArray, 
   gemeenteIndex, 
-  getGemeenteById as getById 
+  getVersionedJsonUrl 
 } from '../data'
 
 interface UseGemeenteDataReturn {
@@ -47,7 +47,7 @@ export function useGemeenteData(): UseGemeenteDataReturn {
     }
   }
 
-  // Load individual gemeente data, now instant lookup
+  // Load individual gemeente data at runtime with cache-busting
   const getGemeenteById = useCallback(async (id: string): Promise<Gemeente | null> => {
     try {
       // Check cache first (for API compatibility)
@@ -55,22 +55,19 @@ export function useGemeenteData(): UseGemeenteDataReturn {
         return gemeenteCache.get(id)!
       }
 
-      console.log(`Loading gemeente data for: ${id} (from bundle)`)
-      
-      // No more fetch! Data is already available via imports
-      const gemeente = getById(id)
-      
-      if (!gemeente) {
-        console.warn(`Gemeente data not found: ${id}`)
+      console.log(`Fetching gemeente data for: ${id}`)
+      const url = getVersionedJsonUrl('gemeentes', id)
+      const response = await fetch(url)
+      if (!response.ok) {
+        console.warn(`Gemeente data not found: ${id} (HTTP ${response.status})`)
         return null
       }
-
-      // Validate gemeente structure (same validation as before)
+      const gemeente = await response.json()
+      // Validate gemeente structure
       if (!gemeente.id || !gemeente.name) {
         console.warn(`Invalid gemeente data structure for ${id}:`, gemeente)
         return null
       }
-
       // Cache the gemeente (for API compatibility)
       gemeenteCache.set(id, gemeente)
       return gemeente

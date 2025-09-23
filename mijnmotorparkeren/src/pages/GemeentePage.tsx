@@ -42,7 +42,8 @@ export const GemeentePage: React.FC<GemeentePageProps> = ({
         window.__selectedGemeenteId = foundGemeente.id
         
         if (foundGemeente.coordinates) {
-          focusOnGemeente([foundGemeente.coordinates.lat, foundGemeente.coordinates.lng], 12)
+          const zoom = typeof foundGemeente.zoom === 'number' ? foundGemeente.zoom : 12;
+          focusOnGemeente([foundGemeente.coordinates.lat, foundGemeente.coordinates.lng], zoom)
         }
       }
     } else {

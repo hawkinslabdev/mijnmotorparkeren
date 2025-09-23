@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Het parkeren op de stoep wordt feitelijk gedoogd in deze gemeente, aangezien er geen afspraken gemaakt zijn. De politie handhaaft hier (in deze gemeente) niet op."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2029-09-23",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Telefonisch medewerker Gemeente Weststellingwerf",
+            "date": "2024-08-12"
+        }
+    ]
 }

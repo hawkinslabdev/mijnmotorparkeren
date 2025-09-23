@@ -66,6 +66,7 @@ export interface Gemeente {
     sources: Source[];
     statcode?: string;
     parkingStatus?: string;
+    zoom?: number;
 }
 export interface GemeenteIndex {
     version: string;

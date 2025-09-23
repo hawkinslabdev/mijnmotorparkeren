@@ -12,10 +12,20 @@
     },
     "parkingRules": {
         "contact": null,
+        "free": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "Binnen de gemeente mag u de motor op de stoep parkeren, zolang dit niet hinderlijk is. Wordt de motor echter zó geplaatst dat er sprake is van hinder, dan kunt u een proces-verbaal krijgen.",
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-23",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Buitengewoon Opsporingsambtenaar",
+            "date": "2025-09-23"
+        }
+    ]
 }

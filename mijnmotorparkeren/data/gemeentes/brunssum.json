@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": false,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "Het parkeren op de stoep wordt niet gedoogd en is niet toegestaan. Echter wordt er niet direct voor beboet bij het parkeren op de stoep. De betreffende BOA zal eerst een waarschuwing geven en bij herhaling een boete uitschrijven."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-23",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Telefonisch medewerker Gemeente Brunssum",
+            "date": "2025-09-23"
+        }
+    ]
 }

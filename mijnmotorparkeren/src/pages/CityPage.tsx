@@ -1,9 +1,9 @@
 // src/pages/CityPage.tsx
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { getVersionedJsonUrl } from '../data/index'
 import { City } from '../types/city'
 import { useMapStore } from '../stores/mapStore'
-import { calculateOptimalZoom } from '../utils/mapUtils'
 import Seo from '../components/Seo'
 
 interface CityPageProps {
@@ -27,40 +27,28 @@ export const CityPage: React.FC<CityPageProps> = ({ onCitySelect }) => {
     const loadCity = async () => {
       try {
         setLoading(true)
-        const response = await fetch(`/data/city/${cityId}.json`)
-        
+        const url = getVersionedJsonUrl('city', cityId)
+        const response = await fetch(url)
         if (response.ok) {
           const cityData: City = await response.json()
           setCity(cityData)
           setNotFound(false)
-          
           // Only update selection if not already selected
           if (!window.__selectedCityId || window.__selectedCityId !== cityData.id) {
             onCitySelect(cityData)
             window.__selectedCityId = cityData.id
           }
-          
-          if (cityData.coordinates) {
-            const zoom = cityData.area ? calculateOptimalZoom(cityData.area) : 13
-            focusOnGemeente([cityData.coordinates.lat, cityData.coordinates.lng], zoom)
-          }
         } else {
           setNotFound(true)
-          // Delay redirect to allow crawlers to see 404 content
-          setTimeout(() => {
-            console.warn(`City ${cityId} not found, redirecting to home`)
-            navigate('/', { replace: true })
-          }, 2000)
+          setCity(null)
         }
-      } catch (error) {
-        console.error('Error loading city:', error)
+      } catch (e) {
         setNotFound(true)
-        setTimeout(() => navigate('/', { replace: true }), 2000)
+        setCity(null)
       } finally {
         setLoading(false)
       }
     }
-
     loadCity()
   }, [cityId, onCitySelect, focusOnGemeente, navigate])
 

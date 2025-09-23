@@ -76,6 +76,7 @@ export interface Gemeente {
   sources: Source[]
   statcode?: string // Added for compatibility with official boundaries
   parkingStatus?: string // Added for compatibility with scripts
+  zoom?: number
 }
 
 export interface GemeenteIndex {

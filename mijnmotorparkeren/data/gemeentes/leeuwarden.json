@@ -1,11 +1,41 @@
 {
     "id": "leeuwarden",
     "name": "Gemeente Leeuwarden",
-    "lastUpdated": null,
+    "province": "Friesland",
+    "coordinates": {
+        "lat": 53.2014,
+        "lng": 5.7999
+    },
     "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": null,
+            "notes": "Het is in de gemeente Leeuwarden toegestaan uw motor op de stoep te parkeren, rekening houdend met exact de zaken die u zelf al noemt. U mag niet staan op een parkeervak waar vergunningplicht geldt. Zo lang u dit alles in acht neemt, hoeft u geen parkeergeld te betalen. U zult geen boete krijgen."
         }
-    }
+    },
+    "lastUpdated": "2025-09-23",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Medewerker Service & Informatie Publieke Dienstverlening",
+            "date": "2025-09-23"
+        }
+    ]
 }
