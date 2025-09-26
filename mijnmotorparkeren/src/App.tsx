@@ -304,7 +304,6 @@ const AppContent: React.FC = () => {
           path="/gemeente/:gemeenteId" 
           element={
             <GemeentePage 
-              gemeentes={gemeentes} 
               onGemeenteSelect={handleGemeenteSelect}
             />
           } 
