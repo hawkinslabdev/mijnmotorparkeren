@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": true,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": true,
+            "notes": "Het is niet toegestaan om motoren op de stoep te parkeren (volgens artikel 10 RVV en APV). In Pijnacker-Nootdorp is er geen betaald parkeren, dus motoren kunnen gratis op reguliere parkeerplaatsen worden geplaatst."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-26",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Beleidsmedewerker Team Verkeer Pijnacker-Nootdorp",
+            "date": "2025-09-26"
+        }
+    ]
 }

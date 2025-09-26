@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": false,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "In Leiderdorp is er geen betaald parkeren. Motorvoertuigen mogen volgens de RVV 1990 artikel 10 niet op het trottoir parkeren en moeten gebruikmaken van de rijbaan of reguliere parkeerplaatsen."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-26",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Team Handhaving & Toezicht",
+            "date": "2025-09-26"
+        }
+    ]
 }
