@@ -34,5 +34,12 @@
         }
     },
     "lastUpdated": "2025-07-15",
-    "sources": []
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Telefonisch medewerker Gemeente Amsterdam",
+            "date": "2025-07-01"
+        }
+    ]
 }

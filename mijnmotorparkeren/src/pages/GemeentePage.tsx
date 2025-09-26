@@ -3,20 +3,20 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Gemeente } from '../types/gemeente'
 import { useMapStore } from '../stores/mapStore'
 import Seo from '../components/Seo'
+import { getVersionedJsonUrl } from '../data/index'
+
 
 interface GemeentePageProps {
-  gemeentes: Gemeente[]
+  onCitySelect?: never // for type compatibility with other pages
   onGemeenteSelect: (gemeente: Gemeente) => void
 }
 
-export const GemeentePage: React.FC<GemeentePageProps> = ({
-  gemeentes,
-  onGemeenteSelect
-}) => {
+export const GemeentePage: React.FC<GemeentePageProps> = ({ onGemeenteSelect }) => {
   const { gemeenteId } = useParams<{ gemeenteId: string }>()
   const navigate = useNavigate()
   const { setSelectedGemeente, focusOnGemeente } = useMapStore()
   const [gemeente, setGemeente] = useState<Gemeente | null>(null)
+  const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
 
   useEffect(() => {
@@ -25,36 +25,38 @@ export const GemeentePage: React.FC<GemeentePageProps> = ({
       return
     }
 
-    if (gemeentes.length === 0) {
-      return
-    }
-
-    const foundGemeente = gemeentes.find(g => g.id === gemeenteId)
-    
-    if (foundGemeente) {
-      setGemeente(foundGemeente)
-      setNotFound(false)
-      
-      // Only update selection if not already selected
-      if (!window.__selectedGemeenteId || window.__selectedGemeenteId !== foundGemeente.id) {
-        onGemeenteSelect(foundGemeente)
-        setSelectedGemeente(foundGemeente.id)
-        window.__selectedGemeenteId = foundGemeente.id
-        
-        if (foundGemeente.coordinates) {
-          const zoom = typeof foundGemeente.zoom === 'number' ? foundGemeente.zoom : 12;
-          focusOnGemeente([foundGemeente.coordinates.lat, foundGemeente.coordinates.lng], zoom)
+    const loadGemeente = async () => {
+      try {
+        setLoading(true)
+        const url = getVersionedJsonUrl('gemeentes', gemeenteId)
+        const response = await fetch(url)
+        if (response.ok) {
+          const gemeenteData: Gemeente = await response.json()
+          setGemeente(gemeenteData)
+          setNotFound(false)
+          // Only update selection if not already selected
+          if (!window.__selectedGemeenteId || window.__selectedGemeenteId !== gemeenteData.id) {
+            onGemeenteSelect(gemeenteData)
+            setSelectedGemeente(gemeenteData.id)
+            window.__selectedGemeenteId = gemeenteData.id
+            if (gemeenteData.coordinates) {
+              const zoom = typeof gemeenteData.zoom === 'number' ? gemeenteData.zoom : 12;
+              focusOnGemeente([gemeenteData.coordinates.lat, gemeenteData.coordinates.lng], zoom)
+            }
+          }
+        } else {
+          setNotFound(true)
+          setGemeente(null)
         }
+      } catch {
+        setNotFound(true)
+        setGemeente(null)
+      } finally {
+        setLoading(false)
       }
-    } else {
-      setNotFound(true)
-      // Delay redirect to allow crawlers to see 404 content
-      setTimeout(() => {
-        console.warn(`Gemeente ${gemeenteId} not found, redirecting to home`)
-        navigate('/', { replace: true })
-      }, 2000)
     }
-  }, [gemeenteId, gemeentes, onGemeenteSelect, setSelectedGemeente, focusOnGemeente, navigate])
+    loadGemeente()
+  }, [gemeenteId, onGemeenteSelect, setSelectedGemeente, focusOnGemeente, navigate])
 
   // Generate SEO data - works with or without loaded data
   const getSeoData = () => {
@@ -91,8 +93,8 @@ export const GemeentePage: React.FC<GemeentePageProps> = ({
         ...(gemeente?.coordinates && {
           "geo": {
             "@type": "GeoCoordinates",
-            "latitude": gemeente.coordinates.lat,
-            "longitude": gemeente.coordinates.lng
+            "latitude": gemeente?.coordinates?.lat,
+            "longitude": gemeente?.coordinates?.lng
           }
         })
       }
@@ -101,7 +103,32 @@ export const GemeentePage: React.FC<GemeentePageProps> = ({
 
   const seoData = getSeoData()
 
-  // Always render SEO, even when loading or not found
+  // Show loading state with basic SEO
+  if (loading) {
+    const tempSeoData = getSeoData()
+    return (
+      <>
+        {tempSeoData && (
+          <Seo
+            title={tempSeoData.title}
+            description={tempSeoData.description}
+            canonical={tempSeoData.canonical}
+            keywords={tempSeoData.keywords}
+            image="https://mijnmotorparkeren.nl/android-chrome-512x512.png"
+            schemaMarkup={tempSeoData.schemaMarkup}
+          />
+        )}
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Gemeente laden...</p>
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  // Always render SEO
   if (!seoData) {
     return (
       <Seo

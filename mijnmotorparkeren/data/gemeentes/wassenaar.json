@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Officieel mag je je motor niet op de stoep parkeren, maar moet je hem in een parkeervak parkeren. Dit geldt ook voor een blauwe zone, echter hoef je dan geen parkeerkaart te gebruiken."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-26",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Inspecteur Openbare Ruimte",
+            "date": "2025-09-26"
+        }
+    ]
 }

@@ -1,11 +1,40 @@
 {
     "id": "westland",
     "name": "Gemeente Westland",
-    "lastUpdated": null,
+    "coordinates": {
+        "lat": 52.002,
+        "lng": 4.175
+    },
     "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Op de stoep mag (lees: wordt gedoogd) als je geen hinder veroorzaakt."
         }
-    }
+    },
+    "lastUpdated": "2025-09-26",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Handhaving gemeente Westland",
+            "date": "2025-09-26"
+        }
+    ]
 }

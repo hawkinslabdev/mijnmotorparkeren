@@ -114,6 +114,7 @@ VITE_MAP_ATTRIBUTION=© OpenStreetMap contributors
 VITE_DEFAULT_CENTER_LAT=52.3676
 VITE_DEFAULT_CENTER_LNG=4.9041
 VITE_DEFAULT_ZOOM=7
+VITE_DATA_VERSION=YYYYMMDD
 ```
 
 ### Development Scripts
@@ -137,6 +138,8 @@ npm run build                 # Generate a production build
 <br>
 
 ## 🏗️ Tech Stack
+
+For anyone that's interested in the stack MijnMotorParkeren.nl is using:
 
 - **Frontend**: React 18 + TypeScript
 - **Mapping**: Leaflet + OpenStreetMap

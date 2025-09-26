@@ -33,5 +33,13 @@
             "notes": "Parkeren op de stoep gedoogd, mits er voldoende ruimte overblijft voor voetgangers en rolstoelgebruikers. Parkeer je op een parkeerplaats (waarvoor betaald parkeren geldt), dan moet je wel betalen."
         }
     },
-    "lastUpdated": null
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Telefonisch medewerker Gemeente Amsterdam",
+            "date": "2025-07-01"
+        }
+    ]
 }

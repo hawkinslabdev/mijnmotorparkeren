@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Op de stoep mag (lees: wordt gedoogd) als je geen hinder veroorzaakt."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-07-15",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Telefonisch contact gemeente Alphen aan den Rijn",
+            "date": "2025-07-01"
+        }
+    ]
 }
