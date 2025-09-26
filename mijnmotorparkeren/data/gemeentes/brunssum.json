@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -29,7 +29,7 @@
         "motorcycleSpecific": {
             "dedicatedSpots": [],
             "allowedOnSidewalk": false,
-            "freeInPaidZones": null,
+            "freeInPaidZones": false,
             "notes": "Het parkeren op de stoep wordt niet gedoogd en is niet toegestaan. Echter wordt er niet direct voor beboet bij het parkeren op de stoep. De betreffende BOA zal eerst een waarschuwing geven en bij herhaling een boete uitschrijven."
         }
     },

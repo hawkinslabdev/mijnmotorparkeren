@@ -11,14 +11,14 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
             "rates": null
         },
         "permits": {
-            "required": null,
+            "required": false,
             "types": []
         },
         "restrictions": {
@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Het parkeren op de stoep wordt niet gedoogd en is niet toegestaan."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-26",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Telefonisch medewerker Gemeente Bunnik",
+            "date": "2025-09-26"
+        }
+    ]
 }

@@ -144,8 +144,10 @@ const CityBoundariesLayer: React.FC<{
         setLoading(true)
         setError(null)
         
-        // Load city index
-        const indexResponse = await fetch('/data/city/index.json')
+  // Load city index
+  const { getVersionedJsonUrl } = await import('../../data/index')
+  const indexUrl = getVersionedJsonUrl('city', 'index')
+  const indexResponse = await fetch(indexUrl)
         if (!indexResponse.ok) {
           if (debugEnabled) {
             console.log('ℹ️ No city index found; cities not available')
@@ -164,7 +166,8 @@ const CityBoundariesLayer: React.FC<{
         // Load each city file
         for (const cityRef of index.cities) {
           try {
-            const cityResponse = await fetch(`/data/${cityRef.reference}`)
+            const cityUrl = getVersionedJsonUrl('city', cityRef.id)
+            const cityResponse = await fetch(cityUrl)
             if (cityResponse.ok) {
               const cityData = await cityResponse.json()
               loadedCities.push(cityData)

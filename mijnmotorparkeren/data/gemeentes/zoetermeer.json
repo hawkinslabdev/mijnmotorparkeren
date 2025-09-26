@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Parkeert u een motor in een blauwe zone? Dan hoeft u geen parkeerschijf te gebruiken. U moet uw motor wel parkeren op een parkeerplaats, niet op de stoep."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-26",
+    "sources": [
+        {
+            "type": "official",
+            "url": "https://www.zoetermeer.nl/parkeren-in-de-blauwe-zone",
+            "name": "Website Gemeente Zoetermeer",
+            "date": "2025-09-26"
+        }
+    ]
 }

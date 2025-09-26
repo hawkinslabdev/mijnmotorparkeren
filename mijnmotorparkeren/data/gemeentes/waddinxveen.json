@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Wij hanteren dezelfde werkwijze als de gemeente Amsterdam. Ook hier in Waddinxveen is het toegestaan, zolang u geen voetgangers, mindervaliden, rollators of vergelijkbare gebruikers hindert."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-26",
+    "sources": [
+        {
+            "name": "Team Handhaving van de Gemeente Waddinxveen",
+            "url": "#",
+            "date": "2025-09-26"
+        }
+    ]
 }

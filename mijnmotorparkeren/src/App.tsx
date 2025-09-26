@@ -12,6 +12,7 @@ import { useKeyboardShortcuts } from '@hooks/useKeyboardShortcuts'
 import { useGeolocation } from '@hooks/useGeolocation'
 import { Gemeente } from './types/gemeente'
 import { City } from './types/city'
+import { getVersionedJsonUrl } from './data/index'
 import './App.css'
 
 // Import the page components
@@ -76,7 +77,8 @@ const AppContent: React.FC = () => {
     if (cityId) {
       const loadCity = async () => {
         try {
-          const response = await fetch(`/data/city/${cityId}.json`)
+          const url = getVersionedJsonUrl('city', cityId)
+          const response = await fetch(url)
           if (response.ok) {
             const city = await response.json()
             setSelectedCity(city)
