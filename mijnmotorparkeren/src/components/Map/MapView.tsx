@@ -465,11 +465,19 @@ const RealBoundariesLayer: React.FC<{
     )
   }
 
+  // Sort gemeentes so that 'no_info' (grey) are rendered first, then colored overlays
+  const statusPriority = (g: Gemeente) => {
+    const status = getMapBoundaryColors(g)
+    // Use fillColor to determine if it's grey (no_info)
+    return status.fillColor === '#f3f4f6' ? 0 : 1
+  }
+  const sortedGemeentes = [...gemeentes].sort((a, b) => statusPriority(a) - statusPriority(b))
+
   // Use official boundaries
   let renderedCount = 0
   const notFoundGemeentes: string[] = []
-  
-  const renderedBoundaries = gemeentes.map((gemeente) => {
+
+  const renderedBoundaries = sortedGemeentes.map((gemeente) => {
     const matchingFeature = findMatchingBoundary(gemeente)
 
     if (!matchingFeature) {
@@ -477,16 +485,16 @@ const RealBoundariesLayer: React.FC<{
         console.log(`❌ No official boundary found for ${gemeente.name}`)
       }
       notFoundGemeentes.push(gemeente.name)
-      
+
       // Try to use local boundary as fallback
       if (gemeente.boundaries) {
         if (debugEnabled) {
           console.log(`📦 Using local boundary fallback for ${gemeente.name}`)
         }
-        
+
         // FIXED: Use proper color logic
         const colors = getMapBoundaryColors(gemeente)
-        
+
         return (
           <GeoJSON
             key={`local-fallback-${gemeente.id}`}
@@ -509,7 +517,7 @@ const RealBoundariesLayer: React.FC<{
           />
         )
       }
-      
+
       return null
     }
 
@@ -517,10 +525,9 @@ const RealBoundariesLayer: React.FC<{
       console.log(`Using official boundary for ${gemeente.name}`)
     }
     renderedCount++
-    
-    // FIXED: Use proper color logic
+
     const colors = getMapBoundaryColors(gemeente)
-    
+
     return (
       <GeoJSON
         key={`official-boundary-${gemeente.id}`}
@@ -543,11 +550,11 @@ const RealBoundariesLayer: React.FC<{
       />
     )
   })
-  
+
   return (
     <>
       {renderedBoundaries}
-      
+
       {/* Enhanced debug info for rendered boundaries */}
       {debugEnabled && (
         <div className="absolute top-72 left-4 bg-green-600/75 text-white p-2 rounded text-xs z-[2000] max-w-sm">

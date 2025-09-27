@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Binnen de gemeente Harlingen hebben we geen beleid met betrekking tot het parkeren van motoren. Maar in de praktijk is het zo: als je jouw motor op de stoep parkeert, dan hoef je geen parkeergeld te betalen. Zorg wel dat je de doorgang niet blokkeert of een onveilige situatie veroorzaakt. Voetgangers maar bijvoorbeeld ook mensen met een rolstoel, kinderwagen, gehandicaptenvoertuig(en) en hulpdiensten moeten er langs kunnen. Let daarbij ook goed op de eventueel aanwezige blinden geleide stroken."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-09-27",
+    "sources": [
+        {
+            "type": "official",
+            "url": "https://www.harlingen.nl/parkeren-voor-bezoekers",
+            "name": "Website Gemeente Harlingen (#7)",
+            "date": "2025-09-26"
+        }
+    ]
 }
