@@ -1,6 +1,10 @@
 {
     "id": "den-haag",
     "name": "Gemeente Den Haag",
+    "coordinates": {
+        "lat": 52.078,
+        "lng": 4.288
+    },
     "parkingRules": {
         "free": true,
         "paid": {

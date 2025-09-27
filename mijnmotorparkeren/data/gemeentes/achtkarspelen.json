@@ -7,5 +7,9 @@
         "motorcycleSpecific": {
             "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
         }
+    },
+    "coordinates": {
+        "lat": 53.221,
+        "lng": 6.145
     }
 }

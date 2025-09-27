@@ -1,11 +1,40 @@
 {
     "id": "breda",
     "name": "Gemeente Breda",
-    "lastUpdated": null,
+    "coordinates": {
+        "lat": 51.571,
+        "lng": 4.768
+    },
     "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Voor Breda geldt dat hetzelfde gedoogbeleid geldt voor Amsterdam. Voor het parkeren op parkeerplaatsen geldt het daarvoor geldende tarief."
         }
-    }
+    },
+    "lastUpdated": "2025-09-27",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Klantcontactcentrum van de Gemeente Breda",
+            "date": "2025-09-26"
+        }
+    ]
 }

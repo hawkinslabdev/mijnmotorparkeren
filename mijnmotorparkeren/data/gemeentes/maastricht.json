@@ -1,6 +1,10 @@
 {
     "id": "maastricht",
     "name": "Gemeente Maastricht",
+    "coordinates": {
+        "lat": 50.851,
+        "lng": 5.69
+    },
     "parkingRules": {
         "free": false,
         "paid": {
@@ -24,7 +28,7 @@
             "notes": "Motoren mogen binnen de gemeente Maastricht niet op de stoep worden geparkeerd. Voor het parkeren op parkeerplaatsen geldt het daarvoor geldende tarief."
         }
     },
-    "lastUpdated": "2025-07-15",
+    "lastUpdated": "2025-09-27",
     "sources": [
         {
             "type": "official",

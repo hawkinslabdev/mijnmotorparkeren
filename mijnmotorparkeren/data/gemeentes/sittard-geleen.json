@@ -1,11 +1,16 @@
 {
     "id": "sittard-geleen",
     "name": "Gemeente Sittard-Geleen",
-    "lastUpdated": null,
+    "coordinates": {
+        "lat": 51.009,
+        "lng": 5.868
+    },
     "parkingRules": {
         "contact": null,
         "motorcycleSpecific": {
             "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
         }
-    }
+    },
+    "lastUpdated": "2025-09-26"
+
 }

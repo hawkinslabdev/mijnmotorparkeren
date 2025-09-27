@@ -1,11 +1,40 @@
 {
     "id": "tilburg",
     "name": "Gemeente Tilburg",
-    "lastUpdated": null,
+    "coordinates": {
+        "lat": 51.555,
+        "lng": 5.091
+    },
     "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep is in Tilburg voor motoren kosteloos toegestaan. Zorg er wel voor dat u overige gebruikers niet hindert. Voetgangers, kinderwagens en rolstoelen mogen er geen last van hebben. Een motor met een zijspan mag niet op de stoep staan."
         }
-    }
+    },
+    "lastUpdated": "2025-09-27",
+    "sources": [
+        {
+            "type": "official",
+            "url": "https://www.tilburg.nl/stad-bestuur/vervoer-parkeren/parkeren/",
+            "name": "Website",
+            "date": "2025-09-26"
+        }
+    ]
 }

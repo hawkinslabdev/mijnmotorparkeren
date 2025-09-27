@@ -1,6 +1,10 @@
 {
     "id": "s-hertogenbosch",
     "name": "Gemeente 's-Hertogenbosch",
+    "coordinates": {
+        "lat": 51.697,
+        "lng": 5.303
+    },
     "parkingRules": {
         "free": null,
         "paid": {

@@ -1,11 +1,40 @@
 {
     "id": "eindhoven",
     "name": "Gemeente Eindhoven",
-    "lastUpdated": null,
+    "coordinates": {
+        "lat": 51.441,
+        "lng": 5.469
+    },
     "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "In Eindhoven mag je je motor op dezelfde plaatsen parkeren als waar je dat met een auto mag. Daarnaast mag je je motor parkeren op de stoep, zolang je hierdoor niemand tot last bent. Zorg ervoor dat voetgangers en mensen in een rolstoel erlangs kunnen. Voor meer informatie kun je de website van de gemeente Eindhoven raadplegen."
         }
-    }
+    },
+    "lastUpdated": "2025-09-27",
+    "sources": [
+        {
+            "type": "official",
+            "url": "https://www.eindhoven.nl/stad-en-wonen/stad/parkeren/parkeren-van-motoren-aanhangers-en-grote-voertuigen",
+            "name": "Website",
+            "date": "2025-09-26"
+        }
+    ]
 }

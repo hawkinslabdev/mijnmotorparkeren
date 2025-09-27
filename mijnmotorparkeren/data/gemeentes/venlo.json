@@ -1,11 +1,40 @@
 {
     "id": "venlo",
     "name": "Gemeente Venlo",
-    "lastUpdated": null,
+    "coordinates": {
+        "lat": 51.37,
+        "lng": 6.172
+    },
     "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Een motorfiets moet volgens de wet op de rijbaan worden geparkeerd, net als andere motorvoertuigen. In Venlo wordt hierop gecontroleerd. Geldt er parkeerregulering (bijv. betaald parkeren of parkeerschijfzone), dan moet je die naleven. Zijn er parkeervakken, dan gebruik je die. Parkeren op trottoirs of in voetgangerszones is hier verboden."
         }
-    }
+    },
+    "lastUpdated": "2025-09-27",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Administratief medewerker Gemeente Venlo",
+            "date": "2025-09-26"
+        }
+    ]
 }
