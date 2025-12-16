@@ -37,6 +37,9 @@ export const CityPage: React.FC<CityPageProps> = ({ onCitySelect }) => {
           if (!window.__selectedCityId || window.__selectedCityId !== cityData.id) {
             onCitySelect(cityData)
             window.__selectedCityId = cityData.id
+            if (cityData.coordinates) {
+              focusOnGemeente([cityData.coordinates.lat, cityData.coordinates.lng], 12)
+            }
           }
         } else {
           setNotFound(true)

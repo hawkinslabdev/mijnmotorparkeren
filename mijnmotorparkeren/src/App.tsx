@@ -129,10 +129,16 @@ const AppContent: React.FC = () => {
     setSelectedGemeente(gemeente)
     setSelectedCity(null)
     setSelectedGemeenteId(gemeente?.id || null)
-    
+
     if (gemeente && gemeente.id) {
       // Update URL when gemeente is selected
       navigate(`/gemeente/${gemeente.id}`)
+
+      // Center the map on the selected gemeente
+      if (gemeente.coordinates) {
+        const zoom = typeof gemeente.zoom === 'number' ? gemeente.zoom : 12
+        focusOnGemeente([gemeente.coordinates.lat, gemeente.coordinates.lng], zoom)
+      }
     }
   }
 
@@ -141,10 +147,15 @@ const AppContent: React.FC = () => {
     setSelectedCity(city)
     setSelectedGemeente(null)
     setSelectedGemeenteId(null)
-    
+
     if (city && city.id) {
       // Update URL when city is selected
       navigate(`/stad/${city.id}`)
+
+      // Center the map on the selected city
+      if (city.coordinates) {
+        focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
+      }
     }
   }
 
