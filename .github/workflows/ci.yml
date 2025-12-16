@@ -44,9 +44,16 @@ jobs:
     #    npm run generate:boundaries
     #    npm run build:search-index
     
-    - name: Copy .env.example to .env
-      run: cp .env.example .env
-    
+    # Create .env file (using GitHub Repository variables)
+    - name: Create .env file with GitHub variables
+      run: |
+        echo "VITE_MAP_TILE_URL=https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" > .env
+        echo "VITE_MAP_ATTRIBUTION=© OpenStreetMap contributors" >> .env
+        echo "VITE_DEFAULT_CENTER_LAT=${{ vars.VITE_DEFAULT_CENTER_LAT }}" >> .env
+        echo "VITE_DEFAULT_CENTER_LNG=${{ vars.VITE_DEFAULT_CENTER_LNG }}" >> .env
+        echo "VITE_DEFAULT_ZOOM=${{ vars.VITE_DEFAULT_ZOOM }}" >> .env
+        echo "VITE_DATA_VERSION=$(date +%Y%m%d)" >> .env
+
     - name: Build
       run: npm run build
 
