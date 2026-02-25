@@ -28,11 +28,16 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "In Gouda is het toegestaan om uw motor op de stoep te parkeren. Zorg wel dat u de doorgang niet blokkeert of een onveilige situatie veroorzaakt. Voetgangers, kinderwagens en rolstoelen mogen er geen last van hebben. Als u uw motor op straat parkeert of in een parkeervak (in een gebied waar betaald parkeren geldt), dan moet u parkeergeld betalen voor uw motor."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-02-25",
+    "sources": [
+        {
+            "name": "Gemeente Gouda (via exploitant)",
+            "url": "https://gouda.parkeerservice.nl/parkeren-op-straat/motor-parkeren/",
+            "date": "2026-02-25"
+        }
 }
