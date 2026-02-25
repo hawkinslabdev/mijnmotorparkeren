@@ -35,9 +35,10 @@
     },
     "lastUpdated": "2026-02-25",
     "sources": [
-        {
-            "name": "Gemeente Gouda (via exploitant)",
-            "url": "https://gouda.parkeerservice.nl/parkeren-op-straat/motor-parkeren/",
-            "date": "2026-02-25"
-        }
+      {
+        "name": "Gemeente Gouda (via exploitant)",
+        "url": "https://gouda.parkeerservice.nl/parkeren-op-straat/motor-parkeren/",
+        "date": "2026-02-25"
+      }
+    ]
 }
