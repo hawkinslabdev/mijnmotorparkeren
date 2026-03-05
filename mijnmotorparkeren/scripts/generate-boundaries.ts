@@ -155,7 +155,7 @@ async function getZeewoldeBoundary(): Promise<any> {
     console.log(`${colors.yellow}⚠ Nominatim failed: ${error}${colors.reset}`)
     
     // Fallback to more accurate manual boundary for Zeewolde
-    console.log(`${colors.yellow}📍 Using improved manual boundary for Zeewolde${colors.reset}`)
+    console.log(`${colors.yellow}Using improved manual boundary for Zeewolde${colors.reset}`)
     
     return {
       type: 'Polygon',
@@ -225,7 +225,7 @@ async function generateBoundaries(): Promise<void> {
     console.log(`${colors.blue}🌍 Fetching official gemeente boundaries...${colors.reset}`)
     const boundariesData = await fetchBoundaries()
     
-    console.log(`\n${colors.blue}🔄 Processing gemeente boundaries...${colors.reset}`)
+    console.log(`\n${colors.blue}Processing gemeente boundaries...${colors.reset}`)
     
     let updatedCount = 0
     let skippedCount = 0
@@ -280,7 +280,7 @@ async function generateBoundaries(): Promise<void> {
     console.log(`${colors.bright}${colors.green}✅ All done!${colors.reset}`)
     
   } catch (error) {
-    console.log(`\n${colors.red}❌ Error: ${error}${colors.reset}`)
+    console.log(`\n${colors.red}Error: ${error}${colors.reset}`)
     process.exit(1)
   }
 }
@@ -350,7 +350,7 @@ Examples:
       console.log(`\n${colors.bright}${colors.green}✅ Zeewolde boundary updated!${colors.reset}`)
       
     } catch (error) {
-      console.log(`\n${colors.red}❌ Error: ${error}${colors.reset}`)
+      console.log(`\n${colors.red}Error: ${error}${colors.reset}`)
       process.exit(1)
     }
     
@@ -387,7 +387,7 @@ Examples:
       console.log(`${colors.red}✗ Invalid: ${invalidCount}${colors.reset}`)
       
     } catch (error) {
-      console.log(`\n${colors.red}❌ Error: ${error}${colors.reset}`)
+      console.log(`\n${colors.red}Error: ${error}${colors.reset}`)
       process.exit(1)
     }
     

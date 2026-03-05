@@ -1,6 +1,6 @@
 // src/utils/city-parking-resolver.ts
-import { Gemeente, ParkingRules } from '../types/gemeente'
-import { City } from '../types/city'
+import type { Gemeente, ParkingRules } from '../types/gemeente'
+import type { City } from '../types/city'
 import { getCitiesForGemeente } from '../data'
 import type { Polygon, MultiPolygon } from 'geojson'
 

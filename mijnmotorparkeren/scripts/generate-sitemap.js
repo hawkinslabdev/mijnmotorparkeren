@@ -88,8 +88,8 @@ function generateSitemap({ baseUrl, routes }) {
         console.log('🔧 Generating sitemap...');
         
         const { gemeenteRoutes, cityRoutes } = await getGemeenteAndCityIds();
-        console.log(`📍 Found ${gemeenteRoutes.length} gemeente routes`);
-        console.log(`🏙️ Found ${cityRoutes.length} city routes`);
+        console.log(`Found ${gemeenteRoutes.length} gemeente routes`);
+        console.log(`Found ${cityRoutes.length} city routes`);
         
         const allRoutes = ['/', ...gemeenteRoutes, ...cityRoutes];
         console.log(`📋 Total routes: ${allRoutes.length}`);
@@ -117,7 +117,7 @@ function generateSitemap({ baseUrl, routes }) {
         });
         
     } catch (error) {
-        console.error('❌ Error generating sitemap:', error);
+        console.error('Error generating sitemap:', error);
         process.exit(1);
     }
 })();

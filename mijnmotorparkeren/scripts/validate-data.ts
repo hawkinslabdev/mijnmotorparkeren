@@ -249,7 +249,7 @@ async function validateGemeenteFile(filePath: string): Promise<{ valid: boolean;
 
 // --- City data validation function ---
 async function validateCityData() {
-  console.log('🏙️ Validating city data...')
+  console.log('Validating city data...')
   
   const cityDir = path.join(process.cwd(), 'data', 'city')
   
@@ -275,17 +275,17 @@ async function validateCityData() {
             if (cityResult.success) {
               console.log(`✅ ${cityRef.reference}`)
             } else {
-              console.log(`❌ ${cityRef.reference}`)
+              console.log(`${cityRef.reference}`)
               cityResult.error.errors.forEach(error => {
                 console.log(`   ${error.path.join('.')}: ${error.message}`)
               })
             }
           } catch (error) {
-            console.log(`❌ ${cityRef.reference} - File not found or invalid JSON`)
+            console.log(`${cityRef.reference} - File not found or invalid JSON`)
           }
         }
       } else {
-        console.log('❌ city/index.json')
+        console.log('city/index.json')
         indexResult.error.errors.forEach(error => {
           console.log(`   ${error.path.join('.')}: ${error.message}`)
         })
@@ -294,7 +294,7 @@ async function validateCityData() {
       console.log('ℹ️ No city data found (city/index.json missing)')
     }
   } catch (error) {
-    console.log('❌ Failed to validate city data:', error)
+    console.log('Failed to validate city data:', error)
   }
 }
 
@@ -311,7 +311,7 @@ async function validateAllData() {
     const jsonFiles = files.filter((file: string) => file.endsWith('.json'))
     
     if (jsonFiles.length === 0) {
-      console.log(`${colors.yellow}⚠️  No JSON files found in ${dataDir}${colors.reset}`)
+      console.log(`${colors.yellow} No JSON files found in ${dataDir}${colors.reset}`)
       console.log(`${colors.yellow}   Create gemeente data files to validate${colors.reset}`)
       return
     }

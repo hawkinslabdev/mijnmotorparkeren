@@ -6,11 +6,35 @@
         "lat": 52.958,
         "lng": 4.759
     },
-    "lastUpdated": null,
     "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "PParkeren op de stoep met een motorfiets wordt gedoogd, zolang dit niet hinderlijk is voor voetgangers (zoals rolstoelgebruikers of moeders met kinderwagens), niet voor een (nood)uitgang staat, en men zich houdt aan de betaaldparkeervoorwaarden; in blauwe zones mag men zonder blauwe kaart gebruikmaken van een parkeervak."
         }
-    }
+    },
+    "lastUpdated": "2026-03-02",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Den Helder",
+            "date": "2026-03-02"
+        }
+    ]
 }

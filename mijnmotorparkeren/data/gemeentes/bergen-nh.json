@@ -13,7 +13,7 @@
     "parkingRules": {
         "free": null,
         "paid": {
-            "enabled": null,
+            "enabled": false,
             "areas": [],
             "rates": null
         },
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep wordt gedoogd. Zolang een motorfiets niet hinderlijk op het voetpad staat, wordt dit getolereerd. Betaald parkeren geldt ook voor motoreren."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-02-12",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Bergen (NH.)",
+            "date": "2026-02-12"
+        }
+    ]
 }

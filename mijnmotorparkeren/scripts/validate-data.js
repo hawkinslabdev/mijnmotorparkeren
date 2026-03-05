@@ -267,7 +267,7 @@ function validateCityData() {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    console.log('🏙️ Validating city data...');
+                    console.log('Validating city data...');
                     cityDir = path.join(process.cwd(), 'data', 'city');
                     _b.label = 1;
                 case 1:
@@ -316,7 +316,7 @@ function validateCityData() {
                     return [3 /*break*/, 4];
                 case 9: return [3 /*break*/, 11];
                 case 10:
-                    console.log('❌ city/index.json');
+                    console.log('city/index.json');
                     indexResult.error.errors.forEach(function (error) {
                         console.log("   ".concat(error.path.join('.'), ": ").concat(error.message));
                     });
@@ -328,7 +328,7 @@ function validateCityData() {
                 case 13: return [3 /*break*/, 15];
                 case 14:
                     error_3 = _b.sent();
-                    console.log('❌ Failed to validate city data:', error_3);
+                    console.log('Failed to validate city data:', error_3);
                     return [3 /*break*/, 15];
                 case 15: return [2 /*return*/];
             }

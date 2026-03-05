@@ -68,6 +68,7 @@ export type ParkingStatusValue = 'sidewalk_allowed' | 'free_parking' | 'paid_par
 
 export interface Gemeente {
   id: string
+  type?: 'gemeente' | 'country'
   name: string
   province: string
   coordinates: Coordinates

@@ -1,8 +1,8 @@
 // src/components/Info/ParkingRules.tsx; Modern, mobile-first design
 import React, { useRef, useState } from 'react'
 import { Clock, MapPin, AlertTriangle, Bike, X, Check, ExternalLink, Mail, Calendar } from 'lucide-react'
-import { Gemeente } from '../../types/gemeente'
-import { City } from '../../types/city'
+import type { Gemeente } from '../../types/gemeente'
+import type { City } from '../../types/city'
 import { clsx } from 'clsx'
 
 interface ParkingRulesProps {

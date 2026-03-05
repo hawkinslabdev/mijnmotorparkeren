@@ -2,7 +2,7 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import Fuse from 'fuse.js'
 import { useGemeenteData } from './useGemeenteData'
-import { Gemeente } from '@/types/gemeente'
+import type { Gemeente } from '@/types/gemeente'
 
 interface UseSearchReturn {
   results: Gemeente[]

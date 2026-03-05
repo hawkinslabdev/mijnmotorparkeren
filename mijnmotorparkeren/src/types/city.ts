@@ -1,6 +1,6 @@
 // src/types/city.ts
-import { Coordinates, ParkingRules, Source } from './gemeente'
-import { FeatureCollection } from 'geojson'
+import type { Coordinates, ParkingRules, Source } from './gemeente'
+import type { FeatureCollection } from 'geojson'
 
 export interface City {
   id: string

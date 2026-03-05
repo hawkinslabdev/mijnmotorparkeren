@@ -1,10 +1,13 @@
 import type { Gemeente, ParkingStatusValue } from '../types/gemeente'
 import type { City } from '../types/city'
 
-// Use PUBLIC_DATA_VERSION from .env for cache busting, fallback to a default date if empty
+// Use PUBLIC_DATA_VERSION from .env for cache busting, fallback to today's date if empty
 let DATA_VERSION = import.meta.env.PUBLIC_DATA_VERSION
 if (!DATA_VERSION || DATA_VERSION.trim() === '') {
-  DATA_VERSION = '20250101'
+  const today = new Date()
+  DATA_VERSION = today.getFullYear().toString() +
+    String(today.getMonth() + 1).padStart(2, '0') +
+    String(today.getDate()).padStart(2, '0')
 }
 
 // Helper to generate versioned URLs for gemeente/city JSON files
@@ -21,12 +24,21 @@ export interface GemeenteLite extends Pick<Gemeente, 'id' | 'name' | 'province' 
   parkingStatus: ParkingStatusValue
 }
 
+/** Singleton promise — all callers share the same in-flight request and cached result. */
+let indexPromise: Promise<GemeenteLite[]> | null = null
+
 /** Fetch the lightweight gemeente index. */
-export async function fetchGemeenteIndex(): Promise<GemeenteLite[]> {
-  const res = await fetch(getIndexUrl())
-  if (!res.ok) throw new Error(`Failed to fetch gemeente index: ${res.status}`)
-  const json = await res.json()
-  return (json.gemeentes ?? []) as GemeenteLite[]
+export function fetchGemeenteIndex(): Promise<GemeenteLite[]> {
+  if (!indexPromise) {
+    indexPromise = fetch(getIndexUrl())
+      .then(res => {
+        if (!res.ok) throw new Error(`Failed to fetch gemeente index: ${res.status}`)
+        return res.json()
+      })
+      .then(json => (json.gemeentes ?? []) as GemeenteLite[])
+      .catch(err => { indexPromise = null; throw err })
+  }
+  return indexPromise
 }
 
 /** Fetch the full gemeente data for a single gemeente (on demand). */

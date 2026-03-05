@@ -37,3 +37,7 @@ public/workbox-*.js
 # Coverage
 coverage
 .nyc_output
+
+# Generated index files (served dynamically via API endpoints)
+data/index.json
+data/city/index.json

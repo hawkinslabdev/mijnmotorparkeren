@@ -6,11 +6,35 @@
         "lat": 52.548,
         "lng": 4.669
     },
-    "lastUpdated": null,
     "parkingRules": {
+        "free": null,
+        "paid": {
+            "enabled": false,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep wordt gedoogd. Zolang een motorfiets niet hinderlijk op het voetpad staat, wordt dit getolereerd. Betaald parkeren geldt ook voor motoreren."
         }
-    }
+    },
+    "lastUpdated": "2025-07-12",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Castricum",
+            "date": "2025-04-09"
+        }
+    ]
 }

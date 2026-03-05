@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { Gemeente } from '../types/gemeente'
+import type { Gemeente } from '../types/gemeente'
 import { fetchGemeenteIndex, fetchFullGemeente, type GemeenteLite } from '../data/index'
 
 interface UseGemeenteDataReturn {

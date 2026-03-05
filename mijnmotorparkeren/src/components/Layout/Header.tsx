@@ -108,7 +108,7 @@ export const Header: React.FC<HeaderProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-gray-600 hover:text-gray-900"
-                title="View on GitHub"
+                title="Bekijken op GitHub"
               >
                 <Github className="w-4 h-4" />
               </a>
@@ -117,7 +117,7 @@ export const Header: React.FC<HeaderProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 px-3 py-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-colors text-yellow-800 hover:text-yellow-900"
-                title="Steun met een koffie!"
+                title="Steun mij met koffie!"
               >
                 <Coffee className="w-4 h-4" />
               </a>

@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,16 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep wordt gedoogd, mits Eer minimaal 90 cm vrije ruimte overblijft. Dit geldt voor putten, oversteekplaatsen, blindengeleidestroken. Vanzelfsprekend dienen uitgangen of doorgangen vrijgehouden te worden."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-03-05",
+    "sources": [
+        {
+            "name": "Gemeente Hardenberg",
+            "url": "https://www.hardenberg.nl/parkeren"
+        }
+    ]
 }

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import { Gemeente } from '@/types/gemeente'
+import type { Gemeente } from '@/types/gemeente'
 import { useSearch } from '@/hooks/useSearch'
 import { getParkingStatus, hasDedicatedMotorcycleSpots } from '@/utils/gemeenteUtils'
 import { clsx } from 'clsx'

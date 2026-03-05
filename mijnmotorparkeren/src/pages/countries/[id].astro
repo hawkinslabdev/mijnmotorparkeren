@@ -1,0 +1,64 @@
+---
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import App from '../../App'
+
+const { id } = Astro.params as { id: string }
+
+let country: { id: string; name: string; coordinates?: { lat: number; lng: number }; [key: string]: unknown } | null = null
+let notFound = false
+
+try {
+  const filePath = path.join(process.cwd(), 'data', 'gemeentes', `${id}.json`)
+  const content = await readFile(filePath, 'utf-8')
+  const parsed = JSON.parse(content)
+  if (parsed?.id && parsed.id === id && parsed.type === 'country') {
+    country = parsed
+  } else {
+    notFound = true
+  }
+} catch {
+  notFound = true
+}
+
+const countryName = country?.name ?? id.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())
+const canonical = `https://mijnmotorparkeren.nl/countries/${id}`
+
+const title = country
+  ? `Motor parkeren in ${countryName} | Parkeerregels`
+  : `Land niet gevonden | MijnMotorParkeren.nl`
+
+const description = country
+  ? `Mag de motor op de stoep in ${countryName}? Bekijk de actuele parkeerregels voor ${countryName} op MijnMotorParkeren.nl.`
+  : `Het land ${countryName} werd niet gevonden.`
+
+const schemaMarkup = country
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Country',
+      name: countryName,
+      description: `Motor parkeerregels voor ${countryName}`,
+      url: canonical,
+      ...(country.coordinates && {
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: country.coordinates.lat,
+          longitude: country.coordinates.lng,
+        },
+      }),
+    }
+  : undefined
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  noindex={notFound}
+  image="https://mijnmotorparkeren.nl/android-chrome-512x512.png"
+  keywords={`motor, parkeren, motor op de stoep, mijn motor parkeren, ${countryName}`}
+  schemaMarkup={schemaMarkup}
+>
+  <App client:only="react" initialGemeenteId={id} />
+</BaseLayout>

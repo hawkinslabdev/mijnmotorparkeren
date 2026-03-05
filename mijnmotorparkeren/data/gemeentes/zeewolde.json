@@ -19,12 +19,7 @@
         },
         "restrictions": {
             "timeLimit": null,
-            "noParking": [
-                {
-                    "location": "Verbod parkeren in schoolzones tijdens schooltijden",
-                    "times": "07:30-08:30, 15:00-16:00"
-                }
-            ]
+            "noParking": []
         },
         "contact": null,
         "motorcycleSpecific": {

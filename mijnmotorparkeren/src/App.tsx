@@ -5,11 +5,12 @@ import MapView from '@components/Map/MapView'
 import { SpotlightSearch } from '@components/Search/SpotlightSearch'
 import { ParkingRules } from '@components/Info/ParkingRules'
 import { Header } from '@components/Layout/Header'
+import { PromoBar } from '@components/Layout/PromoBar'
 import { useMapStore } from '@stores/mapStore'
 import { useGemeenteData } from '@hooks/useGemeenteData'
 import { useKeyboardShortcuts } from '@hooks/useKeyboardShortcuts'
-import { Gemeente } from './types/gemeente'
-import { City } from './types/city'
+import type { Gemeente } from './types/gemeente'
+import { type City } from './types/city'
 import { fetchFullCity } from './data/index'
 
 // Fix for default markers in react-leaflet
@@ -49,7 +50,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        focusOnGemeente([pos.coords.latitude, pos.coords.longitude], useMapStore.getState().zoom)
+        focusOnGemeente([pos.coords.latitude, pos.coords.longitude], 13)
       },
       () => { /* denied or unavailable — keep configured defaults */ },
       { enableHighAccuracy: false, timeout: 5000, maximumAge: 5 * 60 * 1000 }
@@ -104,7 +105,8 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
     setSelectedCity(null)
     setSelectedGemeenteId(lite.id)
-    window.history.pushState({}, '', `/gemeente/${lite.id}`)
+    const urlBase = lite.type === 'country' ? '/countries' : '/gemeente'
+    window.history.pushState({}, '', `${urlBase}/${lite.id}`)
 
     if (lite.coordinates) {
       const zoom = typeof lite.zoom === 'number' ? lite.zoom : 12
@@ -203,10 +205,11 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   const detailsOpen = Boolean(selectedGemeente || selectedCity || detailsLoading)
 
   return (
-    <div className="viewport-full bg-gray-50 flex flex-col">
+    <div className="h-screen flex flex-col bg-gray-50">
+      <PromoBar />
       <Header onSearchOpen={() => setSearchOpen(true)} />
 
-      <main className="flex-1 relative">
+      <main className="flex-1 relative overflow-hidden">
         <MapView
           gemeentes={gemeentes}
           onGemeenteSelect={handleGemeenteSelect}

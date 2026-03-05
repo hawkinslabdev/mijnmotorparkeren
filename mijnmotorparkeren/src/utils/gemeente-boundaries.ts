@@ -1,5 +1,5 @@
 // src/utils/gemeente-boundaries.ts
-import { Gemeente } from '@/types/gemeente'
+import type { Gemeente } from '@/types/gemeente'
 import type * as GeoJSON from 'geojson'
 
 export interface BoundarySource {

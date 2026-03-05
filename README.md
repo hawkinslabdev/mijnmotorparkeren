@@ -12,15 +12,9 @@
 
 Our goal: **make it easy for everyone to know how you can park your motorcycle, anywhere in the country.**
 
-<br>
-
-[**Visit the website**](https://mijnmotorparkeren.nl) • [**Contribute data**](#-contributing) • [**How it works**](#-how-it-works) • [**Data structure**](#-data-structure) • [**Configuration**](#-configuration) • [**Roadmap**](#-roadmap) • [**Help**](#-help) • [**Donate**](#-donate)
-
-<br>
+[**Visit the website**](https://mijnmotorparkeren.nl) • [**Contribute data**](#-contributing) • [**How it works**](#-how-it-works) • [**Help**](#-help) • [**Donate**](#-donate)
 
 ---
-
-<br>
 
 ## What is MijnMotorParkeren.nl?
 
@@ -47,45 +41,12 @@ That's all you may need to know to use it! Head over to (MijnMotorParkeren.nl)[h
 
 This means you don't need to clone or run the project locally to contribute (to existing) data!
 
-## Configuration (for maintainers)
-
-### Environment Variables
-
-Create a `.env` file in the root if you want to run the site locally:
-
-```env
-VITE_MAP_TILE_URL=https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
-VITE_MAP_ATTRIBUTION=© OpenStreetMap contributors
-VITE_DEFAULT_CENTER_LAT=52.3676
-VITE_DEFAULT_CENTER_LNG=4.9041
-VITE_DEFAULT_ZOOM=7
-VITE_DATA_VERSION=YYYYMMDD
-```
-
-### Development Scripts
-
-```bash
-npm run generate:boundaries   # Generate gemeente boundaries from OSM
-npm run validate:data         # Validate all data files
-npm run build:search          # Build search index
-npm run format                # Format code
-npm run lint                  # Lint code
-```
-
-### Build scripts
-
-```bash
-npm run build                 # Generate a production build
-```
-
-<br>
-
 ## Help
 
 Need help using MijnMotorParkeren.nl, have ideas, or found a bug? Here's how you can reach out:
 
 - **Found a bug or have a feature request?**
-  [Let us know through melden.mijnmotorparkeren.nl](https://melden.mijnmotorparkeren.nl/). If you'd like to contribue, please feel free to open a Pull Request. That allows me to merge the changes rather quickly.
+  [Let us know through melden.mijnmotorparkeren.nl](https://melden.mijnmotorparkeren.nl/). If you'd like to contribue, please feel free to open a PR. That allows me to merge the changes rather quickly.
 
 - **Have questions, want to share feedback, or just chat?**
   [Start a thread at our community, melden.mijnmotorparkeren.nl](https://melden.mijnmotorparkeren.nl/).

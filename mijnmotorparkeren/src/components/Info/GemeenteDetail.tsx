@@ -1,6 +1,6 @@
 // src/components/GemeenteDetail.tsx
 import React from 'react'
-import { Gemeente } from '@/types/gemeente'
+import type { Gemeente } from '@/types/gemeente'
 import {
   getParkingStatus,
   hasDedicatedMotorcycleSpots,

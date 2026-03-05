@@ -3,11 +3,10 @@ import React, { useEffect, useState, useRef } from 'react'
 import { MapContainer, TileLayer, GeoJSON, useMap, useMapEvents, CircleMarker } from 'react-leaflet'
 import { LatLngExpression, LatLngBounds, Map as LeafletMap } from 'leaflet'
 import { useMapStore } from '@stores/mapStore'
-import { Gemeente } from '@/types/gemeente'
-import { City } from '@/types/city'
+import type { Gemeente } from '@/types/gemeente'
+import type { City } from '@/types/city'
 import { useGeolocation } from '@/hooks/useGeolocation'
 import { getMapBoundaryColors } from '@/utils/gemeenteUtils'
-import 'leaflet/dist/leaflet.css'
 import type * as GeoJSONType from 'geojson'
 import type { TileEvent, TileErrorEvent } from 'leaflet'
 import { RotateCcw } from 'lucide-react'
@@ -123,6 +122,53 @@ const MobileShareButton: React.FC<{
 
 // Current Location Button Component; moved down when share button is present
 
+// Fetches and renders full country boundaries (MultiPolygon from each country's JSON file).
+// The lite index does not carry geometry, so we load the full JSON on first visibility.
+const CountryBoundariesLayer: React.FC<{
+  countries: Gemeente[]
+  onSelect: (g: Gemeente) => void
+}> = ({ countries, onSelect }) => {
+  const [boundaries, setBoundaries] = useState<Map<string, GeoJSONType.Geometry>>(new Map())
+
+  useEffect(() => {
+    countries.forEach(async (country) => {
+      if (boundaries.has(country.id)) return
+      try {
+        const res = await fetch(`/data/gemeentes/${country.id}.json`)
+        if (!res.ok) return
+        const data = await res.json()
+        if (data.boundaries) {
+          setBoundaries(prev => new Map(prev).set(country.id, data.boundaries))
+        }
+      } catch { /* silent */ }
+    })
+  }, [countries]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <>
+      {countries.map(country => {
+        const geom = boundaries.get(country.id)
+        if (!geom) return null
+        const colors = getMapBoundaryColors(country)
+        return (
+          <GeoJSON
+            key={`country-boundary-${country.id}`}
+            data={{ type: 'Feature', properties: { id: country.id }, geometry: geom } as GeoJSONType.Feature}
+            style={{
+              fillColor: colors.fillColor,
+              color: colors.borderColor,
+              weight: 2,
+              opacity: 0.8,
+              fillOpacity: 0.45,
+            }}
+            eventHandlers={{ click: () => onSelect(country) }}
+          />
+        )
+      })}
+    </>
+  )
+}
+
 // --- Add a custom pane for city boundaries ---
 const CityPaneSetter: React.FC = () => {
   const map = useMap();
@@ -167,7 +213,7 @@ const CityBoundariesLayer: React.FC<{
         const loadedCities: City[] = []
 
         if (debugEnabled) {
-          console.log(`🏙️ Loading ${index.cities.length} cities...`)
+          console.log(`Loading ${index.cities.length} cities...`)
         }
 
         // Load each city file
@@ -185,7 +231,7 @@ const CityBoundariesLayer: React.FC<{
             }
           } catch (error) {
             if (debugEnabled) {
-              console.warn(`❌ Failed to load city ${cityRef.id}:`, error)
+              console.warn(`Failed to load city ${cityRef.id}:`, error)
             }
           }
         }
@@ -193,12 +239,12 @@ const CityBoundariesLayer: React.FC<{
         setCities(loadedCities)
         
         if (debugEnabled) {
-          console.log(`🏙️ Successfully loaded ${loadedCities.length} cities`)
+          console.log(`Successfully loaded ${loadedCities.length} cities`)
         }
       } catch (error) {
         setError(error instanceof Error ? error.message : 'Failed to load cities')
         if (debugEnabled) {
-          console.error('❌ Failed to load city data:', error)
+          console.error('Failed to load city data:', error)
         }
       } finally {
         setLoading(false)
@@ -216,7 +262,7 @@ const CityBoundariesLayer: React.FC<{
   if (loading) {
     return debugEnabled ? (
       <div className="absolute top-16 right-4 bg-blue-600/75 text-white p-2 rounded text-xs z-[2000]">
-        🏙️ Loading cities...
+        Loading cities...
       </div>
     ) : null
   }
@@ -224,7 +270,7 @@ const CityBoundariesLayer: React.FC<{
   if (error) {
     return debugEnabled ? (
       <div className="absolute top-16 right-4 bg-red-600/75 text-white p-2 rounded text-xs z-[2000]">
-        ❌ City load error: {error}
+        City load error: {error}
       </div>
     ) : null
   }
@@ -232,7 +278,7 @@ const CityBoundariesLayer: React.FC<{
   if (visibleCities.length === 0) {
     return debugEnabled ? (
       <div className="absolute top-16 right-4 bg-gray-600/75 text-white p-2 rounded text-xs z-[2000]">
-        ℹ️ No cities with override rules
+        No cities with override rules
       </div>
     ) : null
   }
@@ -263,7 +309,7 @@ const CityBoundariesLayer: React.FC<{
               e.originalEvent.stopPropagation()
               
               if (debugEnabled) {
-                console.log('🏙️ City clicked (preventing gemeente click):', city.name)
+                console.log('City clicked (preventing gemeente click):', city.name)
               }
               
               onCitySelect(city)
@@ -293,7 +339,7 @@ const CityBoundariesLayer: React.FC<{
       
       {debugEnabled && visibleCities.length > 0 && (
         <div className="absolute top-16 right-4 bg-orange-600/75 text-white p-2 rounded text-xs z-[2000] max-w-sm">
-          <div>🏙️ Cities: {visibleCities.length}</div>
+          <div>Cities: {visibleCities.length}</div>
           <div className="mt-1 text-xs">
             {visibleCities.map(city => city.name).join(', ')}
           </div>
@@ -317,7 +363,7 @@ const RealBoundariesLayer: React.FC<{
     const fetchRealBoundaries = async () => {
       try {
         if (debugEnabled) {
-          console.log('🌍 Fetching official Dutch gemeente boundaries...')
+          console.log('Fetching official Dutch gemeente boundaries...')
         }
         
         // Simplified fetch without custom headers to avoid CORS preflight
@@ -343,7 +389,7 @@ const RealBoundariesLayer: React.FC<{
         setError(null)
       } catch (error) {
         if (debugEnabled) {
-          console.error('❌ Failed to fetch official boundaries:', error)
+          console.error('Failed to fetch official boundaries:', error)
         }
         setError(error instanceof Error ? error.message : 'Unknown error')
         setOfficialBoundaries(null)
@@ -405,7 +451,7 @@ const RealBoundariesLayer: React.FC<{
   if (loading) {
     return debugEnabled ? (
       <div className="absolute top-72 left-4 bg-blue-600/75 text-white p-2 rounded text-xs z-[2000]">
-        🔄 Loading gemeente boundaries...
+        Loading gemeente boundaries...
       </div>
     ) : null
   }
@@ -413,7 +459,7 @@ const RealBoundariesLayer: React.FC<{
   if (error) {
     return debugEnabled ? (
       <div className="absolute top-72 left-4 bg-red-600/75 text-white p-2 rounded text-xs z-[2000] max-w-xs">
-        ❌ Error loading boundaries: {error}
+        Error loading boundaries: {error}
         <div className="mt-1 text-xs">Using fallback data...</div>
       </div>
     ) : null
@@ -421,7 +467,7 @@ const RealBoundariesLayer: React.FC<{
 
   if (!officialBoundaries) {
     if (debugEnabled) {
-      console.log('📦 No official boundaries available, using fallback')
+      console.log('No official boundaries available, using fallback')
     }
     
     // Fallback to local boundaries if available
@@ -430,13 +476,13 @@ const RealBoundariesLayer: React.FC<{
         {gemeentes.map((gemeente) => {
           if (!gemeente.boundaries) {
             if (debugEnabled) {
-              console.log(`⚠️ No boundaries available for ${gemeente.name}`)
+              console.log(`No boundaries available for ${gemeente.name}`)
             }
             return null
           }
           
           if (debugEnabled) {
-            console.log(`📦 Using local boundary for ${gemeente.name}`)
+            console.log(`Using local boundary for ${gemeente.name}`)
           }
           
           // FIXED: Use proper color logic
@@ -465,7 +511,7 @@ const RealBoundariesLayer: React.FC<{
         })}
         {debugEnabled && (
           <div className="absolute top-72 left-4 bg-yellow-600/75 text-white p-2 rounded text-xs z-[2000]">
-            📦 Using local boundary data
+            Using local boundary data
           </div>
         )}
       </>
@@ -489,14 +535,14 @@ const RealBoundariesLayer: React.FC<{
 
     if (!matchingFeature) {
       if (debugEnabled) {
-        console.log(`❌ No official boundary found for ${gemeente.name}`)
+        console.log(`No official boundary found for ${gemeente.name}`)
       }
       notFoundGemeentes.push(gemeente.name)
 
       // Try to use local boundary as fallback
       if (gemeente.boundaries) {
         if (debugEnabled) {
-          console.log(`📦 Using local boundary fallback for ${gemeente.name}`)
+          console.log(`Using local boundary fallback for ${gemeente.name}`)
         }
 
         // FIXED: Use proper color logic
@@ -566,7 +612,7 @@ const RealBoundariesLayer: React.FC<{
       {debugEnabled && (
         <div className="absolute top-72 left-4 bg-green-600/75 text-white p-2 rounded text-xs z-[2000] max-w-sm">
           <div>Official: {renderedCount}/{gemeentes.length}</div>
-          <div>📦 Fallback: {gemeentes.length - renderedCount - notFoundGemeentes.length}</div>
+          <div>Fallback: {gemeentes.length - renderedCount - notFoundGemeentes.length}</div>
           {notFoundGemeentes.length > 0 && (
             <div className="mt-1 text-xs">
               Missing: {notFoundGemeentes.join(', ')}
@@ -624,7 +670,7 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
       onCitySelect(city)
     }
     if (debugEnabled) {
-      console.log('🏙️ City selected:', city.name, 'in', city.parent)
+      console.log('City selected:', city.name, 'in', city.parent)
     }
   }
 
@@ -639,7 +685,7 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
         mapRef.current.setView(location, 13)
         setCurrentLocation(location)
         if (debugEnabled) {
-          console.log('📍 Centered map on user location:', location)
+          console.log('Centered map on user location:', location)
         }
       }
     } catch (error) {
@@ -678,12 +724,12 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
       if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
         await navigator.share(shareData)
         if (debugEnabled) {
-          console.log('📤 Successfully shared via Web Share API')
+          console.log('Successfully shared via Web Share API')
         }
       } else {
         await navigator.clipboard.writeText(shareUrl)
         if (debugEnabled) {
-          console.log('📋 URL copied to clipboard as fallback')
+          console.log('URL copied to clipboard as fallback')
         }
         alert('Link gekopieerd naar klembord!')
       }
@@ -741,7 +787,7 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
           attribution={import.meta.env.PUBLIC_MAP_ATTRIBUTION || '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
           eventHandlers={debugEnabled ? {
             loading: () => {
-              console.log('🔄 Tiles loading...')
+              console.log('Tiles loading...')
               setTilesLoaded(false)
             },
             load: () => {
@@ -749,7 +795,7 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
               setTilesLoaded(true)
             },
             tileerror: (e: TileErrorEvent) => {
-              console.error('❌ Tile loading error:', e)
+              console.error('Tile loading error:', e)
               console.error('Error details:', {
                 coords: e.coords,
                 error: e.error,
@@ -774,11 +820,15 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
             number of active Leaflet GeoJSON layers small regardless of how many
             gemeentes exist in the dataset. */}
         {(() => {
-          const visibleGemeentes = mapBounds
+          const visible = mapBounds
             ? gemeentes.filter(g =>
                 g.coordinates && mapBounds.pad(0.4).contains([g.coordinates.lat, g.coordinates.lng])
               )
             : gemeentes
+
+          const visibleGemeentes = visible.filter(g => g.type !== 'country')
+          const visibleCountries = visible.filter(g => g.type === 'country' && g.coordinates)
+
           return (
             <>
               {/* LAYER ORDER IS CRITICAL: Gemeente boundaries first (bottom layer) */}
@@ -795,6 +845,13 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
                   gemeentes={visibleGemeentes}
                   onCitySelect={handleCitySelect}
                   debugEnabled={debugEnabled}
+                />
+              )}
+              {/* Country boundaries — load full geometry on demand, render as GeoJSON */}
+              {mapReady && visibleCountries.length > 0 && (
+                <CountryBoundariesLayer
+                  countries={visibleCountries}
+                  onSelect={handleGemeenteSelect}
                 />
               )}
             </>
@@ -902,8 +959,8 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
             <div>Container: {mapRef.current ? 'Created' : 'Pending'}</div>
             <div>Boundaries: {gemeentes.filter(g => g.boundaries).length} loaded</div>
             <div>City Support: <span className={onCitySelect ? 'text-green-600' : 'text-red-600'}>{onCitySelect ? 'Enabled' : 'Disabled'}</span></div>
-            {!mapReady && <div className="text-red-600">⚠️ Map not ready</div>}
-            {!tilesLoaded && mapReady && <div className="text-orange-600">⚠️ Tiles loading</div>}
+            {!mapReady && <div className="text-red-600">Map not ready</div>}
+            {!tilesLoaded && mapReady && <div className="text-orange-600">Tiles loading</div>}
           </div>
         </div>
       )}

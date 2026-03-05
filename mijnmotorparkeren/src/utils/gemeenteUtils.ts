@@ -1,6 +1,6 @@
 // src/utils/gemeenteUtils.ts
-import { Gemeente } from '@/types/gemeente'
-import { City } from '@/types/city'
+import type { Gemeente } from '@/types/gemeente'
+import type { City } from '@/types/city'
 
 /**
  * Get parking status for a gemeente OR city with CORRECT priority logic

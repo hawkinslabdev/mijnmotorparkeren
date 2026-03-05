@@ -12,7 +12,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md,json,astro}\"",
     "validate:data": "tsx scripts/validate-data.ts",
     "type-check": "astro check && tsc --noEmit",
-    "sync:gemeentes-index": "tsx scripts/sync-gemeentes-index.ts"
+    "generate:index": "tsx scripts/sync-gemeentes-index.ts"
   },
   "dependencies": {
     "@astrojs/node": "^9.1.4",
