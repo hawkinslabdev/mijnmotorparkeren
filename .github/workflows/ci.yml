@@ -40,16 +40,6 @@ jobs:
     #- name: Run tests
     #  run: npm test
 
-    # Create .env file (using GitHub Repository variables)
-    - name: Create .env file with GitHub variables
-      run: |
-        echo "PUBLIC_MAP_TILE_URL=https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" > .env
-        echo "PUBLIC_MAP_ATTRIBUTION=© OpenStreetMap contributors" >> .env
-        echo "PUBLIC_DEFAULT_CENTER_LAT=${{ vars.PUBLIC_DEFAULT_CENTER_LAT }}" >> .env
-        echo "PUBLIC_DEFAULT_CENTER_LNG=${{ vars.PUBLIC_DEFAULT_CENTER_LNG }}" >> .env
-        echo "PUBLIC_DEFAULT_ZOOM=${{ vars.PUBLIC_DEFAULT_ZOOM }}" >> .env
-        echo "PUBLIC_DATA_VERSION=$(date +%Y%m%d)" >> .env
-
     - name: Build
       run: npm run build
 
@@ -107,10 +97,3 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
-        build-args: |
-          PUBLIC_MAP_TILE_URL=https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
-          PUBLIC_MAP_ATTRIBUTION=© OpenStreetMap contributors
-          PUBLIC_DEFAULT_CENTER_LAT=${{ vars.PUBLIC_DEFAULT_CENTER_LAT }}
-          PUBLIC_DEFAULT_CENTER_LNG=${{ vars.PUBLIC_DEFAULT_CENTER_LNG }}
-          PUBLIC_DEFAULT_ZOOM=${{ vars.PUBLIC_DEFAULT_ZOOM }}
-          PUBLIC_DATA_VERSION=${{ github.run_id }}
