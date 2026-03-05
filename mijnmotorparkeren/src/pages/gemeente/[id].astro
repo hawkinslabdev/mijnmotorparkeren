@@ -1,0 +1,69 @@
+---
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import App from '../../App'
+
+const { id } = Astro.params as { id: string }
+
+let gemeente: { id: string; name: string; coordinates?: { lat: number; lng: number }; [key: string]: unknown } | null = null
+let notFound = false
+
+try {
+  const filePath = path.join(process.cwd(), 'data', 'gemeentes', `${id}.json`)
+  const content = await readFile(filePath, 'utf-8')
+  const parsed = JSON.parse(content)
+  if (parsed?.id && parsed.id === id) {
+    gemeente = parsed
+  } else {
+    notFound = true
+  }
+} catch {
+  notFound = true
+}
+
+const gemeenteName = gemeente?.name ?? id.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())
+const canonical = `https://mijnmotorparkeren.nl/gemeente/${id}`
+
+const title = gemeente
+  ? `Motor parkeren in ${gemeenteName} | Parkeerregels`
+  : `Gemeente niet gevonden | MijnMotorParkeren.nl`
+
+const description = gemeente
+  ? `Mag de motor op de stoep in ${gemeenteName}? Bekijk de actuele parkeerregels voor ${gemeenteName} op MijnMotorParkeren.nl.`
+  : `De gemeente ${gemeenteName} werd niet gevonden. Bekijk andere gemeenten op MijnMotorParkeren.nl.`
+
+const schemaMarkup = gemeente
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Place',
+      name: gemeenteName,
+      description: `Motor parkeerregels voor gemeente ${gemeenteName}`,
+      url: canonical,
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'NL',
+        addressLocality: gemeenteName,
+      },
+      ...(gemeente.coordinates && {
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: gemeente.coordinates.lat,
+          longitude: gemeente.coordinates.lng,
+        },
+      }),
+    }
+  : undefined
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  noindex={notFound}
+  image="https://mijnmotorparkeren.nl/android-chrome-512x512.png"
+  keywords={`motor, parkeren, motor op de stoep, mijn motor parkeren, motor parkeren, ${gemeenteName}`}
+  schemaMarkup={schemaMarkup}
+>
+  <App client:only="react" initialGemeenteId={id} />
+</BaseLayout>

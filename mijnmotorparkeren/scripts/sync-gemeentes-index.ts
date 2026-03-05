@@ -38,91 +38,92 @@ function getCentroid(boundaries: any): { lat: number, lng: number } | null {
   return { lat: y / n, lng: x / n };
 }
 
+/**
+ * Compute the parking status from raw parking rules data.
+ * Mirrors the logic in src/utils/gemeenteUtils.ts getParkingStatus().
+ */
+function computeParkingStatus(parkingRules: any): 'sidewalk_allowed' | 'free_parking' | 'paid_parking' | 'no_info' {
+  if (!parkingRules) return 'no_info';
+  const moto = parkingRules.motorcycleSpecific;
+  if (!moto) return 'no_info';
+
+  if ((parkingRules.free === true || moto.freeInPaidZones === true) && moto.allowedOnSidewalk === true) {
+    return 'free_parking';
+  }
+  if (moto.allowedOnSidewalk === true) {
+    return 'sidewalk_allowed';
+  }
+  if (parkingRules.paid?.enabled === true || parkingRules.free === false) {
+    return 'paid_parking';
+  }
+  return 'no_info';
+}
+
 function main() {
   const index = readJSON(INDEX_PATH);
-  const referenced = new Set(index.gemeentes.map((g: any) => g.reference));
 
   const files = fs.readdirSync(GEMEENTES_DIR).filter(f => f.endsWith('.json'));
-  const missing = files.filter(f => !referenced.has('gemeentes/' + f));
-
-  // Remove invalid references from index.json
   const fileSet = new Set(files.map(f => 'gemeentes/' + f));
+
+  // Remove stale entries
   const before = index.gemeentes.length;
   index.gemeentes = index.gemeentes.filter((g: any) => fileSet.has(g.reference));
   const removed = before - index.gemeentes.length;
-  if (removed > 0) {
-    console.log(`Removed ${removed} invalid index entries.`);
-  }
+  if (removed > 0) console.log(`Removed ${removed} stale index entries.`);
 
-  // Validate required fields in each entry
-  const requiredFields = ['id', 'name', 'province', 'coordinates'];
-  const invalidEntries = index.gemeentes.filter((g: any) =>
-    requiredFields.some(field => g[field] === undefined || g[field] === null)
-  );
-  if (invalidEntries.length > 0) {
-    console.log('Entries with missing required fields:');
-    for (const entry of invalidEntries) {
-      console.log(entry.reference || entry.id || JSON.stringify(entry));
-    }
-  }
-
-  if (missing.length === 0) {
-    console.log('No missing gemeente files.');
-    return;
-  }
-
-  // Build a map of all gemeente files
-  const gemeenteFileMap = new Map();
+  // Build full map from files
+  const gemeenteFileMap = new Map<string, any>();
   for (const file of files) {
     const filePath = path.join(GEMEENTES_DIR, file);
     const gemeente = readJSON(filePath);
     let coordinates = gemeente.coordinates;
-    if ((!coordinates || !coordinates.lat || !coordinates.lng) && gemeente.boundaries) {
+    if ((!coordinates?.lat || !coordinates?.lng) && gemeente.boundaries) {
       const centroid = getCentroid(gemeente.boundaries);
       if (centroid) coordinates = centroid;
     }
     gemeenteFileMap.set('gemeentes/' + file, { ...gemeente, coordinates });
   }
 
-  // For every entry in index.json, if a gemeente file exists, always update to id, name, province, coordinates, reference
+  // Build the desired index entry for a gemeente file
+  function buildEntry(data: any, reference: string): any {
+    return {
+      id: data.id,
+      name: data.name,
+      province: data.province,
+      coordinates: data.coordinates,
+      ...(data.zoom ? { zoom: data.zoom } : {}),
+      ...(data.statcode ? { statcode: data.statcode } : {}),
+      parkingStatus: computeParkingStatus(data.parkingRules),
+      reference,
+    };
+  }
+
+  // Update existing entries
   for (let i = 0; i < index.gemeentes.length; i++) {
     const entry = index.gemeentes[i];
-    if (entry.reference) {
-      const gemeenteData = gemeenteFileMap.get(entry.reference);
-      if (gemeenteData) {
-        index.gemeentes[i] = {
-          id: gemeenteData.id,
-          name: gemeenteData.name,
-          province: gemeenteData.province,
-          coordinates: gemeenteData.coordinates,
-          reference: entry.reference
-        };
-      } else {
-        console.log(`No gemeente file found for ${entry.reference}`);
-      }
+    const data = gemeenteFileMap.get(entry.reference);
+    if (data) {
+      index.gemeentes[i] = buildEntry(data, entry.reference);
     }
   }
 
-  // Add missing gemeente files as complete entries with reference
-  if (missing.length > 0) {
-    for (const file of missing) {
-      const gemeenteData = gemeenteFileMap.get('gemeentes/' + file);
-      if (gemeenteData) {
-        console.log(`Adding missing gemeente: gemeentes/${file}`);
-        index.gemeentes.push({
-          id: gemeenteData.id,
-          name: gemeenteData.name,
-          province: gemeenteData.province,
-          coordinates: gemeenteData.coordinates,
-          reference: 'gemeentes/' + file
-        });
+  // Add missing entries
+  const referenced = new Set(index.gemeentes.map((g: any) => g.reference));
+  const added: string[] = [];
+  for (const file of files) {
+    const ref = 'gemeentes/' + file;
+    if (!referenced.has(ref)) {
+      const data = gemeenteFileMap.get(ref);
+      if (data) {
+        index.gemeentes.push(buildEntry(data, ref));
+        added.push(ref);
       }
     }
   }
+  if (added.length > 0) console.log(`Added ${added.length} missing entries: ${added.join(', ')}`);
 
-  // Always write the updated index.gemeentes to disk after syncing
   writeJSON(INDEX_PATH, index);
-  console.log('index.json updated.');
+  console.log(`index.json updated: ${index.gemeentes.length} entries.`);
 }
 
 if (import.meta.url === process.argv[1] || import.meta.url === `file://${process.argv[1]}`) {

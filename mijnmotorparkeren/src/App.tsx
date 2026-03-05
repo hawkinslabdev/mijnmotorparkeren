@@ -1,6 +1,5 @@
 // src/App.tsx
 import React, { useEffect, useState, useRef, useCallback } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import 'leaflet/dist/leaflet.css'
 import MapView from '@components/Map/MapView'
 import { SpotlightSearch } from '@components/Search/SpotlightSearch'
@@ -9,16 +8,9 @@ import { Header } from '@components/Layout/Header'
 import { useMapStore } from '@stores/mapStore'
 import { useGemeenteData } from '@hooks/useGemeenteData'
 import { useKeyboardShortcuts } from '@hooks/useKeyboardShortcuts'
-import { useGeolocation } from '@hooks/useGeolocation'
 import { Gemeente } from './types/gemeente'
 import { City } from './types/city'
-import { getVersionedJsonUrl } from './data/index'
-import './App.css'
-
-// Import the page components
-import { HomePage } from './pages/HomePage'
-import { GemeentePage } from './pages/GemeentePage'
-import { CityPage } from './pages/CityPage'
+import { fetchFullCity } from './data/index'
 
 // Fix for default markers in react-leaflet
 import L from 'leaflet'
@@ -31,163 +23,135 @@ const DefaultIcon = L.icon({
   iconSize: [25, 41],
   iconAnchor: [12, 41]
 })
-
 L.Marker.prototype.options.icon = DefaultIcon
 
-// Helper to extract gemeenteId or cityId from the path
-function getRouteParams(pathname: string) {
-  const gemeenteMatch = pathname.match(/^\/gemeente\/([^/]+)/)
-  const cityMatch = pathname.match(/^\/stad\/([^/]+)/)
-  return {
-    gemeenteId: gemeenteMatch ? gemeenteMatch[1] : null,
-    cityId: cityMatch ? cityMatch[1] : null,
-  }
+interface AppProps {
+  initialGemeenteId?: string
+  initialCityId?: string
 }
 
-// Main app content component (wrapped by router)
-const AppContent: React.FC = () => {
+const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) => {
   const [selectedGemeente, setSelectedGemeente] = useState<Gemeente | null>(null)
   const [selectedCity, setSelectedCity] = useState<City | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
-  const navigate = useNavigate()
-  const location = useLocation()
+  const [detailsLoading, setDetailsLoading] = useState(false)
 
-  // Ref for the details panel
   const detailsRef = useRef<HTMLDivElement>(null)
-  
-  const { 
-    setSelectedGemeente: setSelectedGemeenteId,
-    focusOnGemeente 
-  } = useMapStore()
-  
-  const { gemeentes, loading } = useGemeenteData()
-  useGeolocation()
 
-  // Load gemeente/city data at the top level for SEO
+  const { setSelectedGemeente: setSelectedGemeenteId, focusOnGemeente } = useMapStore()
+  const { gemeentes, loading, loadFullGemeente } = useGemeenteData()
+
+  // ─── Geolocation: center on user when opening home page ────────────────────
   useEffect(() => {
-    const { gemeenteId } = getRouteParams(location.pathname)
-    if (gemeenteId && gemeentes.length > 0) {
-      const gemeente = gemeentes.find(g => g.id === gemeenteId)
-      if (gemeente) setSelectedGemeente(gemeente)
+    // Only auto-center when no specific gemeente/city is requested
+    if (initialGemeenteId || initialCityId) return
+    if (!('geolocation' in navigator)) return
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        focusOnGemeente([pos.coords.latitude, pos.coords.longitude], useMapStore.getState().zoom)
+      },
+      () => { /* denied or unavailable — keep configured defaults */ },
+      { enableHighAccuracy: false, timeout: 5000, maximumAge: 5 * 60 * 1000 }
+    )
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) // run once on mount
+
+  // ─── Initialize from Astro URL param ───────────────────────────────────────
+  useEffect(() => {
+    if (!initialGemeenteId || gemeentes.length === 0) return
+    const lite = gemeentes.find(g => g.id === initialGemeenteId)
+    if (!lite) return
+
+    setSelectedGemeenteId(lite.id)
+    if (lite.coordinates) {
+      const zoom = typeof lite.zoom === 'number' ? lite.zoom : 12
+      focusOnGemeente([lite.coordinates.lat, lite.coordinates.lng], zoom)
     }
-  }, [location.pathname, gemeentes])
+
+    // Load full data for the detail panel
+    setDetailsLoading(true)
+    loadFullGemeente(initialGemeenteId).then((full) => {
+      if (full) setSelectedGemeente(full)
+    }).finally(() => setDetailsLoading(false))
+  }, [initialGemeenteId, gemeentes, setSelectedGemeenteId, focusOnGemeente, loadFullGemeente])
 
   useEffect(() => {
-    const { cityId } = getRouteParams(location.pathname)
-    if (cityId) {
-      const loadCity = async () => {
-        try {
-          const url = getVersionedJsonUrl('city', cityId)
-          const response = await fetch(url)
-          if (response.ok) {
-            const city = await response.json()
-            setSelectedCity(city)
-          } else {
-            // Handle 404 properly for SEO - don't redirect immediately
-            console.error(`City ${cityId} not found (${response.status})`)
-            setSelectedCity(null)
-            // Only redirect after a delay to allow SEO crawlers to see the error
-            setTimeout(() => navigate('/', { replace: true }), 1000)
-          }
-        } catch (e) {
-          console.error('Error loading city data:', e)
-          setSelectedCity(null)
-          setTimeout(() => navigate('/', { replace: true }), 1000)
-        }
-      }
-      loadCity()
-    }
-  }, [location.pathname, navigate])
+    if (!initialCityId) return
+    setDetailsLoading(true)
+    fetchFullCity(initialCityId).then((city) => {
+      setSelectedCity(city)
+      if (city.coordinates) focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
+    }).catch(console.error).finally(() => setDetailsLoading(false))
+  }, [initialCityId, focusOnGemeente])
 
-  // Handle keyboard shortcuts
+  // ─── Keyboard shortcuts ────────────────────────────────────────────────────
   useKeyboardShortcuts([
-    {
-      key: 'k',
-      ctrlKey: true,
-      callback: () => setSearchOpen(true)
-    },
-    {
-      key: 'k',
-      metaKey: true,
-      callback: () => setSearchOpen(true)
-    },
-    {
-      key: '/',
-      callback: () => setSearchOpen(true)
-    },
-    {
-      key: 'Escape',
-      callback: () => {
-        setSearchOpen(false)
-        handleDetailsClose()
-      }
-    }
+    { key: 'k', ctrlKey: true,  callback: () => setSearchOpen(true) },
+    { key: 'k', metaKey: true,  callback: () => setSearchOpen(true) },
+    { key: '/',                  callback: () => setSearchOpen(true) },
+    { key: 'Escape',             callback: () => { setSearchOpen(false); handleDetailsClose() } },
   ])
 
-  // Handle gemeente selection
-  const handleGemeenteSelect = (gemeente: Gemeente | null) => {
-    setSelectedGemeente(gemeente)
-    setSelectedCity(null)
-    setSelectedGemeenteId(gemeente?.id || null)
-
-    if (gemeente && gemeente.id) {
-      // Update URL when gemeente is selected
-      navigate(`/gemeente/${gemeente.id}`)
-
-      // Center the map on the selected gemeente
-      if (gemeente.coordinates) {
-        const zoom = typeof gemeente.zoom === 'number' ? gemeente.zoom : 12
-        focusOnGemeente([gemeente.coordinates.lat, gemeente.coordinates.lng], zoom)
-      }
+  // ─── Selection handlers ────────────────────────────────────────────────────
+  const handleGemeenteSelect = useCallback(async (lite: Gemeente | null) => {
+    if (!lite) {
+      setSelectedGemeente(null)
+      setSelectedCity(null)
+      setSelectedGemeenteId(null)
+      return
     }
-  }
 
-  // Handle city selection
-  const handleCitySelect = (city: City | null) => {
-    setSelectedCity(city)
+    setSelectedCity(null)
+    setSelectedGemeenteId(lite.id)
+    window.history.pushState({}, '', `/gemeente/${lite.id}`)
+
+    if (lite.coordinates) {
+      const zoom = typeof lite.zoom === 'number' ? lite.zoom : 12
+      focusOnGemeente([lite.coordinates.lat, lite.coordinates.lng], zoom)
+    }
+
+    // Load full parking rules before showing detail panel
+    setDetailsLoading(true)
+    const full = await loadFullGemeente(lite.id)
+    setSelectedGemeente(full ?? lite)
+    setDetailsLoading(false)
+  }, [setSelectedGemeenteId, focusOnGemeente, loadFullGemeente])
+
+  const handleCitySelect = useCallback(async (city: City | null) => {
+    if (!city) {
+      setSelectedCity(null)
+      setSelectedGemeente(null)
+      setSelectedGemeenteId(null)
+      return
+    }
     setSelectedGemeente(null)
     setSelectedGemeenteId(null)
+    window.history.pushState({}, '', `/stad/${city.id}`)
+    if (city.coordinates) focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
+    setSelectedCity(city)
+  }, [setSelectedGemeenteId, focusOnGemeente])
 
-    if (city && city.id) {
-      // Update URL when city is selected
-      navigate(`/stad/${city.id}`)
-
-      // Center the map on the selected city
-      if (city.coordinates) {
-        focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
-      }
-    }
-  }
-
-  // Handle search result selection
-  const handleSearchSelect = (gemeente: Gemeente) => {
+  const handleSearchSelect = useCallback((gemeente: Gemeente) => {
     handleGemeenteSelect(gemeente)
-    if (gemeente.coordinates) {
-      focusOnGemeente([gemeente.coordinates.lat, gemeente.coordinates.lng], 12)
-    }
     setSearchOpen(false)
-  }
+  }, [handleGemeenteSelect])
 
-  // Handle close of details panel (your version)
   const handleDetailsClose = useCallback(() => {
     setSelectedGemeente(null)
     setSelectedCity(null)
     setSelectedGemeenteId(null)
-    // Navigate back to home when closing details
-    navigate('/')
-  }, [navigate, setSelectedGemeenteId])
+    window.history.pushState({}, '', '/')
+  }, [setSelectedGemeenteId])
 
-  // Handle share functionality with proper URLs (your improved version)
+  // ─── Share ─────────────────────────────────────────────────────────────────
   const [shareLoading, setShareLoading] = useState(false)
   const handleShare = async () => {
     setShareLoading(true)
     try {
-      // Use the current location pathname for sharing
-      const shareUrl = window.location.origin + location.pathname
-      
+      const shareUrl = window.location.href
       let title = 'MijnMotorParkeren.nl'
       let text = 'Bekijk het parkeerbeleid voor jouw motor in Nederlandse gemeenten'
-      
       if (selectedCity) {
         title = `Parkeerregels in ${selectedCity.name}`
         text = `Bekijk de parkeerregels voor ${selectedCity.name} (gemeente ${selectedCity.parent}) op MijnMotorParkeren.nl`
@@ -195,9 +159,7 @@ const AppContent: React.FC = () => {
         title = `Parkeerregels in ${selectedGemeente.name}`
         text = `Bekijk de parkeerregels voor ${selectedGemeente.name} op MijnMotorParkeren.nl`
       }
-      
       const shareData = { title, text, url: shareUrl }
-      
       if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
         await navigator.share(shareData)
       } else {
@@ -211,22 +173,16 @@ const AppContent: React.FC = () => {
     }
   }
 
-  // Handle click outside details to close it
+  // ─── Click outside map closes details ─────────────────────────────────────
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const shareBtn = document.getElementById('mobile-share-btn')
-      if (shareBtn && shareBtn.contains(event.target as Node)) {
-        return
-      }
-      
+      if (shareBtn?.contains(event.target as Node)) return
       if (detailsRef.current && !detailsRef.current.contains(event.target as Node)) {
         const mapContainer = document.querySelector('.leaflet-container')
-        if (mapContainer && mapContainer.contains(event.target as Node)) {
-          handleDetailsClose()
-        }
+        if (mapContainer?.contains(event.target as Node)) handleDetailsClose()
       }
     }
-
     if (selectedGemeente || selectedCity) {
       document.addEventListener('mousedown', handleClickOutside)
       return () => document.removeEventListener('mousedown', handleClickOutside)
@@ -244,45 +200,51 @@ const AppContent: React.FC = () => {
     )
   }
 
-  return (
-    <>
-      {/* SEO logic removed - now handled by individual route components */}
-      
-      <div className="viewport-full bg-gray-50 flex flex-col">
-        <Header onSearchOpen={() => setSearchOpen(true)} />
-        
-        <main className="flex-1 relative">
-          <MapView 
-            gemeentes={gemeentes} 
-            onGemeenteSelect={handleGemeenteSelect}
-            onCitySelect={handleCitySelect}
-            selectedGemeente={selectedGemeente}
-            selectedCity={selectedCity}
-            detailsOpen={Boolean(selectedGemeente || selectedCity)}
-          />
-          
-          <SpotlightSearch
-            open={searchOpen}
-            onOpenChange={setSearchOpen}
-            onSelect={handleSearchSelect}
-          />
-          
-          {(selectedGemeente || selectedCity) && (
-            <div 
-              ref={detailsRef}
-              className="fixed sm:absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none transition-all duration-300 max-h-[70vh] sm:max-h-none overflow-y-auto"
-              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}
-            >
-              <div className="sm:hidden flex justify-center mb-2">
-                <div className="w-12 h-1.5 bg-gray-300 rounded-full" />
-              </div>
+  const detailsOpen = Boolean(selectedGemeente || selectedCity || detailsLoading)
 
-              <ParkingRules 
-                gemeente={selectedGemeente} 
+  return (
+    <div className="viewport-full bg-gray-50 flex flex-col">
+      <Header onSearchOpen={() => setSearchOpen(true)} />
+
+      <main className="flex-1 relative">
+        <MapView
+          gemeentes={gemeentes}
+          onGemeenteSelect={handleGemeenteSelect}
+          onCitySelect={handleCitySelect}
+          selectedGemeente={selectedGemeente}
+          selectedCity={selectedCity}
+          detailsOpen={detailsOpen}
+        />
+
+        <SpotlightSearch
+          open={searchOpen}
+          onOpenChange={setSearchOpen}
+          onSelect={handleSearchSelect}
+        />
+
+        {detailsOpen && (
+          <div
+            ref={detailsRef}
+            className="fixed sm:absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none transition-all duration-300 max-h-[70vh] sm:max-h-none overflow-y-auto"
+            style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}
+          >
+            <div className="sm:hidden flex justify-center mb-2">
+              <div className="w-12 h-1.5 bg-gray-300 rounded-full" />
+            </div>
+
+            {detailsLoading ? (
+              <div className="flex items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              </div>
+            ) : (
+              <ParkingRules
+                gemeente={selectedGemeente}
                 city={selectedCity}
                 onClose={handleDetailsClose}
               />
+            )}
 
+            {!detailsLoading && (
               <button
                 type="button"
                 onClick={handleShare}
@@ -305,42 +267,13 @@ const AppContent: React.FC = () => {
                   </>
                 )}
               </button>
-            </div>
-          )}
-        </main>
-      </div>
-
-      {/* Route handlers - these components handle the URL params and update state */}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route 
-          path="/gemeente/:gemeenteId" 
-          element={
-            <GemeentePage 
-              onGemeenteSelect={handleGemeenteSelect}
-            />
-          } 
-        />
-        <Route 
-          path="/stad/:cityId" 
-          element={
-            <CityPage 
-              onCitySelect={handleCitySelect}
-            />
-          } 
-        />
-      </Routes>
-    </>
+            )}
+          </div>
+        )}
+      </main>
+    </div>
   )
 }
 
-// Root App component with Router
-const App: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
-  )
-}
-
+const App: React.FC<AppProps> = (props) => <AppContent {...props} />
 export default App

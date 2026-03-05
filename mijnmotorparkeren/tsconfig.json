@@ -1,24 +1,10 @@
 {
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "target": "ES2022",
-    "useDefineForClassFields": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "declaration": false,
     "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "jsxImportSource": "react",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -30,10 +16,6 @@
       "@data/*": ["data/*"]
     }
   },
-  "include": ["src", "eslint.config.js"],
-  "exclude": [
-    "src/data/index.ts",
-    "src/types/*.d.ts"
-  ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", ".astro"],
+  "exclude": ["dist", "node_modules"]
 }

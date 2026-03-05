@@ -1,7 +1,7 @@
 // src/components/Map/MapView.tsx
 import React, { useEffect, useState, useRef } from 'react'
-import { MapContainer, TileLayer, GeoJSON, useMap, CircleMarker } from 'react-leaflet'
-import { LatLngExpression, Map as LeafletMap } from 'leaflet'
+import { MapContainer, TileLayer, GeoJSON, useMap, useMapEvents, CircleMarker } from 'react-leaflet'
+import { LatLngExpression, LatLngBounds, Map as LeafletMap } from 'leaflet'
 import { useMapStore } from '@stores/mapStore'
 import { Gemeente } from '@/types/gemeente'
 import { City } from '@/types/city'
@@ -25,11 +25,18 @@ interface MapViewProps {
 // Component to handle map updates
 const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ center, zoom }) => {
   const map = useMap()
-  
-  useEffect(() => {
-    map.setView(center, zoom)
-  }, [map, center, zoom])
-  
+  useEffect(() => { map.setView(center, zoom) }, [map, center, zoom])
+  return null
+}
+
+// Tracks the current viewport bounds and notifies parent on change.
+// Uses a 40 % pad so boundaries just outside the screen edge pre-load smoothly.
+const BoundsTracker: React.FC<{ onBoundsChange: (b: LatLngBounds) => void }> = ({ onBoundsChange }) => {
+  const map = useMapEvents({
+    moveend: () => onBoundsChange(map.getBounds()),
+    zoomend: () => onBoundsChange(map.getBounds()),
+  })
+  useEffect(() => { onBoundsChange(map.getBounds()) }, []) // eslint-disable-line react-hooks/exhaustive-deps
   return null
 }
 
@@ -576,6 +583,7 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
   const { getCurrentLocation } = useGeolocation()
   const mapRef = useRef<LeafletMap>(null)
   const [mapReady, setMapReady] = useState(false)
+  const [mapBounds, setMapBounds] = useState<LatLngBounds | null>(null)
   const [tilesLoaded, setTilesLoaded] = useState(false)
   const [locationLoading, setLocationLoading] = useState(false)
   const [shareLoading, setShareLoading] = useState(false)
@@ -726,10 +734,11 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
         whenReady={() => setMapReady(true)}
       >
         <MapUpdater center={center} zoom={zoom} />
-        
+        <BoundsTracker onBoundsChange={setMapBounds} />
+
         <TileLayer
-          url={import.meta.env.VITE_MAP_TILE_URL || "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
-          attribution={import.meta.env.VITE_MAP_ATTRIBUTION || '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
+          url={import.meta.env.PUBLIC_MAP_TILE_URL || "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+          attribution={import.meta.env.PUBLIC_MAP_ATTRIBUTION || '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
           eventHandlers={debugEnabled ? {
             loading: () => {
               console.log('🔄 Tiles loading...')
@@ -760,23 +769,37 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
           }}
         />
 
-        {/* LAYER ORDER IS CRITICAL: Gemeente boundaries first (bottom layer) */}
-        {gemeentes.length > 0 && mapReady && (
-          <RealBoundariesLayer 
-            gemeentes={gemeentes} 
-            onGemeenteSelect={handleGemeenteSelect}
-            debugEnabled={debugEnabled}
-          />
-        )}
-
-        {/* City boundaries second (top layer); will capture clicks first */}
-        {gemeentes.length > 0 && mapReady && onCitySelect && (
-          <CityBoundariesLayer
-            gemeentes={gemeentes}
-            onCitySelect={handleCitySelect}
-            debugEnabled={debugEnabled}
-          />
-        )}
+        {/* Only render boundaries for gemeentes whose centroid is within the
+            current viewport (+ 40 % padding for smooth panning). This keeps the
+            number of active Leaflet GeoJSON layers small regardless of how many
+            gemeentes exist in the dataset. */}
+        {(() => {
+          const visibleGemeentes = mapBounds
+            ? gemeentes.filter(g =>
+                g.coordinates && mapBounds.pad(0.4).contains([g.coordinates.lat, g.coordinates.lng])
+              )
+            : gemeentes
+          return (
+            <>
+              {/* LAYER ORDER IS CRITICAL: Gemeente boundaries first (bottom layer) */}
+              {visibleGemeentes.length > 0 && mapReady && (
+                <RealBoundariesLayer
+                  gemeentes={visibleGemeentes}
+                  onGemeenteSelect={handleGemeenteSelect}
+                  debugEnabled={debugEnabled}
+                />
+              )}
+              {/* City boundaries second (top layer); will capture clicks first */}
+              {visibleGemeentes.length > 0 && mapReady && onCitySelect && (
+                <CityBoundariesLayer
+                  gemeentes={visibleGemeentes}
+                  onCitySelect={handleCitySelect}
+                  debugEnabled={debugEnabled}
+                />
+              )}
+            </>
+          )
+        })()}
 
         {/* Current location indicator (map only) */}
         {currentLocation && (

@@ -64,18 +64,20 @@ export interface ParkingRules {
   }
 }
 
+export type ParkingStatusValue = 'sidewalk_allowed' | 'free_parking' | 'paid_parking' | 'no_info'
+
 export interface Gemeente {
   id: string
   name: string
   province: string
   coordinates: Coordinates
-  boundaries: GeoJSONPolygon
-  parkingRules: ParkingRules
+  boundaries?: GeoJSONPolygon       // optional — not present in lite index entries
+  parkingRules?: ParkingRules       // optional — not present in lite index entries
   contact?: Contact
-  lastUpdated: string
-  sources: Source[]
-  statcode?: string // Added for compatibility with official boundaries
-  parkingStatus?: string // Added for compatibility with scripts
+  lastUpdated?: string
+  sources?: Source[]
+  statcode?: string
+  parkingStatus?: ParkingStatusValue // pre-computed in index; avoids loading full parkingRules for map rendering
   zoom?: number
 }
 

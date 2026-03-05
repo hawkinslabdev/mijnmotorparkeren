@@ -13,12 +13,25 @@ export function getParkingStatus(entity: Gemeente | City): {
   label: string
   colorClass: string
 } {
+  // Use pre-computed parkingStatus from the lite index if available — avoids
+  // loading full parkingRules just to determine map colors.
+  if (entity.parkingStatus) {
+    const labelMap: Record<string, { label: string; colorClass: string }> = {
+      sidewalk_allowed: { label: 'Parkeren op stoep toegestaan', colorClass: 'bg-blue-100 text-blue-800' },
+      free_parking:     { label: 'Gratis in het vak parkeren',    colorClass: 'bg-green-100 text-green-800' },
+      paid_parking:     { label: 'Betaald parkeren',              colorClass: 'bg-red-100 text-red-800' },
+      no_info:          { label: 'Geen informatie',               colorClass: 'bg-gray-100 text-gray-800' },
+    }
+    const s = entity.parkingStatus as 'sidewalk_allowed' | 'free_parking' | 'paid_parking' | 'no_info'
+    return { status: s, ...(labelMap[s] ?? labelMap.no_info) }
+  }
+
   const parkingRules = entity.parkingRules
   const motorcycleRules = parkingRules?.motorcycleSpecific
-  
+
   // Check if this is a city (has parent property)
   const isCity = 'parent' in entity && entity.parent
-  
+
   // No parking rules available
   if (!parkingRules) {
     return {

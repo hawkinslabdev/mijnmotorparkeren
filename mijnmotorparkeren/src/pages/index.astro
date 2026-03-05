@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import App from '../App'
+
+const schemaMarkup = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'MijnMotorParkeren.nl',
+  description: 'Platform voor het vinden van motor parkeerregels per gemeente in Nederland',
+  url: 'https://mijnmotorparkeren.nl',
+  applicationCategory: 'NavigationApplication',
+  operatingSystem: 'Web Browser',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'EUR',
+  },
+}
+---
+
+<BaseLayout
+  title="Motor parkeren Nederland | MijnMotorParkeren.nl"
+  description="Bekijk het parkeerbeleid voor motor parkeren in Nederlandse gemeenten. Vind alle regels op MijnMotorParkeren.nl."
+  canonical="https://mijnmotorparkeren.nl/"
+  keywords="motor parkeren, motorfiets parkeren, parkeerregels, Nederland, gemeente, stoep parkeren"
+  schemaMarkup={schemaMarkup}
+>
+  <App client:only="react" />
+</BaseLayout>

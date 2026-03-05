@@ -1,0 +1,69 @@
+---
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import App from '../../App'
+
+const { id } = Astro.params as { id: string }
+
+let city: { id: string; name: string; parent?: string; coordinates?: { lat: number; lng: number }; [key: string]: unknown } | null = null
+let notFound = false
+
+try {
+  const filePath = path.join(process.cwd(), 'data', 'city', `${id}.json`)
+  const content = await readFile(filePath, 'utf-8')
+  city = JSON.parse(content)
+} catch {
+  notFound = true
+}
+
+const cityName = city?.name ?? id.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())
+const parentGemeente = city?.parent ?? 'Nederland'
+const canonical = `https://mijnmotorparkeren.nl/stad/${id}`
+
+const title = city
+  ? `Motor parkeren in ${cityName} | Parkeerregels`
+  : `Stad niet gevonden | MijnMotorParkeren.nl`
+
+const description = city
+  ? `Mag de motor op de stoep in ${cityName} (gemeente ${parentGemeente})? Bekijk de actuele parkeerregels op MijnMotorParkeren.nl.`
+  : `De stad ${cityName} werd niet gevonden. Bekijk andere steden op MijnMotorParkeren.nl.`
+
+const schemaMarkup = city
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Place',
+      name: cityName,
+      description: `Motor parkeerregels voor ${cityName}`,
+      url: canonical,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: cityName,
+        addressCountry: 'NL',
+      },
+      containedInPlace: {
+        '@type': 'Place',
+        name: parentGemeente,
+      },
+      ...(city.coordinates && {
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: city.coordinates.lat,
+          longitude: city.coordinates.lng,
+        },
+      }),
+    }
+  : undefined
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  noindex={notFound}
+  image="https://mijnmotorparkeren.nl/android-chrome-512x512.png"
+  keywords={`motor, parkeren, motor op de stoep, mijn motor parkeren, motor parkeren, ${cityName}`}
+  schemaMarkup={schemaMarkup}
+>
+  <App client:only="react" initialCityId={id} />
+</BaseLayout>

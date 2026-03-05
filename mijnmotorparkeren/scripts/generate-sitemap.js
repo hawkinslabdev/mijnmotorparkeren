@@ -96,8 +96,8 @@ function generateSitemap({ baseUrl, routes }) {
         
         const sitemap = generateSitemap({ baseUrl, routes: allRoutes });
         
-        // Write to dist directory
-        const outputPath = path.resolve(__dirname, '../dist/sitemap.xml');
+        // Write to dist/client directory (Astro's static file output)
+        const outputPath = path.resolve(__dirname, '../dist/client/sitemap.xml');
         await fs.mkdir(path.dirname(outputPath), { recursive: true });
         await fs.writeFile(outputPath, sitemap);
         

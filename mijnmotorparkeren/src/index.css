@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')
-layer(base);
 @import 'tailwindcss';
 
 @layer base {
   body {
     @apply antialiased;
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -16,24 +16,22 @@ layer(base);
     font-family: inherit;
     position: relative;
   }
-  
+
   /* Fix for z-index issues */
   .leaflet-top,
   .leaflet-bottom {
     z-index: 400;
   }
-  
+
   /* Ensure map controls are clickable */
   .leaflet-control {
     z-index: 800;
   }
 }
 
-/* App container fix */
-#root {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* Astro island element should be block-level */
+astro-island {
+  display: block;
 }
 
 /* Main container that holds the map */
@@ -49,10 +47,4 @@ layer(base);
   position: relative;
   overflow: hidden;
   min-height: 0; /* This is important for flex children */
-}
-
-/* Debugging helper - add this temporarily to see the map container */
-.map-debug {
-  border: 2px solid red;
-  background-color: rgba(255, 0, 0, 0.1);
 }
