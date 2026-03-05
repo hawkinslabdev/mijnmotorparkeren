@@ -36,10 +36,10 @@ interface MapState {
 
 // Get values from environment variables with fallbacks
 const DEFAULT_CENTER: LatLngExpression = [
-  parseFloat(import.meta.env.PUBLIC_DEFAULT_CENTER_LAT) || 52.3676,
-  parseFloat(import.meta.env.PUBLIC_DEFAULT_CENTER_LNG) || 4.9041
+  parseFloat(import.meta.env.PUBLIC_DEFAULT_CENTER_LAT) || 52.3727,
+  parseFloat(import.meta.env.PUBLIC_DEFAULT_CENTER_LNG) || 5.4847
 ]
-const DEFAULT_ZOOM = parseInt(import.meta.env.PUBLIC_DEFAULT_ZOOM) || 7
+const DEFAULT_ZOOM = parseInt(import.meta.env.PUBLIC_DEFAULT_ZOOM) || 8
 
 export const useMapStore = create<MapState>()(
   persist(

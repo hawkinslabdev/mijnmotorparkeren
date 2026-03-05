@@ -32,14 +32,13 @@ That's all you may need to know to use it! Head over to (MijnMotorParkeren.nl)[h
 
 **Anyone can help keep the data accurate!**
 
-- Spot an error or are you missing something? [Let us know on melden.mijnmotorparkeren.nl](https://melden.mijnmotorparkeren.nl/). Or, just pull up an Issue on GitHub.
-- To add or update data:
-  - **Method 1:** Submit a pull request with your changes following the data structure above. Always include official sources and use ISO 8601 dates.
-  - **Method 2:** Use [melden.mijnmotorparkeren.nl](https://melden.mijnmotorparkeren.nl) to submit your update or correction.
-- (Advanced) Validate your changes locally: `npm run validate:data`.
-- Your change will be reviewed and merged if correct.
+Spot an error or are you missing something? 
 
-This means you don't need to clone or run the project locally to contribute (to existing) data!
+- To add or update data:
+  - **Method 1:** Submit a pull request with your changes following the data structure above. Always include official sources and use ISO 8601 dates. If you're feeling technical, validate your changes locally: `npm run validate:data`. 
+  - **Method 2:** Use [melden.mijnmotorparkeren.nl](https://melden.mijnmotorparkeren.nl) to submit your update or correction.
+
+This means you don't *need* to clone or run the project locally to contribute (to existing) data!
 
 ## Help
 
