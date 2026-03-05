@@ -4,6 +4,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "skipLibCheck": true,
+    "types": ["node"],
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {

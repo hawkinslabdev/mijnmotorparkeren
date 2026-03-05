@@ -7,7 +7,16 @@ import path from 'node:path'
 
 let cache: string | null = null
 
-function computeParkingStatus(rules: any): string {
+interface RawParkingRules {
+  free?: boolean | null
+  paid?: { enabled?: boolean | null } | null
+  motorcycleSpecific?: {
+    allowedOnSidewalk?: boolean | null
+    freeInPaidZones?: boolean | null
+  } | null
+}
+
+function computeParkingStatus(rules: RawParkingRules | null | undefined): string {
   if (!rules) return 'no_info'
   const moto = rules.motorcycleSpecific
   if (!moto) return 'no_info'
