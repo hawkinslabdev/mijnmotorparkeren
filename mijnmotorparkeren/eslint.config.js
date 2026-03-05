@@ -11,6 +11,13 @@ export default [
     ignores: ['dist', 'node_modules', 'build', '.vite']
   },
   {
+    // Astro API routes and scripts run on Node.js — need Node globals (process, etc.)
+    files: ['src/pages/**/*.ts', 'scripts/**/*.ts'],
+    languageOptions: {
+      globals: { ...globals.node }
+    }
+  },
+  {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       ecmaVersion: 'latest',
