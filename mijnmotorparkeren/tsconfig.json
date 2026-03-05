@@ -16,6 +16,6 @@
       "@data/*": ["data/*"]
     }
   },
-  "include": ["src", ".astro"],
+  "include": ["src", ".astro", "scripts"],
   "exclude": ["dist", "node_modules"]
 }
