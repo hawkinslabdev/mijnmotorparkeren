@@ -1,3 +1,4 @@
+/// <reference types="node" />
 // src/pages/data/index.json.ts
 // Dynamically generates the gemeente index from the filesystem.
 // Module-level cache: built once per server process, never stale between deploys.

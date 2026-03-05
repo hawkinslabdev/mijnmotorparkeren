@@ -1,3 +1,4 @@
+/// <reference types="node" />
 // src/pages/data/city/index.json.ts
 // Dynamically generates the city index from the filesystem.
 import type { APIRoute } from 'astro'
