@@ -33,10 +33,10 @@ ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=4321
 
-# Install production dependencies — React and other packages are externalized
-# by Vite/Rollup and must be resolvable in node_modules at runtime.
-COPY package*.json ./
-RUN npm ci --omit=dev --legacy-peer-deps
+# Copy node_modules from builder so all transitive runtime deps are available.
+# Avoids "Cannot find module X" errors caused by omitting dev deps that Astro
+# or its plugins rely on at runtime (html-escaper, react, etc.).
+COPY --from=builder /app/node_modules ./node_modules
 
 # Copy the Astro build output
 COPY --from=builder /app/dist ./dist
