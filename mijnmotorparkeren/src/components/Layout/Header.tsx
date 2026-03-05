@@ -171,7 +171,7 @@ export const Header: React.FC<HeaderProps> = ({
                     rel="noopener noreferrer"
                     className="flex w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg items-center justify-between"
                   >
-                    <span>Meer info</span>
+                    <span>GitHub</span>
                     <ExternalLink className="w-4 h-4 ml-2 flex-shrink-0" />
                   </a>
                   <a

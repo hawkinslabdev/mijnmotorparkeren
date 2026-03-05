@@ -24,7 +24,8 @@ export const PromoBar: React.FC = () => {
             rel="noopener noreferrer"
             className="text-green-800 hover:text-green-900 font-medium transition-colors underline"
           >
-            {currentItem.linkText}
+            <span className="hidden sm:inline">{currentItem.linkText}</span>
+            <span className="sm:hidden">Bekijken</span>
           </a>
         )}
         <button
