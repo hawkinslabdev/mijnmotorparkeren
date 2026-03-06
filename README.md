@@ -12,7 +12,7 @@
 
 Our goal: **make it easy for everyone to know how you can park your motorcycle, anywhere in the country.**
 
-[**Visit the website**](https://mijnmotorparkeren.nl) • [**Contribute data**](#-contributing) • [**How it works**](#-how-it-works) • [**Help**](#-help) • [**Donate**](#-donate)
+[**Visit the website**](https://mijnmotorparkeren.nl) • [**Contribute data**](#contributing) • [**How it works**](#how-it-works) • [**Help**](#help) • [**Donate**](#donate)
 
 ---
 
