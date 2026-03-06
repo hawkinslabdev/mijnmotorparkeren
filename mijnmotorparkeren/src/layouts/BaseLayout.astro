@@ -29,6 +29,18 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Unregister legacy PWA service worker and clear stale caches -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          registrations.forEach((reg) => reg.unregister())
+        })
+        caches.keys().then((keys) => {
+          keys.forEach((key) => caches.delete(key))
+        })
+      }
+    </script>
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
