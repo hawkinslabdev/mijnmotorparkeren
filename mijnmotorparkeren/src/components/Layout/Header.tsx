@@ -90,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Meld map issue button; Desktop Only */}
             <div className="hidden md:block">
               <a
-                href="https://melden.mijnmotorparkeren.nl"
+                href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 px-3 py-2 bg-[#dbede3] hover:bg-[#c2e2d1] rounded-lg transition-colors text-green-800 hover:text-green-900"
@@ -156,8 +156,8 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
                 
                 <div className="space-y-2">
-                  <a 
-                    href="https://melden.mijnmotorparkeren.nl" 
+                  <a
+                    href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg items-center justify-between"

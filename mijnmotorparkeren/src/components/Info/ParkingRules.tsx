@@ -79,7 +79,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
         <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex items-center gap-2">
           {/* Report/Help button */}
           <a
-            href="https://melden.mijnmotorparkeren.nl"
+            href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
             target="_blank"
             rel="noopener noreferrer"
             className="p-1.5 rounded-full hover:bg-white/50 transition-colors group"

@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "lastGenerated": "2026-03-22",
+  "total": 3,
+  "pois": [
+    {
+      "id": "ams-rokin",
+      "municipalityId": "amsterdam",
+      "type": "freeStreetParking",
+      "name": "Rokin"
+    },
+    {
+      "id": "ams-centrum-kalverstraat",
+      "municipalityId": "amsterdam",
+      "type": "freeStreetParking",
+      "name": "Kalverstraat"
+    },
+    {
+      "id": "ams-spiegelgracht",
+      "municipalityId": "amsterdam",
+      "type": "freeStreetParking",
+      "name": "Spiegelgracht"
+    }
+  ]
+}

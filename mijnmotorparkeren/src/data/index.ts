@@ -1,17 +1,19 @@
 import type { Gemeente, ParkingStatusValue } from '../types/gemeente'
 import type { City } from '../types/city'
+import type { POI, POIIndex } from '../types/poi'
 
 // Use PUBLIC_DATA_VERSION from .env for cache busting, fallback to today's date if empty
 let DATA_VERSION = import.meta.env.PUBLIC_DATA_VERSION
 if (!DATA_VERSION || DATA_VERSION.trim() === '') {
   const today = new Date()
-  DATA_VERSION = today.getFullYear().toString() +
+  DATA_VERSION =
+    today.getFullYear().toString() +
     String(today.getMonth() + 1).padStart(2, '0') +
     String(today.getDate()).padStart(2, '0')
 }
 
-// Helper to generate versioned URLs for gemeente/city JSON files
-export function getVersionedJsonUrl(type: 'gemeentes' | 'city', id: string) {
+// Helper to generate versioned URLs for municipality/city/poi JSON files
+export function getVersionedJsonUrl(type: 'gemeentes' | 'city' | 'poi', id: string) {
   return `/data/${type}/${id}.json?v=${DATA_VERSION}`
 }
 
@@ -20,7 +22,10 @@ export function getIndexUrl() {
 }
 
 /** Lite gemeente shape returned from the index — sufficient for map rendering. */
-export interface GemeenteLite extends Pick<Gemeente, 'id' | 'name' | 'province' | 'coordinates' | 'zoom' | 'statcode' | 'parkingStatus'> {
+export interface GemeenteLite extends Pick<
+  Gemeente,
+  'id' | 'name' | 'province' | 'coordinates' | 'zoom' | 'statcode' | 'parkingStatus'
+> {
   parkingStatus: ParkingStatusValue
 }
 
@@ -31,12 +36,15 @@ let indexPromise: Promise<GemeenteLite[]> | null = null
 export function fetchGemeenteIndex(): Promise<GemeenteLite[]> {
   if (!indexPromise) {
     indexPromise = fetch(getIndexUrl())
-      .then(res => {
+      .then((res) => {
         if (!res.ok) throw new Error(`Failed to fetch gemeente index: ${res.status}`)
         return res.json()
       })
-      .then(json => (json.gemeentes ?? []) as GemeenteLite[])
-      .catch(err => { indexPromise = null; throw err })
+      .then((json) => (json.gemeentes ?? []) as GemeenteLite[])
+      .catch((err) => {
+        indexPromise = null
+        throw err
+      })
   }
   return indexPromise
 }
@@ -53,4 +61,39 @@ export async function fetchFullCity(id: string): Promise<City> {
   const res = await fetch(getVersionedJsonUrl('city', id))
   if (!res.ok) throw new Error(`City not found: ${id} (${res.status})`)
   return res.json()
+}
+
+let poiIndexPromise: Promise<POIIndex> | null = null
+const loadedPOIs = new Map<string, POI[]>()
+
+export function fetchPOIIndex(): Promise<POIIndex> {
+  if (!poiIndexPromise) {
+    poiIndexPromise = fetch(getVersionedJsonUrl('poi', 'index'))
+      .then((res) => {
+        if (!res.ok) throw new Error(`Failed to fetch POI index: ${res.status}`)
+        return res.json()
+      })
+      .catch((err) => {
+        poiIndexPromise = null
+        throw err
+      })
+  }
+  return poiIndexPromise
+}
+
+export async function fetchMunicipalityPOIs(municipalityId: string): Promise<POI[]> {
+  if (loadedPOIs.has(municipalityId)) {
+    return loadedPOIs.get(municipalityId)!
+  }
+
+  try {
+    const res = await fetch(getVersionedJsonUrl('poi', municipalityId))
+    if (!res.ok) return []
+    const data = await res.json()
+    const pois = data.pois || []
+    loadedPOIs.set(municipalityId, pois)
+    return pois
+  } catch {
+    return []
+  }
 }

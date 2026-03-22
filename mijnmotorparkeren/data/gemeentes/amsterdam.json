@@ -31,9 +31,21 @@
             "allowedOnSidewalk": true,
             "freeInPaidZones": false,
             "notes": "Een motorfiets mag, zolang het overige verkeer niet wordt gehinderd, op het trottoir of op een verbreding daarvan worden geparkeerd. Als een motor wordt geparkeerd op een (betaalde) parkeerplaats, dan moet er wel betaald worden."
+        },
+        "securityAdvice": {
+            "recommended": [
+                "Remschijfslot met alarm (ca. 110 dB)",
+                "Stuurslot",
+                "Noodschakelaar (killswitch)"
+            ],
+            "optional": [
+                "Motorhoes om te beschermen tegen toeristen die op de motor gaan zitten of aan knoppen gaan draaien",
+                "Dubbele beveiliging met ketting verankerd aan frame en vaste grondverankering (voor waardevolle of opvallende motoren)"
+            ],
+            "communityNotes": "In drukke gebieden zoals het centrum is sociale controle hoog, waardoor diefstal relatief zeldzaam is. Het grootste risico is dat toeristen op de motor gaan zitten of met de knoppen spelen."
         }
     },
-    "lastUpdated": "2025-07-15",
+    "lastUpdated": "2026-03-22",
     "sources": [
         {
             "type": "official",

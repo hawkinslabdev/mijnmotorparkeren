@@ -1,46 +1,57 @@
 // src/components/Map/MapView.tsx
 import React, { useEffect, useState, useRef } from 'react'
-import { MapContainer, TileLayer, GeoJSON, useMap, useMapEvents, CircleMarker } from 'react-leaflet'
+import { MapContainer, TileLayer, GeoJSON, useMap, useMapEvents, CircleMarker, Tooltip } from 'react-leaflet'
 import { LatLngExpression, LatLngBounds, Map as LeafletMap } from 'leaflet'
 import { useMapStore } from '@stores/mapStore'
 import type { Gemeente } from '@/types/gemeente'
 import type { City } from '@/types/city'
+import type { POI } from '@/types/poi'
+import { POI_TYPE_CONFIG } from '@/types/poi'
 import { useGeolocation } from '@/hooks/useGeolocation'
 import { getMapBoundaryColors } from '@/utils/gemeenteUtils'
 import type * as GeoJSONType from 'geojson'
 import type { TileEvent, TileErrorEvent } from 'leaflet'
 import { RotateCcw } from 'lucide-react'
+import { fetchMunicipalityPOIs } from '@/data/index'
 
 interface MapViewProps {
   gemeentes: Gemeente[]
   onGemeenteSelect: (gemeente: Gemeente | null) => void
   onCitySelect?: (city: City) => void
+  onPOISelect?: (poi: POI) => void
+  onReset?: () => void
   debugEnabled?: boolean
   selectedGemeente?: Gemeente | null
   selectedCity?: City | null
-  detailsOpen?: boolean // Add this prop
+  detailsOpen?: boolean
 }
 
 // Component to handle map updates
 const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ center, zoom }) => {
   const map = useMap()
-  useEffect(() => { map.setView(center, zoom) }, [map, center, zoom])
+  useEffect(() => {
+    map.setView(center, zoom)
+  }, [map, center, zoom])
   return null
 }
 
 // Tracks the current viewport bounds and notifies parent on change.
 // Uses a 40 % pad so boundaries just outside the screen edge pre-load smoothly.
-const BoundsTracker: React.FC<{ onBoundsChange: (b: LatLngBounds) => void }> = ({ onBoundsChange }) => {
+const BoundsTracker: React.FC<{ onBoundsChange: (b: LatLngBounds) => void }> = ({
+  onBoundsChange,
+}) => {
   const map = useMapEvents({
     moveend: () => onBoundsChange(map.getBounds()),
     zoomend: () => onBoundsChange(map.getBounds()),
   })
-  useEffect(() => { onBoundsChange(map.getBounds()) }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    onBoundsChange(map.getBounds())
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
   return null
 }
 
 // Component to display the parking legend
-const ParkingLegend: React.FC = () => {
+const ParkingLegend: React.FC<{ gemeenteSelected: boolean }> = ({ gemeenteSelected }) => {
   return (
     <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 z-[1000] max-w-xs">
       <h4 className="font-semibold text-sm mb-3 text-gray-800">Legenda</h4>
@@ -61,12 +72,35 @@ const ParkingLegend: React.FC = () => {
           <div className="w-4 h-4 rounded border-2 border-red-600 bg-red-100"></div>
           <span>Alleen (betaald) in het vak</span>
         </div>
+        {gemeenteSelected && (
+          <>
+            <div className="mt-3 pt-2 border-t border-gray-200">
+              <span className="text-xs font-medium text-gray-600">Parkeerlocaties</span>
+            </div>
+            {Object.values(POI_TYPE_CONFIG).map((cfg) => (
+              <div key={cfg.label} className="flex items-center gap-2">
+                <div
+                  className="w-4 h-4 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: cfg.color, border: `2px solid ${cfg.color}` }}
+                />
+                <span>{cfg.label}</span>
+              </div>
+            ))}
+          </>
+        )}
       </div>
       <div className="mt-3 pt-2 border-t border-gray-200 text-xs text-gray-600">
         <div className="flex items-center gap-1">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 6v6l4 2"/>
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
           </svg>
           <span>Klik op gemeente voor details</span>
         </div>
@@ -86,14 +120,16 @@ const MobileShareButton: React.FC<{
   useEffect(() => {
     // Check if device is mobile
     const checkMobile = () => {
-      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
       const hasSmallScreen = window.innerWidth < 768
       setIsMobile(isMobileDevice || hasSmallScreen)
     }
 
     checkMobile()
     window.addEventListener('resize', checkMobile)
-    
+
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
@@ -110,10 +146,18 @@ const MobileShareButton: React.FC<{
       {isLoading ? (
         <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
       ) : (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-700">
-          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-          <polyline points="16,6 12,2 8,6"/>
-          <line x1="12" y1="2" x2="12" y2="15"/>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="text-gray-700"
+        >
+          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+          <polyline points="16,6 12,2 8,6" />
+          <line x1="12" y1="2" x2="12" y2="15" />
         </svg>
       )}
     </button>
@@ -138,22 +182,30 @@ const CountryBoundariesLayer: React.FC<{
         if (!res.ok) return
         const data = await res.json()
         if (data.boundaries) {
-          setBoundaries(prev => new Map(prev).set(country.id, data.boundaries))
+          setBoundaries((prev) => new Map(prev).set(country.id, data.boundaries))
         }
-      } catch { /* silent */ }
+      } catch {
+        /* silent */
+      }
     })
   }, [countries]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
-      {countries.map(country => {
+      {countries.map((country) => {
         const geom = boundaries.get(country.id)
         if (!geom) return null
         const colors = getMapBoundaryColors(country)
         return (
           <GeoJSON
             key={`country-boundary-${country.id}`}
-            data={{ type: 'Feature', properties: { id: country.id }, geometry: geom } as GeoJSONType.Feature}
+            data={
+              {
+                type: 'Feature',
+                properties: { id: country.id },
+                geometry: geom,
+              } as GeoJSONType.Feature
+            }
             style={{
               fillColor: colors.fillColor,
               color: colors.borderColor,
@@ -169,16 +221,104 @@ const CountryBoundariesLayer: React.FC<{
   )
 }
 
+const POILayer: React.FC<{
+  municipalityId: string
+  onPOISelect?: (poi: POI) => void
+  debugEnabled?: boolean
+}> = ({ municipalityId, onPOISelect, debugEnabled = false }) => {
+  const [pois, setPois] = useState<POI[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadPOIs = async () => {
+      try {
+        setLoading(true)
+        const data = await fetchMunicipalityPOIs(municipalityId)
+        setPois(data)
+        if (debugEnabled) {
+          console.log(`Loaded ${data.length} POIs for ${municipalityId}`)
+        }
+      } catch (error) {
+        if (debugEnabled) {
+          console.error('Failed to load POIs:', error)
+        }
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadPOIs()
+  }, [municipalityId, debugEnabled])
+
+  if (loading) {
+    return debugEnabled ? (
+      <div className="absolute top-40 right-4 bg-purple-600/75 text-white p-2 rounded text-xs z-[2000]">
+        Loading POIs...
+      </div>
+    ) : null
+  }
+
+  if (pois.length === 0) {
+    return debugEnabled ? (
+      <div className="absolute top-40 right-4 bg-gray-600/75 text-white p-2 rounded text-xs z-[2000]">
+        No POIs for {municipalityId}
+      </div>
+    ) : null
+  }
+
+  return (
+    <>
+      {pois.map((poi) => {
+        const config = POI_TYPE_CONFIG[poi.type]
+        return (
+          <CircleMarker
+            key={poi.id}
+            center={[poi.coordinates.lat, poi.coordinates.lng]}
+            radius={8}
+            pathOptions={{
+              color: config.color,
+              fillColor: config.color,
+              fillOpacity: 0.8,
+              weight: 2,
+            }}
+            eventHandlers={{
+              click: (e) => {
+                e.originalEvent.stopPropagation()
+                if (onPOISelect) {
+                  onPOISelect(poi)
+                }
+                if (debugEnabled) {
+                  console.log('POI clicked:', poi.name, poi.type)
+                }
+              },
+              mousedown: (e) => {
+                e.originalEvent.stopPropagation()
+              },
+            }}
+          >
+            <Tooltip>{poi.name} — {config.label}</Tooltip>
+          </CircleMarker>
+        )
+      })}
+      {debugEnabled && pois.length > 0 && (
+        <div className="absolute top-40 right-4 bg-purple-600/75 text-white p-2 rounded text-xs z-[2000]">
+          POIs: {pois.length}
+        </div>
+      )}
+    </>
+  )
+}
+
 // --- Add a custom pane for city boundaries ---
 const CityPaneSetter: React.FC = () => {
-  const map = useMap();
+  const map = useMap()
   useEffect(() => {
     if (!map.getPane('city-boundaries')) {
-      map.createPane('city-boundaries');
-      map.getPane('city-boundaries')!.style.zIndex = '450'; // higher than overlayPane (default 400)
+      map.createPane('city-boundaries')
+      map.getPane('city-boundaries')!.style.zIndex = '450' // higher than overlayPane (default 400)
     }
-  }, [map]);
-  return null;
+  }, [map])
+  return null
 }
 
 // City Boundaries Layer Component; Fixed to use proper colors
@@ -196,11 +336,11 @@ const CityBoundariesLayer: React.FC<{
       try {
         setLoading(true)
         setError(null)
-        
-  // Load city index
-  const { getVersionedJsonUrl } = await import('../../data/index')
-  const indexUrl = getVersionedJsonUrl('city', 'index')
-  const indexResponse = await fetch(indexUrl)
+
+        // Load city index
+        const { getVersionedJsonUrl } = await import('../../data/index')
+        const indexUrl = getVersionedJsonUrl('city', 'index')
+        const indexResponse = await fetch(indexUrl)
         if (!indexResponse.ok) {
           if (debugEnabled) {
             console.log('ℹ️ No city index found; cities not available')
@@ -224,7 +364,7 @@ const CityBoundariesLayer: React.FC<{
             if (cityResponse.ok) {
               const cityData = await cityResponse.json()
               loadedCities.push(cityData)
-              
+
               if (debugEnabled) {
                 console.log(`Loaded city: ${cityData.name}`)
               }
@@ -237,7 +377,7 @@ const CityBoundariesLayer: React.FC<{
         }
 
         setCities(loadedCities)
-        
+
         if (debugEnabled) {
           console.log(`Successfully loaded ${loadedCities.length} cities`)
         }
@@ -255,8 +395,8 @@ const CityBoundariesLayer: React.FC<{
   }, [debugEnabled])
 
   // Filter cities to only show those for currently visible gemeentes
-  const visibleCities = cities.filter(city => 
-    gemeentes.some(gemeente => gemeente.id === city.parent)
+  const visibleCities = cities.filter((city) =>
+    gemeentes.some((gemeente) => gemeente.id === city.parent)
   )
 
   if (loading) {
@@ -300,27 +440,27 @@ const CityBoundariesLayer: React.FC<{
               weight: 3,
               opacity: 1,
               fillOpacity: 0.6,
-              dashArray: '8, 4'
+              dashArray: '8, 4',
             }
           })()}
           eventHandlers={{
             click: (e) => {
               // CRITICAL: Stop event propagation to prevent gemeente click
               e.originalEvent.stopPropagation()
-              
+
               if (debugEnabled) {
                 console.log('City clicked (preventing gemeente click):', city.name)
               }
-              
+
               onCitySelect(city)
             },
             mouseover: (e) => {
               const layer = e.target
               layer.setStyle({
                 weight: 4,
-                fillOpacity: 0.8
+                fillOpacity: 0.8,
               })
-              
+
               // Also stop propagation on hover to prevent gemeente events
               e.originalEvent?.stopPropagation()
             },
@@ -328,21 +468,19 @@ const CityBoundariesLayer: React.FC<{
               const layer = e.target
               layer.setStyle({
                 weight: 3,
-                fillOpacity: 0.6
+                fillOpacity: 0.6,
               })
-              
+
               e.originalEvent?.stopPropagation()
-            }
+            },
           }}
         />
       ))}
-      
+
       {debugEnabled && visibleCities.length > 0 && (
         <div className="absolute top-16 right-4 bg-orange-600/75 text-white p-2 rounded text-xs z-[2000] max-w-sm">
           <div>Cities: {visibleCities.length}</div>
-          <div className="mt-1 text-xs">
-            {visibleCities.map(city => city.name).join(', ')}
-          </div>
+          <div className="mt-1 text-xs">{visibleCities.map((city) => city.name).join(', ')}</div>
         </div>
       )}
     </>
@@ -355,7 +493,8 @@ const RealBoundariesLayer: React.FC<{
   onGemeenteSelect: (gemeente: Gemeente) => void
   debugEnabled?: boolean
 }> = ({ gemeentes, onGemeenteSelect, debugEnabled = false }) => {
-  const [officialBoundaries, setOfficialBoundaries] = useState<GeoJSONType.FeatureCollection | null>(null)
+  const [officialBoundaries, setOfficialBoundaries] =
+    useState<GeoJSONType.FeatureCollection | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -365,26 +504,26 @@ const RealBoundariesLayer: React.FC<{
         if (debugEnabled) {
           console.log('Fetching official Dutch gemeente boundaries...')
         }
-        
+
         // Simplified fetch without custom headers to avoid CORS preflight
         const response = await fetch('https://cartomap.github.io/nl/wgs84/gemeente_2025.geojson')
-        
+
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`)
         }
-        
+
         const data = await response.json()
-        
+
         // Validate the response
         if (!data || !data.features || !Array.isArray(data.features)) {
           throw new Error('Invalid GeoJSON format')
         }
-        
+
         if (debugEnabled) {
           console.log(`Loaded ${data.features.length} official gemeente boundaries`)
           console.log('Sample feature properties:', data.features[0]?.properties)
         }
-        
+
         setOfficialBoundaries(data)
         setError(null)
       } catch (error) {
@@ -408,31 +547,33 @@ const RealBoundariesLayer: React.FC<{
     const foundFeature = officialBoundaries.features.find((feature) => {
       const props = feature.properties
       if (!props || !props.statnaam) return false
-      
+
       // Clean up names for comparison
-      const boundaryNameLower = props.statnaam.toLowerCase()
+      const boundaryNameLower = props.statnaam
+        .toLowerCase()
         .replace(/^gemeente\s+/i, '')
         .replace(/\s+\(.*\)$/, '') // Remove parenthetical suffixes like "(NH.)"
-      
-      const gemeenteNameLower = gemeente.name.toLowerCase()
+
+      const gemeenteNameLower = gemeente.name
+        .toLowerCase()
         .replace(/^gemeente\s+/i, '')
         .replace(/\s+\(.*\)$/, '')
-      
+
       const cleanBoundaryName = boundaryNameLower
         .replace(/^gemeente\s+/i, '')
         .replace(/\s+\(.*\)$/, '') // Remove parenthetical suffixes like "(NH.)"
-      
+
       const cleanGemeenteName = gemeenteNameLower
         .replace(/^gemeente\s+/i, '')
         .replace(/\s+\(.*\)$/, '')
-      
+
       if (cleanBoundaryName === cleanGemeenteName) {
         if (debugEnabled) {
           console.log(`Clean match found for ${gemeente.name}: ${cleanBoundaryName}`)
         }
         return true
       }
-      
+
       // Try matching by CBS statcode if available
       if (props.statcode && gemeente.statcode && props.statcode === gemeente.statcode) {
         if (debugEnabled) {
@@ -440,7 +581,7 @@ const RealBoundariesLayer: React.FC<{
         }
         return true
       }
-      
+
       return false
     })
 
@@ -469,7 +610,7 @@ const RealBoundariesLayer: React.FC<{
     if (debugEnabled) {
       console.log('No official boundaries available, using fallback')
     }
-    
+
     // Fallback to local boundaries if available
     return (
       <>
@@ -480,31 +621,33 @@ const RealBoundariesLayer: React.FC<{
             }
             return null
           }
-          
+
           if (debugEnabled) {
             console.log(`Using local boundary for ${gemeente.name}`)
           }
-          
+
           // FIXED: Use proper color logic
           const colors = getMapBoundaryColors(gemeente)
-          
+
           return (
             <GeoJSON
               key={`fallback-boundary-${gemeente.id}`}
-              data={{
-                type: 'Feature',
-                properties: { name: gemeente.name, id: gemeente.id },
-                geometry: gemeente.boundaries
-              } as GeoJSONType.Feature}
+              data={
+                {
+                  type: 'Feature',
+                  properties: { name: gemeente.name, id: gemeente.id },
+                  geometry: gemeente.boundaries,
+                } as GeoJSONType.Feature
+              }
               style={{
                 fillColor: colors.fillColor,
                 color: colors.borderColor,
                 weight: 2,
                 opacity: 0.8,
-                fillOpacity: 0.4
+                fillOpacity: 0.4,
               }}
               eventHandlers={{
-                click: () => onGemeenteSelect(gemeente)
+                click: () => onGemeenteSelect(gemeente),
               }}
             />
           )
@@ -551,21 +694,23 @@ const RealBoundariesLayer: React.FC<{
         return (
           <GeoJSON
             key={`local-fallback-${gemeente.id}`}
-            data={{
-              type: 'Feature',
-              properties: { name: gemeente.name, id: gemeente.id },
-              geometry: gemeente.boundaries
-            } as GeoJSONType.Feature}
+            data={
+              {
+                type: 'Feature',
+                properties: { name: gemeente.name, id: gemeente.id },
+                geometry: gemeente.boundaries,
+              } as GeoJSONType.Feature
+            }
             style={{
               fillColor: colors.fillColor,
               color: colors.borderColor,
               weight: 2,
               opacity: 0.8,
               fillOpacity: 0.3,
-              dashArray: '5, 5' // Dashed line to indicate fallback
+              dashArray: '5, 5', // Dashed line to indicate fallback
             }}
             eventHandlers={{
-              click: () => onGemeenteSelect(gemeente)
+              click: () => onGemeenteSelect(gemeente),
             }}
           />
         )
@@ -590,7 +735,7 @@ const RealBoundariesLayer: React.FC<{
           color: colors.borderColor,
           weight: 2,
           opacity: 0.8,
-          fillOpacity: 0.5
+          fillOpacity: 0.5,
         }}
         eventHandlers={{
           click: () => {
@@ -598,7 +743,7 @@ const RealBoundariesLayer: React.FC<{
               console.log('Clicked gemeente:', gemeente.name)
             }
             onGemeenteSelect(gemeente)
-          }
+          },
         }}
       />
     )
@@ -611,12 +756,12 @@ const RealBoundariesLayer: React.FC<{
       {/* Enhanced debug info for rendered boundaries */}
       {debugEnabled && (
         <div className="absolute top-72 left-4 bg-green-600/75 text-white p-2 rounded text-xs z-[2000] max-w-sm">
-          <div>Official: {renderedCount}/{gemeentes.length}</div>
+          <div>
+            Official: {renderedCount}/{gemeentes.length}
+          </div>
           <div>Fallback: {gemeentes.length - renderedCount - notFoundGemeentes.length}</div>
           {notFoundGemeentes.length > 0 && (
-            <div className="mt-1 text-xs">
-              Missing: {notFoundGemeentes.join(', ')}
-            </div>
+            <div className="mt-1 text-xs">Missing: {notFoundGemeentes.join(', ')}</div>
           )}
         </div>
       )}
@@ -624,7 +769,17 @@ const RealBoundariesLayer: React.FC<{
   )
 }
 
-const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySelect, debugEnabled = false, selectedGemeente, selectedCity, detailsOpen }) => {
+const MapView: React.FC<MapViewProps> = ({
+  gemeentes,
+  onGemeenteSelect,
+  onCitySelect,
+  onPOISelect,
+  onReset,
+  debugEnabled = false,
+  selectedGemeente,
+  selectedCity,
+  detailsOpen,
+}) => {
   const { center, zoom, setCenter, setZoom } = useMapStore()
   const { getCurrentLocation } = useGeolocation()
   const mapRef = useRef<LeafletMap>(null)
@@ -640,24 +795,26 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
-      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
       const hasSmallScreen = window.innerWidth < 768
       setIsMobile(isMobileDevice || hasSmallScreen)
     }
 
     checkMobile()
     window.addEventListener('resize', checkMobile)
-    
+
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   // --- Ensure city-boundaries pane exists before children render ---
   useEffect(() => {
     if (mapRef.current && !mapRef.current.getPane('city-boundaries')) {
-      mapRef.current.createPane('city-boundaries');
-      mapRef.current.getPane('city-boundaries')!.style.zIndex = '450';
+      mapRef.current.createPane('city-boundaries')
+      mapRef.current.getPane('city-boundaries')!.style.zIndex = '450'
     }
-  }, [mapReady]);
+  }, [mapReady])
 
   // Handle gemeente selection
   const handleGemeenteSelect = (gemeente: Gemeente | null) => {
@@ -752,13 +909,13 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
         console.log('Map container size:', {
           width: container.offsetWidth,
           height: container.offsetHeight,
-          computed: window.getComputedStyle(container)
+          computed: window.getComputedStyle(container),
         })
         console.log('Map container classes:', container.className)
       }
-      
+
       setMapReady(true)
-      
+
       // Force invalidate size after a short delay to ensure proper rendering
       setTimeout(() => {
         if (mapRef.current) {
@@ -783,36 +940,55 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
         <BoundsTracker onBoundsChange={setMapBounds} />
 
         <TileLayer
-          url={import.meta.env.PUBLIC_MAP_TILE_URL || "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
-          attribution={import.meta.env.PUBLIC_MAP_ATTRIBUTION || '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
-          eventHandlers={debugEnabled ? {
-            loading: () => {
-              console.log('Tiles loading...')
-              setTilesLoaded(false)
-            },
-            load: () => {
-              console.log('Tiles loaded successfully')
-              setTilesLoaded(true)
-            },
-            tileerror: (e: TileErrorEvent) => {
-              console.error('Tile loading error:', e)
-              console.error('Error details:', {
-                coords: e.coords,
-                error: e.error,
-                tile: e.tile,
-                url: e.target && 'src' in e.target ? (e.target as HTMLImageElement).src : undefined
-              })
-            },
-            tileloadstart: (e: TileEvent) => {
-              console.log('🟡 Tile load start:', e.tile && 'src' in e.tile ? (e.tile as HTMLImageElement).src : 'No URL')
-            },
-            tileload: (e: TileEvent) => {
-              console.log('Single tile loaded:', e.tile && 'src' in e.tile ? (e.tile as HTMLImageElement).src : 'No URL')
-            },
-          } : {
-            load: () => setTilesLoaded(true),
-            loading: () => setTilesLoaded(false)
-          }}
+          url={
+            import.meta.env.PUBLIC_MAP_TILE_URL ||
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          }
+          attribution={
+            import.meta.env.PUBLIC_MAP_ATTRIBUTION ||
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }
+          eventHandlers={
+            debugEnabled
+              ? {
+                  loading: () => {
+                    console.log('Tiles loading...')
+                    setTilesLoaded(false)
+                  },
+                  load: () => {
+                    console.log('Tiles loaded successfully')
+                    setTilesLoaded(true)
+                  },
+                  tileerror: (e: TileErrorEvent) => {
+                    console.error('Tile loading error:', e)
+                    console.error('Error details:', {
+                      coords: e.coords,
+                      error: e.error,
+                      tile: e.tile,
+                      url:
+                        e.target && 'src' in e.target
+                          ? (e.target as HTMLImageElement).src
+                          : undefined,
+                    })
+                  },
+                  tileloadstart: (e: TileEvent) => {
+                    console.log(
+                      '🟡 Tile load start:',
+                      e.tile && 'src' in e.tile ? (e.tile as HTMLImageElement).src : 'No URL'
+                    )
+                  },
+                  tileload: (e: TileEvent) => {
+                    console.log(
+                      'Single tile loaded:',
+                      e.tile && 'src' in e.tile ? (e.tile as HTMLImageElement).src : 'No URL'
+                    )
+                  },
+                }
+              : {
+                  load: () => setTilesLoaded(true),
+                  loading: () => setTilesLoaded(false),
+                }
+          }
         />
 
         {/* Only render boundaries for gemeentes whose centroid is within the
@@ -821,13 +997,15 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
             gemeentes exist in the dataset. */}
         {(() => {
           const visible = mapBounds
-            ? gemeentes.filter(g =>
-                g.coordinates && mapBounds.pad(0.4).contains([g.coordinates.lat, g.coordinates.lng])
+            ? gemeentes.filter(
+                (g) =>
+                  g.coordinates &&
+                  mapBounds.pad(0.4).contains([g.coordinates.lat, g.coordinates.lng])
               )
             : gemeentes
 
-          const visibleGemeentes = visible.filter(g => g.type !== 'country')
-          const visibleCountries = visible.filter(g => g.type === 'country' && g.coordinates)
+          const visibleGemeentes = visible.filter((g) => g.type !== 'country')
+          const visibleCountries = visible.filter((g) => g.type === 'country' && g.coordinates)
 
           return (
             <>
@@ -847,6 +1025,14 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
                   debugEnabled={debugEnabled}
                 />
               )}
+              {/* POI layer - only render when on /gemeente/ route (selectedGemeente is set) */}
+              {selectedGemeente && mapReady && (
+                <POILayer
+                  municipalityId={selectedGemeente.id}
+                  onPOISelect={onPOISelect}
+                  debugEnabled={debugEnabled}
+                />
+              )}
               {/* Country boundaries — load full geometry on demand, render as GeoJSON */}
               {mapReady && visibleCountries.length > 0 && (
                 <CountryBoundariesLayer
@@ -863,7 +1049,7 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
           <CircleMarker
             center={currentLocation}
             radius={7}
-            pathOptions={{ 
+            pathOptions={{
               color: '#fff', // white border
               fillColor: '#2563eb', // blue fill
               fillOpacity: 1,
@@ -878,7 +1064,7 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
       {isMobile && (
         <div className="absolute top-3 right-3 flex flex-col gap-3 z-[1000] md:hidden">
           {/* Mobile Share Button; always visible on mobile, positioned at top */}
-          <MobileShareButton 
+          <MobileShareButton
             id="mobile-share-btn"
             onShareClick={handleShare}
             isLoading={shareLoading}
@@ -886,7 +1072,7 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
 
           {/* Mobile Reset Button; only visible on mobile, positioned below share button */}
           <button
-            onClick={resetView}
+            onClick={() => onReset?.()}
             className="absolute right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 flex items-center justify-center md:hidden text-gray-700 focus:ring-2 focus:ring-blue-500"
             title="Reset kaart"
             style={{ minWidth: 48, minHeight: 48, top: 68 }}
@@ -905,10 +1091,22 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
             {locationLoading ? (
               <div className="w-5 h-5 border-2 border-t-transparent rounded-full animate-spin border-blue-600"></div>
             ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2" className="text-gray-700">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="" fillOpacity="0.5"/>
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-                <circle cx="12" cy="9" r="2.5" fill="#6b7280"/>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#6b7280"
+                strokeWidth="2"
+                className="text-gray-700"
+              >
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                  fill=""
+                  fillOpacity="0.5"
+                />
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                <circle cx="12" cy="9" r="2.5" fill="#6b7280" />
               </svg>
             )}
           </button>
@@ -919,7 +1117,7 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
       {!isMobile && !detailsOpen && (
         <>
           <button
-            onClick={resetView}
+            onClick={() => onReset?.()}
             className="absolute top-3 right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 transition-colors flex items-center justify-center"
             title="Reset kaart"
             style={{ minWidth: 48, minHeight: 48 }}
@@ -936,10 +1134,22 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
             {locationLoading ? (
               <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
             ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2" className="text-gray-700">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="" fillOpacity="0.15"/>
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-                <circle cx="12" cy="9" r="2.5" fill="#2563eb"/>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#6b7280"
+                strokeWidth="2"
+                className="text-gray-700"
+              >
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                  fill=""
+                  fillOpacity="0.15"
+                />
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                <circle cx="12" cy="9" r="2.5" fill="#2563eb" />
               </svg>
             )}
           </button>
@@ -947,18 +1157,33 @@ const MapView: React.FC<MapViewProps> = ({ gemeentes, onGemeenteSelect, onCitySe
       )}
 
       {/* Legend; always shown unless debugging is enabled */}
-      {!debugEnabled && <ParkingLegend />}
+      {!debugEnabled && <ParkingLegend gemeenteSelected={!!selectedGemeente} />}
 
       {/* Enhanced debug info at bottom; only when debugging */}
       {debugEnabled && (
         <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-3 z-[1000]">
           <h4 className="font-semibold text-sm mb-2">Map Debug Info</h4>
           <div className="text-xs space-y-1">
-            <div>Map Ready: <span className={mapReady ? 'text-green-600' : 'text-red-600'}>{mapReady ? 'Yes' : 'No'}</span></div>
-            <div>Tiles: <span className={tilesLoaded ? 'text-green-600' : 'text-orange-600'}>{tilesLoaded ? 'Loaded' : 'Loading'}</span></div>
+            <div>
+              Map Ready:{' '}
+              <span className={mapReady ? 'text-green-600' : 'text-red-600'}>
+                {mapReady ? 'Yes' : 'No'}
+              </span>
+            </div>
+            <div>
+              Tiles:{' '}
+              <span className={tilesLoaded ? 'text-green-600' : 'text-orange-600'}>
+                {tilesLoaded ? 'Loaded' : 'Loading'}
+              </span>
+            </div>
             <div>Container: {mapRef.current ? 'Created' : 'Pending'}</div>
-            <div>Boundaries: {gemeentes.filter(g => g.boundaries).length} loaded</div>
-            <div>City Support: <span className={onCitySelect ? 'text-green-600' : 'text-red-600'}>{onCitySelect ? 'Enabled' : 'Disabled'}</span></div>
+            <div>Boundaries: {gemeentes.filter((g) => g.boundaries).length} loaded</div>
+            <div>
+              City Support:{' '}
+              <span className={onCitySelect ? 'text-green-600' : 'text-red-600'}>
+                {onCitySelect ? 'Enabled' : 'Disabled'}
+              </span>
+            </div>
             {!mapReady && <div className="text-red-600">Map not ready</div>}
             {!tilesLoaded && mapReady && <div className="text-orange-600">Tiles loading</div>}
           </div>

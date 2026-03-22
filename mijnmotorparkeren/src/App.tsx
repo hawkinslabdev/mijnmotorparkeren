@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import MapView from '@components/Map/MapView'
 import { SpotlightSearch } from '@components/Search/SpotlightSearch'
 import { ParkingRules } from '@components/Info/ParkingRules'
+import { POIDetails } from '@components/Info/POIDetails'
 import { Header } from '@components/Layout/Header'
 import { PromoBar } from '@components/Layout/PromoBar'
 import { useMapStore } from '@stores/mapStore'
@@ -11,6 +12,7 @@ import { useGemeenteData } from '@hooks/useGemeenteData'
 import { useKeyboardShortcuts } from '@hooks/useKeyboardShortcuts'
 import type { Gemeente } from './types/gemeente'
 import { type City } from './types/city'
+import type { POI } from './types/poi'
 import { fetchFullCity } from './data/index'
 
 // Fix for default markers in react-leaflet
@@ -22,7 +24,7 @@ const DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
   iconSize: [25, 41],
-  iconAnchor: [12, 41]
+  iconAnchor: [12, 41],
 })
 L.Marker.prototype.options.icon = DefaultIcon
 
@@ -34,12 +36,13 @@ interface AppProps {
 const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) => {
   const [selectedGemeente, setSelectedGemeente] = useState<Gemeente | null>(null)
   const [selectedCity, setSelectedCity] = useState<City | null>(null)
+  const [selectedPOI, setSelectedPOI] = useState<POI | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
   const [detailsLoading, setDetailsLoading] = useState(false)
 
   const detailsRef = useRef<HTMLDivElement>(null)
 
-  const { setSelectedGemeente: setSelectedGemeenteId, focusOnGemeente } = useMapStore()
+  const { setSelectedGemeente: setSelectedGemeenteId, focusOnGemeente, resetView } = useMapStore()
   const { gemeentes, loading, loadFullGemeente } = useGemeenteData()
 
   // ─── Geolocation: center on user when opening home page ────────────────────
@@ -52,16 +55,18 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       (pos) => {
         focusOnGemeente([pos.coords.latitude, pos.coords.longitude], 13)
       },
-      () => { /* denied or unavailable — keep configured defaults */ },
+      () => {
+        /* denied or unavailable — keep configured defaults */
+      },
       { enableHighAccuracy: false, timeout: 5000, maximumAge: 5 * 60 * 1000 }
     )
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) // run once on mount
 
   // ─── Initialize from Astro URL param ───────────────────────────────────────
   useEffect(() => {
     if (!initialGemeenteId || gemeentes.length === 0) return
-    const lite = gemeentes.find(g => g.id === initialGemeenteId)
+    const lite = gemeentes.find((g) => g.id === initialGemeenteId)
     if (!lite) return
 
     setSelectedGemeenteId(lite.id)
@@ -72,79 +77,114 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
     // Load full data for the detail panel
     setDetailsLoading(true)
-    loadFullGemeente(initialGemeenteId).then((full) => {
-      if (full) setSelectedGemeente(full)
-    }).finally(() => setDetailsLoading(false))
+    loadFullGemeente(initialGemeenteId)
+      .then((full) => {
+        if (full) setSelectedGemeente(full)
+      })
+      .finally(() => setDetailsLoading(false))
   }, [initialGemeenteId, gemeentes, setSelectedGemeenteId, focusOnGemeente, loadFullGemeente])
 
   useEffect(() => {
     if (!initialCityId) return
     setDetailsLoading(true)
-    fetchFullCity(initialCityId).then((city) => {
-      setSelectedCity(city)
-      if (city.coordinates) focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
-    }).catch(console.error).finally(() => setDetailsLoading(false))
+    fetchFullCity(initialCityId)
+      .then((city) => {
+        setSelectedCity(city)
+        if (city.coordinates) focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
+      })
+      .catch(console.error)
+      .finally(() => setDetailsLoading(false))
   }, [initialCityId, focusOnGemeente])
 
   // ─── Keyboard shortcuts ────────────────────────────────────────────────────
   useKeyboardShortcuts([
-    { key: 'k', ctrlKey: true,  callback: () => setSearchOpen(true) },
-    { key: 'k', metaKey: true,  callback: () => setSearchOpen(true) },
-    { key: '/',                  callback: () => setSearchOpen(true) },
-    { key: 'Escape',             callback: () => { setSearchOpen(false); handleDetailsClose() } },
+    { key: 'k', ctrlKey: true, callback: () => setSearchOpen(true) },
+    { key: 'k', metaKey: true, callback: () => setSearchOpen(true) },
+    { key: '/', callback: () => setSearchOpen(true) },
+    {
+      key: 'Escape',
+      callback: () => {
+        setSearchOpen(false)
+        handleDetailsClose()
+      },
+    },
   ])
 
   // ─── Selection handlers ────────────────────────────────────────────────────
-  const handleGemeenteSelect = useCallback(async (lite: Gemeente | null) => {
-    if (!lite) {
-      setSelectedGemeente(null)
+  const handleGemeenteSelect = useCallback(
+    async (lite: Gemeente | null) => {
+      if (!lite) {
+        setSelectedGemeente(null)
+        setSelectedCity(null)
+        setSelectedGemeenteId(null)
+        return
+      }
+
       setSelectedCity(null)
-      setSelectedGemeenteId(null)
-      return
-    }
+      setSelectedGemeenteId(lite.id)
+      const urlBase = lite.type === 'country' ? '/countries' : '/gemeente'
+      window.history.pushState({}, '', `${urlBase}/${lite.id}`)
 
-    setSelectedCity(null)
-    setSelectedGemeenteId(lite.id)
-    const urlBase = lite.type === 'country' ? '/countries' : '/gemeente'
-    window.history.pushState({}, '', `${urlBase}/${lite.id}`)
+      if (lite.coordinates) {
+        const zoom = typeof lite.zoom === 'number' ? lite.zoom : 12
+        focusOnGemeente([lite.coordinates.lat, lite.coordinates.lng], zoom)
+      }
 
-    if (lite.coordinates) {
-      const zoom = typeof lite.zoom === 'number' ? lite.zoom : 12
-      focusOnGemeente([lite.coordinates.lat, lite.coordinates.lng], zoom)
-    }
+      // Load full parking rules before showing detail panel
+      setDetailsLoading(true)
+      const full = await loadFullGemeente(lite.id)
+      setSelectedGemeente(full ?? lite)
+      setDetailsLoading(false)
+    },
+    [setSelectedGemeenteId, focusOnGemeente, loadFullGemeente]
+  )
 
-    // Load full parking rules before showing detail panel
-    setDetailsLoading(true)
-    const full = await loadFullGemeente(lite.id)
-    setSelectedGemeente(full ?? lite)
-    setDetailsLoading(false)
-  }, [setSelectedGemeenteId, focusOnGemeente, loadFullGemeente])
-
-  const handleCitySelect = useCallback(async (city: City | null) => {
-    if (!city) {
-      setSelectedCity(null)
+  const handleCitySelect = useCallback(
+    async (city: City | null) => {
+      if (!city) {
+        setSelectedCity(null)
+        setSelectedGemeente(null)
+        setSelectedGemeenteId(null)
+        return
+      }
       setSelectedGemeente(null)
       setSelectedGemeenteId(null)
-      return
-    }
-    setSelectedGemeente(null)
-    setSelectedGemeenteId(null)
-    window.history.pushState({}, '', `/stad/${city.id}`)
-    if (city.coordinates) focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
-    setSelectedCity(city)
-  }, [setSelectedGemeenteId, focusOnGemeente])
+      window.history.pushState({}, '', `/stad/${city.id}`)
+      if (city.coordinates) focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
+      setSelectedCity(city)
+    },
+    [setSelectedGemeenteId, focusOnGemeente]
+  )
 
-  const handleSearchSelect = useCallback((gemeente: Gemeente) => {
-    handleGemeenteSelect(gemeente)
-    setSearchOpen(false)
-  }, [handleGemeenteSelect])
+  const handleSearchSelect = useCallback(
+    (gemeente: Gemeente) => {
+      handleGemeenteSelect(gemeente)
+      setSearchOpen(false)
+    },
+    [handleGemeenteSelect]
+  )
+
+  const handlePOISelect = useCallback((poi: POI) => {
+    setSelectedPOI(poi)
+    focusOnGemeente([poi.coordinates.lat, poi.coordinates.lng], 17)
+  }, [focusOnGemeente])
+
+  const handlePOIClose = useCallback(() => {
+    setSelectedPOI(null)
+    if (selectedGemeente?.coordinates) {
+      const zoom = typeof selectedGemeente.zoom === 'number' ? selectedGemeente.zoom : 12
+      focusOnGemeente([selectedGemeente.coordinates.lat, selectedGemeente.coordinates.lng], zoom)
+    }
+  }, [focusOnGemeente, selectedGemeente])
 
   const handleDetailsClose = useCallback(() => {
     setSelectedGemeente(null)
     setSelectedCity(null)
+    setSelectedPOI(null)
     setSelectedGemeenteId(null)
+    resetView()
     window.history.pushState({}, '', '/')
-  }, [setSelectedGemeenteId])
+  }, [setSelectedGemeenteId, resetView])
 
   // ─── Share ─────────────────────────────────────────────────────────────────
   const [shareLoading, setShareLoading] = useState(false)
@@ -177,19 +217,43 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
   // ─── Click outside map closes details ─────────────────────────────────────
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    let downX = 0
+    let downY = 0
+
+    const handleMouseDown = (event: MouseEvent) => {
+      downX = event.clientX
+      downY = event.clientY
+    }
+
+    const handleClick = (event: MouseEvent) => {
+      // Ignore if the pointer moved more than 5px — that's a drag, not a click
+      const dx = event.clientX - downX
+      const dy = event.clientY - downY
+      if (Math.sqrt(dx * dx + dy * dy) > 5) return
+
       const shareBtn = document.getElementById('mobile-share-btn')
       if (shareBtn?.contains(event.target as Node)) return
       if (detailsRef.current && !detailsRef.current.contains(event.target as Node)) {
         const mapContainer = document.querySelector('.leaflet-container')
-        if (mapContainer?.contains(event.target as Node)) handleDetailsClose()
+        if (mapContainer?.contains(event.target as Node)) {
+          if (selectedPOI) {
+            handlePOIClose()
+          } else {
+            handleDetailsClose()
+          }
+        }
       }
     }
+
     if (selectedGemeente || selectedCity) {
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => document.removeEventListener('mousedown', handleClickOutside)
+      document.addEventListener('mousedown', handleMouseDown)
+      document.addEventListener('click', handleClick)
+      return () => {
+        document.removeEventListener('mousedown', handleMouseDown)
+        document.removeEventListener('click', handleClick)
+      }
     }
-  }, [selectedGemeente, selectedCity, handleDetailsClose])
+  }, [selectedGemeente, selectedCity, selectedPOI, handleDetailsClose, handlePOIClose])
 
   if (loading) {
     return (
@@ -214,6 +278,8 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
           gemeentes={gemeentes}
           onGemeenteSelect={handleGemeenteSelect}
           onCitySelect={handleCitySelect}
+          onPOISelect={handlePOISelect}
+          onReset={handleDetailsClose}
           selectedGemeente={selectedGemeente}
           selectedCity={selectedCity}
           detailsOpen={detailsOpen}
@@ -239,6 +305,8 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
               <div className="flex items-center justify-center py-12">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
               </div>
+            ) : selectedPOI ? (
+              <POIDetails poi={selectedPOI} onClose={handlePOIClose} />
             ) : (
               <ParkingRules
                 gemeente={selectedGemeente}
@@ -247,7 +315,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
               />
             )}
 
-            {!detailsLoading && (
+            {!detailsLoading && !selectedPOI && (
               <button
                 type="button"
                 onClick={handleShare}
@@ -261,10 +329,17 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
                   </>
                 ) : (
                   <>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-                      <polyline points="16,6 12,2 8,6"/>
-                      <line x1="12" y1="2" x2="12" y2="15"/>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                      <polyline points="16,6 12,2 8,6" />
+                      <line x1="12" y1="2" x2="12" y2="15" />
                     </svg>
                     <span>Deel deze locatie</span>
                   </>

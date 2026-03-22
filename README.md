@@ -23,7 +23,7 @@ MijnMotorParkeren.nl is a free, map-based app for Dutch motorcyclists. It shows 
 - **Map-first**: Instantly see parking rules and boundaries on an interactive map.
 - **Spotlight search**: Quickly find any gemeente by name (Cmd/Ctrl + K).
 - **Offline support**: Works even without internet after first load.
-- **Community-powered**: Anyone can suggest updates or corrections via melden.mijnmotorparkeren.nl.
+- **Community-powered**: Anyone can suggest updates or corrections via GitHub Issues.
 - **Privacy-friendly**: No tracking, no ads, no login required.
 
 That's all you may need to know to use it! Head over to (MijnMotorParkeren.nl)[https://mijnmotorparkeren.nl] and find out!
@@ -32,10 +32,10 @@ That's all you may need to know to use it! Head over to (MijnMotorParkeren.nl)[h
 
 **Anyone can help keep the data accurate!**
 
-- Spot an error or are you missing something? [Let us know on melden.mijnmotorparkeren.nl](https://melden.mijnmotorparkeren.nl/). Or, just pull up an Issue on GitHub.
+- Spot an error or are you missing something? [Open an issue on GitHub](https://github.com/hawkinslabdev/mijnmotorparkeren/issues).
 - To add or update data:
   - **Method 1:** Submit a pull request with your changes following the data structure above. Always include official sources and use ISO 8601 dates.
-  - **Method 2:** Use [melden.mijnmotorparkeren.nl](https://melden.mijnmotorparkeren.nl) to submit your update or correction.
+  - **Method 2:** [Open a GitHub issue](https://github.com/hawkinslabdev/mijnmotorparkeren/issues) to submit your update or correction.
 - (Advanced) Validate your changes locally: `npm run validate:data`.
 - Your change will be reviewed and merged if correct.
 
@@ -46,10 +46,10 @@ This means you don't need to clone or run the project locally to contribute (to 
 Need help using MijnMotorParkeren.nl, have ideas, or found a bug? Here's how you can reach out:
 
 - **Found a bug or have a feature request?**
-  [Let us know through melden.mijnmotorparkeren.nl](https://melden.mijnmotorparkeren.nl/). If you'd like to contribue, please feel free to open a PR. That allows me to merge the changes rather quickly.
+  [Open an issue on GitHub](https://github.com/hawkinslabdev/mijnmotorparkeren/issues). If you'd like to contribue, please feel free to open a PR. That allows me to merge the changes rather quickly.
 
 - **Have questions, want to share feedback, or just chat?**
-  [Start a thread at our community, melden.mijnmotorparkeren.nl](https://melden.mijnmotorparkeren.nl/).
+  [Open a discussion on GitHub](https://github.com/hawkinslabdev/mijnmotorparkeren/issues).
 
 Your feedback helps make MijnMotorParkeren.nl better for everyone. Don't hesitate to reach out!
 
