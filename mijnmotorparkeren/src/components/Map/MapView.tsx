@@ -776,7 +776,7 @@ const MapView: React.FC<MapViewProps> = ({
   const [shareLoading, setShareLoading] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [currentLocation, setCurrentLocation] = useState<LatLngExpression | null>(null)
-  const resetView = useMapStore((state) => state.resetView)
+
 
   // Check if device is mobile
   useEffect(() => {
