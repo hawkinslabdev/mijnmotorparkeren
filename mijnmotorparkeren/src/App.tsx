@@ -41,6 +41,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   const [detailsLoading, setDetailsLoading] = useState(false)
 
   const detailsRef = useRef<HTMLDivElement>(null)
+  const selectedGemeenteRef = useRef<Gemeente | null>(null)
 
   const { setSelectedGemeente: setSelectedGemeenteId, focusOnGemeente, resetView } = useMapStore()
   const { gemeentes, loading, loadFullGemeente } = useGemeenteData()
@@ -169,13 +170,18 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     focusOnGemeente([poi.coordinates.lat, poi.coordinates.lng], 17)
   }, [focusOnGemeente])
 
+  useEffect(() => {
+    selectedGemeenteRef.current = selectedGemeente
+  }, [selectedGemeente])
+
   const handlePOIClose = useCallback(() => {
     setSelectedPOI(null)
-    if (selectedGemeente?.coordinates) {
-      const zoom = typeof selectedGemeente.zoom === 'number' ? selectedGemeente.zoom : 12
-      focusOnGemeente([selectedGemeente.coordinates.lat, selectedGemeente.coordinates.lng], zoom)
+    const gemeente = selectedGemeenteRef.current
+    if (gemeente?.coordinates) {
+      const zoom = typeof gemeente.zoom === 'number' ? gemeente.zoom : 12
+      focusOnGemeente([gemeente.coordinates.lat, gemeente.coordinates.lng], zoom)
     }
-  }, [focusOnGemeente, selectedGemeente])
+  }, [focusOnGemeente])
 
   const handleDetailsClose = useCallback(() => {
     setSelectedGemeente(null)

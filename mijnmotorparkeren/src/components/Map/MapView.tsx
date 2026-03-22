@@ -250,21 +250,7 @@ const POILayer: React.FC<{
     loadPOIs()
   }, [municipalityId, debugEnabled])
 
-  if (loading) {
-    return debugEnabled ? (
-      <div className="absolute top-40 right-4 bg-purple-600/75 text-white p-2 rounded text-xs z-[2000]">
-        Loading POIs...
-      </div>
-    ) : null
-  }
-
-  if (pois.length === 0) {
-    return debugEnabled ? (
-      <div className="absolute top-40 right-4 bg-gray-600/75 text-white p-2 rounded text-xs z-[2000]">
-        No POIs for {municipalityId}
-      </div>
-    ) : null
-  }
+  if (loading || pois.length === 0) return null
 
   return (
     <>
@@ -300,7 +286,7 @@ const POILayer: React.FC<{
           </CircleMarker>
         )
       })}
-      {debugEnabled && pois.length > 0 && (
+      {debugEnabled && (
         <div className="absolute top-40 right-4 bg-purple-600/75 text-white p-2 rounded text-xs z-[2000]">
           POIs: {pois.length}
         </div>
