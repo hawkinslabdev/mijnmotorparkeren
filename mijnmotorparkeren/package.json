@@ -15,15 +15,15 @@
     "generate:index": "tsx scripts/sync-gemeentes-index.ts"
   },
   "dependencies": {
-    "@astrojs/node": "^9.1.4",
-    "@astrojs/react": "^4.3.0",
+    "@astrojs/node": "^10.0.3",
+    "@astrojs/react": "^5.0.1",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-toast": "^1.2.14",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@radix-ui/react-visually-hidden": "^1.2.3",
     "@tailwindcss/postcss": "^4.1.11",
-    "astro": "^5.9.0",
+    "astro": "^6.0.8",
     "baseline-browser-mapping": "^2.9.7",
     "caniuse-lite": "^1.0.30001760",
     "clsx": "^2.1.1",
