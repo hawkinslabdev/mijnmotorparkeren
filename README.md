@@ -26,7 +26,7 @@ MijnMotorParkeren.nl is a free, map-based app for Dutch motorcyclists. It shows 
 - **Community-powered**: Anyone can suggest updates or corrections via GitHub Issues.
 - **Privacy-friendly**: No tracking, no ads, no login required.
 
-That's all you may need to know to use it! Head over to (MijnMotorParkeren.nl)[https://mijnmotorparkeren.nl] and find out!
+That's all you may need to know to use it! Head over to [MijnMotorParkeren.nl](https://mijnmotorparkeren.nl) and find out!
 
 ## Contributing
 
