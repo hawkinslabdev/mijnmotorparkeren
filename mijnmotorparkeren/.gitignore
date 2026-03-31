@@ -30,10 +30,6 @@ dist-ssr
 .env.local
 .env.production
 
-# PWA files
-public/sw.js
-public/workbox-*.js
-
 # Coverage
 coverage
 .nyc_output

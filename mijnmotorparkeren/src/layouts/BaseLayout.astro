@@ -31,14 +31,30 @@ const {
 
     <!-- Unregister legacy PWA service worker and clear stale caches -->
     <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then((registrations) => {
-          registrations.forEach((reg) => reg.unregister())
-        })
-        caches.keys().then((keys) => {
-          keys.forEach((key) => caches.delete(key))
-        })
-      }
+      (async () => {
+        if ('serviceWorker' in navigator) {
+          try {
+            const registrations = await navigator.serviceWorker.getRegistrations();
+            for (const reg of registrations) {
+              await reg.unregister();
+            }
+          } catch (e) {}
+          try {
+            const keys = await caches.keys();
+            await Promise.all(keys.map((key) => caches.delete(key)));
+          } catch (e) {}
+          
+          try {
+            await navigator.serviceWorker.register('/sw.js?t=' + Date.now());
+          } catch (e) {}
+        }
+        
+        if (window.location.search.includes('swbust')) {
+          const url = new URL(window.location.href);
+          url.searchParams.delete('swbust');
+          window.location.replace(url.toString());
+        }
+      })();
     </script>
 
     <title>{title}</title>
