@@ -1,5 +1,6 @@
 {
     "id": "luxemburg",
+    "type": "country",
     "name": "Luxemburg",
     "province": "Luxemburg",
     "coordinates": {
@@ -11,7 +12,7 @@
         "type": "MultiPolygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +29,16 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Parkeren op de stoep wordt gedoogd, mits het voetgangers niet hindert."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Een motorfiets moet volgens de wet op de rijbaan worden geparkeerd, net als andere motorvoertuigen. In Venlo wordt hierop gecontroleerd. Geldt er parkeerregulering (bijv. betaald parkeren of parkeerschijfzone), dan moet je die naleven. Zijn er parkeervakken, dan gebruik je die. Parkeren op trottoirs of in voetgangerszones is hier verboden."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-03-31",
+    "sources": [
+        {
+            "type": "un",
+            "date": "2025-09-26"
+        }
+    ]
 }
