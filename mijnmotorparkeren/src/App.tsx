@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
-import { ToastProvider, useToast } from './components/Layout/Toast'
+import { ToastProvider } from './components/Layout/Toast'
+import { useToast } from './contexts/ToastContext'
 import 'leaflet/dist/leaflet.css'
 import MapView from '@components/Map/MapView'
 import { SpotlightSearch } from '@components/Search/SpotlightSearch'
@@ -62,6 +63,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       },
       { enableHighAccuracy: false, timeout: 5000, maximumAge: 5 * 60 * 1000 }
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

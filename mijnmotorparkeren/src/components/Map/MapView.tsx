@@ -50,7 +50,7 @@ const BoundsTracker: React.FC<{ onBoundsChange: (b: LatLngBounds) => void }> = (
   })
   useEffect(() => {
     onBoundsChange(map.getBounds())
-  }, [])
+  }, [map, onBoundsChange])
   return null
 }
 
@@ -151,10 +151,12 @@ const CountryBoundariesLayer: React.FC<{
   onSelect: (g: Gemeente) => void
 }> = ({ countries, onSelect }) => {
   const [boundaries, setBoundaries] = useState<Map<string, GeoJSONType.Geometry>>(new Map())
+  const fetchedIds = useRef<Set<string>>(new Set())
 
   useEffect(() => {
     countries.forEach(async (country) => {
-      if (boundaries.has(country.id)) return
+      if (fetchedIds.current.has(country.id)) return
+      fetchedIds.current.add(country.id)
       try {
         const res = await fetch(`/data/gemeentes/${country.id}.json`)
         if (!res.ok) return

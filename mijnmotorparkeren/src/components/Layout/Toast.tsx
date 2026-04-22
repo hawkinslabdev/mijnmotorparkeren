@@ -1,15 +1,6 @@
-import React, { createContext, useContext, useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import * as RadixToast from '@radix-ui/react-toast'
-
-interface ToastContextType {
-  showToast: (message: string) => void
-}
-
-const ToastContext = createContext<ToastContextType>({ showToast: () => {} })
-
-export function useToast() {
-  return useContext(ToastContext)
-}
+import { ToastContext } from '../../contexts/ToastContext'
 
 interface ToastItem {
   id: number
