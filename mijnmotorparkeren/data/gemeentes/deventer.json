@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Op de stoep mag (lees: wordt gedoogd) als je geen hinder veroorzaakt. Dat mag als het overige verkeer er maar geen last van heeft, wat u zelf ook al aangeeft."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Telefonisch medewerker Gemeente Deventer",
+            "date": "2026-04-22"
+        }
+    ]
 }

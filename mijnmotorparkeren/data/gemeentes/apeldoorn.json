@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "In de Gemeente Apeldoorn wordt parkeren op de stoep (met de motor) wordt gedoogd. Een ander mag geen hinder van ondervinden. Motorrijders dienen te betalen voor het parkeren in een garage. Net als andere bestuurders van een voertuig. Er zijn geen speciale vakken in onze garages voor motoren."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2025-07-09",
+    "sources": [
+        {
+        "type": "official",
+        "name": "Gemeente Apeldoorn Parkeerbeleid",
+        "url": "https://www.apeldoorn.nl/parkeren",
+        "date": "2025-07-09"
+        }
+    ]
 }

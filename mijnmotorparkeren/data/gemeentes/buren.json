@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Het gebruik van het trottoir is in de wegenverkeerswetgeving verleend aan voetgangers. Aangezien de gemeente geen afwijkend beleid heeft opgesteld, is het niet toegetaan motoren op de stoep te parkeren."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Beleidsondersteuner gemeente Buren",
+            "date": "2026-04-22"
+        }
+    ]
 }

@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": false,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "In de Algemene Plaatselijke Verordening Hollands Kroon 2019 (te vinden op overheid.nl) staat dat er geen betaalde parkeergebieden zijn in Hollands Kroon. Het is niet toegestaan om een motor of voertuig op het voetpad te parkeren, omdat dit hinder kan veroorzaken. Bij overtreding geeft handhaving eerst een waarschuwing, maar bij herhaling volgt een boete."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Beleidsondersteuner gemeente Hollands Kroon",
+            "date": "2026-04-22"
+        }
+    ]
 }

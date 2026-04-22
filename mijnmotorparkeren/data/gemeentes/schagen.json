@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,18 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": false,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "In Schagen heeft de gemeente geen specifiek beleid voor motorparkeren. Volgens de wet is het niet toegestaan om op het trottoir te parkeren, ook niet met een motor. Sommige gemeenten hebben hier wel eigen regels voor, vaak afhankelijk van het aantal motoren. In Schagen riskeer je dus een boete als je motor op de stoep staat."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "url": "#",
+            "name": "Beleidsondersteuner gemeente Schagen",
+            "date": "2026-04-22"
+        }
+    ]
 }
