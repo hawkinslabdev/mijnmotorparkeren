@@ -7,7 +7,7 @@
         "lng": 4.883
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -24,11 +24,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Motorvoertuigen moeten volgens artikel 10 RVV 1990 op de rijbaan staan, dus niet op het trottoir. Parkeren langs de weg is wel toegestaan (behalve buiten de bebouwde kom op voorrangswegen), net als in een parkeervak. Officieel riskeer je een boete als je motor op de stoep staat."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Woerden (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }

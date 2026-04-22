@@ -11,11 +11,34 @@
         "type": "Polygon"
     },
     "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "In West Betuwe staat niets over motorparkeren in de APV. Volgens de wet moeten motoren op de rijbaan of in parkeervakken staan, niet op de stoep. Handhaving West Betuwe bekeurt hier niet op, mits er geen hinder is voor voetgangers of rolstoelgebruikers. Let op: de politie kan wel handhaven, dus parkeer je motor op eigen risico."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente West Betuwe (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }

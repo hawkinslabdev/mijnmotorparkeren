@@ -7,7 +7,7 @@
         "lng": 5.2275
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -24,9 +24,9 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Parkeren op de stoep is wettelijk niet toegestaan, in gemeente Culemborg hanteren wij geen uitzondering hierop. Motoren moeten betalen op plekken waar betaald parkeren geldt."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "   In Culemborg mag je niet met je motor op de stoep parkeren. In vergunninghoudersgebieden heb je een parkeervergunning nodig, en op betaald parkeren betaal je gewoon parkeergeld. Dit staat in het gemeentelijk beleid."
         }
     },
     "lastUpdated": "2025-07-15",
