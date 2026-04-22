@@ -1,7 +1,7 @@
 // src/hooks/useGeolocation.ts
 
 import { useState, useEffect, useCallback } from 'react'
-import { LatLngExpression } from 'leaflet'
+import type { LatLngExpression } from 'leaflet'
 
 interface GeolocationState {
   location: LatLngExpression | null

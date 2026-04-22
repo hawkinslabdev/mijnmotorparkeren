@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { Gemeente } from '../src/types/gemeente'
+import type { Gemeente } from '../src/types/gemeente'
 
 interface CartomapFeature {
   type: 'Feature'
@@ -70,7 +70,7 @@ async function updateGemeenteData() {
     if (match) {
       gemeenteData.statcode = match.properties.statcode
       if (!gemeenteData.parkingStatus) {
-        gemeenteData.parkingStatus = 'grey'
+        gemeenteData.parkingStatus = 'no_info'
       }
       
       fs.writeFileSync(filePath, JSON.stringify(gemeenteData, null, 2))

@@ -14,7 +14,7 @@ export function getParkingStatus(entity: Gemeente | City): {
 } {
   // Use pre-computed parkingStatus from the lite index if available — avoids
   // loading full parkingRules just to determine map colors.
-  if (entity.parkingStatus) {
+  if ('parkingStatus' in entity && entity.parkingStatus) {
     const labelMap: Record<string, { label: string; colorClass: string }> = {
       sidewalk_allowed: {
         label: 'Parkeren op stoep toegestaan',
@@ -125,7 +125,7 @@ export function getMapBoundaryColors(entity: Gemeente | City): {
  * Check if entity (gemeente or city) has dedicated motorcycle spots
  */
 export function hasDedicatedMotorcycleSpots(entity: Gemeente | City): boolean {
-  return entity.parkingRules?.motorcycleSpecific?.dedicatedSpots?.length > 0 || false
+  return (entity.parkingRules?.motorcycleSpecific?.dedicatedSpots?.length ?? 0) > 0
 }
 
 /**

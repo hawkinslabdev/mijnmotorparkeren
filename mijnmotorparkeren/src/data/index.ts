@@ -1,5 +1,5 @@
 import type { Gemeente, ParkingStatusValue } from '../types/gemeente'
-import type { City } from '../types/city'
+import type { City, CityIndex } from '../types/city'
 import type { POI, POIIndex } from '../types/poi'
 
 let DATA_VERSION = import.meta.env.PUBLIC_DATA_VERSION
@@ -99,15 +99,33 @@ export function fetchPOIIndex(): Promise<POIIndex> {
   if (!poiIndexPromise) {
     poiIndexPromise = fetch(getVersionedJsonUrl('poi', 'index'))
       .then((res) => {
-        if (!res.ok) return { pois: [], lastUpdated: '', version: '' } as POIIndex
+        if (!res.ok) return { pois: [], lastUpdated: '', version: '', lastGenerated: '', total: 0 } as POIIndex
         return res.json()
       })
       .catch(() => {
         poiIndexPromise = null
-        return { pois: [], lastUpdated: '', version: '' } as POIIndex
+        return { pois: [], lastUpdated: '', version: '', lastGenerated: '', total: 0 } as POIIndex
       })
   }
   return poiIndexPromise
+}
+
+let cityIndexPromise: Promise<CityIndex | null> | null = null
+
+function fetchCityIndex(): Promise<CityIndex | null> {
+  if (!cityIndexPromise) {
+    cityIndexPromise = fetch(getVersionedJsonUrl('city', 'index'))
+      .then((res) => (res.ok ? res.json() : null))
+      .catch(() => null)
+  }
+  return cityIndexPromise
+}
+
+export async function getCitiesForGemeente(gemeenteId: string): Promise<City[]> {
+  const index = await fetchCityIndex()
+  if (!index) return []
+  const matching = index.cities.filter((c) => c.parent === gemeenteId)
+  return Promise.all(matching.map((c) => fetchFullCity(c.id)))
 }
 
 export async function fetchMunicipalityPOIs(municipalityId: string): Promise<POI[]> {

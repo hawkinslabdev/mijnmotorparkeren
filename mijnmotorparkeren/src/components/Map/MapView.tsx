@@ -8,7 +8,7 @@ import {
   CircleMarker,
   Tooltip,
 } from 'react-leaflet'
-import { LatLngExpression, LatLngBounds, Map as LeafletMap } from 'leaflet'
+import type { LatLngExpression, LatLngBounds, Map as LeafletMap } from 'leaflet'
 import { useMapStore } from '@stores/mapStore'
 import type { Gemeente } from '@/types/gemeente'
 import type { City } from '@/types/city'

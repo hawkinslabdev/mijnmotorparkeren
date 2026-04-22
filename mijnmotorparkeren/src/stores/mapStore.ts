@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { LatLngExpression } from 'leaflet'
+import type { LatLngExpression } from 'leaflet'
 
 interface MapState {
   // Map view state

@@ -36,13 +36,20 @@ export async function resolveParkingRules(
   gemeente: Gemeente,
   coordinates?: [number, number]
 ): Promise<ResolvedParkingInfo> {
+  const parkingRules: ParkingRules = gemeente.parkingRules ?? {
+    free: false,
+    paid: { enabled: false, areas: [], rates: null },
+    permits: { required: false, types: [] },
+    restrictions: { timeLimit: null, noParking: [] },
+    motorcycleSpecific: { dedicatedSpots: [], allowedOnSidewalk: false, freeInPaidZones: false, notes: '' },
+  }
   const result: ResolvedParkingInfo = {
     gemeente: {
       id: gemeente.id,
       name: gemeente.name,
-      rules: gemeente.parkingRules,
+      rules: parkingRules,
     },
-    activeRules: gemeente.parkingRules,
+    activeRules: parkingRules,
     appliedLevel: 'gemeente',
     appliedFor: gemeente.name,
   }
@@ -70,7 +77,7 @@ export async function resolveParkingRules(
             name: city.name,
             rules: city.parkingRules,
           }
-          result.activeRules = mergeParkingRules(gemeente.parkingRules, city.parkingRules)
+          result.activeRules = mergeParkingRules(parkingRules, city.parkingRules)
           result.appliedLevel = 'city'
           result.appliedFor = city.name
           console.log(`Using city rules for ${city.name} at coordinates ${coordinates}`)
@@ -85,7 +92,7 @@ export async function resolveParkingRules(
         name: defaultCity.name,
         rules: defaultCity.parkingRules,
       }
-      result.activeRules = mergeParkingRules(gemeente.parkingRules, defaultCity.parkingRules)
+      result.activeRules = mergeParkingRules(parkingRules, defaultCity.parkingRules)
       result.appliedLevel = 'city'
       result.appliedFor = defaultCity.name
       console.log(`Using default city rules for ${defaultCity.name}`)

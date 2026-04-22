@@ -17,8 +17,8 @@ import type { POI } from './types/poi'
 import { fetchFullCity } from './data/index'
 
 import L from 'leaflet'
-import icon from 'leaflet/dist/images/marker-icon.png'
-import iconShadow from 'leaflet/dist/images/marker-shadow.png'
+import icon from 'leaflet/dist/images/marker-icon.png?url'
+import iconShadow from 'leaflet/dist/images/marker-shadow.png?url'
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
