@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Ondanks het verbod in het RVV 1990 op het parkeren van motoren op het trottoir, hanteert Bloemendaal bij handhaving dezelfde aanpak als Amsterdam. Wanneer omwonenden overlast ervaren van een motor die op het trottoir is geparkeerd, neemt de gemeente contact op met de eigenaar. Samen wordt dan op locatie gezocht naar een passende oplossing."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Bloemendaal (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }

@@ -11,11 +11,34 @@
         "type": "Polygon"
     },
     "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "De Gemeente Tholen gedoogd het parkeren op de stoep door motoren niet. Het trottoir is voor voetgangers en als daar een motor op staat wordt de doorgang gehinderd. Er is geen betaald parkeren, de motor dient in het parkeervak te worden geparkeerd."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Tholen (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }

@@ -11,11 +11,33 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "contact": null,
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Parkeren op de stoep is niet toegestaan. Artikel 10 van het RVV 1990 bepaalt dat bestuurders van motorvoertuigen het trottoir niet mogen gebruiken, ook niet om te parkeren. Omdat de wet voorrang heeft op lokale regels, kan de gemeente Bernheze hier geen uitzondering op maken."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Vught (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }

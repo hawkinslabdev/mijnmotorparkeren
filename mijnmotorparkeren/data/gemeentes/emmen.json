@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "In de gemeente Emmen mag je je motor op de stoep parkeren, zolang je de doorgang niet blokkeert en geen onveilige situatie veroorzaakt. Blokkeer je wel de doorgang of creëer je een onveilige situatie, dan kun je een bekeuring krijgen. Plaats je je motor in een parkeervak binnen een betaald parkeergebied, dan moet je gewoon betalen."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Emmen (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }

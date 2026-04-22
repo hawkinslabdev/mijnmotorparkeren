@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Hoewel het RVV 1990 het parkeren van motoren op het trottoir verbiedt, hanteert Heemstede bij handhaving dezelfde benadering als Amsterdam. Bij klachten over overlast door een motor op het trottoir neemt de gemeente contact op met de eigenaar. Vervolgens wordt ter plaatse gezocht naar een geschikte oplossing."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Heemstede (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }

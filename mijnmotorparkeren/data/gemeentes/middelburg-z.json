@@ -11,11 +11,34 @@
         "type": "Polygon"
     },
     "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "In Middelburg mag u uw motor gratis op de stoep parkeren, zolang u de doorgang niet blokkeert en geen onveilige situatie veroorzaakt; parkeert u in een vak, dan dient u wel parkeergeld te betalen."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Middelburg (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }

@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Volgens artikel 10 van het RVV 1990 is het verboden om motorfietsen op het trottoir te parkeren. Toch wordt in veel gemeenten het parkeren op de stoep gedoogd, mits de doorgang niet wordt geblokkeerd en er geen onveilige situatie ontstaat. De gemeente Woensdrecht heeft hierover geen officiële regelgeving vastgesteld, maar ik zou bovenstaande richtlijn aanhouden."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Woensdrecht (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }

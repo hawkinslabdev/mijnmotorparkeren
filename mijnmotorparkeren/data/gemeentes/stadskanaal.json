@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": true,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": true,
+            "notes": "In de gemeente Stadskanaal is geen specifiek beleid opgesteld voor het parkeren van motorfietsen. Daarom volgt de gemeente de regels uit het Reglement verkeersregels en verkeerstekens 1990 (RVV 1990), waarin staat dat motorfietsen niet op het voetpad mogen worden geparkeerd. Ze mogen alleen op de daartoe bestemde weggedeelten worden geplaatst."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Stadskanaal (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }

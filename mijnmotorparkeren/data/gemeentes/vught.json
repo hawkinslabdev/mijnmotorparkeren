@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -25,14 +25,19 @@
             "timeLimit": null,
             "noParking": []
         },
-        "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
-            "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "allowedOnSidewalk": false,
+            "freeInPaidZones": false,
+            "notes": "Zoals benoemd in artikel 10 van het Reglement verkeersregels en verkeerstekens 1990 (RVV 1990) is het verboden om voertuigen op het trottoir te parkeren. Deze regel geldt ook in Gemeente Vught."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Vught (Klantcontactcentrum)",
+            "date": "2026-04-22"
+        }
+    ]
 }
