@@ -19,26 +19,26 @@ interface SearchState {
   results: SearchResult[]
   isSearching: boolean
   isOpen: boolean
-  
+
   // Recent searches
   recentSearches: SearchResult[]
-  
+
   // Suggestions
   suggestions: string[]
-  
+
   // Actions
   setQuery: (query: string) => void
   setResults: (results: SearchResult[]) => void
   setSearching: (searching: boolean) => void
   setOpen: (open: boolean) => void
-  
+
   // Recent searches management
   addRecentSearch: (result: SearchResult) => void
   clearRecentSearches: () => void
-  
+
   // Suggestions
   setSuggestions: (suggestions: string[]) => void
-  
+
   // Utility actions
   selectResult: (result: SearchResult) => void
   clearSearch: () => void
@@ -67,13 +67,13 @@ export const useSearchStore = create<SearchState>()(
       // Recent searches management
       addRecentSearch: (result) => {
         const { recentSearches } = get()
-        
+
         // Remove if already exists
-        const filtered = recentSearches.filter(item => item.id !== result.id)
-        
+        const filtered = recentSearches.filter((item) => item.id !== result.id)
+
         // Add to front and limit to MAX_RECENT_SEARCHES
         const updated = [result, ...filtered].slice(0, MAX_RECENT_SEARCHES)
-        
+
         set({ recentSearches: updated })
       },
 
@@ -82,15 +82,15 @@ export const useSearchStore = create<SearchState>()(
       // Complex actions
       selectResult: (result) => {
         const { addRecentSearch } = get()
-        
+
         // Add to recent searches
         addRecentSearch(result)
-        
+
         // Clear search and close
         set({
           query: '',
           results: [],
-          isOpen: false
+          isOpen: false,
         })
       },
 
@@ -98,15 +98,15 @@ export const useSearchStore = create<SearchState>()(
         set({
           query: '',
           results: [],
-          isSearching: false
+          isSearching: false,
         })
-      }
+      },
     }),
     {
       name: 'search-store',
       partialize: (state) => ({
-        recentSearches: state.recentSearches
-      })
+        recentSearches: state.recentSearches,
+      }),
     }
   )
 )

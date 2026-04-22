@@ -1,4 +1,3 @@
-// src/utils/gemeenteUtils.ts
 import type { Gemeente } from '@/types/gemeente'
 import type { City } from '@/types/city'
 
@@ -17,12 +16,22 @@ export function getParkingStatus(entity: Gemeente | City): {
   // loading full parkingRules just to determine map colors.
   if (entity.parkingStatus) {
     const labelMap: Record<string, { label: string; colorClass: string }> = {
-      sidewalk_allowed: { label: 'Parkeren op stoep toegestaan', colorClass: 'bg-blue-100 text-blue-800' },
-      free_parking:     { label: 'Gratis in het vak parkeren',    colorClass: 'bg-green-100 text-green-800' },
-      paid_parking:     { label: 'Betaald parkeren',              colorClass: 'bg-red-100 text-red-800' },
-      no_info:          { label: 'Geen informatie',               colorClass: 'bg-gray-100 text-gray-800' },
+      sidewalk_allowed: {
+        label: 'Parkeren op stoep toegestaan',
+        colorClass: 'bg-blue-100 text-blue-800',
+      },
+      free_parking: {
+        label: 'Gratis in het vak parkeren',
+        colorClass: 'bg-green-100 text-green-800',
+      },
+      paid_parking: { label: 'Betaald parkeren', colorClass: 'bg-red-100 text-red-800' },
+      no_info: { label: 'Geen informatie', colorClass: 'bg-gray-100 text-gray-800' },
     }
-    const s = entity.parkingStatus as 'sidewalk_allowed' | 'free_parking' | 'paid_parking' | 'no_info'
+    const s = entity.parkingStatus as
+      | 'sidewalk_allowed'
+      | 'free_parking'
+      | 'paid_parking'
+      | 'no_info'
     return { status: s, ...(labelMap[s] ?? labelMap.no_info) }
   }
 
@@ -37,7 +46,7 @@ export function getParkingStatus(entity: Gemeente | City): {
     return {
       status: 'no_info',
       label: 'Geen informatie',
-      colorClass: 'bg-gray-100 text-gray-800'
+      colorClass: 'bg-gray-100 text-gray-800',
     }
   }
 
@@ -49,7 +58,7 @@ export function getParkingStatus(entity: Gemeente | City): {
     return {
       status: 'free_parking',
       label: isCity ? `${entity.name}: Gratis parkeren` : 'Gratis in het vak parkeren',
-      colorClass: 'bg-green-100 text-green-800'
+      colorClass: 'bg-green-100 text-green-800',
     }
   }
 
@@ -57,8 +66,10 @@ export function getParkingStatus(entity: Gemeente | City): {
   if (motorcycleRules?.allowedOnSidewalk === true) {
     return {
       status: 'sidewalk_allowed',
-      label: isCity ? `${entity.name}: Parkeren op stoep toegestaan` : 'Parkeren op stoep toegestaan',
-      colorClass: 'bg-blue-100 text-blue-800'
+      label: isCity
+        ? `${entity.name}: Parkeren op stoep toegestaan`
+        : 'Parkeren op stoep toegestaan',
+      colorClass: 'bg-blue-100 text-blue-800',
     }
   }
 
@@ -67,7 +78,7 @@ export function getParkingStatus(entity: Gemeente | City): {
     return {
       status: 'paid_parking',
       label: isCity ? `${entity.name}: Betaald parkeren` : 'Betaald parkeren',
-      colorClass: 'bg-red-100 text-red-800'
+      colorClass: 'bg-red-100 text-red-800',
     }
   }
 
@@ -75,7 +86,7 @@ export function getParkingStatus(entity: Gemeente | City): {
   return {
     status: 'no_info',
     label: 'Geen informatie',
-    colorClass: 'bg-gray-100 text-gray-800'
+    colorClass: 'bg-gray-100 text-gray-800',
   }
 }
 
@@ -87,26 +98,26 @@ export function getMapBoundaryColors(entity: Gemeente | City): {
   borderColor: string
 } {
   const status = getParkingStatus(entity)
-  
+
   const colorMap = {
-    'sidewalk_allowed': { 
-      fillColor: '#dbeafe',  // blue-100
-      borderColor: '#2563eb' // blue-600
+    sidewalk_allowed: {
+      fillColor: '#dbeafe', // blue-100
+      borderColor: '#2563eb', // blue-600
     },
-    'free_parking': { 
-      fillColor: '#dcfce7',  // green-100  
-      borderColor: '#16a34a' // green-600
+    free_parking: {
+      fillColor: '#dcfce7', // green-100
+      borderColor: '#16a34a', // green-600
     },
-    'paid_parking': { 
-      fillColor: '#fee2e2',  // red-100
-      borderColor: '#dc2626' // red-600
+    paid_parking: {
+      fillColor: '#fee2e2', // red-100
+      borderColor: '#dc2626', // red-600
     },
-    'no_info': { 
-      fillColor: '#f3f4f6',  // gray-100
-      borderColor: '#9ca3af' // gray-400
-    }
+    no_info: {
+      fillColor: '#f3f4f6', // gray-100
+      borderColor: '#9ca3af', // gray-400
+    },
   }
-  
+
   return colorMap[status.status]
 }
 
@@ -127,13 +138,13 @@ export function getMotorcycleInfo(entity: Gemeente | City): {
   notes: string
 } {
   const motorcycleRules = entity.parkingRules?.motorcycleSpecific
-  
+
   if (!motorcycleRules) {
     return {
       dedicatedSpots: 0,
       allowedOnSidewalk: false,
       freeInPaidZones: false,
-      notes: 'No motorcycle-specific information available'
+      notes: 'No motorcycle-specific information available',
     }
   }
 
@@ -141,7 +152,7 @@ export function getMotorcycleInfo(entity: Gemeente | City): {
     dedicatedSpots: motorcycleRules.dedicatedSpots?.length || 0,
     allowedOnSidewalk: motorcycleRules.allowedOnSidewalk || false,
     freeInPaidZones: motorcycleRules.freeInPaidZones || false,
-    notes: motorcycleRules.notes || ''
+    notes: motorcycleRules.notes || '',
   }
 }
 
@@ -150,7 +161,7 @@ export function getMotorcycleInfo(entity: Gemeente | City): {
  */
 export function createFallbackGemeente(): null {
   // No fallback gemeente should be created
-  return null;
+  return null
 }
 
 /**
@@ -193,7 +204,7 @@ export function getGemeenteDisplayName(entity: Gemeente | City): string {
   if ('parent' in entity && entity.parent) {
     return entity.name // Cities don't need "Gemeente" prefix
   }
-  
+
   // It's a gemeente
   return entity.name.startsWith('Gemeente ') ? entity.name : `Gemeente ${entity.name}`
 }

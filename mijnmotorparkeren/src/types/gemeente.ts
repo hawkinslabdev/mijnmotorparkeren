@@ -1,5 +1,3 @@
-// src/types/gemeente.ts
-
 export interface Coordinates {
   lat: number
   lng: number
@@ -72,8 +70,8 @@ export interface Gemeente {
   name: string
   province: string
   coordinates: Coordinates
-  boundaries?: GeoJSONPolygon       // optional — not present in lite index entries
-  parkingRules?: ParkingRules       // optional — not present in lite index entries
+  boundaries?: GeoJSONPolygon // optional — not present in lite index entries
+  parkingRules?: ParkingRules // optional — not present in lite index entries
   contact?: Contact
   lastUpdated?: string
   sources?: Source[]

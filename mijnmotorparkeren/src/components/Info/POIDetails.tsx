@@ -1,9 +1,7 @@
-// src/components/Info/POIDetails.tsx
-import React, { useRef, useState } from 'react'
-import { MapPin, ExternalLink, Calendar, Users, ChevronLeft, X } from 'lucide-react'
+import React from 'react'
+import { MapPin, ExternalLink, Calendar, Users, X } from 'lucide-react'
 import type { POI } from '@/types/poi'
 import { POI_TYPE_CONFIG } from '@/types/poi'
-import { clsx } from 'clsx'
 
 interface POIDetailsProps {
   poi: POI
@@ -11,61 +9,14 @@ interface POIDetailsProps {
 }
 
 export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose }) => {
-  const touchStartY = useRef<number | null>(null)
-  const [swipeOffset, setSwipeOffset] = useState(0)
-  const swipeThreshold = 60
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      touchStartY.current = e.touches[0].clientY
-    }
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (touchStartY.current !== null) {
-      const offset = e.touches[0].clientY - touchStartY.current
-      setSwipeOffset(offset > 0 ? offset : 0)
-    }
-  }
-
-  const handleTouchEnd = () => {
-    if (swipeOffset > swipeThreshold) {
-      onClose()
-    }
-    setSwipeOffset(0)
-    touchStartY.current = null
-  }
-
   const config = POI_TYPE_CONFIG[poi.type]
 
   return (
-    <div
-      className={clsx(
-        'bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden',
-        swipeOffset > 0 ? 'touch-none select-none' : ''
-      )}
-      style={
-        swipeOffset > 0
-          ? { transform: `translateY(${swipeOffset}px)`, transition: swipeOffset === 0 ? 'transform 0.2s' : undefined }
-          : undefined
-      }
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
       {/* Header — matches ParkingRules structure exactly */}
       <div className="relative bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6">
         {/* Header buttons; vertically centered */}
         <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex items-center gap-2">
-          {/* Back button */}
-          <button
-            onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-white/50 transition-colors"
-            aria-label="Terug naar gemeente"
-          >
-            <ChevronLeft className="h-5 w-5 text-gray-600" />
-          </button>
-
           {/* Close button */}
           <button
             onClick={onClose}
@@ -81,9 +32,7 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose }) => {
           {config.label}
         </p>
 
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 pr-20">
-          {poi.name}
-        </h2>
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 pr-20">{poi.name}</h2>
 
         {poi.address && (
           <p className="text-sm text-gray-600 flex items-center gap-1">
@@ -134,7 +83,11 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose }) => {
                 >
                   <ExternalLink className="h-3 w-3 group-hover:scale-110 transition-transform" />
                   <span>
-                    {poi.source.type === 'reddit' ? 'Reddit' : poi.source.type === 'official' ? 'Officiële bron' : 'Community bijdrage'}
+                    {poi.source.type === 'reddit'
+                      ? 'Reddit'
+                      : poi.source.type === 'official'
+                        ? 'Officiële bron'
+                        : 'Community bijdrage'}
                   </span>
                 </a>
               ) : (

@@ -1,5 +1,3 @@
-// src/components/Layout/PromoBar.tsx
-
 import React, { useState } from 'react'
 import { promoBarItems, type PromoBarItem } from '@/data/promobar'
 import { X } from 'lucide-react'

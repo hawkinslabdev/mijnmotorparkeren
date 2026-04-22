@@ -1,6 +1,13 @@
-// src/components/Map/MapView.tsx
 import React, { useEffect, useState, useRef } from 'react'
-import { MapContainer, TileLayer, GeoJSON, useMap, useMapEvents, CircleMarker, Tooltip } from 'react-leaflet'
+import {
+  MapContainer,
+  TileLayer,
+  GeoJSON,
+  useMap,
+  useMapEvents,
+  CircleMarker,
+  Tooltip,
+} from 'react-leaflet'
 import { LatLngExpression, LatLngBounds, Map as LeafletMap } from 'leaflet'
 import { useMapStore } from '@stores/mapStore'
 import type { Gemeente } from '@/types/gemeente'
@@ -26,7 +33,6 @@ interface MapViewProps {
   detailsOpen?: boolean
 }
 
-// Component to handle map updates
 const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ center, zoom }) => {
   const map = useMap()
   useEffect(() => {
@@ -35,8 +41,6 @@ const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ cent
   return null
 }
 
-// Tracks the current viewport bounds and notifies parent on change.
-// Uses a 40 % pad so boundaries just outside the screen edge pre-load smoothly.
 const BoundsTracker: React.FC<{ onBoundsChange: (b: LatLngBounds) => void }> = ({
   onBoundsChange,
 }) => {
@@ -46,14 +50,13 @@ const BoundsTracker: React.FC<{ onBoundsChange: (b: LatLngBounds) => void }> = (
   })
   useEffect(() => {
     onBoundsChange(map.getBounds())
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
   return null
 }
 
-// Component to display the parking legend
 const ParkingLegend: React.FC<{ gemeenteSelected: boolean }> = ({ gemeenteSelected }) => {
   return (
-    <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 z-[1000] max-w-xs">
+    <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 z-[1000] max-w-xs border border-gray-200">
       <h4 className="font-semibold text-sm mb-3 text-gray-800">Legenda</h4>
       <div className="space-y-2 text-xs">
         <div className="flex items-center gap-2">
@@ -109,32 +112,11 @@ const ParkingLegend: React.FC<{ gemeenteSelected: boolean }> = ({ gemeenteSelect
   )
 }
 
-// Mobile Share Button Component; only visible on mobile
 const MobileShareButton: React.FC<{
   onShareClick: () => void
   isLoading?: boolean
   id?: string
 }> = ({ onShareClick, isLoading = false, id }) => {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    // Check if device is mobile
-    const checkMobile = () => {
-      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-      const hasSmallScreen = window.innerWidth < 768
-      setIsMobile(isMobileDevice || hasSmallScreen)
-    }
-
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  if (!isMobile) return null
-
   return (
     <button
       id={id}
@@ -164,10 +146,6 @@ const MobileShareButton: React.FC<{
   )
 }
 
-// Current Location Button Component; moved down when share button is present
-
-// Fetches and renders full country boundaries (MultiPolygon from each country's JSON file).
-// The lite index does not carry geometry, so we load the full JSON on first visibility.
 const CountryBoundariesLayer: React.FC<{
   countries: Gemeente[]
   onSelect: (g: Gemeente) => void
@@ -188,7 +166,7 @@ const CountryBoundariesLayer: React.FC<{
         /* silent */
       }
     })
-  }, [countries]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [countries])
 
   return (
     <>
@@ -213,7 +191,12 @@ const CountryBoundariesLayer: React.FC<{
               opacity: 0.8,
               fillOpacity: 0.45,
             }}
-            eventHandlers={{ click: () => onSelect(country) }}
+            eventHandlers={{
+              click: (e) => {
+                e.originalEvent.stopPropagation()
+                onSelect(country)
+              },
+            }}
           />
         )
       })}
@@ -282,7 +265,9 @@ const POILayer: React.FC<{
               },
             }}
           >
-            <Tooltip>{poi.name} — {config.label}</Tooltip>
+            <Tooltip>
+              {poi.name} — {config.label}
+            </Tooltip>
           </CircleMarker>
         )
       })}
@@ -301,11 +286,13 @@ const CityPaneSetter: React.FC = () => {
   useEffect(() => {
     if (!map.getPane('city-boundaries')) {
       map.createPane('city-boundaries')
-      map.getPane('city-boundaries')!.style.zIndex = '450' // higher than overlayPane (default 400)
+      map.getPane('city-boundaries')!.style.zIndex = '450'
     }
   }, [map])
   return null
 }
+
+let cityDataCache: City[] | null = null
 
 // City Boundaries Layer Component; Fixed to use proper colors
 const CityBoundariesLayer: React.FC<{
@@ -319,6 +306,12 @@ const CityBoundariesLayer: React.FC<{
 
   useEffect(() => {
     const loadAllCities = async () => {
+      if (cityDataCache !== null) {
+        setCities(cityDataCache)
+        setLoading(false)
+        return
+      }
+
       try {
         setLoading(true)
         setError(null)
@@ -362,6 +355,7 @@ const CityBoundariesLayer: React.FC<{
           }
         }
 
+        cityDataCache = loadedCities
         setCities(loadedCities)
 
         if (debugEnabled) {
@@ -473,7 +467,8 @@ const CityBoundariesLayer: React.FC<{
   )
 }
 
-// Component to fetch and display real gemeente boundaries
+let officialBoundaryCache: GeoJSONType.FeatureCollection | null = null
+
 const RealBoundariesLayer: React.FC<{
   gemeentes: Gemeente[]
   onGemeenteSelect: (gemeente: Gemeente) => void
@@ -486,6 +481,12 @@ const RealBoundariesLayer: React.FC<{
 
   useEffect(() => {
     const fetchRealBoundaries = async () => {
+      if (officialBoundaryCache) {
+        setOfficialBoundaries(officialBoundaryCache)
+        setLoading(false)
+        return
+      }
+
       try {
         if (debugEnabled) {
           console.log('Fetching official Dutch gemeente boundaries...')
@@ -510,6 +511,7 @@ const RealBoundariesLayer: React.FC<{
           console.log('Sample feature properties:', data.features[0]?.properties)
         }
 
+        officialBoundaryCache = data
         setOfficialBoundaries(data)
         setError(null)
       } catch (error) {
@@ -534,7 +536,6 @@ const RealBoundariesLayer: React.FC<{
       const props = feature.properties
       if (!props || !props.statnaam) return false
 
-      // Clean up names for comparison
       const boundaryNameLower = props.statnaam
         .toLowerCase()
         .replace(/^gemeente\s+/i, '')
@@ -560,7 +561,6 @@ const RealBoundariesLayer: React.FC<{
         return true
       }
 
-      // Try matching by CBS statcode if available
       if (props.statcode && gemeente.statcode && props.statcode === gemeente.statcode) {
         if (debugEnabled) {
           console.log(`Statcode match found for ${gemeente.name}: ${props.statcode}`)
@@ -633,7 +633,10 @@ const RealBoundariesLayer: React.FC<{
                 fillOpacity: 0.4,
               }}
               eventHandlers={{
-                click: () => onGemeenteSelect(gemeente),
+                click: (e) => {
+                  e.originalEvent.stopPropagation()
+                  onGemeenteSelect(gemeente)
+                },
               }}
             />
           )
@@ -655,7 +658,6 @@ const RealBoundariesLayer: React.FC<{
   }
   const sortedGemeentes = [...gemeentes].sort((a, b) => statusPriority(a) - statusPriority(b))
 
-  // Use official boundaries
   let renderedCount = 0
   const notFoundGemeentes: string[] = []
 
@@ -696,7 +698,10 @@ const RealBoundariesLayer: React.FC<{
               dashArray: '5, 5', // Dashed line to indicate fallback
             }}
             eventHandlers={{
-              click: () => onGemeenteSelect(gemeente),
+              click: (e) => {
+                e.originalEvent.stopPropagation()
+                onGemeenteSelect(gemeente)
+              },
             }}
           />
         )
@@ -724,7 +729,8 @@ const RealBoundariesLayer: React.FC<{
           fillOpacity: 0.5,
         }}
         eventHandlers={{
-          click: () => {
+          click: (e) => {
+            e.originalEvent.stopPropagation()
             if (debugEnabled) {
               console.log('Clicked gemeente:', gemeente.name)
             }
@@ -775,10 +781,9 @@ const MapView: React.FC<MapViewProps> = ({
   const [locationLoading, setLocationLoading] = useState(false)
   const [shareLoading, setShareLoading] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [clipboardCopied, setClipboardCopied] = useState(false)
   const [currentLocation, setCurrentLocation] = useState<LatLngExpression | null>(null)
 
-
-  // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
       const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -794,7 +799,6 @@ const MapView: React.FC<MapViewProps> = ({
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // --- Ensure city-boundaries pane exists before children render ---
   useEffect(() => {
     if (mapRef.current && !mapRef.current.getPane('city-boundaries')) {
       mapRef.current.createPane('city-boundaries')
@@ -807,7 +811,6 @@ const MapView: React.FC<MapViewProps> = ({
     onGemeenteSelect(gemeente)
   }
 
-  // Handle city selection
   const handleCitySelect = (city: City) => {
     if (onCitySelect) {
       onCitySelect(city)
@@ -817,7 +820,6 @@ const MapView: React.FC<MapViewProps> = ({
     }
   }
 
-  // Handle current location button click
   const handleCurrentLocation = async () => {
     setLocationLoading(true)
     try {
@@ -835,13 +837,11 @@ const MapView: React.FC<MapViewProps> = ({
       if (debugEnabled) {
         console.error('Failed to get current location:', error)
       }
-      // Could add a toast notification here for user feedback
     } finally {
       setLocationLoading(false)
     }
   }
 
-  // Handle share button click
   const handleShare = async () => {
     setShareLoading(true)
     try {
@@ -874,7 +874,8 @@ const MapView: React.FC<MapViewProps> = ({
         if (debugEnabled) {
           console.log('URL copied to clipboard as fallback')
         }
-        alert('Link gekopieerd naar klembord!')
+        setClipboardCopied(true)
+        setTimeout(() => setClipboardCopied(false), 2500)
       }
     } catch (error) {
       if (debugEnabled) {
@@ -885,7 +886,6 @@ const MapView: React.FC<MapViewProps> = ({
     }
   }
 
-  // Debug: Log when map is ready
   useEffect(() => {
     if (mapRef.current) {
       if (debugEnabled) {
@@ -902,7 +902,6 @@ const MapView: React.FC<MapViewProps> = ({
 
       setMapReady(true)
 
-      // Force invalidate size after a short delay to ensure proper rendering
       setTimeout(() => {
         if (mapRef.current) {
           mapRef.current.invalidateSize()
@@ -1061,6 +1060,7 @@ const MapView: React.FC<MapViewProps> = ({
             onClick={() => onReset?.()}
             className="absolute right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 flex items-center justify-center md:hidden text-gray-700 focus:ring-2 focus:ring-blue-500"
             title="Reset kaart"
+            aria-label="Reset kaart"
             style={{ minWidth: 48, minHeight: 48, top: 68 }}
           >
             <RotateCcw className="w-5 h-5" />
@@ -1072,6 +1072,7 @@ const MapView: React.FC<MapViewProps> = ({
             disabled={locationLoading}
             className="absolute right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors md:hidden flex items-center justify-center text-gray-700 focus:ring-2 focus:ring-blue-500"
             title="Ga naar huidige locatie"
+            aria-label="Ga naar huidige locatie"
             style={{ minWidth: 48, minHeight: 48, top: 123 }}
           >
             {locationLoading ? (
@@ -1104,8 +1105,9 @@ const MapView: React.FC<MapViewProps> = ({
         <>
           <button
             onClick={() => onReset?.()}
-            className="absolute top-3 right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 transition-colors flex items-center justify-center"
+            className="absolute top-3 right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 transition-colors flex items-center justify-center text-gray-700"
             title="Reset kaart"
+            aria-label="Reset kaart"
             style={{ minWidth: 48, minHeight: 48 }}
           >
             <RotateCcw className="w-5 h-5" />
@@ -1113,8 +1115,9 @@ const MapView: React.FC<MapViewProps> = ({
           <button
             onClick={handleCurrentLocation}
             disabled={locationLoading}
-            className="absolute right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+            className="absolute right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center text-gray-700"
             title="Ga naar huidige locatie"
+            aria-label="Ga naar huidige locatie"
             style={{ minWidth: 48, minHeight: 48, top: 68 }}
           >
             {locationLoading ? (
@@ -1173,6 +1176,12 @@ const MapView: React.FC<MapViewProps> = ({
             {!mapReady && <div className="text-red-600">Map not ready</div>}
             {!tilesLoaded && mapReady && <div className="text-orange-600">Tiles loading</div>}
           </div>
+        </div>
+      )}
+
+      {clipboardCopied && (
+        <div className="absolute top-16 right-3 bg-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg z-[1002] pointer-events-none">
+          Link gekopieerd!
         </div>
       )}
     </div>

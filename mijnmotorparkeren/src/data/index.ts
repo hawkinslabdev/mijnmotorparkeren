@@ -2,7 +2,6 @@ import type { Gemeente, ParkingStatusValue } from '../types/gemeente'
 import type { City } from '../types/city'
 import type { POI, POIIndex } from '../types/poi'
 
-// Use PUBLIC_DATA_VERSION from .env for cache busting, fallback to today's date if empty
 let DATA_VERSION = import.meta.env.PUBLIC_DATA_VERSION
 if (!DATA_VERSION || DATA_VERSION.trim() === '') {
   const today = new Date()
@@ -12,7 +11,6 @@ if (!DATA_VERSION || DATA_VERSION.trim() === '') {
     String(today.getDate()).padStart(2, '0')
 }
 
-// Helper to generate versioned URLs for municipality/city/poi JSON files
 export function getVersionedJsonUrl(type: 'gemeentes' | 'city' | 'poi', id: string) {
   return `/data/${type}/${id}.json?v=${DATA_VERSION}`
 }
@@ -52,14 +50,45 @@ export function fetchGemeenteIndex(): Promise<GemeenteLite[]> {
 /** Fetch the full gemeente data for a single gemeente (on demand). */
 export async function fetchFullGemeente(id: string): Promise<Gemeente> {
   const res = await fetch(getVersionedJsonUrl('gemeentes', id))
-  if (!res.ok) throw new Error(`Gemeente not found: ${id} (${res.status})`)
+  if (!res.ok) return { ...GEMEENTE_STUB, id } as Gemeente
   return res.json()
+}
+
+/** Stub returned when city file is not found — clearly identifiable but won't break the flow. */
+export const CITY_STUB: City = {
+  id: 'stub',
+  parent: '',
+  name: 'City not found',
+  province: '',
+  coordinates: { lat: 0, lng: 0 },
+  parkingRules: {
+    free: false,
+    paid: { enabled: false, areas: [], rates: null },
+    permits: { required: false, types: [] },
+    restrictions: { timeLimit: null, noParking: [] },
+    motorcycleSpecific: {
+      dedicatedSpots: [],
+      allowedOnSidewalk: false,
+      freeInPaidZones: false,
+      notes: '',
+    },
+  },
+  area: { type: 'FeatureCollection', features: [] },
+  lastUpdated: '',
+  sources: [],
+}
+
+export const GEMEENTE_STUB: Gemeente = {
+  id: 'stub',
+  name: 'Municipality not found',
+  province: '',
+  coordinates: { lat: 0, lng: 0 },
 }
 
 /** Fetch the full city data for a single city (on demand). */
 export async function fetchFullCity(id: string): Promise<City> {
   const res = await fetch(getVersionedJsonUrl('city', id))
-  if (!res.ok) throw new Error(`City not found: ${id} (${res.status})`)
+  if (!res.ok) return { ...CITY_STUB, id } as City
   return res.json()
 }
 
@@ -70,12 +99,12 @@ export function fetchPOIIndex(): Promise<POIIndex> {
   if (!poiIndexPromise) {
     poiIndexPromise = fetch(getVersionedJsonUrl('poi', 'index'))
       .then((res) => {
-        if (!res.ok) throw new Error(`Failed to fetch POI index: ${res.status}`)
+        if (!res.ok) return { pois: [], lastUpdated: '', version: '' } as POIIndex
         return res.json()
       })
-      .catch((err) => {
+      .catch(() => {
         poiIndexPromise = null
-        throw err
+        return { pois: [], lastUpdated: '', version: '' } as POIIndex
       })
   }
   return poiIndexPromise
@@ -86,14 +115,20 @@ export async function fetchMunicipalityPOIs(municipalityId: string): Promise<POI
     return loadedPOIs.get(municipalityId)!
   }
 
-  try {
-    const res = await fetch(getVersionedJsonUrl('poi', municipalityId))
-    if (!res.ok) return []
-    const data = await res.json()
-    const pois = data.pois || []
-    loadedPOIs.set(municipalityId, pois)
-    return pois
-  } catch {
+  const index = await fetchPOIIndex()
+  const hasPOIs = index.pois.some((p) => p.municipalityId === municipalityId)
+  if (!hasPOIs) {
+    loadedPOIs.set(municipalityId, [])
     return []
   }
+
+  const res = await fetch(getVersionedJsonUrl('poi', municipalityId))
+  if (!res.ok) {
+    loadedPOIs.set(municipalityId, [])
+    return []
+  }
+  const data = await res.json()
+  const pois = data.pois || []
+  loadedPOIs.set(municipalityId, pois)
+  return pois
 }

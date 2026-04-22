@@ -1,10 +1,6 @@
-// src/types/poi.ts
-
 import type { Coordinates } from './gemeente'
 
-export type POIType =
-  | 'freeStreetParking'
-  | 'dedicatedMotorcycleSpot'
+export type POIType = 'freeStreetParking' | 'dedicatedMotorcycleSpot'
 
 export interface POI {
   id: string
@@ -34,19 +30,22 @@ export interface POIIndex {
   }>
 }
 
-export const POI_TYPE_CONFIG: Record<POIType, {
-  label: string
-  color: string
-  icon: string
-}> = {
+export const POI_TYPE_CONFIG: Record<
+  POIType,
+  {
+    label: string
+    color: string
+    icon: string
+  }
+> = {
   freeStreetParking: {
     label: 'Gratis straatparkeren',
     color: '#22c55e',
-    icon: 'P'
+    icon: 'P',
   },
   dedicatedMotorcycleSpot: {
     label: 'Motorstalplaats',
     color: '#3b82f6',
-    icon: 'M'
+    icon: 'M',
   },
 }

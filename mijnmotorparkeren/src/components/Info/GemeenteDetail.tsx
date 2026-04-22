@@ -1,11 +1,10 @@
-// src/components/GemeenteDetail.tsx
 import React from 'react'
 import type { Gemeente } from '@/types/gemeente'
 import {
   getParkingStatus,
   hasDedicatedMotorcycleSpots,
   getMotorcycleInfo,
-  isValidGemeente
+  isValidGemeente,
 } from '@/utils/gemeenteUtils'
 
 interface GemeenteDetailProps {
@@ -24,9 +23,7 @@ export const GemeenteDetail: React.FC<GemeenteDetailProps> = ({ gemeente }) => {
   return (
     <div>
       <h1>{gemeente.name}</h1>
-      <div className={`status ${parkingStatus.colorClass}`}>
-        {parkingStatus.label}
-      </div>
+      <div className={`status ${parkingStatus.colorClass}`}>{parkingStatus.label}</div>
       {hasDedicatedMotorcycleSpots(gemeente) && (
         <div>
           <h2>Motorcycle Parking</h2>

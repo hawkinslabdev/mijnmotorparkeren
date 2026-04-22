@@ -40,11 +40,11 @@ export function useKeyboardShortcuts(
           shiftKey = false,
           altKey = false,
           callback,
-          preventDefault = true
+          preventDefault = true,
         } = shortcut
 
         // Check if all modifiers match
-        const modifiersMatch = 
+        const modifiersMatch =
           event.ctrlKey === ctrlKey &&
           event.metaKey === metaKey &&
           event.shiftKey === shiftKey &&
@@ -64,7 +64,7 @@ export function useKeyboardShortcuts(
     }
 
     document.addEventListener('keydown', handleKeyDown)
-    
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }

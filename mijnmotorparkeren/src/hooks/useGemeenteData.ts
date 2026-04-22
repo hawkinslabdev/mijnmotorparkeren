@@ -23,7 +23,6 @@ export function useGemeenteData(): UseGemeenteDataReturn {
   useEffect(() => {
     const ctrl = new AbortController()
     abortRef.current = ctrl
-
     ;(async () => {
       try {
         setLoading(true)

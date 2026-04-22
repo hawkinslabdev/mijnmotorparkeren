@@ -1,18 +1,17 @@
-// src/types/city.ts
 import type { Coordinates, ParkingRules, Source } from './gemeente'
 import type { FeatureCollection } from 'geojson'
 
 export interface City {
   id: string
-  parent: string  // gemeente id
+  parent: string // gemeente id
   name: string
   province: string
   coordinates: Coordinates
-  parkingRules: ParkingRules  // Complete rules, overrides gemeente
-  area: FeatureCollection  // City boundary
+  parkingRules: ParkingRules // Complete rules, overrides gemeente
+  area: FeatureCollection // City boundary
   lastUpdated: string
   sources: Source[]
-  
+
   // Additional metadata
   population?: number
   postalCodes?: string[]

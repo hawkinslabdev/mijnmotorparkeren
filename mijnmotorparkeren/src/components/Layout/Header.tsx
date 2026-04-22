@@ -1,5 +1,3 @@
-// src/components/Layout/Header.tsx
-
 import React, { useState, useEffect, useRef } from 'react'
 import { Search, Menu, X, MapPin, ExternalLink, Github, Coffee } from 'lucide-react'
 
@@ -9,41 +7,32 @@ interface HeaderProps {
   selectedGemeente?: string | null
 }
 
-export const Header: React.FC<HeaderProps> = ({ 
-  onSearchOpen, 
-  onMenuToggle,
-  selectedGemeente 
-}) => {
+export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, selectedGemeente }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isGithubModalOpen, setIsGithubModalOpen] = useState(false)
   const githubModalRef = useRef<HTMLDivElement | null>(null)
-
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen)
     onMenuToggle?.()
   }
 
-  // Auto-close after 5 seconds
   useEffect(() => {
-    if (!isGithubModalOpen) return;
-    const timer = setTimeout(() => setIsGithubModalOpen(false), 5000);
-    return () => clearTimeout(timer);
-  }, [isGithubModalOpen]);
+    if (!isGithubModalOpen) return
+    const timer = setTimeout(() => setIsGithubModalOpen(false), 5000)
+    return () => clearTimeout(timer)
+  }, [isGithubModalOpen])
 
-  // Close on click outside
   useEffect(() => {
-    if (!isGithubModalOpen) return;
+    if (!isGithubModalOpen) return
     function handleClick(event: MouseEvent) {
       if (githubModalRef.current && !githubModalRef.current.contains(event.target as Node)) {
-        setIsGithubModalOpen(false);
+        setIsGithubModalOpen(false)
       }
     }
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, [isGithubModalOpen]);
-
-  // Mobile toast (centered)
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [isGithubModalOpen])
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
@@ -52,12 +41,18 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Logo and Title */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <a href="/" className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400" title="Ga naar de hoofdpagina">
+              <a
+                href="/"
+                className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400"
+                title="Ga naar de hoofdpagina"
+              >
                 <MapPin className="w-5 h-5 text-white" />
               </a>
               {/* Show title on all screen sizes */}
               <div>
-                <h1 className="text-lg sm:text-xl font-semibold text-gray-900">MijnMotorParkeren.nl</h1>
+                <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
+                  MijnMotorParkeren.nl
+                </h1>
                 <p className="text-xs text-gray-500 hidden sm:block">Even snel je motor parkeren</p>
               </div>
             </div>
@@ -79,9 +74,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="flex items-center px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
             >
               <Search className="w-4 h-4 text-gray-600" />
-              <span className="hidden sm:inline text-sm text-gray-600 ml-2">
-                Locatie zoeken...
-              </span>
+              <span className="hidden sm:inline text-sm text-gray-600 ml-2">Locatie zoeken...</span>
               <kbd className="hidden lg:inline-flex items-center px-2 py-1 bg-white border border-gray-300 rounded text-xs font-sans text-gray-400 ml-2">
                 ⌘K
               </kbd>
@@ -90,13 +83,26 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Meld map issue button; Desktop Only */}
             <div className="hidden md:block">
               <a
-                href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
+                href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues/new/choose"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 px-3 py-2 bg-[#dbede3] hover:bg-[#c2e2d1] rounded-lg transition-colors text-green-800 hover:text-green-900"
                 title="Meld een fout op de kaart"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" /></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4m0 4h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"
+                  />
+                </svg>
                 <span className="hidden lg:inline text-sm">Meld kaartprobleem</span>
               </a>
             </div>
@@ -154,7 +160,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <span>Viewing: {selectedGemeente}</span>
                   </div>
                 )}
-                
+
                 <div className="space-y-2">
                   <a
                     href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"

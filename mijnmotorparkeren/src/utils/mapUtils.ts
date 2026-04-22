@@ -7,7 +7,7 @@ export const calculateOptimalZoom = (area: FeatureCollection): number => {
   try {
     const feature = area?.features?.[0]
     if (!feature || !feature.geometry) {
-      return 13 
+      return 13
     }
 
     let coordinates: number[][] = []
@@ -16,11 +16,13 @@ export const calculateOptimalZoom = (area: FeatureCollection): number => {
     } else if (feature.geometry.type === 'MultiPolygon') {
       coordinates = (feature.geometry as MultiPolygon).coordinates[0][0]
     } else {
-      return 13 
+      return 13
     }
 
-    let minLat = Infinity, maxLat = -Infinity
-    let minLng = Infinity, maxLng = -Infinity
+    let minLat = Infinity,
+      maxLat = -Infinity
+    let minLng = Infinity,
+      maxLng = -Infinity
 
     coordinates.forEach((coord) => {
       if (coord.length < 2) return
@@ -32,14 +34,14 @@ export const calculateOptimalZoom = (area: FeatureCollection): number => {
     })
 
     // Haversine distance between SW and NE corners
-    const toRad = (v: number) => v * Math.PI / 180
+    const toRad = (v: number) => (v * Math.PI) / 180
     const R = 6371 // Earth radius in km
     const dLat = toRad(maxLat - minLat)
     const dLng = toRad(maxLng - minLng)
-    const a = Math.sin(dLat/2) ** 2 +
-              Math.cos(toRad(minLat)) * Math.cos(toRad(maxLat)) *
-              Math.sin(dLng/2) ** 2
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(minLat)) * Math.cos(toRad(maxLat)) * Math.sin(dLng / 2) ** 2
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
     const diagonalKm = R * c
 
     // Adjusted zoom thresholds (tune as needed)

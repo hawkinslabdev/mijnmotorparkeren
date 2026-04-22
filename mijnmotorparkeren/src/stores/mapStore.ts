@@ -1,5 +1,3 @@
-// src/stores/mapStore.ts
-
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { LatLngExpression } from 'leaflet'
@@ -8,18 +6,18 @@ interface MapState {
   // Map view state
   center: LatLngExpression
   zoom: number
-  
+
   // Selected gemeente
   selectedGemeenteId: string | null
-  
+
   // User location
   userLocation: LatLngExpression | null
   isLocationLoading: boolean
   locationError: string | null
-  
+
   // Map interactions
   isInteracting: boolean
-  
+
   // Actions
   setCenter: (center: LatLngExpression) => void
   setZoom: (zoom: number) => void
@@ -28,7 +26,7 @@ interface MapState {
   setLocationLoading: (loading: boolean) => void
   setLocationError: (error: string | null) => void
   setInteracting: (interacting: boolean) => void
-  
+
   // Utility actions
   focusOnGemeente: (center: LatLngExpression, zoom?: number) => void
   resetView: () => void
@@ -37,7 +35,7 @@ interface MapState {
 // Get values from environment variables with fallbacks
 const DEFAULT_CENTER: LatLngExpression = [
   parseFloat(import.meta.env.PUBLIC_DEFAULT_CENTER_LAT) || 52.3727,
-  parseFloat(import.meta.env.PUBLIC_DEFAULT_CENTER_LNG) || 5.4847
+  parseFloat(import.meta.env.PUBLIC_DEFAULT_CENTER_LNG) || 5.4847,
 ]
 const DEFAULT_ZOOM = parseInt(import.meta.env.PUBLIC_DEFAULT_ZOOM) || 8
 
@@ -69,17 +67,22 @@ export const useMapStore = create<MapState>()(
       },
 
       resetView: () => {
-        set({ center: DEFAULT_CENTER, zoom: DEFAULT_ZOOM, selectedGemeenteId: null, isInteracting: true })
+        set({
+          center: DEFAULT_CENTER,
+          zoom: DEFAULT_ZOOM,
+          selectedGemeenteId: null,
+          isInteracting: true,
+        })
         setTimeout(() => set({ isInteracting: false }), 1000)
-      }
+      },
     }),
     {
       name: 'map-store',
       // Only persist the selected gemeente — NOT center/zoom so that the configured
       // PUBLIC_DEFAULT_CENTER_* / PUBLIC_DEFAULT_ZOOM env defaults are always respected.
       partialize: (state) => ({
-        selectedGemeenteId: state.selectedGemeenteId
-      })
+        selectedGemeenteId: state.selectedGemeenteId,
+      }),
     }
   )
 )

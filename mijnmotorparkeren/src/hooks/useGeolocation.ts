@@ -27,58 +27,51 @@ export function useGeolocation(options: UseGeolocationOptions = {}): UseGeolocat
     enableHighAccuracy = true,
     timeout = 10000,
     maximumAge = 300000, // 5 minutes
-    watch = false
+    watch = false,
   } = options
 
   const [state, setState] = useState<GeolocationState>({
     location: null,
     error: null,
     loading: false,
-    supported: 'geolocation' in navigator
+    supported: 'geolocation' in navigator,
   })
 
   const clearError = useCallback(() => {
-    setState(prev => ({ ...prev, error: null }))
+    setState((prev) => ({ ...prev, error: null }))
   }, [])
 
   const getCurrentLocation = useCallback(async (): Promise<LatLngExpression | null> => {
     if (!state.supported) {
       const error = 'Geolocation is not supported by this browser'
-      setState(prev => ({ ...prev, error }))
+      setState((prev) => ({ ...prev, error }))
       return null
     }
 
-    setState(prev => ({ ...prev, loading: true, error: null }))
+    setState((prev) => ({ ...prev, loading: true, error: null }))
 
     try {
       const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(
-          resolve,
-          reject,
-          {
-            enableHighAccuracy,
-            timeout,
-            maximumAge
-          }
-        )
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          enableHighAccuracy,
+          timeout,
+          maximumAge,
+        })
       })
 
-      const location: LatLngExpression = [
-        position.coords.latitude,
-        position.coords.longitude
-      ]
+      const location: LatLngExpression = [position.coords.latitude, position.coords.longitude]
 
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         location,
         loading: false,
-        error: null
+        error: null,
       }))
 
       return location
     } catch (err) {
       let errorMessage = 'Failed to get location'
-      
+
       if (err instanceof GeolocationPositionError) {
         switch (err.code) {
           case err.PERMISSION_DENIED:
@@ -95,10 +88,10 @@ export function useGeolocation(options: UseGeolocationOptions = {}): UseGeolocat
         }
       }
 
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         loading: false,
-        error: errorMessage
+        error: errorMessage,
       }))
 
       return null
@@ -114,15 +107,12 @@ export function useGeolocation(options: UseGeolocationOptions = {}): UseGeolocat
     const startWatching = () => {
       watchId = navigator.geolocation.watchPosition(
         (position) => {
-          const location: LatLngExpression = [
-            position.coords.latitude,
-            position.coords.longitude
-          ]
-          setState(prev => ({ ...prev, location, error: null }))
+          const location: LatLngExpression = [position.coords.latitude, position.coords.longitude]
+          setState((prev) => ({ ...prev, location, error: null }))
         },
         (err) => {
           let errorMessage = 'Failed to watch location'
-          
+
           if (err instanceof GeolocationPositionError) {
             switch (err.code) {
               case err.PERMISSION_DENIED:
@@ -136,13 +126,13 @@ export function useGeolocation(options: UseGeolocationOptions = {}): UseGeolocat
                 break
             }
           }
-          
-          setState(prev => ({ ...prev, error: errorMessage }))
+
+          setState((prev) => ({ ...prev, error: errorMessage }))
         },
         {
           enableHighAccuracy,
           timeout,
-          maximumAge
+          maximumAge,
         }
       )
     }
@@ -159,6 +149,6 @@ export function useGeolocation(options: UseGeolocationOptions = {}): UseGeolocat
   return {
     ...state,
     getCurrentLocation,
-    clearError
+    clearError,
   }
 }

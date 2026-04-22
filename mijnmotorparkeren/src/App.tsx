@@ -1,5 +1,5 @@
-// src/App.tsx
 import React, { useEffect, useState, useRef, useCallback } from 'react'
+import { ToastProvider, useToast } from './components/Layout/Toast'
 import 'leaflet/dist/leaflet.css'
 import MapView from '@components/Map/MapView'
 import { SpotlightSearch } from '@components/Search/SpotlightSearch'
@@ -15,7 +15,6 @@ import { type City } from './types/city'
 import type { POI } from './types/poi'
 import { fetchFullCity } from './data/index'
 
-// Fix for default markers in react-leaflet
 import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
@@ -39,16 +38,18 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   const [selectedPOI, setSelectedPOI] = useState<POI | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
   const [detailsLoading, setDetailsLoading] = useState(false)
+  const [swipeOffset, setSwipeOffset] = useState(0)
 
   const detailsRef = useRef<HTMLDivElement>(null)
+  const panelTouchStartY = useRef<number | null>(null)
+  const swipeOffsetRef = useRef(0)
   const selectedGemeenteRef = useRef<Gemeente | null>(null)
 
+  const { showToast } = useToast()
   const { setSelectedGemeente: setSelectedGemeenteId, focusOnGemeente, resetView } = useMapStore()
   const { gemeentes, loading, loadFullGemeente } = useGemeenteData()
 
-  // ─── Geolocation: center on user when opening home page ────────────────────
   useEffect(() => {
-    // Only auto-center when no specific gemeente/city is requested
     if (initialGemeenteId || initialCityId) return
     if (!('geolocation' in navigator)) return
 
@@ -61,10 +62,8 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       },
       { enableHighAccuracy: false, timeout: 5000, maximumAge: 5 * 60 * 1000 }
     )
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) // run once on mount
+  }, [])
 
-  // ─── Initialize from Astro URL param ───────────────────────────────────────
   useEffect(() => {
     if (!initialGemeenteId || gemeentes.length === 0) return
     const lite = gemeentes.find((g) => g.id === initialGemeenteId)
@@ -76,7 +75,6 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       focusOnGemeente([lite.coordinates.lat, lite.coordinates.lng], zoom)
     }
 
-    // Load full data for the detail panel
     setDetailsLoading(true)
     loadFullGemeente(initialGemeenteId)
       .then((full) => {
@@ -97,7 +95,6 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       .finally(() => setDetailsLoading(false))
   }, [initialCityId, focusOnGemeente])
 
-  // ─── Keyboard shortcuts ────────────────────────────────────────────────────
   useKeyboardShortcuts([
     { key: 'k', ctrlKey: true, callback: () => setSearchOpen(true) },
     { key: 'k', metaKey: true, callback: () => setSearchOpen(true) },
@@ -111,7 +108,6 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     },
   ])
 
-  // ─── Selection handlers ────────────────────────────────────────────────────
   const handleGemeenteSelect = useCallback(
     async (lite: Gemeente | null) => {
       if (!lite) {
@@ -131,7 +127,6 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
         focusOnGemeente([lite.coordinates.lat, lite.coordinates.lng], zoom)
       }
 
-      // Load full parking rules before showing detail panel
       setDetailsLoading(true)
       const full = await loadFullGemeente(lite.id)
       setSelectedGemeente(full ?? lite)
@@ -165,10 +160,13 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     [handleGemeenteSelect]
   )
 
-  const handlePOISelect = useCallback((poi: POI) => {
-    setSelectedPOI(poi)
-    focusOnGemeente([poi.coordinates.lat, poi.coordinates.lng], 17)
-  }, [focusOnGemeente])
+  const handlePOISelect = useCallback(
+    (poi: POI) => {
+      setSelectedPOI(poi)
+      focusOnGemeente([poi.coordinates.lat, poi.coordinates.lng], 17)
+    },
+    [focusOnGemeente]
+  )
 
   useEffect(() => {
     selectedGemeenteRef.current = selectedGemeente
@@ -192,7 +190,32 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     window.history.pushState({}, '', '/')
   }, [setSelectedGemeenteId, resetView])
 
-  // ─── Share ─────────────────────────────────────────────────────────────────
+  const handlePanelTouchStart = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length !== 1) return
+    const el = e.currentTarget as HTMLElement
+    if (el.scrollTop === 0) {
+      panelTouchStartY.current = e.touches[0].clientY
+    }
+  }, [])
+
+  const handlePanelTouchMove = useCallback((e: React.TouchEvent) => {
+    if (panelTouchStartY.current === null) return
+    const delta = e.touches[0].clientY - panelTouchStartY.current
+    if (delta > 0) {
+      swipeOffsetRef.current = delta
+      setSwipeOffset(delta)
+    }
+  }, [])
+
+  const handlePanelTouchEnd = useCallback(() => {
+    if (swipeOffsetRef.current > 80) {
+      handleDetailsClose()
+    }
+    swipeOffsetRef.current = 0
+    setSwipeOffset(0)
+    panelTouchStartY.current = null
+  }, [handleDetailsClose])
+
   const [shareLoading, setShareLoading] = useState(false)
   const handleShare = async () => {
     setShareLoading(true)
@@ -212,7 +235,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
         await navigator.share(shareData)
       } else {
         await navigator.clipboard.writeText(shareUrl)
-        alert('Link gekopieerd naar klembord!')
+        showToast('Link gekopieerd!')
       }
     } catch (error) {
       console.error('Error sharing:', error)
@@ -221,7 +244,6 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     }
   }
 
-  // ─── Click outside map closes details ─────────────────────────────────────
   useEffect(() => {
     let downX = 0
     let downY = 0
@@ -232,7 +254,6 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     }
 
     const handleClick = (event: MouseEvent) => {
-      // Ignore if the pointer moved more than 5px — that's a drag, not a click
       const dx = event.clientX - downX
       const dy = event.clientY - downY
       if (Math.sqrt(dx * dx + dy * dy) > 5) return
@@ -300,8 +321,15 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
         {detailsOpen && (
           <div
             ref={detailsRef}
-            className="fixed sm:absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none transition-all duration-300 max-h-[70vh] sm:max-h-none overflow-y-auto"
-            style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}
+            className="fixed sm:absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none max-h-[70vh] sm:max-h-none overflow-y-auto"
+            style={{
+              boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+              transform: swipeOffset > 0 ? `translateY(${swipeOffset}px)` : undefined,
+              transition: swipeOffset > 0 ? 'none' : 'transform 0.3s ease-out',
+            }}
+            onTouchStart={handlePanelTouchStart}
+            onTouchMove={handlePanelTouchMove}
+            onTouchEnd={handlePanelTouchEnd}
           >
             <div className="sm:hidden flex justify-center mb-2">
               <div className="w-12 h-1.5 bg-gray-300 rounded-full" />
@@ -359,5 +387,9 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   )
 }
 
-const App: React.FC<AppProps> = (props) => <AppContent {...props} />
+const App: React.FC<AppProps> = (props) => (
+  <ToastProvider>
+    <AppContent {...props} />
+  </ToastProvider>
+)
 export default App

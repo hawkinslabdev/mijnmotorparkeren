@@ -1,7 +1,5 @@
 /// <reference types="node" />
-// src/pages/data/index.json.ts
-// Dynamically generates the gemeente index from the filesystem.
-// Module-level cache: built once per server process, never stale between deploys.
+
 import type { APIRoute } from 'astro'
 import { readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
@@ -21,7 +19,8 @@ function computeParkingStatus(rules: RawParkingRules | null | undefined): string
   if (!rules) return 'no_info'
   const moto = rules.motorcycleSpecific
   if (!moto) return 'no_info'
-  if ((rules.free === true || moto.freeInPaidZones === true) && moto.allowedOnSidewalk === true) return 'free_parking'
+  if ((rules.free === true || moto.freeInPaidZones === true) && moto.allowedOnSidewalk === true)
+    return 'free_parking'
   if (moto.allowedOnSidewalk === true) return 'sidewalk_allowed'
   if (rules.paid?.enabled === true || rules.free === false) return 'paid_parking'
   return 'no_info'
@@ -29,7 +28,7 @@ function computeParkingStatus(rules: RawParkingRules | null | undefined): string
 
 async function buildIndex(): Promise<string> {
   const dir = path.join(process.cwd(), 'data', 'gemeentes')
-  const files = (await readdir(dir)).filter(f => f.endsWith('.json'))
+  const files = (await readdir(dir)).filter((f) => f.endsWith('.json'))
 
   const entries = await Promise.all(
     files.map(async (file) => {

@@ -10,9 +10,7 @@ class DataCache {
   private maxAge: number
 
   constructor(options: CacheOptions = {}) {
-    this.storage = options.storage === 'sessionStorage' 
-      ? sessionStorage 
-      : localStorage
+    this.storage = options.storage === 'sessionStorage' ? sessionStorage : localStorage
     this.maxAge = options.maxAge || 1000 * 60 * 60 * 24 // 24 hours default
   }
 
@@ -21,7 +19,7 @@ class DataCache {
       const item = {
         data,
         timestamp: Date.now(),
-        maxAge: this.maxAge
+        maxAge: this.maxAge,
       }
       this.storage.setItem(key, JSON.stringify(item))
     } catch (error) {
@@ -36,7 +34,7 @@ class DataCache {
 
       const parsed = JSON.parse(item)
       const now = Date.now()
-      
+
       // Check if item has expired
       if (now - parsed.timestamp > parsed.maxAge) {
         this.remove(key)
@@ -68,7 +66,7 @@ class DataCache {
           keys.push(key)
         }
       }
-      keys.forEach(key => this.storage.removeItem(key))
+      keys.forEach((key) => this.storage.removeItem(key))
     } catch (error) {
       console.warn('Failed to clear cache:', error)
     }
@@ -93,10 +91,10 @@ class DataCache {
 // Export default cache instances
 export const gemeenteCache = new DataCache({
   maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week for gemeente data
-  storage: 'localStorage'
+  storage: 'localStorage',
 })
 
 export const searchCache = new DataCache({
   maxAge: 1000 * 60 * 30, // 30 minutes for search results
-  storage: 'sessionStorage'
+  storage: 'sessionStorage',
 })

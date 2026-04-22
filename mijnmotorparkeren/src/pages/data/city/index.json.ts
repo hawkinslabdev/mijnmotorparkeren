@@ -1,5 +1,5 @@
 /// <reference types="node" />
-// src/pages/data/city/index.json.ts
+
 // Dynamically generates the city index from the filesystem.
 import type { APIRoute } from 'astro'
 import { readdir, readFile } from 'node:fs/promises'
@@ -9,7 +9,7 @@ let cache: string | null = null
 
 async function buildCityIndex(): Promise<string> {
   const dir = path.join(process.cwd(), 'data', 'city')
-  const files = (await readdir(dir)).filter(f => f.endsWith('.json') && f !== 'index.json')
+  const files = (await readdir(dir)).filter((f) => f.endsWith('.json') && f !== 'index.json')
 
   const cities: object[] = []
   const warnings: string[] = []

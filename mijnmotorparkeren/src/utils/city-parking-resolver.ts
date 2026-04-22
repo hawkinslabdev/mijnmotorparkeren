@@ -1,4 +1,3 @@
-// src/utils/city-parking-resolver.ts
 import type { Gemeente, ParkingRules } from '../types/gemeente'
 import type { City } from '../types/city'
 import { getCitiesForGemeente } from '../data'
@@ -41,23 +40,26 @@ export async function resolveParkingRules(
     gemeente: {
       id: gemeente.id,
       name: gemeente.name,
-      rules: gemeente.parkingRules
+      rules: gemeente.parkingRules,
     },
     activeRules: gemeente.parkingRules,
     appliedLevel: 'gemeente',
-    appliedFor: gemeente.name
+    appliedFor: gemeente.name,
   }
 
   try {
     // Try to find applicable city rules
     const cities = await loadCitiesForGemeente(gemeente.id)
-    
+
     if (cities.length === 0) {
       console.log(`No cities found for gemeente ${gemeente.id}`)
       return result
     }
 
-    console.log(`Found ${cities.length} cities for gemeente ${gemeente.id}:`, cities.map(c => c.name))
+    console.log(
+      `Found ${cities.length} cities for gemeente ${gemeente.id}:`,
+      cities.map((c) => c.name)
+    )
 
     // If coordinates provided, find the city that contains this point
     if (coordinates) {
@@ -66,7 +68,7 @@ export async function resolveParkingRules(
           result.city = {
             id: city.id,
             name: city.name,
-            rules: city.parkingRules
+            rules: city.parkingRules,
           }
           result.activeRules = mergeParkingRules(gemeente.parkingRules, city.parkingRules)
           result.appliedLevel = 'city'
@@ -81,14 +83,13 @@ export async function resolveParkingRules(
       result.city = {
         id: defaultCity.id,
         name: defaultCity.name,
-        rules: defaultCity.parkingRules
+        rules: defaultCity.parkingRules,
       }
       result.activeRules = mergeParkingRules(gemeente.parkingRules, defaultCity.parkingRules)
       result.appliedLevel = 'city'
       result.appliedFor = defaultCity.name
       console.log(`Using default city rules for ${defaultCity.name}`)
     }
-
   } catch (error) {
     console.warn(`Error resolving parking rules for ${gemeente.id}:`, error)
     // Fallback to gemeente rules
@@ -108,7 +109,7 @@ function isPointInCity(coordinates: [number, number], city: City): boolean {
   }
 
   const [lng, lat] = coordinates
-  
+
   try {
     // Iterate through all features in the FeatureCollection
     for (const feature of city.area.features) {
@@ -132,7 +133,7 @@ function isPointInCity(coordinates: [number, number], city: City): boolean {
   } catch (error) {
     console.warn(`Error checking point in city ${city.id}:`, error)
   }
-  
+
   return false
 }
 
@@ -143,16 +144,16 @@ function isPointInCity(coordinates: [number, number], city: City): boolean {
 function isPointInPolygon(point: [number, number], polygon: number[][]): boolean {
   const [x, y] = point
   let inside = false
-  
+
   for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
     const [xi, yi] = polygon[i]
     const [xj, yj] = polygon[j]
-    
-    if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) {
+
+    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
       inside = !inside
     }
   }
-  
+
   return inside
 }
 
@@ -163,46 +164,54 @@ function mergeParkingRules(gemeenteRules: ParkingRules, cityRules: ParkingRules)
   return {
     // City rules take precedence over gemeente rules
     free: cityRules.free !== undefined ? cityRules.free : gemeenteRules.free,
-    
+
     paid: {
-      enabled: cityRules.paid?.enabled !== undefined ? cityRules.paid.enabled : gemeenteRules.paid.enabled,
+      enabled:
+        cityRules.paid?.enabled !== undefined ? cityRules.paid.enabled : gemeenteRules.paid.enabled,
       areas: cityRules.paid?.areas?.length ? cityRules.paid.areas : gemeenteRules.paid.areas,
-      rates: cityRules.paid?.rates || gemeenteRules.paid.rates
+      rates: cityRules.paid?.rates || gemeenteRules.paid.rates,
     },
-    
+
     permits: {
-      required: cityRules.permits?.required !== undefined ? cityRules.permits.required : gemeenteRules.permits.required,
-      types: cityRules.permits?.types?.length ? cityRules.permits.types : gemeenteRules.permits.types
+      required:
+        cityRules.permits?.required !== undefined
+          ? cityRules.permits.required
+          : gemeenteRules.permits.required,
+      types: cityRules.permits?.types?.length
+        ? cityRules.permits.types
+        : gemeenteRules.permits.types,
     },
-    
+
     restrictions: {
       timeLimit: cityRules.restrictions?.timeLimit || gemeenteRules.restrictions.timeLimit,
       // Combine no parking areas from both levels
       noParking: [
         ...(gemeenteRules.restrictions.noParking || []),
-        ...(cityRules.restrictions?.noParking || [])
-      ]
+        ...(cityRules.restrictions?.noParking || []),
+      ],
     },
-    
+
     motorcycleSpecific: {
       // Combine dedicated spots from both levels
       dedicatedSpots: [
         ...(gemeenteRules.motorcycleSpecific.dedicatedSpots || []),
-        ...(cityRules.motorcycleSpecific?.dedicatedSpots || [])
+        ...(cityRules.motorcycleSpecific?.dedicatedSpots || []),
       ],
-      
+
       // City rules override gemeente rules for boolean values
-      allowedOnSidewalk: cityRules.motorcycleSpecific?.allowedOnSidewalk !== undefined 
-        ? cityRules.motorcycleSpecific.allowedOnSidewalk 
-        : gemeenteRules.motorcycleSpecific.allowedOnSidewalk,
-        
-      freeInPaidZones: cityRules.motorcycleSpecific?.freeInPaidZones !== undefined
-        ? cityRules.motorcycleSpecific.freeInPaidZones
-        : gemeenteRules.motorcycleSpecific.freeInPaidZones,
-        
+      allowedOnSidewalk:
+        cityRules.motorcycleSpecific?.allowedOnSidewalk !== undefined
+          ? cityRules.motorcycleSpecific.allowedOnSidewalk
+          : gemeenteRules.motorcycleSpecific.allowedOnSidewalk,
+
+      freeInPaidZones:
+        cityRules.motorcycleSpecific?.freeInPaidZones !== undefined
+          ? cityRules.motorcycleSpecific.freeInPaidZones
+          : gemeenteRules.motorcycleSpecific.freeInPaidZones,
+
       // Use city notes if available, otherwise gemeente notes
-      notes: cityRules.motorcycleSpecific?.notes || gemeenteRules.motorcycleSpecific.notes
-    }
+      notes: cityRules.motorcycleSpecific?.notes || gemeenteRules.motorcycleSpecific.notes,
+    },
   }
 }
 
@@ -217,17 +226,17 @@ export async function getAllCitiesForGemeente(gemeenteId: string): Promise<City[
  * Find city by coordinates within a gemeente
  */
 export async function findCityByCoordinates(
-  gemeenteId: string, 
+  gemeenteId: string,
   coordinates: [number, number]
 ): Promise<City | null> {
   const cities = await loadCitiesForGemeente(gemeenteId)
-  
+
   for (const city of cities) {
     if (isPointInCity(coordinates, city)) {
       return city
     }
   }
-  
+
   return null
 }
 

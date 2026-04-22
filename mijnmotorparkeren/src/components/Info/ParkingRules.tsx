@@ -1,6 +1,15 @@
-// src/components/Info/ParkingRules.tsx; Modern, mobile-first design
-import React, { useRef, useState } from 'react'
-import { Clock, MapPin, AlertTriangle, Bike, X, Check, ExternalLink, Mail, Calendar } from 'lucide-react'
+import React from 'react'
+import {
+  Clock,
+  MapPin,
+  AlertTriangle,
+  Bike,
+  X,
+  Check,
+  ExternalLink,
+  Mail,
+  Calendar,
+} from 'lucide-react'
 import type { Gemeente } from '../../types/gemeente'
 import type { City } from '../../types/city'
 import { clsx } from 'clsx'
@@ -12,43 +21,29 @@ interface ParkingRulesProps {
   onClose?: () => void
 }
 
-export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, className, onClose }) => {
+export const ParkingRules: React.FC<ParkingRulesProps> = ({
+  gemeente,
+  city,
+  className,
+  onClose,
+}) => {
   // Use city data if available, otherwise use gemeente data
   const data = city || gemeente
   const isCity = !!city
 
-  // Swipe-to-close state/logic
-  const touchStartY = useRef<number | null>(null)
-  const [swipeOffset, setSwipeOffset] = useState(0)
-  const swipeThreshold = 60 // px
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      touchStartY.current = e.touches[0].clientY
-    }
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (touchStartY.current !== null) {
-      const offset = e.touches[0].clientY - touchStartY.current
-      setSwipeOffset(offset > 0 ? offset : 0)
-    }
-  }
-
-  const handleTouchEnd = () => {
-    if (swipeOffset > swipeThreshold && onClose) {
-      onClose()
-    }
-    setSwipeOffset(0)
-    touchStartY.current = null
-  }
-
   if (!data) {
     return (
-      <div className={clsx("p-4 sm:p-6 bg-white rounded-xl shadow-sm border border-gray-100", className)}>
+      <div
+        className={clsx(
+          'p-4 sm:p-6 bg-white rounded-xl shadow-sm border border-gray-100',
+          className
+        )}
+      >
         <div className="text-center text-gray-500">
           <MapPin className="mx-auto mb-3 h-12 w-12 text-gray-300" />
-          <p className="text-sm font-medium">Selecteer een gemeente om de parkeerregels te bekijken</p>
+          <p className="text-sm font-medium">
+            Selecteer een gemeente om de parkeerregels te bekijken
+          </p>
         </div>
       </div>
     )
@@ -59,22 +54,12 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
   return (
     <div
       className={clsx(
-        "bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden",
-        className,
-        swipeOffset > 0 ? 'touch-none select-none' : ''
+        'bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden',
+        className
       )}
-      style={swipeOffset > 0 ? { transform: `translateY(${swipeOffset}px)`, transition: swipeOffset === 0 ? 'transform 0.2s' : undefined } : undefined}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
     >
       {/* Header */}
       <div className="relative bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6">
-        {/* Mobile drag handle */}
-        <div className="sm:hidden absolute top-2 left-1/2 transform -translate-x-1/2">
-          <div className="w-8 h-1 bg-gray-300 rounded-full" />
-        </div>
-        
         {/* Header buttons; vertically centered */}
         <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex items-center gap-2">
           {/* Report/Help button */}
@@ -88,7 +73,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
           >
             <AlertTriangle className="h-5 w-5 text-rose-400 group-hover:text-rose-600 transition-colors" />
           </a>
-          
+
           {/* Close button */}
           {onClose && (
             <button
@@ -100,11 +85,9 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
             </button>
           )}
         </div>
-        
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 pr-20">
-          {data.name}
-        </h2>
-        
+
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 pr-20">{data.name}</h2>
+
         {/* City indicator if applicable */}
         {isCity && city && (
           <p className="text-sm text-gray-600">
@@ -133,26 +116,34 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
 
                 <div className="grid gap-3 sm:gap-4">
                   {/* Sidewalk parking */}
-                  {(parkingRules.motorcycleSpecific.allowedOnSidewalk === true || parkingRules.motorcycleSpecific.allowedOnSidewalk === false) && (
-                    <div className={clsx(
-                      "rounded-lg p-3 sm:p-4 border",
-                      parkingRules.motorcycleSpecific.allowedOnSidewalk
-                        ? "bg-green-50 border-green-200"
-                        : "bg-red-50 border-red-200"
-                    )}>
+                  {(parkingRules.motorcycleSpecific.allowedOnSidewalk === true ||
+                    parkingRules.motorcycleSpecific.allowedOnSidewalk === false) && (
+                    <div
+                      className={clsx(
+                        'rounded-lg p-3 sm:p-4 border',
+                        parkingRules.motorcycleSpecific.allowedOnSidewalk
+                          ? 'bg-green-50 border-green-200'
+                          : 'bg-red-50 border-red-200'
+                      )}
+                    >
                       <div className="flex items-center">
                         {parkingRules.motorcycleSpecific.allowedOnSidewalk ? (
                           <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 mr-2" />
                         ) : (
                           <X className="h-4 w-4 sm:h-5 sm:w-5 text-red-600 mr-2" />
                         )}
-                        <span className={clsx(
-                          "text-sm sm:text-base font-medium",
-                          parkingRules.motorcycleSpecific.allowedOnSidewalk
-                            ? "text-green-900"
-                            : "text-red-900"
-                        )}>
-                          Parkeren op stoep {parkingRules.motorcycleSpecific.allowedOnSidewalk ? 'toegestaan' : 'verboden'}
+                        <span
+                          className={clsx(
+                            'text-sm sm:text-base font-medium',
+                            parkingRules.motorcycleSpecific.allowedOnSidewalk
+                              ? 'text-green-900'
+                              : 'text-red-900'
+                          )}
+                        >
+                          Parkeren op stoep{' '}
+                          {parkingRules.motorcycleSpecific.allowedOnSidewalk
+                            ? 'toegestaan'
+                            : 'verboden'}
                         </span>
                       </div>
                     </div>
@@ -160,9 +151,9 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
 
                   {/* Free in paid zones */}
                   {parkingRules.motorcycleSpecific.freeInPaidZones === true && (
-                    <div className={clsx(
-                      "rounded-lg p-3 sm:p-4 border bg-green-50 border-green-200"
-                    )}>
+                    <div
+                      className={clsx('rounded-lg p-3 sm:p-4 border bg-green-50 border-green-200')}
+                    >
                       <div className="flex items-center">
                         <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 mr-2" />
                         <span className="text-sm sm:text-base font-medium text-green-900">
@@ -172,9 +163,9 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
                     </div>
                   )}
                   {parkingRules.motorcycleSpecific.freeInPaidZones === false && (
-                    <div className={clsx(
-                      "rounded-lg p-3 sm:p-4 border bg-amber-50 border-amber-200"
-                    )}>
+                    <div
+                      className={clsx('rounded-lg p-3 sm:p-4 border bg-amber-50 border-amber-200')}
+                    >
                       <div className="flex items-center">
                         <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-amber-600 mr-2" />
                         <span className="text-sm sm:text-base font-medium text-amber-900">
@@ -185,25 +176,26 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
                   )}
 
                   {/* Dedicated spots */}
-                  {parkingRules.motorcycleSpecific.dedicatedSpots && 
-                   parkingRules.motorcycleSpecific.dedicatedSpots.length > 0 && (
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
-                      <h4 className="font-medium text-blue-900 mb-2 flex items-center">
-                        <MapPin className="h-4 w-4 mr-1" />
-                        Aangewezen motorvakken ({parkingRules.motorcycleSpecific.dedicatedSpots.length})
-                      </h4>
-                      <div className="space-y-2">
-                        {parkingRules.motorcycleSpecific.dedicatedSpots.map((spot, index) => (
-                          <div key={index} className="flex justify-between items-center text-sm">
-                            <span className="text-blue-800">{spot.location}</span>
-                            <span className="bg-blue-200 text-blue-900 px-2 py-1 rounded text-xs">
-                              {spot.spots} plaatsen
-                            </span>
-                          </div>
-                        ))}
+                  {parkingRules.motorcycleSpecific.dedicatedSpots &&
+                    parkingRules.motorcycleSpecific.dedicatedSpots.length > 0 && (
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
+                        <h4 className="font-medium text-blue-900 mb-2 flex items-center">
+                          <MapPin className="h-4 w-4 mr-1" />
+                          Aangewezen motorvakken (
+                          {parkingRules.motorcycleSpecific.dedicatedSpots.length})
+                        </h4>
+                        <div className="space-y-2">
+                          {parkingRules.motorcycleSpecific.dedicatedSpots.map((spot, index) => (
+                            <div key={index} className="flex justify-between items-center text-sm">
+                              <span className="text-blue-800">{spot.location}</span>
+                              <span className="bg-blue-200 text-blue-900 px-2 py-1 rounded text-xs">
+                                {spot.spots} plaatsen
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
                   {/* Notes */}
                   {parkingRules.motorcycleSpecific.notes && (
@@ -227,12 +219,16 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-amber-800">Per uur:</span>
-                    <span className="font-medium text-amber-900">€{parkingRules.paid.rates.hourly.toFixed(2)}</span>
+                    <span className="font-medium text-amber-900">
+                      €{parkingRules.paid.rates.hourly.toFixed(2)}
+                    </span>
                   </div>
                   {parkingRules.paid.rates.daily && (
                     <div className="flex justify-between">
                       <span className="text-amber-800">Per dag:</span>
-                      <span className="font-medium text-amber-900">€{parkingRules.paid.rates.daily.toFixed(2)}</span>
+                      <span className="font-medium text-amber-900">
+                        €{parkingRules.paid.rates.daily.toFixed(2)}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -263,9 +259,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
             {/* Permits */}
             {parkingRules.permits?.required && (
               <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                <h4 className="font-medium text-purple-900 mb-2">
-                  Vergunning vereist
-                </h4>
+                <h4 className="font-medium text-purple-900 mb-2">Vergunning vereist</h4>
                 {parkingRules.permits.types.length > 0 ? (
                   <ul className="text-sm text-purple-800 space-y-1">
                     {parkingRules.permits.types.map((type, index) => (
@@ -281,28 +275,26 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
             )}
 
             {/* No parking zones */}
-            {parkingRules.restrictions?.noParking && 
-             parkingRules.restrictions.noParking.length > 0 && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                <h4 className="font-medium text-red-900 mb-2 flex items-center">
-                  <X className="h-4 w-4 mr-2" />
-                  Parkeerverbod
-                </h4>
-                <div className="space-y-1">
-                  {parkingRules.restrictions.noParking.map((restriction, index) => (
-                    <div key={index} className="text-sm text-red-800">
-                      <span className="font-medium">{restriction.location}</span>
-                      {restriction.days && (
-                        <span className="ml-2">({restriction.days.join(', ')})</span>
-                      )}
-                      {restriction.times && (
-                        <span className="ml-2">{restriction.times}</span>
-                      )}
-                    </div>
-                  ))}
+            {parkingRules.restrictions?.noParking &&
+              parkingRules.restrictions.noParking.length > 0 && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <h4 className="font-medium text-red-900 mb-2 flex items-center">
+                    <X className="h-4 w-4 mr-2" />
+                    Parkeerverbod
+                  </h4>
+                  <div className="space-y-1">
+                    {parkingRules.restrictions.noParking.map((restriction, index) => (
+                      <div key={index} className="text-sm text-red-800">
+                        <span className="font-medium">{restriction.location}</span>
+                        {restriction.days && (
+                          <span className="ml-2">({restriction.days.join(', ')})</span>
+                        )}
+                        {restriction.times && <span className="ml-2">{restriction.times}</span>}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
           </>
         )}
 
@@ -312,7 +304,11 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
             {/* Last updated */}
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <Calendar className="h-3 w-3" />
-              <span>{!data.lastUpdated || data.lastUpdated === '' ? 'Nog niet bijgewerkt' : new Date(data.lastUpdated).toLocaleDateString('nl-NL')}</span>
+              <span>
+                {!data.lastUpdated || data.lastUpdated === ''
+                  ? 'Nog niet bijgewerkt'
+                  : new Date(data.lastUpdated).toLocaleDateString('nl-NL')}
+              </span>
             </div>
 
             {/* Contact & Sources in a flex row for mobile, stacked for larger screens */}
@@ -320,7 +316,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
               {/* Contact */}
               {'contact' in data && data.contact?.email ? (
                 data.contact.email && data.contact.email !== '#' ? (
-                  <a 
+                  <a
                     href={`mailto:${data.contact.email}`}
                     className="flex items-center gap-1.5 text-xs text-blue-600 hover:text-blue-800 transition-colors group"
                   >
@@ -339,9 +335,9 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
               {data.sources && data.sources.length > 0 && (
                 <div className="flex items-center gap-2">
                   {data.sources.slice(0, 2).map((source, index) => {
-                    const isDisabled = !source.url || source.url === '' || source.url === '#';
+                    const isDisabled = !source.url || source.url === '' || source.url === '#'
                     return isDisabled ? (
-                      <span 
+                      <span
                         key={index}
                         className="flex items-center gap-1 text-xs text-gray-400 cursor-not-allowed"
                         title={source.name || source.type}
@@ -351,10 +347,10 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
                         <span className="sm:hidden">Bron</span>
                       </span>
                     ) : (
-                      <a 
+                      <a
                         key={index}
-                        href={source.url} 
-                        target="_blank" 
+                        href={source.url}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 transition-colors group"
                         title={source.name || source.type}
@@ -363,12 +359,10 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
                         <span className="hidden sm:inline">{source.name || 'Bron'}</span>
                         <span className="sm:hidden">Bron</span>
                       </a>
-                    );
+                    )
                   })}
                   {data.sources.length > 2 && (
-                    <span className="text-xs text-gray-400">
-                      +{data.sources.length - 2}
-                    </span>
+                    <span className="text-xs text-gray-400">+{data.sources.length - 2}</span>
                   )}
                 </div>
               )}
