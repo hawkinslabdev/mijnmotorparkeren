@@ -1,0 +1,68 @@
+{
+  "id": "amersfoort-stad",
+  "parent": "amersfoort",
+  "name": "Amersfoort (Stad)",
+  "province": "Utrecht",
+  "coordinates": {
+    "lat": 52.156111,
+    "lng": 5.387727
+  },
+  "parkingRules": {
+    "free": false,
+    "paid": {
+      "enabled": false,
+      "areas": [],
+      "rates": {}
+    },
+    "permits": {
+      "required": true,
+      "types": ["Parkeervergunning bewoners"]
+    },
+    "motorcycleSpecific": {
+      "dedicatedSpots": [],
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "De binnenstad van Amersfoort is een autoluwe zone en niet toegankelijk voor motorfietsen zonder ontheffing. Motoren vallen onder het toegangsregime voor gemotoriseerd verkeer. Parkeren op de stoep is in de kern niet toegestaan vanwege de beperkte ruimte en het verbod op gemotoriseerd verkeer in voetgangersgebieden."
+    }
+  },
+  "area": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [5.3813, 52.1585],
+              [5.3845, 52.1601],
+              [5.3900, 52.1605],
+              [5.3955, 52.1580],
+              [5.3980, 52.1545],
+              [5.3940, 52.1515],
+              [5.3870, 52.1505],
+              [5.3815, 52.1520],
+              [5.3795, 52.1555],
+              [5.3813, 52.1585]
+            ]
+          ]
+        },
+        "properties": {
+          "name": "Amersfoort Binnenstad No-Go Zone"
+        }
+      }
+    ]
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Amersfoort",
+      "url": "https://www.amersfoort.nl/de-autoluwe-binnenstad",
+      "date": "2026-04-22"
+    }
+  ],
+  "alternativeNames": ["Keistad", "Amersfoort Centrum"],
+  "overrideReason": "In Gemeente Amersfoort is de binnenstad een autoluwe zone die niet toegankelijk is voor motorrijders zonder ontheffing.",
+  "effectiveDate": "2026-01-01"
+}

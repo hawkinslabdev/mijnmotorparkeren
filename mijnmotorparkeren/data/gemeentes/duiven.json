@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": false,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "Ook in onze gemeente (Duiven) is er geen speciaal beleid voor parkeren van motorfietsen. De motor moet in een gewoon parkeervak of op de rijbaan parkeren. In een blauwe zone hoeft de motor geen parkeerschijf te gebruiken!"
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Duiven (afd. Realisatie & Beheer)",
+            "date": "2026-04-22"
+        }
+    ]
 }

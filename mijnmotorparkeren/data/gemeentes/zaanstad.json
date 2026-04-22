@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": true,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "In Zaanstad mogen motoren op de stoep staan, mits ze geen hinder veroorzaken voor voetgangers en hulpdiensten. In de praktijk kan dit meestal alleen op brede stoepgedeelten."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Zaanstad",
+            "date": "2026-04-22"
+        }
+        ]
 }

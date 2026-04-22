@@ -11,7 +11,7 @@
         "type": "Polygon"
     },
     "parkingRules": {
-        "free": null,
+        "free": false,
         "paid": {
             "enabled": null,
             "areas": [],
@@ -28,11 +28,17 @@
         "contact": null,
         "motorcycleSpecific": {
             "dedicatedSpots": [],
-            "allowedOnSidewalk": null,
+            "allowedOnSidewalk": false,
             "freeInPaidZones": null,
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "notes": "In de gemeente (Hellendoorn) is er geen speciaal beleid voor parkeren van motorfietsen. De motor moet in een gewoon parkeervak of op de rijbaan parkeren. We kennen geen betaald parkeren in de gemeente Hellendoorn, maar er kunnen wel lokale regels zijn die van toepassing zijn op bepaalde gebieden (zoals een aantal woonstraten). Het is altijd verstandig om de lokale borden en aanwijzingen te volgen."
         }
     },
-    "lastUpdated": null,
-    "sources": []
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Hellendoorn",
+            "date": "2026-04-22"
+        }
+    ]
 }

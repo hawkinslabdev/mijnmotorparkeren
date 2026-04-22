@@ -6,11 +6,53 @@
         "lat": 52.509,
         "lng": 4.946
     },
-    "lastUpdated": null,
+    "boundaries": {
+        "coordinates": [
+            [
+                [4.870, 52.590],
+                [4.985, 52.590],
+                [5.000, 52.530],
+                [5.035, 52.515],
+                [5.025, 52.485],
+                [4.995, 52.475],
+                [4.950, 52.478],
+                [4.925, 52.485],
+                [4.905, 52.515],
+                [4.872, 52.525],
+                [4.870, 52.590]
+            ]
+        ],
+        "type": "Polygon"
+    },
     "parkingRules": {
+        "free": false,
+        "paid": {
+            "enabled": null,
+            "areas": [],
+            "rates": null
+        },
+        "permits": {
+            "required": false,
+            "types": []
+        },
+        "restrictions": {
+            "timeLimit": null,
+            "noParking": []
+        },
         "contact": null,
         "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+            "dedicatedSpots": [],
+            "allowedOnSidewalk": true,
+            "freeInPaidZones": false,
+            "notes": "Purmerend en Beemster volgen momenteel de parkeerregels van Amsterdam. Er zijn vooralsnog geen plannen om dit beleid te wijzigen."
         }
-    }
+    },
+    "lastUpdated": "2026-04-22",
+    "sources": [
+        {
+            "type": "official",
+            "name": "Gemeente Purmerend",
+            "date": "2026-04-22"
+        }
+    ]
 }
