@@ -108,7 +108,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({ gemeente, city, clas
         {/* City indicator if applicable */}
         {isCity && city && (
           <p className="text-sm text-gray-600">
-            in Gemeente {city.parent}
+            in Gemeente {city.parent.charAt(0).toUpperCase() + city.parent.slice(1)}
           </p>
         )}
       </div>
