@@ -15,8 +15,8 @@
     "generate:index": "tsx scripts/sync-gemeentes-index.ts"
   },
   "dependencies": {
-    "@astrojs/node": "^10.0.3",
-    "@astrojs/react": "^5.0.1",
+    "@astrojs/node": "^10.0.5",
+    "@astrojs/react": "^5.0.3",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-toast": "^1.2.14",
