@@ -1,4 +1,4 @@
-*.json
+*.json/
 *.md
 !README.md
 !CONTRIBUTING.md
