@@ -192,6 +192,17 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     window.history.pushState({}, '', '/')
   }, [setSelectedGemeenteId, resetView])
 
+  // Swipe-to-dismiss: clears the panel but leaves the map where it is.
+  // Unlike handleDetailsClose, does NOT call resetView() — user swiped to
+  // look at the map, not to navigate away.
+  const handlePanelSwipeDismiss = useCallback(() => {
+    setSelectedGemeente(null)
+    setSelectedCity(null)
+    setSelectedPOI(null)
+    setSelectedGemeenteId(null)
+    window.history.pushState({}, '', '/')
+  }, [setSelectedGemeenteId])
+
   const handlePanelTouchStart = useCallback((e: React.TouchEvent) => {
     if (e.touches.length !== 1) return
     const el = e.currentTarget as HTMLElement
@@ -211,12 +222,12 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
   const handlePanelTouchEnd = useCallback(() => {
     if (swipeOffsetRef.current > 80) {
-      handleDetailsClose()
+      handlePanelSwipeDismiss()
     }
     swipeOffsetRef.current = 0
     setSwipeOffset(0)
     panelTouchStartY.current = null
-  }, [handleDetailsClose])
+  }, [handlePanelSwipeDismiss])
 
   const [shareLoading, setShareLoading] = useState(false)
   const handleShare = async () => {
