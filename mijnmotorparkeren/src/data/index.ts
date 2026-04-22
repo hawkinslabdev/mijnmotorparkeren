@@ -58,7 +58,7 @@ export async function fetchFullGemeente(id: string): Promise<Gemeente> {
 export const CITY_STUB: City = {
   id: 'stub',
   parent: '',
-  name: 'City not found',
+  name: 'Stad niet gevonden',
   province: '',
   coordinates: { lat: 0, lng: 0 },
   parkingRules: {
@@ -80,7 +80,7 @@ export const CITY_STUB: City = {
 
 export const GEMEENTE_STUB: Gemeente = {
   id: 'stub',
-  name: 'Municipality not found',
+  name: 'Gemeente niet gevonden',
   province: '',
   coordinates: { lat: 0, lng: 0 },
 }
