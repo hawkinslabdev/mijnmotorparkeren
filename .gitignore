@@ -1,4 +1,6 @@
 *.json/
 *.md
+.*/
+!.github/
 !README.md
 !CONTRIBUTING.md
