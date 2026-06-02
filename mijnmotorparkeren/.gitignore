@@ -37,3 +37,9 @@ coverage
 # Generated index files (served dynamically via API endpoints)
 data/index.json
 data/city/index.json
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/

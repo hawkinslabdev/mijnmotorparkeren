@@ -1,0 +1,27 @@
+{
+  "id": "amsterdam",
+  "name": "Amsterdam",
+  "province": "Noord-Holland",
+  "coordinates": { "lat": 52.3676, "lng": 4.9041 },
+  "zoom": 12,
+  "statcode": "GM0363",
+  "lastUpdated": "2025-01-01",
+  "parkingRules": {
+    "free": null,
+    "paid": {
+      "enabled": true,
+      "areas": ["Centrum", "Zuid"],
+      "rates": { "hourly": 7.50, "daily": null }
+    },
+    "permits": { "required": false, "types": [] },
+    "restrictions": { "timeLimit": null, "noParking": [] },
+    "motorcycleSpecific": {
+      "dedicatedSpots": [],
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Motoren mogen op de stoep parkeren mits dit geen hinder oplevert."
+    }
+  },
+  "sources": [{ "name": "Gemeente Amsterdam", "url": "https://www.amsterdam.nl/" }],
+  "contact": { "email": "info@amsterdam.nl" }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "lastGenerated": "2025-01-01T00:00:00.000Z",
+  "total": 2,
+  "gemeentes": [
+    {
+      "id": "amsterdam",
+      "name": "Amsterdam",
+      "province": "Noord-Holland",
+      "coordinates": { "lat": 52.3676, "lng": 4.9041 },
+      "zoom": 12,
+      "statcode": "GM0363",
+      "parkingStatus": "sidewalk_allowed",
+      "reference": "gemeentes/amsterdam.json"
+    },
+    {
+      "id": "rotterdam",
+      "name": "Rotterdam",
+      "province": "Zuid-Holland",
+      "coordinates": { "lat": 51.9225, "lng": 4.4792 },
+      "zoom": 12,
+      "statcode": "GM0599",
+      "parkingStatus": "paid_parking",
+      "reference": "gemeentes/rotterdam.json"
+    }
+  ]
+}

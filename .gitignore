@@ -1,6 +1,7 @@
 *.json/
 *.md
 .*/
+mijnmotorparkeren/.astro/
 !.github/
 !README.md
 !CONTRIBUTING.md
