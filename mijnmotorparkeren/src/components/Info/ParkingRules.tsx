@@ -61,27 +61,26 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
       {/* Header */}
       <div className="relative bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6">
         {/* Header buttons; vertically centered */}
-        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex items-center gap-2">
+        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex items-center gap-1">
           {/* Report/Help button */}
           <a
             href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 rounded-full hover:bg-white/50 transition-colors group"
-            title="Probleem melden"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-white/50 transition-colors group"
             aria-label="Probleem melden"
           >
-            <AlertTriangle className="h-5 w-5 text-rose-400 group-hover:text-rose-600 transition-colors" />
+            <AlertTriangle className="h-5 w-5 text-rose-400 group-hover:text-rose-600 transition-colors" aria-hidden="true" />
           </a>
 
           {/* Close button */}
           {onClose && (
             <button
               onClick={onClose}
-              className="p-1.5 rounded-full hover:bg-white/50 transition-colors"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-white/50 transition-colors"
               aria-label="Sluiten"
             >
-              <X className="h-5 w-5 text-gray-600" />
+              <X className="h-5 w-5 text-gray-600" aria-hidden="true" />
             </button>
           )}
         </div>
@@ -339,10 +338,10 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                     return isDisabled ? (
                       <span
                         key={index}
-                        className="flex items-center gap-1 text-xs text-gray-400 cursor-not-allowed"
+                        className="flex items-center gap-1 text-xs text-gray-400 cursor-not-allowed py-2"
                         title={source.name || source.type}
                       >
-                        <ExternalLink className="h-3 w-3" />
+                        <ExternalLink className="h-3 w-3" aria-hidden="true" />
                         <span className="hidden sm:inline">{source.name || 'Bron'}</span>
                         <span className="sm:hidden">Bron</span>
                       </span>
@@ -352,10 +351,11 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                         href={source.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 transition-colors group"
+                        className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 transition-colors group py-2"
                         title={source.name || source.type}
+                        aria-label={source.name || 'Bekijk bron'}
                       >
-                        <ExternalLink className="h-3 w-3 group-hover:scale-110 transition-transform" />
+                        <ExternalLink className="h-3 w-3 group-hover:scale-110 transition-transform" aria-hidden="true" />
                         <span className="hidden sm:inline">{source.name || 'Bron'}</span>
                         <span className="sm:hidden">Bron</span>
                       </a>

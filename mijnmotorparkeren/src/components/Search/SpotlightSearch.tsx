@@ -83,8 +83,8 @@ export const SpotlightSearch: React.FC<SpotlightSearchProps> = ({
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm z-9999" />
-        <Dialog.Content className="fixed top-[10%] left-1/2 -translate-x-1/2 w-full max-w-2xl bg-white rounded-xl shadow-2xl z-10000 max-h-[80vh] overflow-hidden">
+        <Dialog.Overlay className="fixed inset-0 bg-black/60 z-[9999]" />
+        <Dialog.Content className="fixed inset-x-0 bottom-0 sm:bottom-auto sm:top-[10%] sm:left-1/2 sm:-translate-x-1/2 w-full sm:max-w-2xl bg-white rounded-t-2xl sm:rounded-xl shadow-2xl z-[10000] max-h-[85vh] sm:max-h-[80vh] overflow-hidden">
           {/* Accessibility: Hidden title for screen readers */}
           <VisuallyHidden>
             <Dialog.Title>Gemeente zoeken</Dialog.Title>
@@ -124,7 +124,7 @@ export const SpotlightSearch: React.FC<SpotlightSearchProps> = ({
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
             )}
             <Dialog.Close
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors"
               aria-label="Sluiten"
             >
               <svg

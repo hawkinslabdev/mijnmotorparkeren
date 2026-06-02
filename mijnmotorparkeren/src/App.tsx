@@ -335,7 +335,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
         {detailsOpen && (
           <div
             ref={detailsRef}
-            className="fixed sm:absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none max-h-[70vh] sm:max-h-none overflow-y-auto"
+            className="fixed sm:absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none max-h-[75vh] sm:max-h-none overflow-y-auto [animation:slide-up_0.3s_ease-out] sm:[animation:none]"
             style={{
               boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
               transform: swipeOffset > 0 ? `translateY(${swipeOffset}px)` : undefined,
@@ -350,8 +350,12 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
             </div>
 
             {detailsLoading ? (
-              <div className="flex items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <div className="animate-pulse space-y-3 py-2">
+                <div className="h-6 bg-gray-200 rounded w-2/3" />
+                <div className="h-4 bg-gray-200 rounded w-1/3" />
+                <div className="h-16 bg-gray-200 rounded" />
+                <div className="h-16 bg-gray-200 rounded" />
+                <div className="h-10 bg-gray-200 rounded w-3/4" />
               </div>
             ) : selectedPOI ? (
               <POIDetails poi={selectedPOI} onClose={handlePOIClose} />
@@ -368,7 +372,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
                 type="button"
                 onClick={handleShare}
                 disabled={shareLoading}
-                className="hidden sm:flex w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-lg items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-lg items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {shareLoading ? (
                   <>

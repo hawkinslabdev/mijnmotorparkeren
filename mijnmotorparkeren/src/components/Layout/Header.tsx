@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Search, Menu, X, MapPin, ExternalLink, Github, Coffee } from 'lucide-react'
 
 interface HeaderProps {
@@ -9,65 +9,54 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, selectedGemeente }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isGithubModalOpen, setIsGithubModalOpen] = useState(false)
-  const githubModalRef = useRef<HTMLDivElement | null>(null)
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen)
     onMenuToggle?.()
   }
 
-  useEffect(() => {
-    if (!isGithubModalOpen) return
-    const timer = setTimeout(() => setIsGithubModalOpen(false), 5000)
-    return () => clearTimeout(timer)
-  }, [isGithubModalOpen])
+  const closeMenu = () => setIsMenuOpen(false)
 
   useEffect(() => {
-    if (!isGithubModalOpen) return
-    function handleClick(event: MouseEvent) {
-      if (githubModalRef.current && !githubModalRef.current.contains(event.target as Node)) {
-        setIsGithubModalOpen(false)
-      }
+    if (!isMenuOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeMenu()
     }
-    document.addEventListener('mousedown', handleClick)
-    return () => document.removeEventListener('mousedown', handleClick)
-  }, [isGithubModalOpen])
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isMenuOpen])
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo and Title */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <a
-                href="/"
-                className="focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
-                title="Ga naar de hoofdpagina"
-              >
-                <img
-                  src="/logo.svg"
-                  alt=""
-                  className="h-10 w-auto object-contain"
-                  aria-hidden="true"
-                />
-              </a>
-              {/* Show title on all screen sizes */}
-              <div>
-                <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
-                  MijnMotorParkeren.nl
-                </h1>
-                <p className="text-xs text-gray-500">Even snel je motor parkeren</p>
-              </div>
+          <div className="flex items-center space-x-2">
+            <a
+              href="/"
+              aria-label="Ga naar de hoofdpagina"
+              className="focus:outline-none focus:ring-2 focus:ring-blue-400 rounded flex-shrink-0"
+            >
+              <img
+                src="/logo.svg"
+                alt=""
+                className="h-8 sm:h-10 aspect-square object-contain"
+                aria-hidden="true"
+              />
+            </a>
+            <div>
+              <span className="block text-lg sm:text-xl font-semibold text-gray-900 leading-tight">
+                MijnMotorParkeren.nl
+              </span>
+              <p className="text-xs text-gray-500">Even snel je motor parkeren</p>
             </div>
           </div>
 
           {/* Current Location Display */}
           {selectedGemeente && (
             <div className="hidden md:flex items-center space-x-2 text-sm text-gray-600">
-              <MapPin className="w-4 h-4" />
-              <span>Viewing: {selectedGemeente}</span>
+              <MapPin className="w-4 h-4" aria-hidden="true" />
+              <span>Geselecteerd: {selectedGemeente}</span>
             </div>
           )}
 
@@ -76,23 +65,24 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
             {/* Search Button */}
             <button
               onClick={onSearchOpen}
-              className="flex items-center px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+              aria-label="Locatie zoeken"
+              className="flex items-center px-3 min-h-[44px] bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
             >
-              <Search className="w-4 h-4 text-gray-600" />
+              <Search className="w-4 h-4 text-gray-600" aria-hidden="true" />
               <span className="hidden sm:inline text-sm text-gray-600 ml-2">Locatie zoeken...</span>
               <kbd className="hidden lg:inline-flex items-center px-2 py-1 bg-white border border-gray-300 rounded text-xs font-sans text-gray-400 ml-2">
                 ⌘K
               </kbd>
             </button>
 
-            {/* Meld map issue button; Desktop Only */}
+            {/* Report issue — Desktop Only */}
             <div className="hidden md:block">
               <a
                 href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues/new/choose"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Meld een fout op de kaart (opent GitHub)"
                 className="flex items-center space-x-2 px-3 py-2 bg-[#dbede3] hover:bg-[#c2e2d1] rounded-lg transition-colors text-green-800 hover:text-green-900"
-                title="Meld een fout op de kaart"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -100,6 +90,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -112,37 +103,40 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
               </a>
             </div>
 
-            {/* GitHub & Coffee Buttons; Desktop Only */}
+            {/* GitHub & Coffee — Desktop Only */}
             <div className="hidden md:flex items-center space-x-2">
               <a
                 href="https://github.com/hawkinslabdev/mijnmotorparkeren"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-gray-600 hover:text-gray-900"
-                title="Bekijken op GitHub"
+                aria-label="Bekijken op GitHub"
+                className="flex items-center px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-gray-600 hover:text-gray-900"
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-4 h-4" aria-hidden="true" />
               </a>
               <a
                 href="https://buymeacoffee.com/hawkinslabdev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-3 py-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-colors text-yellow-800 hover:text-yellow-900"
-                title="Steun mij met koffie!"
+                aria-label="Steun mij met een koffie"
+                className="flex items-center px-3 py-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-colors text-yellow-800 hover:text-yellow-900"
               >
-                <Coffee className="w-4 h-4" />
+                <Coffee className="w-4 h-4" aria-hidden="true" />
               </a>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={handleMenuToggle}
-              className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              aria-label={isMenuOpen ? 'Sluit menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              className="md:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors"
             >
               {isMenuOpen ? (
-                <X className="w-5 h-5 text-gray-600" />
+                <X className="w-5 h-5 text-gray-600" aria-hidden="true" />
               ) : (
-                <Menu className="w-5 h-5 text-gray-600" />
+                <Menu className="w-5 h-5 text-gray-600" aria-hidden="true" />
               )}
             </button>
           </div>
@@ -151,56 +145,57 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
         {/* Mobile Menu */}
         {isMenuOpen && (
           <>
-            {/* Overlay to close menu when clicking outside */}
-            <div
-              className="fixed inset-0 z-40"
-              onClick={() => setIsMenuOpen(false)}
+            <button
+              className="fixed inset-0 z-40 w-full cursor-default"
+              onClick={closeMenu}
               aria-label="Sluit menu"
+              tabIndex={-1}
             />
-            <div className="md:hidden py-4 border-t border-gray-200 z-50 relative">
+            <div
+              id="mobile-menu"
+              className="md:hidden py-4 border-t border-gray-200 z-50 relative"
+            >
               <div className="space-y-3">
                 {selectedGemeente && (
                   <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <MapPin className="w-4 h-4" />
-                    <span>Viewing: {selectedGemeente}</span>
+                    <MapPin className="w-4 h-4" aria-hidden="true" />
+                    <span>Geselecteerd: {selectedGemeente}</span>
                   </div>
                 )}
 
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <a
                     href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg items-center justify-between"
+                    className="flex px-3 py-3 text-sm text-gray-700 hover:bg-gray-100 rounded-lg items-center justify-between"
                   >
-                    <span>Melden kaartprobleem</span>
-                    <ExternalLink className="w-4 h-4 ml-2 flex-shrink-0" />
+                    <span>Meld kaartprobleem</span>
+                    <ExternalLink className="w-4 h-4 ml-2 flex-shrink-0" aria-hidden="true" />
                   </a>
                   <a
                     href="https://github.com/hawkinslabdev/mijnmotorparkeren"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg items-center justify-between"
+                    className="flex px-3 py-3 text-sm text-gray-700 hover:bg-gray-100 rounded-lg items-center justify-between"
                   >
                     <span>GitHub</span>
-                    <ExternalLink className="w-4 h-4 ml-2 flex-shrink-0" />
+                    <ExternalLink className="w-4 h-4 ml-2 flex-shrink-0" aria-hidden="true" />
                   </a>
                   <a
                     href="https://buymeacoffee.com/hawkinslabdev"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-yellow-100 rounded-lg items-center justify-between"
+                    className="flex px-3 py-3 text-sm text-gray-700 hover:bg-yellow-100 rounded-lg items-center justify-between"
                   >
                     <span>Trakteer mij op een koffie ☕</span>
-                    <ExternalLink className="w-4 h-4 ml-2 flex-shrink-0" />
+                    <ExternalLink className="w-4 h-4 ml-2 flex-shrink-0" aria-hidden="true" />
                   </a>
                 </div>
               </div>
             </div>
           </>
         )}
-        {/* ErrorModal and ErrorModalMobile are kept for future use */}
-        {/* {isGithubModalOpen && <><ErrorModal /><ErrorModalMobile /></>} */}
       </div>
     </header>
   )

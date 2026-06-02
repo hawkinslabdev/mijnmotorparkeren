@@ -3,6 +3,21 @@
 
 @theme {
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --color-brand-green: #dbede3;
+  --color-brand-green-hover: #c2e2d1;
+  --color-brand-green-text: #166534;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @layer base {

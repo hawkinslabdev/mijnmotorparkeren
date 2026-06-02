@@ -1073,23 +1073,21 @@ const MapView: React.FC<MapViewProps> = ({
             isLoading={shareLoading}
           />
 
-          {/* Mobile Reset Button; only visible on mobile, positioned below share button */}
+          {/* Mobile Reset Button */}
           <button
             onClick={() => onReset?.()}
-            className="absolute right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 flex items-center justify-center md:hidden text-gray-700 focus:ring-2 focus:ring-blue-500"
-            title="Reset kaart"
+            className="absolute right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 flex items-center justify-center text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-label="Reset kaart"
             style={{ minWidth: 48, minHeight: 48, top: 68 }}
           >
-            <RotateCcw className="w-5 h-5" />
+            <RotateCcw className="w-5 h-5" aria-hidden="true" />
           </button>
 
-          {/* Current Location Button; only on mobile, below reset */}
+          {/* Current Location Button */}
           <button
             onClick={handleCurrentLocation}
             disabled={locationLoading}
-            className="absolute right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors md:hidden flex items-center justify-center text-gray-700 focus:ring-2 focus:ring-blue-500"
-            title="Ga naar huidige locatie"
+            className="absolute right-3 bg-white rounded-lg shadow-lg p-3 z-[1000] hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-label="Ga naar huidige locatie"
             style={{ minWidth: 48, minHeight: 48, top: 123 }}
           >
@@ -1101,17 +1099,12 @@ const MapView: React.FC<MapViewProps> = ({
                 height="20"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#6b7280"
+                stroke="currentColor"
                 strokeWidth="2"
-                className="text-gray-700"
+                aria-hidden="true"
               >
-                <path
-                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
-                  fill=""
-                  fillOpacity="0.5"
-                />
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-                <circle cx="12" cy="9" r="2.5" fill="#6b7280" />
+                <circle cx="12" cy="9" r="2.5" fill="currentColor" />
               </svg>
             )}
           </button>
