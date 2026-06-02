@@ -211,14 +211,9 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     }
   }, [])
 
-  const handlePanelTouchMove = useCallback((e: React.TouchEvent) => {
-    if (panelTouchStartY.current === null) return
-    const delta = e.touches[0].clientY - panelTouchStartY.current
-    if (delta > 0) {
-      swipeOffsetRef.current = delta
-      setSwipeOffset(delta)
-    }
-  }, [])
+  // iOS Safari registers touch listeners as passive by default, which prevents
+  // preventDefault() from blocking pull-to-refresh. We attach a non-passive
+  // native listener in useEffect instead (see below).
 
   const handlePanelTouchEnd = useCallback(() => {
     if (swipeOffsetRef.current > 80) {
@@ -295,6 +290,22 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     }
   }, [selectedGemeente, selectedCity, selectedPOI, handleDetailsClose, handlePOIClose])
 
+  useEffect(() => {
+    const el = detailsRef.current
+    if (!el) return
+    const onTouchMove = (e: TouchEvent) => {
+      if (panelTouchStartY.current === null) return
+      const delta = e.touches[0].clientY - panelTouchStartY.current
+      if (delta > 0) {
+        e.preventDefault()
+        swipeOffsetRef.current = delta
+        setSwipeOffset(delta)
+      }
+    }
+    el.addEventListener('touchmove', onTouchMove, { passive: false })
+    return () => el.removeEventListener('touchmove', onTouchMove)
+  }, [selectedGemeente, selectedCity, detailsLoading])
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -335,14 +346,13 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
         {detailsOpen && (
           <div
             ref={detailsRef}
-            className="fixed sm:absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none max-h-[75vh] sm:max-h-none overflow-y-auto [animation:slide-up_0.3s_ease-out] sm:[animation:none]"
+            className="fixed sm:absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none max-h-[75vh] sm:max-h-none overflow-y-auto [overscroll-behavior-y:contain] [animation:slide-up_0.3s_ease-out] sm:[animation:none]"
             style={{
               boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
               transform: swipeOffset > 0 ? `translateY(${swipeOffset}px)` : undefined,
               transition: swipeOffset > 0 ? 'none' : 'transform 0.3s ease-out',
             }}
             onTouchStart={handlePanelTouchStart}
-            onTouchMove={handlePanelTouchMove}
             onTouchEnd={handlePanelTouchEnd}
           >
             <div className="sm:hidden flex justify-center mb-2">
