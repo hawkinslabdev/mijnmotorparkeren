@@ -43,17 +43,22 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
             <div className="flex items-center space-x-2">
               <a
                 href="/"
-                className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
                 title="Ga naar de hoofdpagina"
               >
-                <MapPin className="w-5 h-5 text-white" />
+                <img
+                  src="/logo.svg"
+                  alt=""
+                  className="h-10 w-auto object-contain"
+                  aria-hidden="true"
+                />
               </a>
               {/* Show title on all screen sizes */}
               <div>
                 <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
                   MijnMotorParkeren.nl
                 </h1>
-                <p className="text-xs text-gray-500 hidden sm:block">Even snel je motor parkeren</p>
+                <p className="text-xs text-gray-500">Even snel je motor parkeren</p>
               </div>
             </div>
           </div>

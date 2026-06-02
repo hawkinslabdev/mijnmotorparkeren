@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/inter/wght.css';
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+}
 
 @layer base {
   body {
@@ -35,8 +40,9 @@ astro-island {
 }
 
 /* Main container that holds the map */
-.min-h-screen {
-  height: 100vh !important;
+.min-h-screen,
+.h-dvh {
+  height: 100dvh !important;
   display: flex;
   flex-direction: column;
 }

@@ -13,8 +13,8 @@ export const PromoBar: React.FC = () => {
 
   return (
     <div className="w-full bg-[#dbede3] border-b border-green-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-center gap-3 text-sm">
-        <span className="text-green-900">{currentItem.text}</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-center gap-3 text-sm min-w-0">
+        <span className="text-green-900 truncate min-w-0">{currentItem.text}</span>
         {currentItem.link && currentItem.linkText && (
           <a
             href={currentItem.link}

@@ -309,7 +309,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   const detailsOpen = Boolean(selectedGemeente || selectedCity || detailsLoading)
 
   return (
-    <div className="h-screen flex flex-col bg-gray-50">
+    <div className="h-dvh flex flex-col bg-gray-50">
       <PromoBar />
       <Header onSearchOpen={() => setSearchOpen(true)} />
 
@@ -323,6 +323,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
           selectedGemeente={selectedGemeente}
           selectedCity={selectedCity}
           detailsOpen={detailsOpen}
+          autoFitGemeenteId={initialGemeenteId ?? null}
         />
 
         <SpotlightSearch

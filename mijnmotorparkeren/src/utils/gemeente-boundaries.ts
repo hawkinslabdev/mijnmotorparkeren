@@ -14,8 +14,8 @@ export interface BoundarySource {
 export const BOUNDARY_SOURCES: BoundarySource[] = [
   {
     name: 'CartoMap (Simplified)',
-    url: 'https://cartomap.github.io/nl/wgs84/gemeente_2025.geojson',
-    year: 2023,
+    url: 'https://cartomap.github.io/nl/wgs84/gemeente_2026.geojson',
+    year: 2026,
     format: 'geojson',
     projection: 'wgs84',
     filename: 'gemeente_boundaries_simplified.geojson',

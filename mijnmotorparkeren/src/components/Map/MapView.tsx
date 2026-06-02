@@ -4,11 +4,11 @@ import {
   TileLayer,
   GeoJSON,
   useMap,
-  useMapEvents,
   CircleMarker,
   Tooltip,
 } from 'react-leaflet'
-import type { LatLngExpression, LatLngBounds, Map as LeafletMap } from 'leaflet'
+import type { LatLngExpression, Map as LeafletMap } from 'leaflet'
+import { geoJSON as leafletGeoJson } from 'leaflet'
 import { useMapStore } from '@stores/mapStore'
 import type { Gemeente } from '@/types/gemeente'
 import type { City } from '@/types/city'
@@ -31,6 +31,7 @@ interface MapViewProps {
   selectedGemeente?: Gemeente | null
   selectedCity?: City | null
   detailsOpen?: boolean
+  autoFitGemeenteId?: string | null
 }
 
 const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ center, zoom }) => {
@@ -41,18 +42,6 @@ const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ cent
   return null
 }
 
-const BoundsTracker: React.FC<{ onBoundsChange: (b: LatLngBounds) => void }> = ({
-  onBoundsChange,
-}) => {
-  const map = useMapEvents({
-    moveend: () => onBoundsChange(map.getBounds()),
-    zoomend: () => onBoundsChange(map.getBounds()),
-  })
-  useEffect(() => {
-    onBoundsChange(map.getBounds())
-  }, [map, onBoundsChange])
-  return null
-}
 
 const ParkingLegend: React.FC<{ gemeenteSelected: boolean }> = ({ gemeenteSelected }) => {
   return (
@@ -474,12 +463,15 @@ let officialBoundaryCache: GeoJSONType.FeatureCollection | null = null
 const RealBoundariesLayer: React.FC<{
   gemeentes: Gemeente[]
   onGemeenteSelect: (gemeente: Gemeente) => void
+  selectedGemeenteId?: string | null
+  autoFitGemeenteId?: string | null
   debugEnabled?: boolean
-}> = ({ gemeentes, onGemeenteSelect, debugEnabled = false }) => {
+}> = ({ gemeentes, onGemeenteSelect, selectedGemeenteId, autoFitGemeenteId, debugEnabled = false }) => {
+  const map = useMap()
+  const hasFittedRef = useRef(false)
   const [officialBoundaries, setOfficialBoundaries] =
     useState<GeoJSONType.FeatureCollection | null>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchRealBoundaries = async () => {
@@ -494,8 +486,7 @@ const RealBoundariesLayer: React.FC<{
           console.log('Fetching official Dutch gemeente boundaries...')
         }
 
-        // Simplified fetch without custom headers to avoid CORS preflight
-        const response = await fetch('https://cartomap.github.io/nl/wgs84/gemeente_2025.geojson')
+        const response = await fetch('/data/gemeente_2026.geojson')
 
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`)
@@ -515,12 +506,10 @@ const RealBoundariesLayer: React.FC<{
 
         officialBoundaryCache = data
         setOfficialBoundaries(data)
-        setError(null)
       } catch (error) {
         if (debugEnabled) {
           console.error('Failed to fetch official boundaries:', error)
         }
-        setError(error instanceof Error ? error.message : 'Unknown error')
         setOfficialBoundaries(null)
       } finally {
         setLoading(false)
@@ -529,6 +518,36 @@ const RealBoundariesLayer: React.FC<{
 
     fetchRealBoundaries()
   }, [debugEnabled])
+
+  // On initial load: fit the map to the selected gemeente's actual polygon bounds.
+  // hasFittedRef ensures this fires once per mount, not on subsequent user selections.
+  useEffect(() => {
+    if (!officialBoundaries || !autoFitGemeenteId || hasFittedRef.current) return
+    const target = gemeentes.find((g) => g.id === autoFitGemeenteId)
+    if (!target) return
+    const clean = (s: string) =>
+      s
+        .toLowerCase()
+        .replace(/^gemeente\s+/i, '')
+        .replace(/\s+\(.*\)$/, '')
+    const feature = officialBoundaries.features.find((f) => {
+      const p = f.properties
+      if (!p) return false
+      if (clean(p.statnaam ?? '') === clean(target.name)) return true
+      if (p.statcode && target.statcode && p.statcode === target.statcode) return true
+      return false
+    })
+    if (!feature) return
+    try {
+      const bounds = leafletGeoJson(feature).getBounds()
+      if (bounds.isValid()) {
+        map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 })
+        hasFittedRef.current = true
+      }
+    } catch {
+      // malformed geometry — leave map where it is
+    }
+  }, [officialBoundaries, autoFitGemeenteId, gemeentes, map])
 
   // Helper function to find matching boundary for a gemeente
   const findMatchingBoundary = (gemeente: Gemeente): GeoJSONType.Feature | null => {
@@ -585,15 +604,6 @@ const RealBoundariesLayer: React.FC<{
     ) : null
   }
 
-  if (error) {
-    return debugEnabled ? (
-      <div className="absolute top-72 left-4 bg-red-600/75 text-white p-2 rounded text-xs z-[2000] max-w-xs">
-        Error loading boundaries: {error}
-        <div className="mt-1 text-xs">Using fallback data...</div>
-      </div>
-    ) : null
-  }
-
   if (!officialBoundaries) {
     if (debugEnabled) {
       console.log('No official boundaries available, using fallback')
@@ -614,8 +624,8 @@ const RealBoundariesLayer: React.FC<{
             console.log(`Using local boundary for ${gemeente.name}`)
           }
 
-          // FIXED: Use proper color logic
           const colors = getMapBoundaryColors(gemeente)
+          const isSelected = gemeente.id === selectedGemeenteId
 
           return (
             <GeoJSON
@@ -630,9 +640,9 @@ const RealBoundariesLayer: React.FC<{
               style={{
                 fillColor: colors.fillColor,
                 color: colors.borderColor,
-                weight: 2,
-                opacity: 0.8,
-                fillOpacity: 0.4,
+                weight: isSelected ? 4 : 2,
+                opacity: isSelected ? 1 : 0.8,
+                fillOpacity: isSelected ? 0.65 : 0.4,
               }}
               eventHandlers={{
                 click: (e) => {
@@ -678,8 +688,8 @@ const RealBoundariesLayer: React.FC<{
           console.log(`Using local boundary fallback for ${gemeente.name}`)
         }
 
-        // FIXED: Use proper color logic
         const colors = getMapBoundaryColors(gemeente)
+        const isSelected = gemeente.id === selectedGemeenteId
 
         return (
           <GeoJSON
@@ -694,10 +704,10 @@ const RealBoundariesLayer: React.FC<{
             style={{
               fillColor: colors.fillColor,
               color: colors.borderColor,
-              weight: 2,
-              opacity: 0.8,
-              fillOpacity: 0.3,
-              dashArray: '5, 5', // Dashed line to indicate fallback
+              weight: isSelected ? 4 : 2,
+              opacity: isSelected ? 1 : 0.8,
+              fillOpacity: isSelected ? 0.65 : 0.3,
+              dashArray: isSelected ? undefined : '5, 5',
             }}
             eventHandlers={{
               click: (e) => {
@@ -718,6 +728,7 @@ const RealBoundariesLayer: React.FC<{
     renderedCount++
 
     const colors = getMapBoundaryColors(gemeente)
+    const isSelected = gemeente.id === selectedGemeenteId
 
     return (
       <GeoJSON
@@ -726,9 +737,9 @@ const RealBoundariesLayer: React.FC<{
         style={{
           fillColor: colors.fillColor,
           color: colors.borderColor,
-          weight: 2,
-          opacity: 0.8,
-          fillOpacity: 0.5,
+          weight: isSelected ? 4 : 2,
+          opacity: isSelected ? 1 : 0.8,
+          fillOpacity: isSelected ? 0.65 : 0.5,
         }}
         eventHandlers={{
           click: (e) => {
@@ -773,12 +784,12 @@ const MapView: React.FC<MapViewProps> = ({
   selectedGemeente,
   selectedCity,
   detailsOpen,
+  autoFitGemeenteId,
 }) => {
-  const { center, zoom, setCenter, setZoom } = useMapStore()
+  const { center, zoom, setCenter, setZoom, selectedGemeenteId } = useMapStore()
   const { getCurrentLocation } = useGeolocation()
   const mapRef = useRef<LeafletMap>(null)
   const [mapReady, setMapReady] = useState(false)
-  const [mapBounds, setMapBounds] = useState<LatLngBounds | null>(null)
   const [tilesLoaded, setTilesLoaded] = useState(false)
   const [locationLoading, setLocationLoading] = useState(false)
   const [shareLoading, setShareLoading] = useState(false)
@@ -830,6 +841,7 @@ const MapView: React.FC<MapViewProps> = ({
         setCenter(location)
         setZoom(13)
         mapRef.current.setView(location, 13)
+        setTimeout(() => mapRef.current?.invalidateSize(), 150)
         setCurrentLocation(location)
         if (debugEnabled) {
           console.log('Centered map on user location:', location)
@@ -912,6 +924,17 @@ const MapView: React.FC<MapViewProps> = ({
     }
   }, [debugEnabled])
 
+  // Re-validate map size when the details panel opens or closes — on some mobile
+  // browsers the panel animation shifts the visual viewport, causing Leaflet to
+  // render tiles for the wrong area.
+  useEffect(() => {
+    if (!mapReady) return
+    const timer = setTimeout(() => {
+      mapRef.current?.invalidateSize()
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [detailsOpen, mapReady])
+
   return (
     <div className="relative w-full h-full">
       <MapContainer
@@ -924,7 +947,6 @@ const MapView: React.FC<MapViewProps> = ({
         whenReady={() => setMapReady(true)}
       >
         <MapUpdater center={center} zoom={zoom} />
-        <BoundsTracker onBoundsChange={setMapBounds} />
 
         <TileLayer
           url={
@@ -978,21 +1000,13 @@ const MapView: React.FC<MapViewProps> = ({
           }
         />
 
-        {/* Only render boundaries for gemeentes whose centroid is within the
-            current viewport (+ 40 % padding for smooth panning). This keeps the
-            number of active Leaflet GeoJSON layers small regardless of how many
-            gemeentes exist in the dataset. */}
+        {/* Render boundaries for all gemeentes; Leaflet clips to viewport natively.
+            Centroid-based filtering was dropped — at zoom ≥ 10 the viewport is small
+            enough that a gemeente centroid can sit outside the padded bounds even when
+            the polygon itself is fully visible (edge-of-gemeente users, large communes). */}
         {(() => {
-          const visible = mapBounds
-            ? gemeentes.filter(
-                (g) =>
-                  g.coordinates &&
-                  mapBounds.pad(0.4).contains([g.coordinates.lat, g.coordinates.lng])
-              )
-            : gemeentes
-
-          const visibleGemeentes = visible.filter((g) => g.type !== 'country')
-          const visibleCountries = visible.filter((g) => g.type === 'country' && g.coordinates)
+          const visibleGemeentes = gemeentes.filter((g) => g.type !== 'country')
+          const visibleCountries = gemeentes.filter((g) => g.type === 'country' && g.coordinates)
 
           return (
             <>
@@ -1001,6 +1015,8 @@ const MapView: React.FC<MapViewProps> = ({
                 <RealBoundariesLayer
                   gemeentes={visibleGemeentes}
                   onGemeenteSelect={handleGemeenteSelect}
+                  selectedGemeenteId={selectedGemeenteId}
+                  autoFitGemeenteId={autoFitGemeenteId}
                   debugEnabled={debugEnabled}
                 />
               )}
