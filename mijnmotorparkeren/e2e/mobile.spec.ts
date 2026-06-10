@@ -26,8 +26,8 @@ test.describe('Mobile UX', () => {
   test('panel renders within viewport', async ({ page }) => {
     await page.goto('/gemeente/amsterdam')
     await waitForMap(page)
-    await expect(page.getByText('Amsterdam')).toBeVisible()
-    const panel = page.getByText('Amsterdam').locator('xpath=ancestor::div[contains(@class,"fixed")]')
+    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam' })).toBeVisible()
+    const panel = page.getByRole('heading', { name: 'Gemeente Amsterdam' }).locator('xpath=ancestor::div[contains(@class,"fixed")]')
     const box = await panel.first().boundingBox()
     const viewport = page.viewportSize()!
     // Panel should not exceed viewport width
