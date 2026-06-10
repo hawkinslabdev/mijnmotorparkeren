@@ -112,7 +112,10 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                 aria-label="Bekijken op GitHub"
                 className="group flex items-center px-3 h-9 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-gray-600 hover:text-gray-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
               >
-                <Github className="w-4 h-4 transition-transform duration-200 ease-out group-hover:scale-110 motion-reduce:transition-none" aria-hidden="true" />
+                <Github
+                  className="w-4 h-4 transition-transform duration-200 ease-out group-hover:scale-110 motion-reduce:transition-none"
+                  aria-hidden="true"
+                />
               </a>
               <a
                 href="https://buymeacoffee.com/hawkinslabdev"
@@ -121,7 +124,10 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                 aria-label="Steun mij met een koffie"
                 className="group flex items-center px-3 h-9 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-yellow-800 hover:text-yellow-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
               >
-                <Coffee className="w-4 h-4 transition-transform duration-200 ease-out group-hover:scale-110 motion-reduce:transition-none" aria-hidden="true" />
+                <Coffee
+                  className="w-4 h-4 transition-transform duration-200 ease-out group-hover:scale-110 motion-reduce:transition-none"
+                  aria-hidden="true"
+                />
               </a>
             </div>
 
