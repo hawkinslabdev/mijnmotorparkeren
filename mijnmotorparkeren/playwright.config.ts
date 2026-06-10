@@ -17,11 +17,11 @@ export default defineConfig({
   projects: [
     {
       name: 'desktop',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], serviceWorkers: 'block' },
     },
     {
       name: 'mobile',
-      use: { ...devices['iPhone 13'] },
+      use: { ...devices['Pixel 5'], serviceWorkers: 'block' },
     },
   ],
 

@@ -24,7 +24,7 @@ test.describe('Detail panel', () => {
   test('share button visible in panel', async ({ page }) => {
     await page.goto('/gemeente/amsterdam')
     await waitForMap(page)
-    await expect(page.getByRole('button', { name: /deel/i })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Deel deze locatie' })).toBeVisible()
   })
 
   test('panel opens via search selection', async ({ page }) => {
@@ -37,19 +37,22 @@ test.describe('Detail panel', () => {
   })
 
   test('panel skeleton shown while loading', async ({ page }) => {
-    // Slow down the gemeente JSON response to catch the loading state
+    // Hold the gemeente JSON response until skeleton is confirmed
+    let release: () => void
+    const held = new Promise<void>((r) => { release = r })
+
     await page.route(/\/data\/gemeentes\/amsterdam\.json/, async (route) => {
-      await new Promise((r) => setTimeout(r, 400))
+      await held
       const { readFileSync } = await import('node:fs')
       const { join } = await import('node:path')
       const data = JSON.parse(readFileSync(join(import.meta.dirname, 'mocks/amsterdam.json'), 'utf-8'))
       await route.fulfill({ json: data })
     })
     await page.goto('/gemeente/amsterdam')
-    await waitForMap(page)
-    // Skeleton uses animate-pulse — check it appears before content
-    await expect(page.locator('.animate-pulse')).toBeVisible()
-    // Then content loads
-    await expect(page.getByText('Amsterdam')).toBeVisible()
+    // Skeleton in DOM while data loading — width:0 on desktop (auto-width container) so use count not visible
+    await expect(page.locator('.animate-pulse')).toHaveCount(1, { timeout: 5000 })
+    release!()
+    // Then content loads after release
+    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam' })).toBeVisible()
   })
 })

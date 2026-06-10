@@ -51,7 +51,7 @@ test.describe('Header — mobile menu', () => {
     const burger = page.getByRole('button', { name: 'Open menu' })
     await burger.click()
     await expect(page.locator('#mobile-menu')).toBeVisible()
-    await page.getByRole('button', { name: 'Sluit menu' }).first().click()
+    await page.locator('button[aria-controls="mobile-menu"]').click({ force: true })
     await expect(page.locator('#mobile-menu')).not.toBeVisible()
   })
 
