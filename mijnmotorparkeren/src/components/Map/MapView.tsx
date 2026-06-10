@@ -452,6 +452,8 @@ const CityBoundariesLayer: React.FC<{
 
 let officialBoundaryCache: GeoJSONType.FeatureCollection | null = null
 
+const MAX_BOUNDARY_RETRIES = 3
+
 const RealBoundariesLayer: React.FC<{
   gemeentes: Gemeente[]
   onGemeenteSelect: (gemeente: Gemeente) => void
@@ -470,52 +472,62 @@ const RealBoundariesLayer: React.FC<{
   const [officialBoundaries, setOfficialBoundaries] =
     useState<GeoJSONType.FeatureCollection | null>(null)
   const [loading, setLoading] = useState(true)
+  const [fetchFailed, setFetchFailed] = useState(false)
+  const [retryKey, setRetryKey] = useState(0)
 
   useEffect(() => {
-    const fetchRealBoundaries = async () => {
-      if (officialBoundaryCache) {
-        setOfficialBoundaries(officialBoundaryCache)
-        setLoading(false)
-        return
+    if (officialBoundaryCache) {
+      setOfficialBoundaries(officialBoundaryCache)
+      setLoading(false)
+      return
+    }
+
+    let cancelled = false
+    const fetchWithRetry = async () => {
+      setLoading(true)
+      setFetchFailed(false)
+
+      for (let attempt = 0; attempt < MAX_BOUNDARY_RETRIES; attempt++) {
+        if (cancelled) return
+        try {
+          if (debugEnabled) {
+            console.log(`Fetching gemeente boundaries (attempt ${attempt + 1})...`)
+          }
+
+          const response = await fetch('/data/gemeente_2026.geojson')
+          if (!response.ok) throw new Error(`HTTP ${response.status}`)
+
+          const data = await response.json()
+          if (!data || !data.features || !Array.isArray(data.features)) {
+            throw new Error('Invalid GeoJSON format')
+          }
+
+          if (cancelled) return
+          officialBoundaryCache = data
+          setOfficialBoundaries(data)
+          setLoading(false)
+          return
+        } catch (error) {
+          if (debugEnabled) {
+            console.warn(`Boundary fetch attempt ${attempt + 1} failed:`, error)
+          }
+          if (attempt < MAX_BOUNDARY_RETRIES - 1) {
+            await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)))
+          }
+        }
       }
 
-      try {
-        if (debugEnabled) {
-          console.log('Fetching official Dutch gemeente boundaries...')
-        }
-
-        const response = await fetch('/data/gemeente_2026.geojson')
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`)
-        }
-
-        const data = await response.json()
-
-        // Validate the response
-        if (!data || !data.features || !Array.isArray(data.features)) {
-          throw new Error('Invalid GeoJSON format')
-        }
-
-        if (debugEnabled) {
-          console.log(`Loaded ${data.features.length} official gemeente boundaries`)
-          console.log('Sample feature properties:', data.features[0]?.properties)
-        }
-
-        officialBoundaryCache = data
-        setOfficialBoundaries(data)
-      } catch (error) {
-        if (debugEnabled) {
-          console.error('Failed to fetch official boundaries:', error)
-        }
-        setOfficialBoundaries(null)
-      } finally {
+      if (!cancelled) {
+        setFetchFailed(true)
         setLoading(false)
       }
     }
 
-    fetchRealBoundaries()
-  }, [debugEnabled])
+    fetchWithRetry()
+    return () => {
+      cancelled = true
+    }
+  }, [debugEnabled, retryKey])
 
   // On initial load: fit the map to the selected gemeente's actual polygon bounds.
   // hasFittedRef ensures this fires once per mount, not on subsequent user selections.
@@ -602,62 +614,25 @@ const RealBoundariesLayer: React.FC<{
     ) : null
   }
 
-  if (!officialBoundaries) {
-    if (debugEnabled) {
-      console.log('No official boundaries available, using fallback')
-    }
-
-    // Fallback to local boundaries if available
+  if (fetchFailed) {
     return (
-      <>
-        {gemeentes.map((gemeente) => {
-          if (!gemeente.boundaries) {
-            if (debugEnabled) {
-              console.log(`No boundaries available for ${gemeente.name}`)
-            }
-            return null
-          }
-
-          if (debugEnabled) {
-            console.log(`Using local boundary for ${gemeente.name}`)
-          }
-
-          const colors = getMapBoundaryColors(gemeente)
-          const isSelected = gemeente.id === selectedGemeenteId
-
-          return (
-            <GeoJSON
-              key={`fallback-boundary-${gemeente.id}`}
-              data={
-                {
-                  type: 'Feature',
-                  properties: { name: gemeente.name, id: gemeente.id },
-                  geometry: gemeente.boundaries,
-                } as GeoJSONType.Feature
-              }
-              style={{
-                fillColor: colors.fillColor,
-                color: colors.borderColor,
-                weight: isSelected ? 4 : 2,
-                opacity: isSelected ? 1 : 0.8,
-                fillOpacity: isSelected ? 0.65 : 0.4,
-              }}
-              eventHandlers={{
-                click: (e) => {
-                  e.originalEvent.stopPropagation()
-                  onGemeenteSelect(gemeente)
-                },
-              }}
-            />
-          )
-        })}
-        {debugEnabled && (
-          <div className="absolute top-72 left-4 bg-yellow-600/75 text-white p-2 rounded text-xs z-[2000]">
-            Using local boundary data
-          </div>
-        )}
-      </>
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-white border border-red-200 rounded-lg shadow-lg px-4 py-3 z-[1000] flex items-center gap-3 text-sm">
+        <span className="text-red-600">Kaartgebieden konden niet worden geladen.</span>
+        <button
+          onClick={() => {
+            officialBoundaryCache = null
+            setRetryKey((k) => k + 1)
+          }}
+          className="text-blue-600 underline whitespace-nowrap hover:text-blue-800"
+        >
+          Opnieuw proberen
+        </button>
+      </div>
     )
+  }
+
+  if (!officialBoundaries) {
+    return null
   }
 
   // Sort gemeentes so that 'no_info' (grey) are rendered first, then colored overlays

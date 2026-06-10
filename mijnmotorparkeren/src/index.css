@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/inter/wght.css';
 
 @theme {
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
