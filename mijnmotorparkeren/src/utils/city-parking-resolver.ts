@@ -41,7 +41,12 @@ export async function resolveParkingRules(
     paid: { enabled: false, areas: [], rates: null },
     permits: { required: false, types: [] },
     restrictions: { timeLimit: null, noParking: [] },
-    motorcycleSpecific: { dedicatedSpots: [], allowedOnSidewalk: false, freeInPaidZones: false, notes: '' },
+    motorcycleSpecific: {
+      dedicatedSpots: [],
+      allowedOnSidewalk: false,
+      freeInPaidZones: false,
+      notes: '',
+    },
   }
   const result: ResolvedParkingInfo = {
     gemeente: {

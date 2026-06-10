@@ -70,7 +70,10 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
             className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-white/50 transition-colors group"
             aria-label="Probleem melden"
           >
-            <AlertTriangle className="h-5 w-5 text-rose-400 group-hover:text-rose-600 transition-colors" aria-hidden="true" />
+            <AlertTriangle
+              className="h-5 w-5 text-rose-400 group-hover:text-rose-600 transition-colors"
+              aria-hidden="true"
+            />
           </a>
 
           {/* Close button */}
@@ -355,7 +358,10 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                         title={source.name || source.type}
                         aria-label={source.name || 'Bekijk bron'}
                       >
-                        <ExternalLink className="h-3 w-3 group-hover:scale-110 transition-transform" aria-hidden="true" />
+                        <ExternalLink
+                          className="h-3 w-3 group-hover:scale-110 transition-transform"
+                          aria-hidden="true"
+                        />
                         <span className="hidden sm:inline">{source.name || 'Bron'}</span>
                         <span className="sm:hidden">Bron</span>
                       </a>

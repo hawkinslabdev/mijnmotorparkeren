@@ -1,12 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import {
-  MapContainer,
-  TileLayer,
-  GeoJSON,
-  useMap,
-  CircleMarker,
-  Tooltip,
-} from 'react-leaflet'
+import { MapContainer, TileLayer, GeoJSON, useMap, CircleMarker, Tooltip } from 'react-leaflet'
 import type { LatLngExpression, Map as LeafletMap } from 'leaflet'
 import { geoJSON as leafletGeoJson } from 'leaflet'
 import { useMapStore } from '@stores/mapStore'
@@ -41,7 +34,6 @@ const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ cent
   }, [map, center, zoom])
   return null
 }
-
 
 const ParkingLegend: React.FC<{ gemeenteSelected: boolean }> = ({ gemeenteSelected }) => {
   return (
@@ -466,7 +458,13 @@ const RealBoundariesLayer: React.FC<{
   selectedGemeenteId?: string | null
   autoFitGemeenteId?: string | null
   debugEnabled?: boolean
-}> = ({ gemeentes, onGemeenteSelect, selectedGemeenteId, autoFitGemeenteId, debugEnabled = false }) => {
+}> = ({
+  gemeentes,
+  onGemeenteSelect,
+  selectedGemeenteId,
+  autoFitGemeenteId,
+  debugEnabled = false,
+}) => {
   const map = useMap()
   const hasFittedRef = useRef(false)
   const [officialBoundaries, setOfficialBoundaries] =

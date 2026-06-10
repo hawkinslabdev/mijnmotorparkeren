@@ -151,10 +151,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
               aria-label="Sluit menu"
               tabIndex={-1}
             />
-            <div
-              id="mobile-menu"
-              className="md:hidden py-4 border-t border-gray-200 z-50 relative"
-            >
+            <div id="mobile-menu" className="md:hidden py-4 border-t border-gray-200 z-50 relative">
               <div className="space-y-3">
                 {selectedGemeente && (
                   <div className="flex items-center space-x-2 text-sm text-gray-600">

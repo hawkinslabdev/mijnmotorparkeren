@@ -6,7 +6,12 @@ import App from '../../App'
 
 const { id } = Astro.params as { id: string }
 
-let country: { id: string; name: string; coordinates?: { lat: number; lng: number }; [key: string]: unknown } | null = null
+let country: {
+  id: string
+  name: string
+  coordinates?: { lat: number; lng: number }
+  [key: string]: unknown
+} | null = null
 let notFound = false
 
 try {

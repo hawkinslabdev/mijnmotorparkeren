@@ -6,7 +6,13 @@ import App from '../../App'
 
 const { id } = Astro.params as { id: string }
 
-let city: { id: string; name: string; parent?: string; coordinates?: { lat: number; lng: number }; [key: string]: unknown } | null = null
+let city: {
+  id: string
+  name: string
+  parent?: string
+  coordinates?: { lat: number; lng: number }
+  [key: string]: unknown
+} | null = null
 let notFound = false
 
 try {
@@ -20,6 +26,9 @@ try {
 const cityName = city?.name ?? id.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())
 const parentGemeente = city?.parent ?? 'Nederland'
 const canonical = `https://mijnmotorparkeren.nl/stad/${id}`
+
+// Stub data: JSON exists but missing parkingRules
+const isThinData = city !== null && !city.parkingRules
 
 const title = city
   ? `Motor parkeren in ${cityName} | Parkeerregels`
@@ -60,7 +69,7 @@ const schemaMarkup = city
   title={title}
   description={description}
   canonical={canonical}
-  noindex={notFound}
+  noindex={notFound || isThinData}
   image="https://mijnmotorparkeren.nl/android-chrome-512x512.png"
   keywords={`motor, parkeren, motor op de stoep, mijn motor parkeren, motor parkeren, ${cityName}`}
   schemaMarkup={schemaMarkup}

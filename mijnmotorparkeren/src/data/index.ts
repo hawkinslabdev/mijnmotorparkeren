@@ -99,7 +99,8 @@ export function fetchPOIIndex(): Promise<POIIndex> {
   if (!poiIndexPromise) {
     poiIndexPromise = fetch(getVersionedJsonUrl('poi', 'index'))
       .then((res) => {
-        if (!res.ok) return { pois: [], lastUpdated: '', version: '', lastGenerated: '', total: 0 } as POIIndex
+        if (!res.ok)
+          return { pois: [], lastUpdated: '', version: '', lastGenerated: '', total: 0 } as POIIndex
         return res.json()
       })
       .catch(() => {

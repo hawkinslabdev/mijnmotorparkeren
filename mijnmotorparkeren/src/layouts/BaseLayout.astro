@@ -31,30 +31,30 @@ const {
 
     <!-- Unregister legacy PWA service worker and clear stale caches -->
     <script>
-      (async () => {
+      ;(async () => {
         if ('serviceWorker' in navigator) {
           try {
-            const registrations = await navigator.serviceWorker.getRegistrations();
+            const registrations = await navigator.serviceWorker.getRegistrations()
             for (const reg of registrations) {
-              await reg.unregister();
+              await reg.unregister()
             }
           } catch (e) {}
           try {
-            const keys = await caches.keys();
-            await Promise.all(keys.map((key) => caches.delete(key)));
+            const keys = await caches.keys()
+            await Promise.all(keys.map((key) => caches.delete(key)))
           } catch (e) {}
-          
+
           try {
-            await navigator.serviceWorker.register('/sw.js?t=' + Date.now());
+            await navigator.serviceWorker.register('/sw.js?t=' + Date.now())
           } catch (e) {}
         }
-        
+
         if (window.location.search.includes('swbust')) {
-          const url = new URL(window.location.href);
-          url.searchParams.delete('swbust');
-          window.location.replace(url.toString());
+          const url = new URL(window.location.href)
+          url.searchParams.delete('swbust')
+          window.location.replace(url.toString())
         }
-      })();
+      })()
     </script>
 
     <title>{title}</title>
@@ -90,12 +90,14 @@ const {
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
 
-
     <!-- Schema Markup -->
     {schemaMarkup && <script type="application/ld+json" set:html={JSON.stringify(schemaMarkup)} />}
 
     <!-- Analytics -->
-    <script type="module" data-entity="mijnmotorparkeren-main" src="https://analytics.melosso.com/script.js"></script>
+    <script
+      type="module"
+      data-entity="mijnmotorparkeren-main"
+      src="https://analytics.melosso.com/script.js"></script>
   </head>
   <body>
     <slot />

@@ -11,6 +11,9 @@ export default defineConfig({
     mode: 'standalone',
   }),
   output: 'server',
+  redirects: {
+    '/city/[id]': '/stad/[id]',
+  },
   vite: {
     resolve: {
       alias: {

@@ -5,7 +5,7 @@ import { X } from 'lucide-react'
 export const PromoBar: React.FC = () => {
   const [visible, setVisible] = useState(true)
 
-if (promoBarItems.length === 0) return null
+  if (promoBarItems.length === 0) return null
 
   const currentItem: PromoBarItem = promoBarItems[0]
 
@@ -14,9 +14,7 @@ if (promoBarItems.length === 0) return null
   return (
     <div className="w-full bg-[--color-brand-green] border-b border-green-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-center gap-3 text-sm min-w-0">
-        <span className="text-green-900 truncate min-w-0 flex-1">
-          {currentItem.text}
-        </span>
+        <span className="text-green-900 truncate min-w-0 flex-1">{currentItem.text}</span>
         {currentItem.link && currentItem.linkText && (
           <a
             href={currentItem.link}
