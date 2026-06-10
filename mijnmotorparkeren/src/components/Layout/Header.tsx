@@ -66,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
             <button
               onClick={onSearchOpen}
               aria-label="Locatie zoeken"
-              className="flex items-center px-3 min-h-[44px] bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+              className="flex items-center px-3 h-11 sm:h-9 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
             >
               <Search className="w-4 h-4 text-gray-600" aria-hidden="true" />
               <span className="hidden sm:inline text-sm text-gray-600 ml-2">Locatie zoeken...</span>
@@ -82,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Meld een fout op de kaart (opent GitHub)"
-                className="flex items-center space-x-2 px-3 py-2 bg-[#dbede3] hover:bg-[#c2e2d1] rounded-lg transition-colors text-green-800 hover:text-green-900"
+                className="flex items-center space-x-2 px-3 h-9 bg-[#dbede3] hover:bg-[#c2e2d1] rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-green-800 hover:text-green-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +99,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                     d="M12 8v4m0 4h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"
                   />
                 </svg>
-                <span className="hidden lg:inline text-sm">Meld kaartprobleem</span>
+                <span className="hidden lg:inline text-sm">Meld probleem</span>
               </a>
             </div>
 
@@ -110,18 +110,18 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Bekijken op GitHub"
-                className="flex items-center px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-gray-600 hover:text-gray-900"
+                className="group flex items-center px-3 h-9 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-gray-600 hover:text-gray-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
               >
-                <Github className="w-4 h-4" aria-hidden="true" />
+                <Github className="w-4 h-4 transition-transform duration-200 ease-out group-hover:scale-110 motion-reduce:transition-none" aria-hidden="true" />
               </a>
               <a
                 href="https://buymeacoffee.com/hawkinslabdev"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Steun mij met een koffie"
-                className="flex items-center px-3 py-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-colors text-yellow-800 hover:text-yellow-900"
+                className="group flex items-center px-3 h-9 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-yellow-800 hover:text-yellow-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
               >
-                <Coffee className="w-4 h-4" aria-hidden="true" />
+                <Coffee className="w-4 h-4 transition-transform duration-200 ease-out group-hover:scale-110 motion-reduce:transition-none" aria-hidden="true" />
               </a>
             </div>
 
@@ -131,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
               aria-label={isMenuOpen ? 'Sluit menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
-              className="md:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors"
+              className="md:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-gray-100 rounded-lg transition-all duration-150 ease-out active:scale-[0.88] active:bg-gray-100 motion-reduce:transition-none motion-reduce:active:scale-100"
             >
               {isMenuOpen ? (
                 <X className="w-5 h-5 text-gray-600" aria-hidden="true" />
@@ -167,7 +167,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                     rel="noopener noreferrer"
                     className="flex px-3 py-3 text-sm text-gray-700 hover:bg-gray-100 rounded-lg items-center justify-between"
                   >
-                    <span>Meld kaartprobleem</span>
+                    <span>Meld probleem</span>
                     <ExternalLink className="w-4 h-4 ml-2 flex-shrink-0" aria-hidden="true" />
                   </a>
                   <a
