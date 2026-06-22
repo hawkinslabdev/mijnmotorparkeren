@@ -30,7 +30,7 @@
     "@radix-ui/react-tooltip": "^1.2.8",
     "@radix-ui/react-visually-hidden": "^1.2.4",
     "@tailwindcss/postcss": "^4.2.4",
-    "astro": "^6.4.2",
+    "astro": "^6.4.8",
     "baseline-browser-mapping": "^2.10.27",
     "caniuse-lite": "^1.0.30001792",
     "clsx": "^2.1.1",
