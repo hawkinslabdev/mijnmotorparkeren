@@ -63,6 +63,28 @@ const schemaMarkup = city
       }),
     }
   : undefined
+
+// Server-rendered content so crawlers get real, unique text per city — the
+// React app is client:only and leaves the <body> empty otherwise. Doubles as a
+// no-JS fallback.
+const rules = (city?.parkingRules ?? null) as null | {
+  free?: boolean | null
+  paid?: { enabled?: boolean | null }
+  motorcycleSpecific?: {
+    allowedOnSidewalk?: boolean | null
+    freeInPaidZones?: boolean | null
+    notes?: string
+  }
+}
+const moto = rules?.motorcycleSpecific
+const sources = (city?.sources ?? []) as Array<{
+  name?: string
+  url?: string
+  date?: string
+  type?: string
+}>
+const lastUpdated = city?.lastUpdated as string | undefined
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 ---
 
 <BaseLayout
@@ -75,4 +97,79 @@ const schemaMarkup = city
   schemaMarkup={schemaMarkup}
 >
   <App client:only="react" initialCityId={id} />
+
+  {
+    city && rules && (
+      <article class="mx-auto max-w-2xl px-4 py-10 text-gray-800">
+        <nav class="text-sm text-gray-500" aria-label="Kruimelpad">
+          <a href="/" class="underline">Home</a>
+          {' › '}
+          {city.parent && (
+            <>
+              <a href={`/gemeente/${city.parent}`} class="underline">
+                Gemeente {capitalize(parentGemeente)}
+              </a>
+              {' › '}
+            </>
+          )}
+          <span>{cityName}</span>
+        </nav>
+        <h1 class="mt-3 text-2xl font-bold text-gray-900">Motor parkeren in {cityName}</h1>
+        <p class="mt-2 text-gray-600">
+          {cityName} valt onder{' '}
+          {city.parent ? (
+            <a href={`/gemeente/${city.parent}`} class="text-blue-600 underline">
+              gemeente {capitalize(parentGemeente)}
+            </a>
+          ) : (
+            <span>gemeente {capitalize(parentGemeente)}</span>
+          )}. Hieronder vind je de actuele parkeerregels voor motorrijders.
+        </p>
+
+        <h2 class="mt-8 text-lg font-semibold text-gray-900">
+          Parkeerregels voor motoren in {cityName}
+        </h2>
+        <ul class="mt-3 space-y-2">
+          {moto?.allowedOnSidewalk === true && <li>Op de stoep parkeren is toegestaan.</li>}
+          {moto?.allowedOnSidewalk === false && (
+            <li>Op de stoep of het trottoir parkeren is niet toegestaan.</li>
+          )}
+          {rules.paid?.enabled === true && <li>In deze plaats geldt betaald parkeren.</li>}
+          {rules.paid?.enabled === false && <li>Er geldt hier geen betaald parkeren.</li>}
+          {moto?.freeInPaidZones === true && (
+            <li>Motoren parkeren gratis in betaalde parkeervakken.</li>
+          )}
+          {moto?.freeInPaidZones === false && (
+            <li>In betaalde vakken geldt ook voor motoren het normale tarief.</li>
+          )}
+        </ul>
+
+        {moto?.notes && <p class="mt-4 leading-relaxed">{moto.notes}</p>}
+
+        {sources.length > 0 && (
+          <>
+            <h2 class="mt-8 text-lg font-semibold text-gray-900">Bronnen</h2>
+            <ul class="mt-3 space-y-1">
+              {sources.map((s) => (
+                <li>
+                  {s.url ? (
+                    <a href={s.url} rel="nofollow noopener" class="text-blue-600 underline">
+                      {s.name ?? s.url}
+                    </a>
+                  ) : (
+                    <span>{s.name}</span>
+                  )}
+                  {s.date && <span class="text-gray-500"> ({s.date})</span>}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        {lastUpdated && (
+          <p class="mt-8 text-sm text-gray-500">Laatst bijgewerkt: {lastUpdated}</p>
+        )}
+      </article>
+    )
+  }
 </BaseLayout>

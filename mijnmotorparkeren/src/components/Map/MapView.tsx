@@ -5,7 +5,7 @@ import { geoJSON as leafletGeoJson } from 'leaflet'
 import { useMapStore } from '@stores/mapStore'
 import type { Gemeente } from '@/types/gemeente'
 import type { City } from '@/types/city'
-import type { POI } from '@/types/poi'
+import type { POI, POIScope } from '@/types/poi'
 import { POI_TYPE_CONFIG } from '@/types/poi'
 import { useGeolocation } from '@/hooks/useGeolocation'
 import { getMapBoundaryColors } from '@/utils/gemeenteUtils'
@@ -23,6 +23,7 @@ interface MapViewProps {
   debugEnabled?: boolean
   selectedGemeente?: Gemeente | null
   selectedCity?: City | null
+  poiActive?: boolean
   detailsOpen?: boolean
   autoFitGemeenteId?: string | null
 }
@@ -32,6 +33,26 @@ const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ cent
   useEffect(() => {
     map.setView(center, zoom)
   }, [map, center, zoom])
+  return null
+}
+
+// Zoom/pan to fit a selected city's full area — fixed zoom is too wide for
+// small polygons. Runs after MapUpdater so fitBounds wins on city select.
+const CityFocuser: React.FC<{ city: City | null; poiActive: boolean }> = ({ city, poiActive }) => {
+  const map = useMap()
+  useEffect(() => {
+    // Skip while a POI is focused (POI owns the zoom); refit the city once the
+    // POI closes so we return to the city extent, not a fixed wide zoom.
+    if (!city?.area || poiActive) return
+    try {
+      const bounds = leafletGeoJson(city.area).getBounds()
+      if (bounds.isValid()) {
+        map.fitBounds(bounds, { padding: [48, 48], maxZoom: 16 })
+      }
+    } catch {
+      /* ignore malformed geometry */
+    }
+  }, [map, city, poiActive])
   return null
 }
 
@@ -189,20 +210,30 @@ const CountryBoundariesLayer: React.FC<{
 
 const POILayer: React.FC<{
   municipalityId: string
+  scope?: POIScope
   onPOISelect?: (poi: POI) => void
   debugEnabled?: boolean
-}> = ({ municipalityId, onPOISelect, debugEnabled = false }) => {
+}> = ({ municipalityId, scope = 'gemeente', onPOISelect, debugEnabled = false }) => {
+  const map = useMap()
   const [pois, setPois] = useState<POI[]>([])
   const [loading, setLoading] = useState(true)
+
+  // Ensure the POI pane exists (z-index above city boundaries) before markers mount.
+  useEffect(() => {
+    if (!map.getPane('poi-markers')) {
+      map.createPane('poi-markers')
+      map.getPane('poi-markers')!.style.zIndex = '500'
+    }
+  }, [map])
 
   useEffect(() => {
     const loadPOIs = async () => {
       try {
         setLoading(true)
-        const data = await fetchMunicipalityPOIs(municipalityId)
+        const data = await fetchMunicipalityPOIs(municipalityId, scope)
         setPois(data)
         if (debugEnabled) {
-          console.log(`Loaded ${data.length} POIs for ${municipalityId}`)
+          console.log(`Loaded ${data.length} POIs for ${scope} ${municipalityId}`)
         }
       } catch (error) {
         if (debugEnabled) {
@@ -214,7 +245,7 @@ const POILayer: React.FC<{
     }
 
     loadPOIs()
-  }, [municipalityId, debugEnabled])
+  }, [municipalityId, scope, debugEnabled])
 
   if (loading || pois.length === 0) return null
 
@@ -227,6 +258,7 @@ const POILayer: React.FC<{
             key={poi.id}
             center={[poi.coordinates.lat, poi.coordinates.lng]}
             radius={8}
+            pane="poi-markers"
             pathOptions={{
               color: config.color,
               fillColor: config.color,
@@ -263,13 +295,17 @@ const POILayer: React.FC<{
   )
 }
 
-// --- Add a custom pane for city boundaries ---
+// --- Add custom panes for city boundaries + POI markers ---
 const CityPaneSetter: React.FC = () => {
   const map = useMap()
   useEffect(() => {
     if (!map.getPane('city-boundaries')) {
       map.createPane('city-boundaries')
       map.getPane('city-boundaries')!.style.zIndex = '450'
+    }
+    if (!map.getPane('poi-markers')) {
+      map.createPane('poi-markers')
+      map.getPane('poi-markers')!.style.zIndex = '500'
     }
   }, [map])
   return null
@@ -756,6 +792,7 @@ const MapView: React.FC<MapViewProps> = ({
   debugEnabled = false,
   selectedGemeente,
   selectedCity,
+  poiActive = false,
   detailsOpen,
   autoFitGemeenteId,
 }) => {
@@ -786,9 +823,15 @@ const MapView: React.FC<MapViewProps> = ({
   }, [])
 
   useEffect(() => {
-    if (mapRef.current && !mapRef.current.getPane('city-boundaries')) {
+    if (!mapRef.current) return
+    if (!mapRef.current.getPane('city-boundaries')) {
       mapRef.current.createPane('city-boundaries')
       mapRef.current.getPane('city-boundaries')!.style.zIndex = '450'
+    }
+    // POI markers must sit above city boundaries (z-index 450).
+    if (!mapRef.current.getPane('poi-markers')) {
+      mapRef.current.createPane('poi-markers')
+      mapRef.current.getPane('poi-markers')!.style.zIndex = '500'
     }
   }, [mapReady])
 
@@ -920,6 +963,7 @@ const MapView: React.FC<MapViewProps> = ({
         whenReady={() => setMapReady(true)}
       >
         <MapUpdater center={center} zoom={zoom} />
+        <CityFocuser city={selectedCity ?? null} poiActive={poiActive} />
 
         <TileLayer
           url={
@@ -1005,6 +1049,17 @@ const MapView: React.FC<MapViewProps> = ({
               {selectedGemeente && mapReady && (
                 <POILayer
                   municipalityId={selectedGemeente.id}
+                  scope="gemeente"
+                  onPOISelect={onPOISelect}
+                  debugEnabled={debugEnabled}
+                />
+              )}
+              {/* City POI layer - scoped to 'city' so a gemeente and city with
+                  the same id/name never load each other's POIs */}
+              {selectedCity && mapReady && (
+                <POILayer
+                  municipalityId={selectedCity.id}
+                  scope="city"
                   onPOISelect={onPOISelect}
                   debugEnabled={debugEnabled}
                 />

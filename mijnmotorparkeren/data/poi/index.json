@@ -1,8 +1,15 @@
 {
   "version": "1.0.0",
   "lastGenerated": "2026-03-22",
-  "total": 3,
+  "total": 4,
   "pois": [
+    {
+      "id": "schiphol-aankomsthal",
+      "municipalityId": "schiphol",
+      "type": "dedicatedMotorcycleSpot",
+      "name": "Motorparkeerplaats Schiphol",
+      "scope": "city"
+    },
     {
       "id": "ams-rokin",
       "municipalityId": "amsterdam",

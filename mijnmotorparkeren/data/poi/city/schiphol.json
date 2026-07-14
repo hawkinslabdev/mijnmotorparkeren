@@ -1,0 +1,19 @@
+{
+  "id": "schiphol-pois",
+  "municipalityId": "schiphol",
+  "pois": [
+    {
+      "id": "schiphol-aankomsthal",
+      "type": "dedicatedMotorcycleSpot",
+      "name": "Motorparkeerplaats Schiphol",
+      "description": "Gratis parkeerplaats voor motoren tegenover de aankomsthal. Kosteloos en praktisch als je per motor naar Schiphol reist.",
+      "coordinates": { "lat": 52.30904373837207, "lng": 4.760494757709773 },
+      "address": "Schiphol, tegenover de aankomsthal",
+      "source": {
+        "type": "community",
+        "url": "https://schipholparkeren.com/veelgestelde-vragen/motor-parkeren-schiphol/",
+        "date": "2026-07-14"
+      }
+    }
+  ]
+}

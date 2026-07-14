@@ -1,0 +1,72 @@
+{
+  "id": "zaandam",
+  "parent": "zaanstad",
+  "name": "Zaandam",
+  "province": "Noord-Holland",
+  "coordinates": {
+    "lat": 52.4420995,
+    "lng": 4.8297067
+  },
+  "parkingRules": {
+    "free": false,
+    "paid": {
+      "enabled": true,
+      "areas": [],
+      "rates": null
+    },
+    "permits": {
+      "required": false,
+      "types": []
+    },
+    "restrictions": {
+      "timeLimit": null,
+      "noParking": []
+    },
+    "motorcycleSpecific": {
+      "dedicatedSpots": [],
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "In Zaanstad mag je je motor niet op de stoep of het trottoir parkeren; dat is in de hele gemeente verboden en levert direct een boete op, ook als voetgangers er nog langs kunnen. In zones voor betaald parkeren gelden de regels ook voor motoren: parkeer netjes in een regulier vak en betaal het parkeergeld of gebruik de parkeerapp."
+    }
+  },
+  "area": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Zaandam"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [4.8081292, 52.4493167],
+              [4.8161078, 52.4366576],
+              [4.8224438, 52.4319364],
+              [4.8272544, 52.427143],
+              [4.8416864, 52.4302909],
+              [4.865857, 52.4327948],
+              [4.8428597, 52.4530351],
+              [4.8324171, 52.4551087],
+              [4.8274891, 52.4546797],
+              [4.8128225, 52.4500318],
+              [4.8081292, 52.4493167]
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "lastUpdated": "2026-07-14",
+  "sources": [
+    {
+      "type": "community",
+      "name": "Gemeente Zaanstad",
+      "url": "https://www.zaanstad.nl/direct-regelen/parkeren-verkeer-havens-vaarwegen/parkeren/betaald-parkeren/",
+      "date": "2026-07-14"
+    }
+  ],
+  "alternativeNames": ["Zaandam"],
+  "overrideReason": "In Zaanstad is stoep-/trottoirparkeren voor motoren verboden en gelden de regels voor betaald parkeren ook voor motoren."
+}

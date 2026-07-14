@@ -2,6 +2,10 @@ import type { Coordinates } from './gemeente'
 
 export type POIType = 'freeStreetParking' | 'dedicatedMotorcycleSpot'
 
+/** Whether a POI set is scoped to a gemeente or to a city. Prevents id/name
+ *  collisions between the two (a gemeente and a city can share an id). */
+export type POIScope = 'gemeente' | 'city'
+
 export interface POI {
   id: string
   type: POIType
@@ -27,6 +31,7 @@ export interface POIIndex {
     municipalityId: string
     type: POIType
     name: string
+    scope?: POIScope // defaults to 'gemeente' when absent
   }>
 }
 

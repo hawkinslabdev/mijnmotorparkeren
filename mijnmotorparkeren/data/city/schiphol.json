@@ -1,0 +1,77 @@
+{
+  "id": "schiphol",
+  "parent": "haarlemmermeer",
+  "name": "Schiphol",
+  "province": "Noord-Holland",
+  "coordinates": {
+    "lat": 52.3073857,
+    "lng": 4.7561173
+  },
+  "parkingRules": {
+    "free": true,
+    "paid": {
+      "enabled": false,
+      "areas": [],
+      "rates": null
+    },
+    "permits": {
+      "required": false,
+      "types": []
+    },
+    "restrictions": {
+      "timeLimit": null,
+      "noParking": []
+    },
+    "motorcycleSpecific": {
+      "dedicatedSpots": [
+          {
+              "location": "Tegenover aankomsthal",
+              "spots": 50
+          }
+        ],
+      "allowedOnSidewalk": null,
+      "freeInPaidZones": null,
+      "notes": "Gratis motorparkeren kan in Schiphol uitsluitend tegenover de aankomsthal is een speciale parkeerplaats voor motoren beschikbaar. Deze kosteloze plek biedt een praktische en gratis oplossing voor motorrijders. Het is niet toegestaan de motor op een andere plek (gratis) te parkeren, zoals op het trottoir."
+    }
+  },
+  "area": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Schiphol"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [4.7508681, 52.3096803],
+              [4.7495284, 52.3066194],
+              [4.7510797, 52.3037307],
+              [4.756227, 52.3055846],
+              [4.7584128, 52.3041187],
+              [4.7625729, 52.3070074],
+              [4.7633486, 52.3100251],
+              [4.7589769, 52.3107149],
+              [4.7540411, 52.3089905],
+              [4.7540411, 52.3089905],
+              [4.7508681, 52.3096803]
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "lastUpdated": "2026-07-14",
+  "sources": [
+    {
+      "type": "community",
+      "name": "SchipholParkeren.com",
+      "url": "https://schipholparkeren.com/veelgestelde-vragen/motor-parkeren-schiphol/",
+      "date": "2026-07-14"
+    }
+  ],
+  "alternativeNames": ["Schiphol Airport", "Luchthaven Schiphol"],
+  "overrideReason": "Bij Schiphol is gratis motorparkeren beschikbaar tegenover de aankomsthal."
+}

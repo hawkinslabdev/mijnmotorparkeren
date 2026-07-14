@@ -15,7 +15,7 @@ import { useKeyboardShortcuts } from '@hooks/useKeyboardShortcuts'
 import type { Gemeente } from './types/gemeente'
 import { type City } from './types/city'
 import type { POI } from './types/poi'
-import { fetchFullCity } from './data/index'
+import { fetchFullCity, fetchMunicipalityPOIs } from './data/index'
 
 import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png?url'
@@ -46,6 +46,13 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   const panelTouchStartY = useRef<number | null>(null)
   const swipeOffsetRef = useRef(0)
   const selectedGemeenteRef = useRef<Gemeente | null>(null)
+  const selectedCityRef = useRef<City | null>(null)
+  // POI id captured from ?poi=<id> at load; consumed once the parent loads.
+  const pendingPoiId = useRef<string | null>(
+    typeof window !== 'undefined'
+      ? new URLSearchParams(window.location.search).get('poi')
+      : null
+  )
 
   const { showToast } = useToast()
   const { setSelectedGemeente: setSelectedGemeenteId, focusOnGemeente, resetView } = useMapStore()
@@ -167,6 +174,9 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     (poi: POI) => {
       setSelectedPOI(poi)
       focusOnGemeente([poi.coordinates.lat, poi.coordinates.lng], 17)
+      // Make the POI shareable via ?poi=<id> on the current gemeente/city path.
+      const base = window.location.pathname
+      window.history.pushState({}, '', `${base}?poi=${encodeURIComponent(poi.id)}`)
     },
     [focusOnGemeente]
   )
@@ -175,14 +185,39 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     selectedGemeenteRef.current = selectedGemeente
   }, [selectedGemeente])
 
+  useEffect(() => {
+    selectedCityRef.current = selectedCity
+  }, [selectedCity])
+
   const handlePOIClose = useCallback(() => {
     setSelectedPOI(null)
-    const gemeente = selectedGemeenteRef.current
-    if (gemeente?.coordinates) {
-      const zoom = typeof gemeente.zoom === 'number' ? gemeente.zoom : 12
-      focusOnGemeente([gemeente.coordinates.lat, gemeente.coordinates.lng], zoom)
+    // Drop the ?poi param — go back to the parent gemeente/city view.
+    window.history.pushState({}, '', window.location.pathname)
+    const parent = selectedCityRef.current ?? selectedGemeenteRef.current
+    if (parent?.coordinates) {
+      const zoom = 'zoom' in parent && typeof parent.zoom === 'number' ? parent.zoom : 12
+      focusOnGemeente([parent.coordinates.lat, parent.coordinates.lng], zoom)
     }
   }, [focusOnGemeente])
+
+  // Deep-link: open a POI from ?poi=<id> once its parent gemeente/city is loaded.
+  useEffect(() => {
+    const poiId = pendingPoiId.current
+    if (!poiId) return
+    const scope = selectedCity ? 'city' : selectedGemeente ? 'gemeente' : null
+    const municipalityId = selectedCity?.id ?? selectedGemeente?.id
+    if (!scope || !municipalityId) return
+    pendingPoiId.current = null
+    fetchMunicipalityPOIs(municipalityId, scope)
+      .then((pois) => {
+        const poi = pois.find((p) => p.id === poiId)
+        if (poi) {
+          setSelectedPOI(poi)
+          focusOnGemeente([poi.coordinates.lat, poi.coordinates.lng], 17)
+        }
+      })
+      .catch(() => {})
+  }, [selectedGemeente, selectedCity, focusOnGemeente])
 
   const handleDetailsClose = useCallback(() => {
     setSelectedGemeente(null)
@@ -232,7 +267,10 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       const shareUrl = window.location.href
       let title = 'MijnMotorParkeren.nl'
       let text = 'Bekijk het parkeerbeleid voor jouw motor in Nederlandse gemeenten'
-      if (selectedCity) {
+      if (selectedPOI) {
+        title = selectedPOI.name
+        text = `Bekijk motorparkeerplek "${selectedPOI.name}" op MijnMotorParkeren.nl`
+      } else if (selectedCity) {
         title = `Parkeerregels in ${selectedCity.name}`
         text = `Bekijk de parkeerregels voor ${selectedCity.name} (gemeente ${selectedCity.parent}) op MijnMotorParkeren.nl`
       } else if (selectedGemeente) {
@@ -334,6 +372,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
           onReset={handleDetailsClose}
           selectedGemeente={selectedGemeente}
           selectedCity={selectedCity}
+          poiActive={!!selectedPOI}
           detailsOpen={detailsOpen}
           autoFitGemeenteId={initialGemeenteId ?? null}
         />
@@ -369,7 +408,11 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
                 <div className="h-10 bg-gray-200 rounded w-3/4" />
               </div>
             ) : selectedPOI ? (
-              <POIDetails poi={selectedPOI} onClose={handlePOIClose} />
+              <POIDetails
+                poi={selectedPOI}
+                onClose={handlePOIClose}
+                parentName={selectedCity?.name ?? selectedGemeente?.name}
+              />
             ) : (
               <ParkingRules
                 gemeente={selectedGemeente}
@@ -378,7 +421,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
               />
             )}
 
-            {!detailsLoading && !selectedPOI && (
+            {!detailsLoading && (
               <button
                 type="button"
                 onClick={handleShare}

@@ -122,57 +122,70 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                     parkingRules.motorcycleSpecific.allowedOnSidewalk === false) && (
                     <div
                       className={clsx(
-                        'rounded-lg p-3 sm:p-4 border',
+                        'flex items-start gap-3 rounded-xl border p-3.5 sm:p-4',
                         parkingRules.motorcycleSpecific.allowedOnSidewalk
                           ? 'bg-green-50 border-green-200'
                           : 'bg-red-50 border-red-200'
                       )}
                     >
-                      <div className="flex items-center">
-                        {parkingRules.motorcycleSpecific.allowedOnSidewalk ? (
-                          <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 mr-2" />
-                        ) : (
-                          <X className="h-4 w-4 sm:h-5 sm:w-5 text-red-600 mr-2" />
+                      <span
+                        className={clsx(
+                          'grid h-9 w-9 flex-none place-items-center rounded-lg text-white',
+                          parkingRules.motorcycleSpecific.allowedOnSidewalk
+                            ? 'bg-green-700'
+                            : 'bg-red-700'
                         )}
-                        <span
+                        aria-hidden="true"
+                      >
+                        {parkingRules.motorcycleSpecific.allowedOnSidewalk ? (
+                          <Check className="h-5 w-5" />
+                        ) : (
+                          <X className="h-5 w-5" />
+                        )}
+                      </span>
+                      <div className="min-w-0 self-center">
+                        <p
                           className={clsx(
-                            'text-sm sm:text-base font-medium',
+                            'text-sm font-medium leading-tight sm:text-base',
                             parkingRules.motorcycleSpecific.allowedOnSidewalk
-                              ? 'text-green-900'
-                              : 'text-red-900'
+                              ? 'text-green-950'
+                              : 'text-red-950'
                           )}
                         >
-                          Parkeren op stoep{' '}
                           {parkingRules.motorcycleSpecific.allowedOnSidewalk
-                            ? 'toegestaan'
-                            : 'verboden'}
-                        </span>
+                            ? 'Op de stoep toegestaan'
+                            : 'Niet op de stoep'}
+                        </p>
                       </div>
                     </div>
                   )}
 
                   {/* Free in paid zones */}
                   {parkingRules.motorcycleSpecific.freeInPaidZones === true && (
-                    <div
-                      className={clsx('rounded-lg p-3 sm:p-4 border bg-green-50 border-green-200')}
-                    >
-                      <div className="flex items-center">
-                        <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 mr-2" />
-                        <span className="text-sm sm:text-base font-medium text-green-900">
-                          Gratis in betaalzones
-                        </span>
-                      </div>
+                    <div className="flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 p-3.5 sm:p-4">
+                      <span
+                        className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-green-700 text-white"
+                        aria-hidden="true"
+                      >
+                        <Check className="h-5 w-5" />
+                      </span>
+                      <p className="min-w-0 text-sm font-medium leading-tight text-green-950 sm:text-base">
+                        Gratis in betaalzones
+                      </p>
                     </div>
                   )}
                   {parkingRules.motorcycleSpecific.freeInPaidZones === false && (
-                    <div
-                      className={clsx('rounded-lg p-3 sm:p-4 border bg-amber-50 border-amber-200')}
-                    >
-                      <div className="flex items-center">
-                        <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-amber-600 mr-2" />
-                        <span className="text-sm sm:text-base font-medium text-amber-900">
-                          Niet gratis in het (parkeer)vak
-                        </span>
+                    <div className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 p-3.5 sm:p-4">
+                      <span
+                        className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-amber-600 text-white"
+                        aria-hidden="true"
+                      >
+                        <AlertTriangle className="h-5 w-5" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium leading-tight text-amber-950 sm:text-base">
+                          Niet gratis in het vak
+                        </p>
                       </div>
                     </div>
                   )}
@@ -199,14 +212,14 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                       </div>
                     )}
 
-                  {/* Notes */}
-                  {parkingRules.motorcycleSpecific.notes && (
-                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4">
-                      <p className="text-sm text-gray-700">
-                        {parkingRules.motorcycleSpecific.notes}
-                      </p>
-                    </div>
-                  )}
+                    {/* Notes */}
+                    {parkingRules.motorcycleSpecific.notes && (
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4 mt-4">
+                        <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                          {parkingRules.motorcycleSpecific.notes}
+                        </p>
+                      </div>
+                    )}
                 </div>
               </div>
             )}

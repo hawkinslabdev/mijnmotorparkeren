@@ -1,6 +1,6 @@
 import type { Gemeente, ParkingStatusValue } from '../types/gemeente'
 import type { City, CityIndex } from '../types/city'
-import type { POI, POIIndex } from '../types/poi'
+import type { POI, POIIndex, POIScope } from '../types/poi'
 
 let DATA_VERSION = import.meta.env.PUBLIC_DATA_VERSION
 if (!DATA_VERSION || DATA_VERSION.trim() === '') {
@@ -129,25 +129,35 @@ export async function getCitiesForGemeente(gemeenteId: string): Promise<City[]> 
   return Promise.all(matching.map((c) => fetchFullCity(c.id)))
 }
 
-export async function fetchMunicipalityPOIs(municipalityId: string): Promise<POI[]> {
-  if (loadedPOIs.has(municipalityId)) {
-    return loadedPOIs.get(municipalityId)!
+export async function fetchMunicipalityPOIs(
+  municipalityId: string,
+  scope: POIScope = 'gemeente'
+): Promise<POI[]> {
+  // Scope the cache key so a gemeente and a city sharing an id don't collide.
+  const cacheKey = `${scope}:${municipalityId}`
+  if (loadedPOIs.has(cacheKey)) {
+    return loadedPOIs.get(cacheKey)!
   }
 
   const index = await fetchPOIIndex()
-  const hasPOIs = index.pois.some((p) => p.municipalityId === municipalityId)
+  const hasPOIs = index.pois.some(
+    (p) => p.municipalityId === municipalityId && (p.scope ?? 'gemeente') === scope
+  )
   if (!hasPOIs) {
-    loadedPOIs.set(municipalityId, [])
+    loadedPOIs.set(cacheKey, [])
     return []
   }
 
-  const res = await fetch(getVersionedJsonUrl('poi', municipalityId))
+  // City POI files live under data/poi/city/ to avoid filename collisions
+  // with same-named gemeente POI files.
+  const filePath = scope === 'city' ? `city/${municipalityId}` : municipalityId
+  const res = await fetch(getVersionedJsonUrl('poi', filePath))
   if (!res.ok) {
-    loadedPOIs.set(municipalityId, [])
+    loadedPOIs.set(cacheKey, [])
     return []
   }
   const data = await res.json()
   const pois = data.pois || []
-  loadedPOIs.set(municipalityId, pois)
+  loadedPOIs.set(cacheKey, pois)
   return pois
 }

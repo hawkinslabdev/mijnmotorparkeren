@@ -1,38 +1,38 @@
 import React from 'react'
-import { MapPin, ExternalLink, Calendar, Users, X } from 'lucide-react'
+import { MapPin, ExternalLink, Calendar, Users, ArrowLeft } from 'lucide-react'
 import type { POI } from '@/types/poi'
 import { POI_TYPE_CONFIG } from '@/types/poi'
 
 interface POIDetailsProps {
   poi: POI
   onClose: () => void
+  /** Name of the parent gemeente/city, shown on the back button. */
+  parentName?: string
 }
 
-export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose }) => {
+export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName }) => {
   const config = POI_TYPE_CONFIG[poi.type]
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
       {/* Header — matches ParkingRules structure exactly */}
       <div className="relative bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6">
-        {/* Header buttons; vertically centered */}
-        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex items-center gap-2">
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-white/50 transition-colors"
-            aria-label="Sluiten"
-          >
-            <X className="h-5 w-5 text-gray-600" />
-          </button>
-        </div>
+        {/* Back to the parent gemeente/city */}
+        <button
+          onClick={onClose}
+          className="-ml-1 mb-2 inline-flex min-h-[44px] items-center gap-1.5 rounded-full pr-3 pl-2 text-sm font-medium text-gray-600 hover:bg-white/50 transition-colors"
+          aria-label={parentName ? `Terug naar ${parentName}` : 'Terug'}
+        >
+          <ArrowLeft className="h-4 w-4 flex-none" aria-hidden="true" />
+          <span className="truncate">{parentName ? `Terug naar ${parentName}` : 'Terug'}</span>
+        </button>
 
         {/* POI type label — subtle, above the name */}
         <p className="text-xs font-medium mb-1" style={{ color: config.color }}>
           {config.label}
         </p>
 
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 pr-20">{poi.name}</h2>
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">{poi.name}</h2>
 
         {poi.address && (
           <p className="text-sm text-gray-600 flex items-center gap-1">
@@ -46,7 +46,9 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose }) => {
       <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
         {poi.description && (
           <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4">
-            <p className="text-sm text-gray-700">{poi.description}</p>
+            <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+              {poi.description}
+            </p>
           </div>
         )}
 
