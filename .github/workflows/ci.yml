@@ -43,6 +43,17 @@ jobs:
     - name: Build
       run: npm run build
 
+    - name: Smoke test server boot
+      run: |
+        node dist/server/entry.mjs &
+        SERVER_PID=$!
+        for i in $(seq 1 20); do
+          curl -sf http://127.0.0.1:4321/ > /dev/null && break
+          sleep 0.5
+        done
+        curl -sf http://127.0.0.1:4321/ > /dev/null || { echo "server failed to boot"; kill $SERVER_PID; exit 1; }
+        kill $SERVER_PID
+
     - name: Generate sitemap
       run: node scripts/generate-sitemap.js
 
