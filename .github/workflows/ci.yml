@@ -44,6 +44,9 @@ jobs:
       run: npm run build
 
     - name: Smoke test server boot
+      env:
+        HOST: 0.0.0.0
+        PORT: 4321
       run: |
         node dist/server/entry.mjs &
         SERVER_PID=$!
