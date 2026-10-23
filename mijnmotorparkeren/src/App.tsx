@@ -49,9 +49,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   const selectedCityRef = useRef<City | null>(null)
   // POI id captured from ?poi=<id> at load; consumed once the parent loads.
   const pendingPoiId = useRef<string | null>(
-    typeof window !== 'undefined'
-      ? new URLSearchParams(window.location.search).get('poi')
-      : null
+    typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('poi') : null
   )
 
   const { showToast } = useToast()

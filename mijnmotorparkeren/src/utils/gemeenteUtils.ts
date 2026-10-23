@@ -28,10 +28,7 @@ export function getParkingStatus(entity: Gemeente | City): {
       no_info: { label: 'Geen informatie', colorClass: 'bg-gray-100 text-gray-800' },
     }
     const s = entity.parkingStatus as
-      | 'sidewalk_allowed'
-      | 'free_parking'
-      | 'paid_parking'
-      | 'no_info'
+      'sidewalk_allowed' | 'free_parking' | 'paid_parking' | 'no_info'
     return { status: s, ...(labelMap[s] ?? labelMap.no_info) }
   }
 

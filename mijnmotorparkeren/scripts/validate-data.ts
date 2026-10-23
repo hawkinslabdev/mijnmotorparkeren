@@ -193,7 +193,7 @@ async function validateGemeenteFile(filePath: string): Promise<{ valid: boolean;
     // Validate against schema
     const result = GemeenteSchema.safeParse(data);
     if (!result.success) {
-      result.error.errors.forEach(error => {
+      result.error.issues.forEach(error => {
         // Treat missing/invalid contact, boundaries, parkingRules subfields as incomplete
         const incompleteFields = [
           'contact.website', 'contact.email', 'contact.phone',
@@ -202,7 +202,10 @@ async function validateGemeenteFile(filePath: string): Promise<{ valid: boolean;
           'parkingRules.motorcycleSpecific.dedicatedSpots', 'parkingRules.motorcycleSpecific.allowedOnSidewalk', 'parkingRules.motorcycleSpecific.freeInPaidZones'
         ];
         const pathStr = error.path.join('.');
-        if (incompleteFields.includes(pathStr) || error.message.includes('Required') || error.message.includes('Invalid')) {
+        // Missing field, bad enum/literal, bad format (url/email/regex) or no union match = incomplete; wrong type or size = invalid
+        const isMissing = error.code === 'invalid_type' && error.message.endsWith('received undefined');
+        const isBadValue = error.code === 'invalid_value' || error.code === 'invalid_format' || error.code === 'invalid_union';
+        if (incompleteFields.includes(pathStr) || isMissing || isBadValue) {
           incomplete = true;
           warnings.push(`  ${pathStr}: incomplete (${error.message})`);
         } else {
@@ -276,7 +279,7 @@ async function validateCityData() {
               console.log(`✅ ${cityRef.reference}`)
             } else {
               console.log(`${cityRef.reference}`)
-              cityResult.error.errors.forEach(error => {
+              cityResult.error.issues.forEach(error => {
                 console.log(`   ${error.path.join('.')}: ${error.message}`)
               })
             }
@@ -286,7 +289,7 @@ async function validateCityData() {
         }
       } else {
         console.log('city/index.json')
-        indexResult.error.errors.forEach(error => {
+        indexResult.error.issues.forEach(error => {
           console.log(`   ${error.path.join('.')}: ${error.message}`)
         })
       }

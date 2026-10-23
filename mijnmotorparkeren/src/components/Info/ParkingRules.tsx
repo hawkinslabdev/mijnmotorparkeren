@@ -212,14 +212,14 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                       </div>
                     )}
 
-                    {/* Notes */}
-                    {parkingRules.motorcycleSpecific.notes && (
-                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4 mt-4">
-                        <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-                          {parkingRules.motorcycleSpecific.notes}
-                        </p>
-                      </div>
-                    )}
+                  {/* Notes */}
+                  {parkingRules.motorcycleSpecific.notes && (
+                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4 mt-4">
+                      <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                        {parkingRules.motorcycleSpecific.notes}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

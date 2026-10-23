@@ -225,7 +225,7 @@ function validateGemeenteFile(filePath) {
                     data = JSON.parse(content);
                     result = GemeenteSchema.safeParse(data);
                     if (!result.success) {
-                        result.error.errors.forEach(function (error) {
+                        result.error.issues.forEach(function (error) {
                             errors.push("  ".concat(error.path.join('.'), ": ").concat(error.message));
                         });
                     }
@@ -302,7 +302,7 @@ function validateCityData() {
                     }
                     else {
                         console.log("\u274C ".concat(cityRef.reference));
-                        cityResult.error.errors.forEach(function (error) {
+                        cityResult.error.issues.forEach(function (error) {
                             console.log("   ".concat(error.path.join('.'), ": ").concat(error.message));
                         });
                     }
@@ -317,7 +317,7 @@ function validateCityData() {
                 case 9: return [3 /*break*/, 11];
                 case 10:
                     console.log('city/index.json');
-                    indexResult.error.errors.forEach(function (error) {
+                    indexResult.error.issues.forEach(function (error) {
                         console.log("   ".concat(error.path.join('.'), ": ").concat(error.message));
                     });
                     _b.label = 11;
