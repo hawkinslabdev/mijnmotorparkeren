@@ -1,44 +1,32 @@
 {
-    "id": "nijkerk",
-    "name": "Gemeente Nijkerk",
-    "province": "Gelderland",
-    "coordinates": {
-        "lat": 52.211,
-        "lng": 5.507
+  "id": "nijkerk",
+  "name": "Gemeente Nijkerk",
+  "province": "Gelderland",
+  "coordinates": {
+    "lat": 52.211,
+    "lng": 5.507
+  },
+  "parkingRules": {
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[5.479,52.258],[5.484,52.239],[5.516,52.234],[5.55,52.202],[5.633,52.208],[5.626,52.193],[5.6,52.198],[5.578,52.195],[5.565,52.178],[5.542,52.178],[5.531,52.192],[5.486,52.182],[5.48,52.166],[5.44,52.171],[5.439,52.202],[5.41,52.219],[5.396,52.219],[5.404,52.247],[5.454,52.254],[5.47,52.263],[5.471,52.264],[5.479,52.258]]],
-        "type": "Polygon"
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "In Nijkerk is het toegestaan om uw motor op de stoep te parkeren. Zorg wel dat u de doorgang niet blokkeert of een onveilige situatie veroorzaakt. Voetgangers, kinderwagens en rolstoelen mogen er geen last van hebben. Als u uw motor op straat parkeert of in een parkeervak in een gebied waar betaald parkeren geldt, dan moet u parkeergeld betalen voor uw motor. Parkeer niet voor deuren, bij gehandicaptenplaatsen, op laad-/losplaatsen of in voetgangersgebieden met fietsverbod."
+    }
+  },
+  "lastUpdated": "2026-11-04",
+  "sources": [
+    {
+      "type": "official",
+      "name": "ParkeerService gemeente Nijkerk",
+      "url": "https://nijkerk.parkeerservice.nl/parkeren-op-straat/motor-parkeren/",
+      "date": "2026-11-04"
     },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "In Nijkerk mag je je motor parkeren waar auto's mogen & op de stoep mits je niemand hindert. Zorg dat voetgangers en rolstoelgebruikers er langs kunnen. Parkeer niet voor deuren, bij gehandicaptenplaatsen, op laad-/losplaatsen of in voetgangersgebieden met fietsverbod."
-        }
-    },
-    "lastUpdated": "2025-08-05",
-    "sources": [
-        {
-            "name": "Afdeling Verkeer & Vervoer van de Gemeente Nijkerk",
-            "url": "#",
-            "date": "2025-08-05"
-        }
-    ]
+    {
+      "name": "Afdeling Verkeer & Vervoer van de Gemeente Nijkerk",
+      "date": "2025-08-05"
+    }
+  ]
 }

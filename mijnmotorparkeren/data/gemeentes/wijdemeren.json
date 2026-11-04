@@ -1,45 +1,28 @@
 {
-    "id": "wijdemeren",
-    "name": "Gemeente Wijdemeren",
-    "province": "Noord-Holland",
-    "coordinates": {
-        "lat": 52.2379,
-        "lng": 5.0788
+  "id": "wijdemeren",
+  "name": "Gemeente Wijdemeren",
+  "province": "Noord-Holland",
+  "coordinates": {
+    "lat": 52.2379,
+    "lng": 5.0788
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[5.102,52.28],[5.119,52.274],[5.14,52.254],[5.142,52.225],[5.128,52.224],[5.146,52.201],[5.124,52.181],[5.115,52.18],[5.046,52.166],[5.034,52.213],[5.042,52.231],[5.057,52.237],[5.027,52.264],[5.033,52.275],[5.064,52.281],[5.102,52.28]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "Parkeren op de stoep wordt niet gedoogd, aangezien er in de Algemene plaatselijke verordening (APV) niets over vermeld staat over het parkeren van een motor. Dezelfde regels voor de auto gelden dus voor een motorvoertuig."
-        }
-    },
-    "lastUpdated": "2025-09-23",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Telefonisch medewerker Gemeente Wijdemeren",
-            "date": "2025-08-29"
-        }
-    ]
- }
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Parkeren op de stoep wordt niet gedoogd, aangezien er in de Algemene plaatselijke verordening (APV) niets over vermeld staat over het parkeren van een motor. Dezelfde regels voor de auto gelden dus voor een motorvoertuig."
+    }
+  },
+  "lastUpdated": "2025-09-23",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Telefonisch medewerker Gemeente Wijdemeren",
+      "date": "2025-08-29"
+    }
+  ]
+}

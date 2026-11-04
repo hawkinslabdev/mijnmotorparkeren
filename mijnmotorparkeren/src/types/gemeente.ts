@@ -5,8 +5,8 @@ export interface Coordinates {
 
 export interface ParkingSpot {
   location: string
-  spots: number
-  coordinates: Coordinates
+  spots?: number
+  coordinates?: Coordinates
 }
 
 export interface NoParkingZone {
@@ -22,10 +22,10 @@ export interface ParkingRates {
 }
 
 export interface Source {
-  type: 'official' | 'regulation' | 'news' | 'community'
+  type?: 'official' | 'regulation' | 'news' | 'community'
   name?: string
-  url: string
-  date: string
+  url?: string
+  date?: string
 }
 
 export interface Contact {
@@ -34,30 +34,26 @@ export interface Contact {
   phone: string
 }
 
-export interface GeoJSONPolygon {
-  type: 'Polygon'
-  coordinates: number[][][]
-}
-
+/** Unknown facts are omitted. */
 export interface ParkingRules {
-  free: boolean
-  paid: {
-    enabled: boolean
-    areas: string[]
-    rates: ParkingRates | null
+  free?: boolean
+  paid?: {
+    enabled?: boolean
+    areas?: string[]
+    rates?: ParkingRates
   }
-  permits: {
-    required: boolean
-    types: string[]
+  permits?: {
+    required?: boolean
+    types?: string[]
   }
-  restrictions: {
-    timeLimit: number | null
-    noParking: NoParkingZone[]
+  restrictions?: {
+    timeLimit?: number
+    noParking?: NoParkingZone[]
   }
   motorcycleSpecific: {
-    dedicatedSpots: ParkingSpot[]
-    allowedOnSidewalk: boolean
-    freeInPaidZones: boolean
+    dedicatedSpots?: ParkingSpot[]
+    allowedOnSidewalk?: boolean
+    freeInPaidZones?: boolean
     notes: string
   }
 }
@@ -70,7 +66,6 @@ export interface Gemeente {
   name: string
   province: string
   coordinates: Coordinates
-  boundaries?: GeoJSONPolygon // optional — not present in lite index entries
   parkingRules?: ParkingRules // optional — not present in lite index entries
   contact?: Contact
   lastUpdated?: string
@@ -78,16 +73,4 @@ export interface Gemeente {
   statcode?: string
   parkingStatus?: ParkingStatusValue // pre-computed in index; avoids loading full parkingRules for map rendering
   zoom?: number
-}
-
-export interface GemeenteIndex {
-  version: string
-  lastGenerated: string
-  total: number
-  gemeentes: Array<{
-    id: string
-    name: string
-    province: string
-    coordinates: Coordinates
-  }>
 }

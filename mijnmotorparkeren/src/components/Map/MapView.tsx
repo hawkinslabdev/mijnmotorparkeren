@@ -690,44 +690,6 @@ const RealBoundariesLayer: React.FC<{
         console.log(`No official boundary found for ${gemeente.name}`)
       }
       notFoundGemeentes.push(gemeente.name)
-
-      // Try to use local boundary as fallback
-      if (gemeente.boundaries) {
-        if (debugEnabled) {
-          console.log(`Using local boundary fallback for ${gemeente.name}`)
-        }
-
-        const colors = getMapBoundaryColors(gemeente)
-        const isSelected = gemeente.id === selectedGemeenteId
-
-        return (
-          <GeoJSON
-            key={`local-fallback-${gemeente.id}`}
-            data={
-              {
-                type: 'Feature',
-                properties: { name: gemeente.name, id: gemeente.id },
-                geometry: gemeente.boundaries,
-              } as GeoJSONType.Feature
-            }
-            style={{
-              fillColor: colors.fillColor,
-              color: colors.borderColor,
-              weight: isSelected ? 4 : 2,
-              opacity: isSelected ? 1 : 0.8,
-              fillOpacity: isSelected ? 0.65 : 0.3,
-              dashArray: isSelected ? undefined : '5, 5',
-            }}
-            eventHandlers={{
-              click: (e) => {
-                e.originalEvent.stopPropagation()
-                onGemeenteSelect(gemeente)
-              },
-            }}
-          />
-        )
-      }
-
       return null
     }
 
@@ -1205,7 +1167,6 @@ const MapView: React.FC<MapViewProps> = ({
               </span>
             </div>
             <div>Container: {mapRef.current ? 'Created' : 'Pending'}</div>
-            <div>Boundaries: {gemeentes.filter((g) => g.boundaries).length} loaded</div>
             <div>
               City Support:{' '}
               <span className={onCitySelect ? 'text-green-600' : 'text-red-600'}>

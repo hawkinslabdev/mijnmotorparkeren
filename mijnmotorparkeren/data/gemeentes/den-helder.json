@@ -1,40 +1,30 @@
 {
-    "id": "den-helder",
-    "name": "Gemeente Den Helder",
-    "province": "Noord-Holland",
-    "coordinates": {
-        "lat": 52.958,
-        "lng": 4.759
+  "id": "den-helder",
+  "name": "Gemeente Den Helder",
+  "province": "Noord-Holland",
+  "coordinates": {
+    "lat": 52.958,
+    "lng": 4.759
+  },
+  "parkingRules": {
+    "paid": {
+      "enabled": false
     },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": false,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "PParkeren op de stoep met een motorfiets wordt gedoogd, zolang dit niet hinderlijk is voor voetgangers (zoals rolstoelgebruikers of moeders met kinderwagens), niet voor een (nood)uitgang staat, en men zich houdt aan de betaaldparkeervoorwaarden; in blauwe zones mag men zonder blauwe kaart gebruikmaken van een parkeervak."
-        }
+    "permits": {
+      "required": false
     },
-    "lastUpdated": "2026-03-02",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Den Helder",
-            "date": "2026-03-02"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "PParkeren op de stoep met een motorfiets wordt gedoogd, zolang dit niet hinderlijk is voor voetgangers (zoals rolstoelgebruikers of moeders met kinderwagens), niet voor een (nood)uitgang staat, en men zich houdt aan de betaaldparkeervoorwaarden; in blauwe zones mag men zonder blauwe kaart gebruikmaken van een parkeervak."
+    }
+  },
+  "lastUpdated": "2026-03-02",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Den Helder",
+      "date": "2026-03-02"
+    }
+  ]
 }

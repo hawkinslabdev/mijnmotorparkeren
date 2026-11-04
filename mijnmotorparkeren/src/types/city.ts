@@ -20,20 +20,6 @@ export interface City {
   effectiveDate?: string
 }
 
-export interface CityIndex {
-  lastUpdated: string
-  cities: Array<{
-    id: string
-    name: string
-    parent: string
-    province: string
-    coordinates: Coordinates
-    reference: string
-    postalCodes?: string[]
-    alternativeNames?: string[]
-  }>
-}
-
 export interface ParkingRuleContext {
   location: Coordinates
   gemeente: string

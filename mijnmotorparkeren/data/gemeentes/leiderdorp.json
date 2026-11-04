@@ -1,45 +1,26 @@
 {
-    "id": "leiderdorp",
-    "name": "Gemeente Leiderdorp",
-    "province": "Zuid-Holland",
-    "coordinates": {
-        "lat": 52.1586,
-        "lng": 4.529
+  "id": "leiderdorp",
+  "name": "Gemeente Leiderdorp",
+  "province": "Zuid-Holland",
+  "coordinates": {
+    "lat": 52.1586,
+    "lng": 4.529
+  },
+  "parkingRules": {
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[4.518,52.182],[4.538,52.18],[4.55,52.163],[4.571,52.153],[4.551,52.138],[4.524,52.147],[4.515,52.161],[4.518,52.182]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": null,
-            "notes": "In Leiderdorp is er geen betaald parkeren. Motorvoertuigen mogen volgens de RVV 1990 artikel 10 niet op het trottoir parkeren en moeten gebruikmaken van de rijbaan of reguliere parkeerplaatsen."
-        }
-    },
-    "lastUpdated": "2025-09-26",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Team Handhaving & Toezicht",
-            "date": "2025-09-26"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "notes": "In Leiderdorp is er geen betaald parkeren. Motorvoertuigen mogen volgens de RVV 1990 artikel 10 niet op het trottoir parkeren en moeten gebruikmaken van de rijbaan of reguliere parkeerplaatsen."
+    }
+  },
+  "lastUpdated": "2025-09-26",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Team Handhaving & Toezicht",
+      "date": "2025-09-26"
+    }
+  ]
 }

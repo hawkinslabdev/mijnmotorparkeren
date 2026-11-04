@@ -43,7 +43,6 @@ async function buildIndex(): Promise<string> {
         ...(d.zoom != null ? { zoom: d.zoom } : {}),
         ...(d.statcode ? { statcode: d.statcode } : {}),
         parkingStatus: computeParkingStatus(d.parkingRules),
-        reference: `gemeentes/${file}`,
       }
     })
   )
@@ -52,14 +51,7 @@ async function buildIndex(): Promise<string> {
   const seen = new Map<string, object>()
   for (const e of entries) seen.set(e.id, e)
 
-  const index = {
-    version: '1.0',
-    lastGenerated: new Date().toISOString(),
-    total: seen.size,
-    gemeentes: [...seen.values()],
-  }
-
-  return JSON.stringify(index)
+  return JSON.stringify({ gemeentes: [...seen.values()] })
 }
 
 export const GET: APIRoute = async () => {

@@ -275,7 +275,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
             {parkingRules.permits?.required && (
               <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
                 <h4 className="font-medium text-purple-900 mb-2">Vergunning vereist</h4>
-                {parkingRules.permits.types.length > 0 ? (
+                {parkingRules.permits.types?.length ? (
                   <ul className="text-sm text-purple-800 space-y-1">
                     {parkingRules.permits.types.map((type, index) => (
                       <li key={index}>• {type}</li>
@@ -350,7 +350,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
               {data.sources && data.sources.length > 0 && (
                 <div className="flex items-center gap-2">
                   {data.sources.slice(0, 2).map((source, index) => {
-                    const isDisabled = !source.url || source.url === '' || source.url === '#'
+                    const isDisabled = !source.url
                     return isDisabled ? (
                       <span
                         key={index}

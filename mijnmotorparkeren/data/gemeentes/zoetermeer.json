@@ -1,45 +1,29 @@
 {
-    "id": "zoetermeer",
-    "name": "Gemeente Zoetermeer",
-    "province": "Zuid-Holland",
-    "coordinates": {
-        "lat": 52.0575,
-        "lng": 4.4932
+  "id": "zoetermeer",
+  "name": "Gemeente Zoetermeer",
+  "province": "Zuid-Holland",
+  "coordinates": {
+    "lat": 52.0575,
+    "lng": 4.4932
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[4.531,52.081],[4.557,52.061],[4.505,52.032],[4.477,52.032],[4.451,52.049],[4.422,52.052],[4.421,52.063],[4.457,52.079],[4.492,52.09],[4.504,52.093],[4.531,52.081]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "Parkeert u een motor in een blauwe zone? Dan hoeft u geen parkeerschijf te gebruiken. U moet uw motor wel parkeren op een parkeerplaats, niet op de stoep."
-        }
-    },
-    "lastUpdated": "2025-09-26",
-    "sources": [
-        {
-            "type": "official",
-            "url": "https://www.zoetermeer.nl/parkeren-in-de-blauwe-zone",
-            "name": "Website Gemeente Zoetermeer",
-            "date": "2025-09-26"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Parkeert u een motor in een blauwe zone? Dan hoeft u geen parkeerschijf te gebruiken. U moet uw motor wel parkeren op een parkeerplaats, niet op de stoep."
+    }
+  },
+  "lastUpdated": "2025-09-26",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.zoetermeer.nl/parkeren-in-de-blauwe-zone",
+      "name": "Website Gemeente Zoetermeer",
+      "date": "2025-09-26"
+    }
+  ]
 }

@@ -1,34 +1,30 @@
 {
-    "id": "almere",
-    "name": "Gemeente Almere",
-    "province": "Flevoland",
-    "coordinates": {
-        "lat": 52.36,
-        "lng": 5.22
+  "id": "almere",
+  "name": "Gemeente Almere",
+  "province": "Flevoland",
+  "coordinates": {
+    "lat": 52.36,
+    "lng": 5.22
+  },
+  "parkingRules": {
+    "paid": {
+      "enabled": true,
+      "areas": [
+        "centrum"
+      ]
     },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": true,
-            "areas": [
-                "centrum"
-            ]
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Parkeren op de stoep wordt gedoogd, mits dit geen hinder oplevert. In de betaald parkeerzones is parkeren voor motoren niet gratis."
-        }
-    },
-    "lastUpdated": "2025-07-12",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Handhaver Openbare Ruimte van Gemeente Almere",
-            "date": "2025-07-07"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Parkeren op de stoep wordt gedoogd, mits dit geen hinder oplevert. In de betaald parkeerzones is parkeren voor motoren niet gratis."
+    }
+  },
+  "lastUpdated": "2025-07-12",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Handhaver Openbare Ruimte van Gemeente Almere",
+      "date": "2025-07-07"
+    }
+  ]
 }

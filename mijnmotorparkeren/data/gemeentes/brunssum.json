@@ -1,45 +1,28 @@
 {
-    "id": "brunssum",
-    "name": "Gemeente Brunssum",
-    "province": "Limburg",
-    "coordinates": {
-        "lat": 50.95,
-        "lng": 6.01
+  "id": "brunssum",
+  "name": "Gemeente Brunssum",
+  "province": "Limburg",
+  "coordinates": {
+    "lat": 50.95,
+    "lng": 6.01
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[6.006,50.958],[6.017,50.953],[6.018,50.935],[6.012,50.926],[5.928,50.937],[5.936,50.946],[5.965,50.961],[6.006,50.958]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "Het parkeren op de stoep wordt niet gedoogd en is niet toegestaan. Echter wordt er niet direct voor beboet bij het parkeren op de stoep. De betreffende BOA zal eerst een waarschuwing geven en bij herhaling een boete uitschrijven."
-        }
-    },
-    "lastUpdated": "2025-09-23",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Telefonisch medewerker Gemeente Brunssum",
-            "date": "2025-09-23"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Het parkeren op de stoep wordt niet gedoogd en is niet toegestaan. Echter wordt er niet direct voor beboet bij het parkeren op de stoep. De betreffende BOA zal eerst een waarschuwing geven en bij herhaling een boete uitschrijven."
+    }
+  },
+  "lastUpdated": "2025-09-23",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Telefonisch medewerker Gemeente Brunssum",
+      "date": "2025-09-23"
+    }
+  ]
 }

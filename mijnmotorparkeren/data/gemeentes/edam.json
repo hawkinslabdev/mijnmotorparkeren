@@ -1,16 +1,14 @@
 {
-    "id": "edam",
-    "name": "Edam (deel van Edam-Volendam)",
-    "province": "Noord-Holland",
-    "coordinates": {
-        "lat": 52.511,
-        "lng": 5.049
-    },
-    "lastUpdated": null,
-    "parkingRules": {
-        "contact": null,
-        "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
-        }
+  "id": "edam",
+  "name": "Edam (deel van Edam-Volendam)",
+  "province": "Noord-Holland",
+  "coordinates": {
+    "lat": 52.511,
+    "lng": 5.049
+  },
+  "parkingRules": {
+    "motorcycleSpecific": {
+      "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
     }
+  }
 }

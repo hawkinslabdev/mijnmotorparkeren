@@ -1,57 +1,39 @@
 {
-    "id": "amsterdam",
-    "name": "Gemeente Amsterdam",
-    "province": "Noord-Holland",
-    "coordinates": {
-        "lat": 52.37,
-        "lng": 4.895
+  "id": "amsterdam",
+  "name": "Gemeente Amsterdam",
+  "province": "Noord-Holland",
+  "coordinates": {
+    "lat": 52.37,
+    "lng": 4.895
+  },
+  "parkingRules": {
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[[4.863,52.43],[4.899,52.424],[4.931,52.412],[4.948,52.422],[5,52.425],[5.049,52.415],[5.068,52.417],[5.052,52.413],[5.014,52.385],[4.974,52.372],[5.015,52.348],[5.015,52.347],[5.012,52.344],[4.999,52.342],[4.97,52.356],[4.95,52.339],[4.913,52.331],[4.909,52.318],[4.896,52.322],[4.856,52.322],[4.856,52.33],[4.819,52.326],[4.791,52.342],[4.756,52.356],[4.757,52.397],[4.729,52.401],[4.739,52.431],[4.856,52.417],[4.863,52.43]]]],
-        "type": "MultiPolygon"
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Een motorfiets mag, zolang het overige verkeer niet wordt gehinderd, op het trottoir of op een verbreding daarvan worden geparkeerd. Als een motor wordt geparkeerd op een (betaalde) parkeerplaats, dan moet er wel betaald worden."
     },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Een motorfiets mag, zolang het overige verkeer niet wordt gehinderd, op het trottoir of op een verbreding daarvan worden geparkeerd. Als een motor wordt geparkeerd op een (betaalde) parkeerplaats, dan moet er wel betaald worden."
-        },
-        "securityAdvice": {
-            "recommended": [
-                "Remschijfslot met alarm (ca. 110 dB)",
-                "Stuurslot",
-                "Noodschakelaar (killswitch)"
-            ],
-            "optional": [
-                "Motorhoes om te beschermen tegen toeristen die op de motor gaan zitten of aan knoppen gaan draaien",
-                "Dubbele beveiliging met ketting verankerd aan frame en vaste grondverankering (voor waardevolle of opvallende motoren)"
-            ],
-            "communityNotes": "In drukke gebieden zoals het centrum is sociale controle hoog, waardoor diefstal relatief zeldzaam is. Het grootste risico is dat toeristen op de motor gaan zitten of met de knoppen spelen."
-        }
-    },
-    "lastUpdated": "2026-03-22",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Telefonisch medewerker Gemeente Amsterdam",
-            "date": "2025-07-01"
-        }
-    ]
+    "securityAdvice": {
+      "recommended": [
+        "Remschijfslot met alarm (ca. 110 dB)",
+        "Stuurslot",
+        "Noodschakelaar (killswitch)"
+      ],
+      "optional": [
+        "Motorhoes om te beschermen tegen toeristen die op de motor gaan zitten of aan knoppen gaan draaien",
+        "Dubbele beveiliging met ketting verankerd aan frame en vaste grondverankering (voor waardevolle of opvallende motoren)"
+      ],
+      "communityNotes": "In drukke gebieden zoals het centrum is sociale controle hoog, waardoor diefstal relatief zeldzaam is. Het grootste risico is dat toeristen op de motor gaan zitten of met de knoppen spelen."
+    }
+  },
+  "lastUpdated": "2026-03-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Telefonisch medewerker Gemeente Amsterdam",
+      "date": "2025-07-01"
+    }
+  ]
 }

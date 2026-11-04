@@ -1,44 +1,28 @@
 {
-    "id": "gouda",
-    "name": "Gemeente Gouda",
-    "province": "Zuid-Holland",
-    "coordinates": {
-        "lat": 52.0111,
-        "lng": 4.7111
+  "id": "gouda",
+  "name": "Gemeente Gouda",
+  "province": "Zuid-Holland",
+  "coordinates": {
+    "lat": 52.0111,
+    "lng": 4.7111
+  },
+  "parkingRules": {
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[4.751,52.014],[4.689,51.996],[4.659,52.005],[4.667,52.013],[4.681,52.028],[4.706,52.04],[4.72,52.026],[4.744,52.023],[4.751,52.014]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "In Gouda is het toegestaan om uw motor op de stoep te parkeren. Zorg wel dat u de doorgang niet blokkeert of een onveilige situatie veroorzaakt. Voetgangers, kinderwagens en rolstoelen mogen er geen last van hebben. Als u uw motor op straat parkeert of in een parkeervak (in een gebied waar betaald parkeren geldt), dan moet u parkeergeld betalen voor uw motor."
-        }
-    },
-    "lastUpdated": "2026-02-25",
-    "sources": [
-      {
-        "name": "Gemeente Gouda (via exploitant)",
-        "url": "https://gouda.parkeerservice.nl/parkeren-op-straat/motor-parkeren/",
-        "date": "2026-02-25"
-      }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "In Gouda is het toegestaan om uw motor op de stoep te parkeren. Zorg wel dat u de doorgang niet blokkeert of een onveilige situatie veroorzaakt. Voetgangers, kinderwagens en rolstoelen mogen er geen last van hebben. Als u uw motor op straat parkeert of in een parkeervak (in een gebied waar betaald parkeren geldt), dan moet u parkeergeld betalen voor uw motor."
+    }
+  },
+  "lastUpdated": "2026-11-04",
+  "sources": [
+    {
+      "type": "official",
+      "name": "ParkeerService gemeente Gouda",
+      "url": "https://gouda.parkeerservice.nl/parkeren-op-straat/motor-parkeren/",
+      "date": "2026-11-04"
+    }
+  ]
 }

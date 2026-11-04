@@ -23,14 +23,8 @@ export interface POI {
 }
 
 export interface POIIndex {
-  version: string
-  lastGenerated: string
-  total: number
   pois: Array<{
-    id: string
     municipalityId: string
-    type: POIType
-    name: string
     scope?: POIScope // defaults to 'gemeente' when absent
   }>
 }

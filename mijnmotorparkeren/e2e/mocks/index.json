@@ -1,7 +1,4 @@
 {
-  "version": "1.0",
-  "lastGenerated": "2025-01-01T00:00:00.000Z",
-  "total": 2,
   "gemeentes": [
     {
       "id": "amsterdam",
@@ -10,8 +7,7 @@
       "coordinates": { "lat": 52.3676, "lng": 4.9041 },
       "zoom": 12,
       "statcode": "GM0363",
-      "parkingStatus": "sidewalk_allowed",
-      "reference": "gemeentes/amsterdam.json"
+      "parkingStatus": "sidewalk_allowed"
     },
     {
       "id": "rotterdam",
@@ -20,8 +16,7 @@
       "coordinates": { "lat": 51.9225, "lng": 4.4792 },
       "zoom": 12,
       "statcode": "GM0599",
-      "parkingStatus": "paid_parking",
-      "reference": "gemeentes/rotterdam.json"
+      "parkingStatus": "paid_parking"
     }
   ]
 }

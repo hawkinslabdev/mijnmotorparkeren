@@ -1,45 +1,25 @@
 {
-    "id": "buren",
-    "name": "Gemeente Buren",
-    "province": "Gelderland",
-    "coordinates": {
-        "lat": 51.909,
-        "lng": 5.332
-    },
-    "boundaries": {
-        "coordinates": [[[5.478,51.983],[5.54,51.967],[5.561,51.955],[5.587,51.951],[5.576,51.943],[5.549,51.942],[5.554,51.923],[5.494,51.919],[5.453,51.923],[5.411,51.912],[5.4,51.899],[5.339,51.874],[5.312,51.896],[5.295,51.9],[5.274,51.92],[5.28,51.933],[5.255,51.935],[5.242,51.946],[5.27,51.965],[5.333,51.957],[5.348,51.968],[5.391,51.971],[5.442,51.986],[5.478,51.983]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": null,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "Het gebruik van het trottoir is in de wegenverkeerswetgeving verleend aan voetgangers. Aangezien de gemeente geen afwijkend beleid heeft opgesteld, is het niet toegetaan motoren op de stoep te parkeren."
-        }
-    },
-    "lastUpdated": "2026-04-22",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Beleidsondersteuner gemeente Buren",
-            "date": "2026-04-22"
-        }
-    ]
+  "id": "buren",
+  "name": "Gemeente Buren",
+  "province": "Gelderland",
+  "coordinates": {
+    "lat": 51.909,
+    "lng": 5.332
+  },
+  "parkingRules": {
+    "free": false,
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Het gebruik van het trottoir is in de wegenverkeerswetgeving verleend aan voetgangers. Aangezien de gemeente geen afwijkend beleid heeft opgesteld, is het niet toegetaan motoren op de stoep te parkeren."
+    }
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Beleidsondersteuner gemeente Buren",
+      "date": "2026-04-22"
+    }
+  ]
 }

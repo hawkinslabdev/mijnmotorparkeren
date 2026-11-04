@@ -37,14 +37,15 @@ Gemeente and city parking data lives in `data/gemeentes/` and `data/city/`. Afte
 
 ```bash
 npm run validate:data   # Validate all JSON files
-npm run generate:index  # Syncs the gemeente index
 ```
+
+Leave out anything unknown instead of writing `null` or an empty list. Only `type: "country"` files have `boundaries`; gemeente shapes come from `data/gemeente_2026.geojson`.
 
 Data layout:
 
 ```
 mijnmotorparkeren/data/
-  gemeentes/{id}.json   # Full gemeente data (parking rules, boundaries)
+  gemeentes/{id}.json   # Full gemeente data (parking rules, sources)
   city/{id}.json        # City sub-area data 
 ```
 

@@ -33,6 +33,6 @@ test.describe('Smoke', () => {
   test('/gemeente/amsterdam loads panel', async ({ page }) => {
     await page.goto('/gemeente/amsterdam')
     await waitForMap(page)
-    await expect(page.getByRole('heading', { name: /amsterdam/i })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam', exact: true })).toBeVisible()
   })
 })

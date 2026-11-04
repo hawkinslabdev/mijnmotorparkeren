@@ -1,5 +1,5 @@
 import type { Gemeente, ParkingStatusValue } from '../types/gemeente'
-import type { City, CityIndex } from '../types/city'
+import type { City } from '../types/city'
 import type { POI, POIIndex, POIScope } from '../types/poi'
 
 let DATA_VERSION = import.meta.env.PUBLIC_DATA_VERSION
@@ -63,9 +63,9 @@ export const CITY_STUB: City = {
   coordinates: { lat: 0, lng: 0 },
   parkingRules: {
     free: false,
-    paid: { enabled: false, areas: [], rates: null },
+    paid: { enabled: false, areas: [] },
     permits: { required: false, types: [] },
-    restrictions: { timeLimit: null, noParking: [] },
+    restrictions: { noParking: [] },
     motorcycleSpecific: {
       dedicatedSpots: [],
       allowedOnSidewalk: false,
@@ -98,35 +98,13 @@ const loadedPOIs = new Map<string, POI[]>()
 export function fetchPOIIndex(): Promise<POIIndex> {
   if (!poiIndexPromise) {
     poiIndexPromise = fetch(getVersionedJsonUrl('poi', 'index'))
-      .then((res) => {
-        if (!res.ok)
-          return { pois: [], lastUpdated: '', version: '', lastGenerated: '', total: 0 } as POIIndex
-        return res.json()
-      })
+      .then((res) => (res.ok ? res.json() : { pois: [] }))
       .catch(() => {
         poiIndexPromise = null
-        return { pois: [], lastUpdated: '', version: '', lastGenerated: '', total: 0 } as POIIndex
+        return { pois: [] }
       })
   }
   return poiIndexPromise
-}
-
-let cityIndexPromise: Promise<CityIndex | null> | null = null
-
-function fetchCityIndex(): Promise<CityIndex | null> {
-  if (!cityIndexPromise) {
-    cityIndexPromise = fetch(getVersionedJsonUrl('city', 'index'))
-      .then((res) => (res.ok ? res.json() : null))
-      .catch(() => null)
-  }
-  return cityIndexPromise
-}
-
-export async function getCitiesForGemeente(gemeenteId: string): Promise<City[]> {
-  const index = await fetchCityIndex()
-  if (!index) return []
-  const matching = index.cities.filter((c) => c.parent === gemeenteId)
-  return Promise.all(matching.map((c) => fetchFullCity(c.id)))
 }
 
 export async function fetchMunicipalityPOIs(
