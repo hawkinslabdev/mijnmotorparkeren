@@ -17,9 +17,10 @@
     "motorcycleSpecific": {
       "allowedOnSidewalk": true,
       "freeInPaidZones": true,
-      "notes": "In Rotterdam is het gedoogd om een motorfiets op de stoep te parkeren, mits dit geen hinder oplevert. Parkeren in een parkeervak is gratis voor motoren (status: 16-01-2025). Dit kan in de toekomst veranderen."
+      "notes": "In Rotterdam is het gedoogd om een motorfiets op de stoep te parkeren, mits dit geen hinder oplevert. Parkeren in een parkeervak is gratis voor motoren per 16-01-2025. Dit kan in de toekomst veranderen."
     }
   },
+  "lastUpdated": "2025-01-16",
   "sources": [
     {
       "type": "community",

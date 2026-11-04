@@ -19,12 +19,5 @@
     }
   },
   "lastUpdated": "2025-07-15",
-  "sources": [
-    {
-      "type": "official",
-      "name": "Gemeente Dronten",
-      "url": "https://www.dronten.nl/direct-regelen/verkeer-vervoer-parkeren/parkeren/parkeren-in-de-gemeente-dronten",
-      "date": "2025-07-10"
-    }
-  ]
+  "sources": []
 }

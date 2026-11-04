@@ -11,8 +11,11 @@
       "required": false
     },
     "motorcycleSpecific": {
-      "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "De gemeente heeft geen afwijkend beleid, hierdoor mogen motoren niet op de stoep worden geparkeerd. Er zijn geen aparte parkeerplaatsen voor motoren, maar deze mogen wel op de reguliere parkeerplaatsen worden geparkeerd. Hiervoor hoeft geen parkeerschijf gebruikt te worden."
     }
   },
+  "lastUpdated": "2025-09-27",
   "sources": []
 }

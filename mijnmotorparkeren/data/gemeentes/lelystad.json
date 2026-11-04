@@ -19,12 +19,6 @@
       "name": "ParkeerService gemeente Lelystad",
       "url": "https://lelystad.parkeerservice.nl/parkeren-op-straat/motor-parkeren/",
       "date": "2026-11-04"
-    },
-    {
-      "type": "official",
-      "name": "Gemeente Lelystad",
-      "url": "https://www.lelystad.nl/parkeren",
-      "date": "2025-07-15"
     }
   ]
 }
