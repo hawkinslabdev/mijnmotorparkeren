@@ -1,44 +1,22 @@
 {
-    "id": "eemnes",
-    "name": "Gemeente Eemnes",
-    "province": "Utrecht",
-    "coordinates": {
-        "lat": 52.2607,
-        "lng": 5.2615
-    },
-    "boundaries": {
-        "coordinates": [[[5.306,52.278],[5.331,52.274],[5.324,52.253],[5.311,52.246],[5.312,52.233],[5.301,52.224],[5.225,52.225],[5.244,52.255],[5.266,52.282],[5.306,52.278]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": null,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": null,
-            "notes": "Binnen de BEL gemeenten (Blaricum, Eemnes, Laren) is hier niets over opgenomen in de APV. De reguliere wetgeving is dus van toepassing, wat inhoudt dat motoren niet op het trottoir mogen parkeren. Echter zal handhaving hierop, zolang de voertuigen niet hinderlijk staan geparkeerd, niet de hoogste prioriteit hebben. Er wordt niet actief geverbaliseerd, mits er sprake is van overlast of gevaarlijke situaties."
-        }
-    },
-    "lastUpdated": "2025-08-05",
-    "sources": [
-        {
-            "name": "Medewerker Openbare Ruimte van de BEL gemeenten",
-            "url": "#",
-            "date": "2025-08-05"
-        }
-    ]
+  "id": "eemnes",
+  "name": "Gemeente Eemnes",
+  "province": "Utrecht",
+  "coordinates": {
+    "lat": 52.2607,
+    "lng": 5.2615
+  },
+  "parkingRules": {
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "notes": "Binnen de BEL gemeenten (Blaricum, Eemnes, Laren) is hier niets over opgenomen in de APV. De reguliere wetgeving is dus van toepassing, wat inhoudt dat motoren niet op het trottoir mogen parkeren. Echter zal handhaving hierop, zolang de voertuigen niet hinderlijk staan geparkeerd, niet de hoogste prioriteit hebben. Er wordt niet actief geverbaliseerd, mits er sprake is van overlast of gevaarlijke situaties."
+    }
+  },
+  "lastUpdated": "2025-08-05",
+  "sources": [
+    {
+      "name": "Medewerker Openbare Ruimte van de BEL gemeenten",
+      "date": "2025-08-05"
+    }
+  ]
 }

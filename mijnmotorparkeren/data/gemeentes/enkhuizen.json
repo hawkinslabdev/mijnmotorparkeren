@@ -1,44 +1,33 @@
 {
-    "id": "enkhuizen",
-    "name": "Gemeente Enkhuizen",
-    "province": "Noord-Holland",
-    "coordinates": {
-        "lat": 52.7033,
-        "lng": 5.2913
+  "id": "enkhuizen",
+  "name": "Gemeente Enkhuizen",
+  "province": "Noord-Holland",
+  "coordinates": {
+    "lat": 52.7033,
+    "lng": 5.2913
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[5.272,52.746],[5.283,52.74],[5.288,52.715],[5.299,52.703],[5.287,52.691],[5.287,52.69],[5.259,52.687],[5.258,52.716],[5.255,52.742],[5.272,52.746]]],
-        "type": "Polygon"
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Er zijn geen aparte parkeerplaatsen voor motoren. U kunt daarom de motor op de stoep/het trottoir parkeren als u genoeg ruimte overlaat voor andere gebruikers van de stoep (denk aan wandelwagens en rolstoelen). De handhaving bekeurt als een motor hinderlijk geparkeerd staat."
+    }
+  },
+  "lastUpdated": "2026-11-04",
+  "sources": [
+    {
+      "type": "official",
+      "name": "ParkeerService gemeente Enkhuizen",
+      "url": "https://enkhuizen.parkeerservice.nl/parkeren-op-straat/motor-parkeren/",
+      "date": "2026-11-04"
     },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "In de gemeente Enkhuizen wordt parkeren op de stoep niet gedoogd."
-        }
-    },
-    "lastUpdated": "2025-08-16",
-    "sources": [
-        {
-            "name": "Klantcontactmedewerker van Gemeente Enkhuizen",
-            "url": "#",
-            "date": "2025-08-16"
-        }
-    ]
+    {
+      "name": "Klantcontactmedewerker van Gemeente Enkhuizen",
+      "date": "2025-08-16"
+    }
+  ]
 }

@@ -1,45 +1,28 @@
 {
-    "id": "wassenaar",
-    "name": "Gemeente Wassenaar",
-    "province": "Zuid-Holland",
-    "coordinates": {
-        "lat": 52.1461,
-        "lng": 4.4029
+  "id": "wassenaar",
+  "name": "Gemeente Wassenaar",
+  "province": "Zuid-Holland",
+  "coordinates": {
+    "lat": 52.1461,
+    "lng": 4.4029
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[4.44,52.156],[4.443,52.145],[4.401,52.112],[4.373,52.095],[4.358,52.106],[4.344,52.098],[4.303,52.129],[4.374,52.187],[4.412,52.163],[4.44,52.156]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "Officieel mag je je motor niet op de stoep parkeren, maar moet je hem in een parkeervak parkeren. Dit geldt ook voor een blauwe zone, echter hoef je dan geen parkeerkaart te gebruiken."
-        }
-    },
-    "lastUpdated": "2025-09-26",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Inspecteur Openbare Ruimte",
-            "date": "2025-09-26"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Officieel mag je je motor niet op de stoep parkeren, maar moet je hem in een parkeervak parkeren. Dit geldt ook voor een blauwe zone, echter hoef je dan geen parkeerkaart te gebruiken."
+    }
+  },
+  "lastUpdated": "2025-09-26",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Inspecteur Openbare Ruimte",
+      "date": "2025-09-26"
+    }
+  ]
 }

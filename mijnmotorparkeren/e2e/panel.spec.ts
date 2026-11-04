@@ -4,7 +4,7 @@ test.describe('Detail panel', () => {
   test('opens on /gemeente/amsterdam', async ({ page }) => {
     await page.goto('/gemeente/amsterdam')
     await waitForMap(page)
-    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam', exact: true })).toBeVisible()
   })
 
   test('shows parking rule: stoep toegestaan', async ({ page }) => {
@@ -16,9 +16,9 @@ test.describe('Detail panel', () => {
   test('close button dismisses panel', async ({ page }) => {
     await page.goto('/gemeente/amsterdam')
     await waitForMap(page)
-    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam', exact: true })).toBeVisible()
     await page.getByRole('button', { name: 'Sluiten' }).click()
-    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam' })).not.toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam', exact: true })).not.toBeVisible()
   })
 
   test('share button visible in panel', async ({ page }) => {
@@ -31,7 +31,7 @@ test.describe('Detail panel', () => {
     await page.goto('/')
     await waitForMap(page)
     await page.getByRole('button', { name: 'Locatie zoeken' }).click()
-    await page.getByPlaceholder('Zoek gemeente...').fill('Amsterdam')
+    await page.getByPlaceholder('Zoek gemeente of stad...').fill('Amsterdam')
     await page.getByText('Amsterdam').first().click()
     await expect(page.getByText(/parkeren/i).first()).toBeVisible()
   })
@@ -53,6 +53,6 @@ test.describe('Detail panel', () => {
     await expect(page.locator('.animate-pulse')).toHaveCount(1, { timeout: 5000 })
     release!()
     // Then content loads after release
-    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam', exact: true })).toBeVisible()
   })
 })

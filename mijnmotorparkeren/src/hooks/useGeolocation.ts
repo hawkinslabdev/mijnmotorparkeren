@@ -22,6 +22,19 @@ interface UseGeolocationReturn extends GeolocationState {
   clearError: () => void
 }
 
+function geoErrorMessage(err: unknown): string {
+  switch ((err as GeolocationPositionError)?.code) {
+    case 1:
+      return 'Geen toegang tot je locatie. Sta locatie toe in je browserinstellingen.'
+    case 2:
+      return 'Je locatie is niet beschikbaar. Zoek je locatie via het zoekveld.'
+    case 3:
+      return 'Je locatie ophalen duurde te lang. Probeer het opnieuw.'
+    default:
+      return 'Je locatie ophalen is niet gelukt. Probeer het opnieuw.'
+  }
+}
+
 export function useGeolocation(options: UseGeolocationOptions = {}): UseGeolocationReturn {
   const {
     enableHighAccuracy = true,
@@ -43,7 +56,7 @@ export function useGeolocation(options: UseGeolocationOptions = {}): UseGeolocat
 
   const getCurrentLocation = useCallback(async (): Promise<LatLngExpression | null> => {
     if (!state.supported) {
-      const error = 'Geolocation is not supported by this browser'
+      const error = 'Je browser ondersteunt geen locatiebepaling. Zoek je locatie via het zoekveld.'
       setState((prev) => ({ ...prev, error }))
       return null
     }
@@ -70,28 +83,10 @@ export function useGeolocation(options: UseGeolocationOptions = {}): UseGeolocat
 
       return location
     } catch (err) {
-      let errorMessage = 'Failed to get location'
-
-      if (err instanceof GeolocationPositionError) {
-        switch (err.code) {
-          case err.PERMISSION_DENIED:
-            errorMessage = 'Location access denied by user'
-            break
-          case err.POSITION_UNAVAILABLE:
-            errorMessage = 'Location information unavailable'
-            break
-          case err.TIMEOUT:
-            errorMessage = 'Location request timed out'
-            break
-          default:
-            errorMessage = 'An unknown error occurred while retrieving location'
-        }
-      }
-
       setState((prev) => ({
         ...prev,
         loading: false,
-        error: errorMessage,
+        error: geoErrorMessage(err),
       }))
 
       return null
@@ -111,23 +106,7 @@ export function useGeolocation(options: UseGeolocationOptions = {}): UseGeolocat
           setState((prev) => ({ ...prev, location, error: null }))
         },
         (err) => {
-          let errorMessage = 'Failed to watch location'
-
-          if (err instanceof GeolocationPositionError) {
-            switch (err.code) {
-              case err.PERMISSION_DENIED:
-                errorMessage = 'Location access denied by user'
-                break
-              case err.POSITION_UNAVAILABLE:
-                errorMessage = 'Location information unavailable'
-                break
-              case err.TIMEOUT:
-                errorMessage = 'Location request timed out'
-                break
-            }
-          }
-
-          setState((prev) => ({ ...prev, error: errorMessage }))
+          setState((prev) => ({ ...prev, error: geoErrorMessage(err) }))
         },
         {
           enableHighAccuracy,

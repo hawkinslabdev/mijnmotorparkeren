@@ -1,44 +1,37 @@
 {
-    "id": "bergen-nh",
-    "name": "Gemeente Bergen (NH.)",
-    "province": "Noord-Holland",
-    "coordinates": {
-        "lat": 52.6697,
-        "lng": 4.6987
+  "id": "bergen-nh",
+  "name": "Gemeente Bergen (NH.)",
+  "province": "Noord-Holland",
+  "alternativeNames": ["Schoorl", "Egmond", "Bergen aan Zee", "Aagtdorp"],
+  "coordinates": {
+    "lat": 52.6697,
+    "lng": 4.6987
+  },
+  "parkingRules": {
+    "paid": {
+      "enabled": false
     },
-    "boundaries": {
-        "coordinates": [[[4.729,52.691],[4.742,52.681],[4.752,52.671],[4.71,52.642],[4.715,52.625],[4.69,52.624],[4.674,52.604],[4.673,52.591],[4.655,52.583],[4.61,52.574],[4.627,52.665],[4.638,52.708],[4.637,52.729],[4.646,52.757],[4.69,52.733],[4.716,52.71],[4.729,52.691]]],
-        "type": "Polygon"
+    "permits": {
+      "required": false
     },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": false,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Parkeren op de stoep wordt gedoogd. Zolang een motorfiets niet hinderlijk op het voetpad staat, wordt dit getolereerd. Betaald parkeren geldt ook voor motoreren."
-        }
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Er zijn geen aparte parkeerplaatsen voor motoren. U kunt daarom de motor op de stoep/het trottoir parkeren als u genoeg ruimte overlaat voor andere gebruikers van de stoep (denk aan wandelwagens en rolstoelen). De handhaving bekeurt als een motor hinderlijk geparkeerd staat. Betaald parkeren geldt ook voor motoren."
+    }
+  },
+  "lastUpdated": "2026-11-04",
+  "sources": [
+    {
+      "type": "official",
+      "name": "ParkeerService gemeente Bergen",
+      "url": "https://bergen.parkeerservice.nl/parkeren-op-straat/motor-parkeren/",
+      "date": "2026-11-04"
     },
-    "lastUpdated": "2026-02-12",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Bergen (NH.)",
-            "date": "2026-02-12"
-        }
-    ]
+    {
+      "type": "official",
+      "name": "Gemeente Bergen (NH.)",
+      "date": "2026-02-12"
+    }
+  ]
 }

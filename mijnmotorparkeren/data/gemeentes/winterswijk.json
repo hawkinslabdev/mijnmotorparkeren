@@ -1,44 +1,28 @@
 {
-    "id": "winterswijk",
-    "name": "Gemeente Winterswijk",
-    "province": "Gelderland",
-    "coordinates": {
-        "lat": 51.972,
-        "lng": 6.719
+  "id": "winterswijk",
+  "name": "Gemeente Winterswijk",
+  "province": "Gelderland",
+  "coordinates": {
+    "lat": 51.972,
+    "lng": 6.719
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[6.719,51.972],[6.75,51.98],[6.77,51.96],[6.78,51.94],[6.77,51.92],[6.75,51.91],[6.73,51.91],[6.71,51.92],[6.69,51.94],[6.69,51.96],[6.71,51.97],[6.719,51.972]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Het parkeren van een motor op het trottoir is toegestaan, zolang deze niet hinderlijk of gevaarlijk staat en er altijd een minimale vrije doorgang van 90 cm blijft voor mindervaliden, kinderwagens en dergelijke."
-        }
-    },
-    "lastUpdated": "2026-04-22",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Winterswijk (Klantcontactcentrum)",
-            "date": "2026-04-22"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Het parkeren van een motor op het trottoir is toegestaan, zolang deze niet hinderlijk of gevaarlijk staat en er altijd een minimale vrije doorgang van 90 cm blijft voor mindervaliden, kinderwagens en dergelijke."
+    }
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Winterswijk (Klantcontactcentrum)",
+      "date": "2026-04-22"
+    }
+  ]
 }

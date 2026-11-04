@@ -1,40 +1,28 @@
 {
-    "id": "maastricht",
-    "name": "Gemeente Maastricht",
-    "coordinates": {
-        "lat": 50.851,
-        "lng": 5.69
+  "id": "maastricht",
+  "name": "Gemeente Maastricht",
+  "province": "Limburg",
+  "coordinates": {
+    "lat": 50.851,
+    "lng": 5.69
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "Motoren mogen binnen de gemeente Maastricht niet op de stoep worden geparkeerd. Voor het parkeren op parkeerplaatsen geldt het daarvoor geldende tarief."
-        }
-    },
-    "lastUpdated": "2025-09-27",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Team Mobiliteit van de Gemeente Maastricht",
-            "date": "2025-01-07"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Motoren mogen binnen de gemeente Maastricht niet op de stoep worden geparkeerd. Voor het parkeren op parkeerplaatsen geldt het daarvoor geldende tarief."
+    }
+  },
+  "lastUpdated": "2025-09-27",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Team Mobiliteit van de Gemeente Maastricht",
+      "date": "2025-01-07"
+    }
+  ]
 }

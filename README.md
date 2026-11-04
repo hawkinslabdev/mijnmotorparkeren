@@ -4,7 +4,7 @@
 [![Last commit](https://img.shields.io/github/last-commit/hawkinslabdev/mijnmotorparkeren)](https://github.com/hawkinslabdev/mijnmotorparkeren/commits/main)
 [![Support](https://img.shields.io/badge/Support-Buy%20me%20a%20coffee-fdd734?logo=buy-me-a-coffee)](https://coff.ee/hawkinslabdev)
 
-[**Visit the website**](https://mijnmotorparkeren.nl) • [**Contribute data**](#contributing) • [**How it works**](#how-it-works) • [**Help**](#help) • [**Donate**](#donate)
+[**Visit the website**](https://mijnmotorparkeren.nl) • [**Contribute data**](#contributing) • [**Donate**](#sponsors)
 
 <img width="100%" alt="MijnMotorParkeren.nl screenshot" src="https://github.com/hawkinslabdev/mijnmotorparkeren/blob/main/.github/assets/screenshot.png?raw=true" />
 
@@ -31,4 +31,4 @@ If you find this project useful, consider buying me a coffee or starring/contrib
 
 ## License
 
-This project is licensed with AGPL 3.0, a copyleft license. Please see [LICENSE](LICENSE) for details.
+This project is licensed with EUPL 1.2. Please see [LICENSE](LICENSE) for details.

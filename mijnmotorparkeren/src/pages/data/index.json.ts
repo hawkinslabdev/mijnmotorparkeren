@@ -3,28 +3,9 @@
 import type { APIRoute } from 'astro'
 import { readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
+import { getParkingStatus } from '@/utils/gemeenteUtils'
 
 let cache: string | null = null
-
-interface RawParkingRules {
-  free?: boolean | null
-  paid?: { enabled?: boolean | null } | null
-  motorcycleSpecific?: {
-    allowedOnSidewalk?: boolean | null
-    freeInPaidZones?: boolean | null
-  } | null
-}
-
-function computeParkingStatus(rules: RawParkingRules | null | undefined): string {
-  if (!rules) return 'no_info'
-  const moto = rules.motorcycleSpecific
-  if (!moto) return 'no_info'
-  if ((rules.free === true || moto.freeInPaidZones === true) && moto.allowedOnSidewalk === true)
-    return 'free_parking'
-  if (moto.allowedOnSidewalk === true) return 'sidewalk_allowed'
-  if (rules.paid?.enabled === true || rules.free === false) return 'paid_parking'
-  return 'no_info'
-}
 
 async function buildIndex(): Promise<string> {
   const dir = path.join(process.cwd(), 'data', 'gemeentes')
@@ -39,11 +20,12 @@ async function buildIndex(): Promise<string> {
         ...(d.type ? { type: d.type } : {}),
         name: d.name,
         province: d.province,
+        ...(d.alternativeNames ? { alternativeNames: d.alternativeNames } : {}),
+        ...(d.searchOnlyNames ? { searchOnlyNames: d.searchOnlyNames } : {}),
         coordinates: d.coordinates,
         ...(d.zoom != null ? { zoom: d.zoom } : {}),
         ...(d.statcode ? { statcode: d.statcode } : {}),
-        parkingStatus: computeParkingStatus(d.parkingRules),
-        reference: `gemeentes/${file}`,
+        parkingStatus: getParkingStatus(d).status,
       }
     })
   )
@@ -52,14 +34,7 @@ async function buildIndex(): Promise<string> {
   const seen = new Map<string, object>()
   for (const e of entries) seen.set(e.id, e)
 
-  const index = {
-    version: '1.0',
-    lastGenerated: new Date().toISOString(),
-    total: seen.size,
-    gemeentes: [...seen.values()],
-  }
-
-  return JSON.stringify(index)
+  return JSON.stringify({ gemeentes: [...seen.values()] })
 }
 
 export const GET: APIRoute = async () => {

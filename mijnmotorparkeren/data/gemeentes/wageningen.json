@@ -1,44 +1,24 @@
 {
-    "id": "wageningen",
-    "name": "Gemeente Wageningen",
-    "province": "Gelderland",
-    "coordinates": {
-        "lat": 51.963,
-        "lng": 5.678
-    },
-    "boundaries": {
-        "coordinates": [[[5.723,51.964],[5.682,51.959],[5.666,51.953],[5.65,51.95],[5.63,51.936],[5.606,51.943],[5.627,51.952],[5.626,51.974],[5.606,51.994],[5.675,51.991],[5.724,52.001],[5.714,51.968],[5.723,51.964]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": null,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "Parkeren op de stoep is niet toegestaan en wordt in principe ook niet gedoogd door de handhaving."
-        }
-    },
-    "lastUpdated": "2025-08-16",
-    "sources": [
-        {
-            "name": "Handhaving van de Gemeente Wageningen",
-            "url": "#",
-            "date": "2025-08-16"
-        }
-    ]
+  "id": "wageningen",
+  "name": "Gemeente Wageningen",
+  "province": "Gelderland",
+  "coordinates": {
+    "lat": 51.963,
+    "lng": 5.678
+  },
+  "parkingRules": {
+    "free": false,
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Parkeren op de stoep is niet toegestaan en wordt in principe ook niet gedoogd door de handhaving."
+    }
+  },
+  "lastUpdated": "2025-08-16",
+  "sources": [
+    {
+      "name": "Handhaving van de Gemeente Wageningen",
+      "date": "2025-08-16"
+    }
+  ]
 }

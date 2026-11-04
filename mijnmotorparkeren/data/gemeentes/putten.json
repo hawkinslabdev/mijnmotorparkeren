@@ -1,44 +1,27 @@
 {
-    "id": "putten",
-    "name": "Gemeente Putten",
-    "province": "Gelderland",
-    "coordinates": {
-        "lat": 52.251,
-        "lng": 5.561
+  "id": "putten",
+  "name": "Gemeente Putten",
+  "province": "Gelderland",
+  "coordinates": {
+    "lat": 52.251,
+    "lng": 5.561
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[5.548,52.292],[5.588,52.279],[5.642,52.271],[5.676,52.251],[5.684,52.241],[5.681,52.225],[5.633,52.208],[5.55,52.202],[5.516,52.234],[5.484,52.239],[5.479,52.258],[5.506,52.265],[5.527,52.264],[5.548,52.292]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "Het is niet toegestaan om te parkeren op de stoep. Motorrijders mogen wel parkeren op de parkeerplaatsen voor motoren (er zijn geen betaalde parkeerzones)."
-        }
-    },
-    "lastUpdated": "2025-08-05",
-    "sources": [
-        {
-            "name": "Communicatieadviseur van de Gemeente Putten ",
-            "url": "#",
-            "date": "2025-08-05"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Het is niet toegestaan om te parkeren op de stoep. Motorrijders mogen wel parkeren op de parkeerplaatsen voor motoren (er zijn geen betaalde parkeerzones)."
+    }
+  },
+  "lastUpdated": "2025-08-05",
+  "sources": [
+    {
+      "name": "Communicatieadviseur van de Gemeente Putten ",
+      "date": "2025-08-05"
+    }
+  ]
 }

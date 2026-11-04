@@ -1,44 +1,28 @@
 {
-    "id": "middelburg-z",
-    "name": "Gemeente Middelburg (Z.)",
-    "province": "Zeeland",
-    "coordinates": {
-        "lat": 51.507,
-        "lng": 3.693
+  "id": "middelburg-z",
+  "name": "Gemeente Middelburg (Z.)",
+  "province": "Zeeland",
+  "coordinates": {
+    "lat": 51.507,
+    "lng": 3.693
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[3.68,51.534],[3.698,51.516],[3.728,51.524],[3.745,51.512],[3.706,51.502],[3.704,51.482],[3.668,51.47],[3.648,51.47],[3.629,51.481],[3.609,51.476],[3.587,51.479],[3.58,51.489],[3.584,51.52],[3.593,51.532],[3.659,51.519],[3.68,51.534]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "In Middelburg mag u uw motor gratis op de stoep parkeren, zolang u de doorgang niet blokkeert en geen onveilige situatie veroorzaakt; parkeert u in een vak, dan dient u wel parkeergeld te betalen."
-        }
-    },
-    "lastUpdated": "2026-04-22",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Middelburg (Klantcontactcentrum)",
-            "date": "2026-04-22"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "In Middelburg mag u uw motor gratis op de stoep parkeren, zolang u de doorgang niet blokkeert en geen onveilige situatie veroorzaakt; parkeert u in een vak, dan dient u wel parkeergeld te betalen."
+    }
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Middelburg (Klantcontactcentrum)",
+      "date": "2026-04-22"
+    }
+  ]
 }

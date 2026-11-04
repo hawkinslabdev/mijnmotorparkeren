@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   Clock,
+  Euro,
   MapPin,
   AlertTriangle,
-  Bike,
+  Flag,
   X,
   Check,
   ExternalLink,
   Mail,
   Calendar,
+  type LucideIcon,
 } from 'lucide-react'
 import type { Gemeente } from '../../types/gemeente'
 import type { City } from '../../types/city'
+import type { POI } from '../../types/poi'
+import { POI_TYPE_CONFIG } from '../../types/poi'
+import { POIDot } from './POIDetails'
 import { clsx } from 'clsx'
 
 interface ParkingRulesProps {
@@ -19,6 +24,101 @@ interface ParkingRulesProps {
   city?: City | null
   className?: string
   onClose?: () => void
+  pois?: POI[]
+  onPOISelect?: (poi: POI) => void
+  placeName?: string
+}
+
+const RULE_TONES = {
+  positive: 'text-green-800',
+  negative: 'text-red-800',
+  caution: 'text-amber-800',
+  neutral: 'text-gray-900',
+}
+
+// Icon shape and wording carry status
+const RuleRow: React.FC<{
+  icon: LucideIcon
+  tone: keyof typeof RULE_TONES
+  title: string
+  children?: React.ReactNode
+}> = ({ icon: Icon, tone, title, children }) => (
+  <li className="flex gap-3">
+    <Icon
+      className={clsx('h-6 w-6 flex-none', RULE_TONES[tone])}
+      strokeWidth={2.5}
+      aria-hidden="true"
+    />
+    <div className="min-w-0 grow">
+      <p className={clsx('text-lg font-semibold leading-6', RULE_TONES[tone])}>{title}</p>
+      {children && <div className="mt-1 text-sm leading-relaxed text-gray-700">{children}</div>}
+    </div>
+  </li>
+)
+
+// Hover on desktop, tap on touch
+const SourceName: React.FC<{ name: string }> = ({ name }) => {
+  const [open, setOpen] = useState(false)
+  const textRef = useRef<HTMLSpanElement>(null)
+  const pointerType = useRef('')
+  const label = `Bron: ${name}`
+  const isCut = () => {
+    const el = textRef.current
+    return !!el && el.scrollWidth > el.clientWidth
+  }
+
+  useEffect(() => {
+    if (!open) return
+    const close = () => setOpen(false)
+    document.addEventListener('pointerdown', close)
+    return () => document.removeEventListener('pointerdown', close)
+  }, [open])
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        className="flex min-h-11 w-full items-center text-left"
+        onPointerDown={(e) => {
+          e.stopPropagation()
+          pointerType.current = e.pointerType
+        }}
+        onClick={() => {
+          // Hover already handles the mouse
+          if (pointerType.current !== 'mouse') setOpen((value) => !value && isCut())
+          pointerType.current = ''
+        }}
+        onPointerEnter={(e) => {
+          if (e.pointerType === 'mouse' && isCut()) setOpen(true)
+        }}
+        onPointerLeave={(e) => {
+          if (e.pointerType === 'mouse') setOpen(false)
+        }}
+        onFocus={(e) => {
+          if (e.target.matches(':focus-visible')) setOpen(isCut())
+        }}
+        onBlur={() => setOpen(false)}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape' && open) {
+            e.stopPropagation()
+            setOpen(false)
+          }
+        }}
+      >
+        <span ref={textRef} className="block min-w-0 truncate">
+          {label}
+        </span>
+      </button>
+      {open && (
+        <div
+          aria-hidden="true"
+          className="absolute bottom-full left-0 z-10 mb-1 max-w-full rounded-lg bg-gray-900 px-3 py-2 text-sm text-white shadow-lg"
+        >
+          {label}
+        </div>
+      )}
+    </div>
+  )
 }
 
 export const ParkingRules: React.FC<ParkingRulesProps> = ({
@@ -26,6 +126,9 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
   city,
   className,
   onClose,
+  pois = [],
+  onPOISelect,
+  placeName,
 }) => {
   // Use city data if available, otherwise use gemeente data
   const data = city || gemeente
@@ -50,37 +153,117 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
   }
 
   const { parkingRules } = data
+  const moto = parkingRules?.motorcycleSpecific
+  const paid = parkingRules?.paid
+  const restrictions = parkingRules?.restrictions
+  const permits = parkingRules?.permits
+
+  const shownSources = data.sources?.slice(0, 2) ?? []
+  const linkedSources = shownSources.filter((source) => source.url)
+  const namedSources = shownSources.filter((source) => !source.url && source.name)
+  const hiddenSourceCount = (data.sources?.length ?? 0) - shownSources.length
+
+  const rules = [
+    moto?.allowedOnSidewalk === true && (
+      <RuleRow key="sidewalk" icon={Check} tone="positive" title="Op de stoep toegestaan" />
+    ),
+    moto?.allowedOnSidewalk === false && (
+      <RuleRow key="sidewalk" icon={X} tone="negative" title="Niet op de stoep" />
+    ),
+    moto?.freeInPaidZones === true && (
+      <RuleRow key="free" icon={Check} tone="positive" title="Gratis in betaalzones" />
+    ),
+    moto?.freeInPaidZones === false && (
+      <RuleRow key="free" icon={AlertTriangle} tone="caution" title="Niet gratis in het vak" />
+    ),
+    moto?.dedicatedSpots && moto.dedicatedSpots.length > 0 && (
+      <RuleRow
+        key="spots"
+        icon={MapPin}
+        tone="neutral"
+        title={`Aangewezen motorvakken (${moto.dedicatedSpots.length})`}
+      >
+        <ul className="space-y-1">
+          {moto.dedicatedSpots.map((spot, index) => (
+            <li key={index} className="flex justify-between gap-4">
+              <span>{spot.location}</span>
+              {spot.spots && <span className="flex-none tabular-nums">{spot.spots} plaatsen</span>}
+            </li>
+          ))}
+        </ul>
+      </RuleRow>
+    ),
+    paid?.enabled && (
+      <RuleRow key="paid" icon={Euro} tone="caution" title="Betaald parkeren">
+        {(paid.rates || paid.areas?.length) && (
+          <>
+            {paid.rates && (
+              <dl className="space-y-1 tabular-nums">
+                <div className="flex justify-between gap-4">
+                  <dt>Per uur:</dt>
+                  <dd className="font-medium text-gray-900">€{paid.rates.hourly.toFixed(2)}</dd>
+                </div>
+                {paid.rates.daily && (
+                  <div className="flex justify-between gap-4">
+                    <dt>Per dag:</dt>
+                    <dd className="font-medium text-gray-900">€{paid.rates.daily.toFixed(2)}</dd>
+                  </div>
+                )}
+              </dl>
+            )}
+            {paid.areas && paid.areas.length > 0 && (
+              <p className={clsx(paid.rates && 'mt-2')}>
+                <span className="font-medium text-gray-900">Gebieden:</span> {paid.areas.join(', ')}
+              </p>
+            )}
+          </>
+        )}
+      </RuleRow>
+    ),
+    restrictions?.timeLimit && (
+      <RuleRow key="limit" icon={Clock} tone="caution" title="Tijdslimiet">
+        Maximaal {restrictions.timeLimit} uur parkeren
+      </RuleRow>
+    ),
+    permits?.required && (
+      <RuleRow key="permit" icon={AlertTriangle} tone="caution" title="Vergunning vereist">
+        {permits.types?.length ? (
+          <ul className="list-disc space-y-1 pl-4">
+            {permits.types.map((type, index) => (
+              <li key={index}>{type}</li>
+            ))}
+          </ul>
+        ) : (
+          'Er is een vergunning vereist voor parkeren.'
+        )}
+      </RuleRow>
+    ),
+    restrictions?.noParking && restrictions.noParking.length > 0 && (
+      <RuleRow key="ban" icon={X} tone="negative" title="Parkeerverbod">
+        <div className="space-y-1">
+          {restrictions.noParking.map((restriction, index) => (
+            <div key={index}>
+              <span className="font-medium text-gray-900">{restriction.location}</span>
+              {restriction.days && <span className="ml-2">({restriction.days.join(', ')})</span>}
+              {restriction.times && <span className="ml-2">{restriction.times}</span>}
+            </div>
+          ))}
+        </div>
+      </RuleRow>
+    ),
+  ].filter(Boolean)
 
   return (
-    <div
-      className={clsx(
-        'bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden',
-        className
-      )}
-    >
+    <div className={className}>
       {/* Header */}
-      <div className="relative bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6">
-        {/* Header buttons; vertically centered */}
-        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex items-center gap-1">
-          {/* Report/Help button */}
-          <a
-            href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-white/50 transition-colors group"
-            aria-label="Probleem melden"
-          >
-            <AlertTriangle
-              className="h-5 w-5 text-rose-400 group-hover:text-rose-600 transition-colors"
-              aria-hidden="true"
-            />
-          </a>
-
+      <div className="flex flex-wrap-reverse items-center gap-x-1">
+        {/* Header buttons; wrap above long titles */}
+        <div className="ml-auto flex flex-shrink-0 items-center gap-1">
           {/* Close button */}
           {onClose && (
             <button
               onClick={onClose}
-              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-white/50 transition-colors"
+              className="-mr-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
               aria-label="Sluiten"
             >
               <X className="h-5 w-5 text-gray-600" aria-hidden="true" />
@@ -88,303 +271,138 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
           )}
         </div>
 
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 pr-20">{data.name}</h2>
+        <div className="order-first min-w-0 grow basis-48">
+          <h2 className="text-xl font-bold text-gray-900 break-words">{data.name}</h2>
 
-        {/* City indicator if applicable */}
-        {isCity && city && (
-          <p className="text-sm text-gray-600">
-            in Gemeente {city.parent.charAt(0).toUpperCase() + city.parent.slice(1)}
-          </p>
-        )}
+          {placeName && <p className="text-sm text-gray-600">Geldt ook voor {placeName}</p>}
+
+          {/* City indicator if applicable */}
+          {isCity && city && (
+            <p className="text-sm text-gray-600">
+              in Gemeente {city.parent.charAt(0).toUpperCase() + city.parent.slice(1)}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Content */}
-      <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+      <div className="mt-3 space-y-5">
         {!parkingRules && (
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-gray-600 text-sm text-center">
+          <p className="text-sm text-gray-600">
             Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente.
+          </p>
+        )}
+
+        {rules.length > 0 && <ul className="space-y-3 break-words">{rules}</ul>}
+
+        {moto?.notes && (
+          <p className="whitespace-pre-line break-words border-t border-gray-200 pt-4 text-base leading-relaxed text-gray-800">
+            {moto.notes}
+          </p>
+        )}
+
+        {/* Keyboard route to map POIs */}
+        {pois.length > 0 && onPOISelect && (
+          <div className="space-y-2">
+            <h3 className="text-base font-semibold text-gray-900">
+              Parkeerlocaties ({pois.length})
+            </h3>
+            <ul className="divide-y divide-gray-200 rounded-lg border border-gray-200">
+              {pois.map((poi) => (
+                <li key={poi.id}>
+                  <button
+                    type="button"
+                    onClick={() => onPOISelect(poi)}
+                    className="flex w-full min-h-11 items-center gap-3 px-3 py-2 text-left hover:bg-gray-50 transition-colors"
+                  >
+                    <POIDot type={poi.type} className="w-3 h-3" />
+                    <span className="min-w-0">
+                      <span className="block text-base font-medium text-gray-900">{poi.name}</span>
+                      <span className="block text-sm text-gray-600">
+                        {POI_TYPE_CONFIG[poi.type].label}
+                      </span>
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 
-        {parkingRules && (
-          <>
-            {/* Motorcycle parking section */}
-            {parkingRules.motorcycleSpecific && (
-              <div className="space-y-4">
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 flex items-center">
-                  <Bike className="mr-2 h-5 w-5" />
-                  Parkeren
-                </h3>
-
-                <div className="grid gap-3 sm:gap-4">
-                  {/* Sidewalk parking */}
-                  {(parkingRules.motorcycleSpecific.allowedOnSidewalk === true ||
-                    parkingRules.motorcycleSpecific.allowedOnSidewalk === false) && (
-                    <div
-                      className={clsx(
-                        'flex items-start gap-3 rounded-xl border p-3.5 sm:p-4',
-                        parkingRules.motorcycleSpecific.allowedOnSidewalk
-                          ? 'bg-green-50 border-green-200'
-                          : 'bg-red-50 border-red-200'
-                      )}
-                    >
-                      <span
-                        className={clsx(
-                          'grid h-9 w-9 flex-none place-items-center rounded-lg text-white',
-                          parkingRules.motorcycleSpecific.allowedOnSidewalk
-                            ? 'bg-green-700'
-                            : 'bg-red-700'
-                        )}
-                        aria-hidden="true"
-                      >
-                        {parkingRules.motorcycleSpecific.allowedOnSidewalk ? (
-                          <Check className="h-5 w-5" />
-                        ) : (
-                          <X className="h-5 w-5" />
-                        )}
-                      </span>
-                      <div className="min-w-0 self-center">
-                        <p
-                          className={clsx(
-                            'text-sm font-medium leading-tight sm:text-base',
-                            parkingRules.motorcycleSpecific.allowedOnSidewalk
-                              ? 'text-green-950'
-                              : 'text-red-950'
-                          )}
-                        >
-                          {parkingRules.motorcycleSpecific.allowedOnSidewalk
-                            ? 'Op de stoep toegestaan'
-                            : 'Niet op de stoep'}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Free in paid zones */}
-                  {parkingRules.motorcycleSpecific.freeInPaidZones === true && (
-                    <div className="flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 p-3.5 sm:p-4">
-                      <span
-                        className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-green-700 text-white"
-                        aria-hidden="true"
-                      >
-                        <Check className="h-5 w-5" />
-                      </span>
-                      <p className="min-w-0 text-sm font-medium leading-tight text-green-950 sm:text-base">
-                        Gratis in betaalzones
-                      </p>
-                    </div>
-                  )}
-                  {parkingRules.motorcycleSpecific.freeInPaidZones === false && (
-                    <div className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 p-3.5 sm:p-4">
-                      <span
-                        className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-amber-600 text-white"
-                        aria-hidden="true"
-                      >
-                        <AlertTriangle className="h-5 w-5" />
-                      </span>
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium leading-tight text-amber-950 sm:text-base">
-                          Niet gratis in het vak
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Dedicated spots */}
-                  {parkingRules.motorcycleSpecific.dedicatedSpots &&
-                    parkingRules.motorcycleSpecific.dedicatedSpots.length > 0 && (
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
-                        <h4 className="font-medium text-blue-900 mb-2 flex items-center">
-                          <MapPin className="h-4 w-4 mr-1" />
-                          Aangewezen motorvakken (
-                          {parkingRules.motorcycleSpecific.dedicatedSpots.length})
-                        </h4>
-                        <div className="space-y-2">
-                          {parkingRules.motorcycleSpecific.dedicatedSpots.map((spot, index) => (
-                            <div key={index} className="flex justify-between items-center text-sm">
-                              <span className="text-blue-800">{spot.location}</span>
-                              <span className="bg-blue-200 text-blue-900 px-2 py-1 rounded text-xs">
-                                {spot.spots} plaatsen
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                  {/* Notes */}
-                  {parkingRules.motorcycleSpecific.notes && (
-                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4 mt-4">
-                      <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-                        {parkingRules.motorcycleSpecific.notes}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* Paid parking */}
-            {parkingRules.paid?.enabled && parkingRules.paid.rates && (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                <h4 className="font-medium text-amber-900 mb-3 flex items-center">
-                  <Clock className="h-4 w-4 mr-2" />
-                  Betaald parkeren
-                </h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-amber-800">Per uur:</span>
-                    <span className="font-medium text-amber-900">
-                      €{parkingRules.paid.rates.hourly.toFixed(2)}
-                    </span>
-                  </div>
-                  {parkingRules.paid.rates.daily && (
-                    <div className="flex justify-between">
-                      <span className="text-amber-800">Per dag:</span>
-                      <span className="font-medium text-amber-900">
-                        €{parkingRules.paid.rates.daily.toFixed(2)}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                {parkingRules.paid.areas && parkingRules.paid.areas.length > 0 && (
-                  <div className="mt-3">
-                    <span className="text-sm font-medium text-amber-800">Gebieden:</span>
-                    <p className="text-sm text-amber-700 mt-1">
-                      {parkingRules.paid.areas.join(', ')}
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Time restrictions */}
-            {parkingRules.restrictions?.timeLimit && (
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                <h4 className="font-medium text-orange-900 mb-2 flex items-center">
-                  <Clock className="h-4 w-4 mr-2" />
-                  Tijdslimiet
-                </h4>
-                <p className="text-sm text-orange-800">
-                  Maximaal {parkingRules.restrictions.timeLimit} uur parkeren
-                </p>
-              </div>
-            )}
-
-            {/* Permits */}
-            {parkingRules.permits?.required && (
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                <h4 className="font-medium text-purple-900 mb-2">Vergunning vereist</h4>
-                {parkingRules.permits.types.length > 0 ? (
-                  <ul className="text-sm text-purple-800 space-y-1">
-                    {parkingRules.permits.types.map((type, index) => (
-                      <li key={index}>• {type}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm text-purple-800">
-                    Er is een vergunning vereist voor parkeren.
-                  </p>
-                )}
-              </div>
-            )}
-
-            {/* No parking zones */}
-            {parkingRules.restrictions?.noParking &&
-              parkingRules.restrictions.noParking.length > 0 && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <h4 className="font-medium text-red-900 mb-2 flex items-center">
-                    <X className="h-4 w-4 mr-2" />
-                    Parkeerverbod
-                  </h4>
-                  <div className="space-y-1">
-                    {parkingRules.restrictions.noParking.map((restriction, index) => (
-                      <div key={index} className="text-sm text-red-800">
-                        <span className="font-medium">{restriction.location}</span>
-                        {restriction.days && (
-                          <span className="ml-2">({restriction.days.join(', ')})</span>
-                        )}
-                        {restriction.times && <span className="ml-2">{restriction.times}</span>}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-          </>
-        )}
-
         {/* Modern footer */}
-        <div className="bg-gray-50 -mx-4 sm:-mx-6 mt-6 px-4 sm:px-6 py-4 border-t border-gray-100">
-          <div className="flex flex-col gap-3">
-            {/* Last updated */}
-            <div className="flex items-center gap-2 text-xs text-gray-500">
-              <Calendar className="h-3 w-3" />
-              <span>
-                {!data.lastUpdated || data.lastUpdated === ''
-                  ? 'Nog niet bijgewerkt'
-                  : new Date(data.lastUpdated).toLocaleDateString('nl-NL')}
-              </span>
-            </div>
+        <div className="border-t border-gray-200 pt-2">
+          <div className="flex flex-wrap items-start justify-between gap-x-4">
+            {/* Omitted when unknown */}
+            {(data.lastUpdated || namedSources.length > 0) && (
+              <div className="min-w-0 grow basis-40 text-sm text-gray-600">
+                {data.lastUpdated && (
+                  <div className="flex min-h-11 items-center gap-2">
+                    <Calendar className="h-3.5 w-3.5 flex-none" aria-hidden="true" />
+                    <span>{new Date(data.lastUpdated).toLocaleDateString('nl-NL')}</span>
+                  </div>
+                )}
+                {namedSources.map((source, index) => (
+                  <SourceName key={index} name={source.name as string} />
+                ))}
+              </div>
+            )}
 
             {/* Contact & Sources in a flex row for mobile, stacked for larger screens */}
-            <div className="flex flex-col sm:flex-row sm:justify-between gap-2 sm:gap-4">
+            <div className="ml-auto flex flex-shrink-0 items-center gap-4">
               {/* Contact */}
               {'contact' in data && data.contact?.email ? (
                 data.contact.email && data.contact.email !== '#' ? (
                   <a
                     href={`mailto:${data.contact.email}`}
-                    className="flex items-center gap-1.5 text-xs text-blue-600 hover:text-blue-800 transition-colors group"
+                    className="flex items-center gap-1.5 min-h-11 text-sm text-blue-700 hover:text-blue-800 transition-colors group"
                   >
-                    <Mail className="h-3 w-3 group-hover:scale-110 transition-transform" />
+                    <Mail
+                      className="h-3.5 w-3.5 flex-none group-hover:scale-110 transition-transform"
+                      aria-hidden="true"
+                    />
                     <span>Contact</span>
                   </a>
                 ) : (
-                  <span className="flex items-center gap-1.5 text-xs text-gray-400 cursor-not-allowed">
-                    <Mail className="h-3 w-3" />
+                  <span className="flex items-center gap-1.5 text-sm text-gray-600 cursor-not-allowed">
+                    <Mail className="h-3.5 w-3.5 flex-none" aria-hidden="true" />
                     <span>Contact</span>
                   </span>
                 )
               ) : null}
 
-              {/* Sources */}
-              {data.sources && data.sources.length > 0 && (
-                <div className="flex items-center gap-2">
-                  {data.sources.slice(0, 2).map((source, index) => {
-                    const isDisabled = !source.url || source.url === '' || source.url === '#'
-                    return isDisabled ? (
-                      <span
-                        key={index}
-                        className="flex items-center gap-1 text-xs text-gray-400 cursor-not-allowed py-2"
-                        title={source.name || source.type}
-                      >
-                        <ExternalLink className="h-3 w-3" aria-hidden="true" />
-                        <span className="hidden sm:inline">{source.name || 'Bron'}</span>
-                        <span className="sm:hidden">Bron</span>
-                      </span>
-                    ) : (
-                      <a
-                        key={index}
-                        href={source.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 transition-colors group py-2"
-                        title={source.name || source.type}
-                        aria-label={source.name || 'Bekijk bron'}
-                      >
-                        <ExternalLink
-                          className="h-3 w-3 group-hover:scale-110 transition-transform"
-                          aria-hidden="true"
-                        />
-                        <span className="hidden sm:inline">{source.name || 'Bron'}</span>
-                        <span className="sm:hidden">Bron</span>
-                      </a>
-                    )
-                  })}
-                  {data.sources.length > 2 && (
-                    <span className="text-xs text-gray-400">+{data.sources.length - 2}</span>
-                  )}
-                </div>
+              {/* Linked sources */}
+              {linkedSources.map((source, index) => (
+                <a
+                  key={index}
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 min-h-11 min-w-11 text-sm text-blue-700 hover:text-blue-800 transition-colors group"
+                  title={source.name || source.type}
+                  aria-label={source.name ? `Bron: ${source.name}` : 'Bron'}
+                >
+                  <ExternalLink
+                    className="h-3.5 w-3.5 flex-none group-hover:scale-110 transition-transform"
+                    aria-hidden="true"
+                  />
+                  <span>Bron</span>
+                </a>
+              ))}
+              {hiddenSourceCount > 0 && (
+                <span className="text-sm text-gray-600">+{hiddenSourceCount}</span>
               )}
+
+              {/* Report sits with the source */}
+              <a
+                href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Probleem melden"
+                aria-label="Probleem melden"
+                className="-mr-3 flex min-h-11 min-w-11 items-center justify-center rounded-full text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+              >
+                <Flag className="h-5 w-5" aria-hidden="true" />
+              </a>
             </div>
           </div>
         </div>

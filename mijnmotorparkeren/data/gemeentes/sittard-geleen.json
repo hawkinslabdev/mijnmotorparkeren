@@ -1,16 +1,16 @@
 {
-    "id": "sittard-geleen",
-    "name": "Gemeente Sittard-Geleen",
-    "coordinates": {
-        "lat": 51.009,
-        "lng": 5.868
-    },
-    "parkingRules": {
-        "contact": null,
-        "motorcycleSpecific": {
-            "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
-        }
-    },
-    "lastUpdated": "2025-09-26"
-
+  "id": "sittard-geleen",
+  "name": "Gemeente Sittard-Geleen",
+  "province": "Limburg",
+  "alternativeNames": ["Sittard", "Geleen"],
+  "coordinates": {
+    "lat": 51.009,
+    "lng": 5.868
+  },
+  "parkingRules": {
+    "motorcycleSpecific": {
+      "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+    }
+  },
+  "lastUpdated": "2025-09-26"
 }

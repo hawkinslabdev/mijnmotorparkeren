@@ -1,44 +1,28 @@
 {
-    "id": "bloemendaal",
-    "name": "Gemeente Bloemendaal",
-    "province": "Noord-Holland",
-    "coordinates": {
-        "lat": 52.4029,
-        "lng": 4.6226
+  "id": "bloemendaal",
+  "name": "Gemeente Bloemendaal",
+  "province": "Noord-Holland",
+  "coordinates": {
+    "lat": 52.4029,
+    "lng": 4.6226
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[4.632,52.412],[4.622,52.388],[4.6,52.377],[4.606,52.363],[4.59,52.329],[4.611,52.322],[4.612,52.314],[4.569,52.316],[4.564,52.309],[4.547,52.314],[4.592,52.392],[4.541,52.401],[4.56,52.438],[4.588,52.434],[4.624,52.422],[4.632,52.412]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Ondanks het verbod in het RVV 1990 op het parkeren van motoren op het trottoir, hanteert Bloemendaal bij handhaving dezelfde aanpak als Amsterdam. Wanneer omwonenden overlast ervaren van een motor die op het trottoir is geparkeerd, neemt de gemeente contact op met de eigenaar. Samen wordt dan op locatie gezocht naar een passende oplossing."
-        }
-    },
-    "lastUpdated": "2026-04-22",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Bloemendaal (Klantcontactcentrum)",
-            "date": "2026-04-22"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Ondanks het verbod in het RVV 1990 op het parkeren van motoren op het trottoir, hanteert Bloemendaal bij handhaving dezelfde aanpak als Amsterdam. Wanneer omwonenden overlast ervaren van een motor die op het trottoir is geparkeerd, neemt de gemeente contact op met de eigenaar. Samen wordt dan op locatie gezocht naar een passende oplossing."
+    }
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Bloemendaal (Klantcontactcentrum)",
+      "date": "2026-04-22"
+    }
+  ]
 }

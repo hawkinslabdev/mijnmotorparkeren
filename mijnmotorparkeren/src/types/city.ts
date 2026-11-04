@@ -20,19 +20,11 @@ export interface City {
   effectiveDate?: string
 }
 
-export interface CityIndex {
-  lastUpdated: string
-  cities: Array<{
-    id: string
-    name: string
-    parent: string
-    province: string
-    coordinates: Coordinates
-    reference: string
-    postalCodes?: string[]
-    alternativeNames?: string[]
-  }>
-}
+/** City entry from the city index. */
+export type CityLite = Pick<
+  City,
+  'id' | 'name' | 'parent' | 'province' | 'coordinates' | 'alternativeNames'
+>
 
 export interface ParkingRuleContext {
   location: Coordinates

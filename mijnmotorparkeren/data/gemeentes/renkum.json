@@ -1,44 +1,27 @@
 {
-    "id": "renkum",
-    "name": "Gemeente Renkum",
-    "province": "Gelderland",
-    "coordinates": {
-        "lat": 51.99,
-        "lng": 5.83
+  "id": "renkum",
+  "name": "Gemeente Renkum",
+  "province": "Gelderland",
+  "coordinates": {
+    "lat": 51.99,
+    "lng": 5.83
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[5.813,52.024],[5.803,52.004],[5.864,51.996],[5.864,51.971],[5.835,51.974],[5.778,51.959],[5.746,51.97],[5.723,51.964],[5.714,51.968],[5.724,52.001],[5.745,52.02],[5.813,52.024]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Als een motor zó geparkeerd staat dat voetgangers geen gevaar lopen en geen hinder ondervinden, zien wij geen directe reden om te handhaven. Het uitgangspunt blijft dus: gebruik uw gezonde verstand en zorg dat u voetgangers, rolstoelgebruikers, mensen met een rollator en anderen niet belemmert."
-        }
-    },
-    "lastUpdated": "2025-08-16",
-    "sources": [
-        {
-            "name": "Handhaving van de Gemeente Renkum",
-            "url": "#",
-            "date": "2025-08-16"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Als een motor zó geparkeerd staat dat voetgangers geen gevaar lopen en geen hinder ondervinden, zien wij geen directe reden om te handhaven. Het uitgangspunt blijft dus: gebruik uw gezonde verstand en zorg dat u voetgangers, rolstoelgebruikers, mensen met een rollator en anderen niet belemmert."
+    }
+  },
+  "lastUpdated": "2025-08-16",
+  "sources": [
+    {
+      "name": "Handhaving van de Gemeente Renkum",
+      "date": "2025-08-16"
+    }
+  ]
 }

@@ -1,44 +1,28 @@
 {
-    "id": "woensdrecht",
-    "name": "Gemeente Woensdrecht",
-    "province": "Noord-Brabant",
-    "coordinates": {
-        "lat": 51.409,
-        "lng": 4.338
+  "id": "woensdrecht",
+  "name": "Gemeente Woensdrecht",
+  "province": "Noord-Brabant",
+  "coordinates": {
+    "lat": 51.409,
+    "lng": 4.338
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[4.367,51.457],[4.391,51.451],[4.395,51.427],[4.392,51.408],[4.432,51.375],[4.422,51.365],[4.385,51.354],[4.341,51.358],[4.335,51.378],[4.277,51.376],[4.268,51.384],[4.264,51.416],[4.276,51.425],[4.265,51.44],[4.283,51.44],[4.311,51.46],[4.367,51.457]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Volgens artikel 10 van het RVV 1990 is het verboden om motorfietsen op het trottoir te parkeren. Toch wordt in veel gemeenten het parkeren op de stoep gedoogd, mits de doorgang niet wordt geblokkeerd en er geen onveilige situatie ontstaat. De gemeente Woensdrecht heeft hierover geen officiële regelgeving vastgesteld, maar ik zou bovenstaande richtlijn aanhouden."
-        }
-    },
-    "lastUpdated": "2026-04-22",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Woensdrecht (Klantcontactcentrum)",
-            "date": "2026-04-22"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Volgens artikel 10 van het RVV 1990 is het verboden om motorfietsen op het trottoir te parkeren. Toch wordt in veel gemeenten het parkeren op de stoep gedoogd, mits de doorgang niet wordt geblokkeerd en er geen onveilige situatie ontstaat. De gemeente Woensdrecht heeft hierover geen officiële regelgeving vastgesteld, maar ik zou bovenstaande richtlijn aanhouden."
+    }
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Woensdrecht (Klantcontactcentrum)",
+      "date": "2026-04-22"
+    }
+  ]
 }

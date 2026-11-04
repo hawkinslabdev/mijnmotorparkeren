@@ -1,44 +1,26 @@
 {
-    "id": "de-ronde-venen",
-    "name": "Gemeente De Ronde Venen",
-    "province": "Utrecht",
-    "coordinates": {
-        "lat": 52.236,
-        "lng": 4.936
+  "id": "de-ronde-venen",
+  "name": "Gemeente De Ronde Venen",
+  "province": "Utrecht",
+  "alternativeNames": ["Amstelhoek", "Baambrugge", "De Hoef", "Mijdrecht", "Vinkeveen", "Waverveen", "Wilnis"],
+  "coordinates": {
+    "lat": 52.236,
+    "lng": 4.936
+  },
+  "parkingRules": {
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[5.022,52.283],[5.007,52.232],[4.98,52.227],[4.967,52.2],[4.929,52.167],[4.91,52.162],[4.892,52.162],[4.844,52.18],[4.814,52.202],[4.795,52.227],[4.829,52.231],[4.852,52.242],[4.87,52.253],[4.911,52.253],[4.929,52.268],[4.934,52.281],[4.955,52.278],[4.984,52.29],[5.022,52.283]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": null,
-            "notes": "De gemeente De Ronde Venen heeft geen gedoogbeleid voor het parkeren van motorfietsen op het trottoir. Officieel riskeert u een boete als u uw motorfiets op de stoep parkeert. In de praktijk wordt er echter alleen gehandhaafd wanneer een motorfiets hinderlijk geparkeerd staat en voor overlast zorgt.\n\nIn de gemeente zijn geen betaald parkeerzones."
-        }
-    },
-    "lastUpdated": "2025-08-05",
-    "sources": [
-        {
-            "name": "Medewerker van de Gemeente De Ronde Venen",
-            "url": "#",
-            "date": "2025-08-05"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "notes": "De gemeente De Ronde Venen heeft geen gedoogbeleid voor het parkeren van motorfietsen op het trottoir. Officieel riskeert u een boete als u uw motorfiets op de stoep parkeert. In de praktijk wordt er echter alleen gehandhaafd wanneer een motorfiets hinderlijk geparkeerd staat en voor overlast zorgt.\n\nIn de gemeente zijn geen betaald parkeerzones."
+    }
+  },
+  "lastUpdated": "2025-08-05",
+  "sources": [
+    {
+      "name": "Medewerker van de Gemeente De Ronde Venen",
+      "date": "2025-08-05"
+    }
+  ]
 }

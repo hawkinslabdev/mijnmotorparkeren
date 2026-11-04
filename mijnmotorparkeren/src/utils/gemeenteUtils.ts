@@ -48,10 +48,7 @@ export function getParkingStatus(entity: Gemeente | City): {
   }
 
   // PRIORITY 1: Check if regular parking is free
-  if (
-    (parkingRules.free === true || motorcycleRules?.freeInPaidZones === true) &&
-    motorcycleRules?.allowedOnSidewalk === true
-  ) {
+  if (parkingRules.free === true || motorcycleRules?.freeInPaidZones === true) {
     return {
       status: 'free_parking',
       label: isCity ? `${entity.name}: Gratis parkeren` : 'Gratis in het vak parkeren',
@@ -70,8 +67,12 @@ export function getParkingStatus(entity: Gemeente | City): {
     }
   }
 
-  // PRIORITY 3: Paid parking required
-  if (parkingRules.paid?.enabled === true || parkingRules.free === false) {
+  // PRIORITY 3: Only in the box
+  if (
+    parkingRules.paid?.enabled === true ||
+    parkingRules.free === false ||
+    motorcycleRules?.allowedOnSidewalk === false
+  ) {
     return {
       status: 'paid_parking',
       label: isCity ? `${entity.name}: Betaald parkeren` : 'Betaald parkeren',
@@ -87,35 +88,47 @@ export function getParkingStatus(entity: Gemeente | City): {
   }
 }
 
+// Names often start with Gemeente
+export const withoutGemeentePrefix = (name: string) => name.replace(/^gemeente\s+/i, '')
+
+// Patterns: status readable without colour
+export const BOUNDARY_STYLES = {
+  sidewalk_allowed: {
+    fillColor: '#dbeafe', // blue-100
+    borderColor: '#2563eb', // blue-600
+    weight: 2,
+  },
+  free_parking: {
+    fillColor: 'url(#status-free)', // green-100 dots
+    plainFill: '#dcfce7',
+    borderColor: '#16a34a', // green-600
+    weight: 2,
+  },
+  paid_parking: {
+    fillColor: 'url(#status-paid)', // red-100 stripes
+    plainFill: '#fee2e2',
+    borderColor: '#dc2626', // red-600
+    weight: 2,
+  },
+  no_info: {
+    fillColor: '#f3f4f6', // gray-100
+    borderColor: '#9ca3af', // gray-400
+    weight: 1,
+  },
+}
+
 /**
  * Get map boundary colors based on parking status
  */
 export function getMapBoundaryColors(entity: Gemeente | City): {
   fillColor: string
+  plainFill?: string
   borderColor: string
+  weight: number
 } {
   const status = getParkingStatus(entity)
 
-  const colorMap = {
-    sidewalk_allowed: {
-      fillColor: '#dbeafe', // blue-100
-      borderColor: '#2563eb', // blue-600
-    },
-    free_parking: {
-      fillColor: '#dcfce7', // green-100
-      borderColor: '#16a34a', // green-600
-    },
-    paid_parking: {
-      fillColor: '#fee2e2', // red-100
-      borderColor: '#dc2626', // red-600
-    },
-    no_info: {
-      fillColor: '#f3f4f6', // gray-100
-      borderColor: '#9ca3af', // gray-400
-    },
-  }
-
-  return colorMap[status.status]
+  return BOUNDARY_STYLES[status.status]
 }
 
 /**
@@ -203,7 +216,7 @@ export function getGemeenteDisplayName(entity: Gemeente | City): string {
   }
 
   // It's a gemeente
-  return entity.name.startsWith('Gemeente ') ? entity.name : `Gemeente ${entity.name}`
+  return `Gemeente ${withoutGemeentePrefix(entity.name)}`
 }
 
 /**

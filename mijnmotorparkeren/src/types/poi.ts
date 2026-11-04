@@ -23,14 +23,8 @@ export interface POI {
 }
 
 export interface POIIndex {
-  version: string
-  lastGenerated: string
-  total: number
   pois: Array<{
-    id: string
     municipalityId: string
-    type: POIType
-    name: string
     scope?: POIScope // defaults to 'gemeente' when absent
   }>
 }
@@ -41,16 +35,19 @@ export const POI_TYPE_CONFIG: Record<
     label: string
     color: string
     icon: string
+    hollow: boolean
   }
 > = {
   freeStreetParking: {
     label: 'Gratis straatparkeren',
     color: '#22c55e',
     icon: 'P',
+    hollow: false,
   },
   dedicatedMotorcycleSpot: {
     label: 'Motorstalplaats',
     color: '#3b82f6',
     icon: 'M',
+    hollow: true,
   },
 }

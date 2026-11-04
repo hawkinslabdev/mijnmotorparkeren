@@ -1,43 +1,28 @@
 {
-    "id": "boxtel",
-    "name": "Gemeente Boxtel",
-    "province": "Noord-Brabant",
-    "coordinates": {
-        "lat": 51.617,
-        "lng": 5.325
+  "id": "boxtel",
+  "name": "Gemeente Boxtel",
+  "province": "Noord-Brabant",
+  "coordinates": {
+    "lat": 51.617,
+    "lng": 5.325
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[5.318,51.635],[5.343,51.617],[5.353,51.601],[5.381,51.603],[5.399,51.572],[5.404,51.548],[5.357,51.545],[5.333,51.551],[5.308,51.546],[5.273,51.553],[5.246,51.579],[5.248,51.59],[5.276,51.604],[5.269,51.613],[5.281,51.622],[5.304,51.625],[5.318,51.635]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "Volgens artikel 10 van het Reglement verkeersregels en verkeerstekens 1990 (RVV 1990) is het verboden om voertuigen op het trottoir te parkeren. Deze regel geldt ook in Boxtel."
-        }
-    },
-    "lastUpdated": "2026-04-22",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Boxtel (Klantcontactcentrum)",
-            "date": "2026-04-22"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Volgens artikel 10 van het Reglement verkeersregels en verkeerstekens 1990 (RVV 1990) is het verboden om voertuigen op het trottoir te parkeren. Deze regel geldt ook in Boxtel."
+    }
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Boxtel (Klantcontactcentrum)",
+      "date": "2026-04-22"
+    }
+  ]
 }

@@ -2,9 +2,15 @@ import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import Fuse from 'fuse.js'
 import { useGemeenteData } from './useGemeenteData'
 import type { Gemeente } from '@/types/gemeente'
+import type { CityLite } from '@/types/city'
+import { fetchCityIndex } from '@/data/index'
+
+export type SearchItem = Gemeente | CityLite
+
+export const isCityItem = (item: SearchItem): item is CityLite => 'parent' in item
 
 interface UseSearchReturn {
-  results: Gemeente[]
+  results: SearchItem[]
   isSearching: boolean
   error: string | null
   search: (query: string) => void
@@ -15,6 +21,8 @@ const SEARCH_OPTIONS = {
   keys: [
     { name: 'name', weight: 0.7 },
     { name: 'province', weight: 0.3 },
+    { name: 'alternativeNames', weight: 0.5 },
+    { name: 'searchOnlyNames', weight: 0.5 },
   ],
   threshold: 0.3,
   includeScore: true,
@@ -26,7 +34,8 @@ const SEARCH_OPTIONS = {
 export function useSearch(): UseSearchReturn {
   const { gemeentes, loading: dataLoading } = useGemeenteData()
 
-  const [results, setResults] = useState<Gemeente[]>([])
+  const [cities, setCities] = useState<CityLite[]>([])
+  const [results, setResults] = useState<SearchItem[]>([])
   const [isSearching, setIsSearching] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [currentQuery, setCurrentQuery] = useState('')
@@ -39,14 +48,22 @@ export function useSearch(): UseSearchReturn {
     }
   }, [])
 
+  useEffect(() => {
+    fetchCityIndex()
+      .then((list) => {
+        if (isMounted.current) setCities(list)
+      })
+      // Gemeentes stay searchable without cities
+      .catch(() => {})
+  }, [])
+
   const fuse = useMemo(() => {
     if (!gemeentes || dataLoading || !Array.isArray(gemeentes) || gemeentes.length === 0) {
       return null
     }
 
-    console.log(`[fuse] Loaded with ${gemeentes.length} gemeentes`)
-    return new Fuse(gemeentes, SEARCH_OPTIONS)
-  }, [gemeentes, dataLoading])
+    return new Fuse<SearchItem>([...gemeentes, ...cities], SEARCH_OPTIONS)
+  }, [gemeentes, cities, dataLoading])
 
   const search = useCallback(
     (query: string): void => {
@@ -56,7 +73,7 @@ export function useSearch(): UseSearchReturn {
       setCurrentQuery(query)
 
       if (!fuse) {
-        setError('Search not available, data still loading')
+        setError('Zoeken is nog niet beschikbaar. Probeer het zo opnieuw.')
         setResults([])
         return
       }
@@ -77,21 +94,16 @@ export function useSearch(): UseSearchReturn {
         try {
           const searchResults = fuse.search(query)
 
-          const searchedResults: Gemeente[] = searchResults
+          const searchedResults: SearchItem[] = searchResults
             .slice(0, 10)
             .map((result) => result.item)
 
           if (isMounted.current) {
             setResults(searchedResults)
-
-            if (searchedResults.length === 0) {
-              setError(`No gemeentes found for "${query}"`)
-            }
           }
         } catch (err) {
           if (isMounted.current) {
-            const errorMessage = err instanceof Error ? err.message : 'Search failed'
-            setError(errorMessage)
+            setError('Zoeken is mislukt. Probeer het opnieuw.')
             console.error('Search error:', err)
             setResults([])
           }

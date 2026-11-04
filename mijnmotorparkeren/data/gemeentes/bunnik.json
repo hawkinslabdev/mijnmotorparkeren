@@ -1,45 +1,28 @@
 {
-    "id": "bunnik",
-    "name": "Gemeente Bunnik",
-    "province": "Utrecht",
-    "coordinates": {
-        "lat": 52.0655,
-        "lng": 5.1983
+  "id": "bunnik",
+  "name": "Gemeente Bunnik",
+  "province": "Utrecht",
+  "coordinates": {
+    "lat": 52.0655,
+    "lng": 5.1983
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[5.195,52.077],[5.247,52.059],[5.248,52.047],[5.263,52.024],[5.28,52.011],[5.243,51.999],[5.229,52.011],[5.202,52.017],[5.201,52.032],[5.179,52.046],[5.161,52.046],[5.153,52.057],[5.16,52.078],[5.195,52.077]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "Het parkeren op de stoep wordt niet gedoogd en is niet toegestaan."
-        }
-    },
-    "lastUpdated": "2025-09-26",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Telefonisch medewerker Gemeente Bunnik",
-            "date": "2025-09-26"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Het parkeren op de stoep wordt niet gedoogd en is niet toegestaan."
+    }
+  },
+  "lastUpdated": "2025-09-26",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Telefonisch medewerker Gemeente Bunnik",
+      "date": "2025-09-26"
+    }
+  ]
 }

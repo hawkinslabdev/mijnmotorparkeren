@@ -1,38 +1,54 @@
 {
-    "id": "den-haag",
-    "name": "Gemeente Den Haag",
-    "coordinates": {
-        "lat": 52.078,
-        "lng": 4.288
+  "id": "den-haag",
+  "name": "Gemeente Den Haag",
+  "province": "Zuid-Holland",
+  "alternativeNames": [
+    "Scheveningen"
+  ],
+  "searchOnlyNames": [
+    "'s-Gravenhage",
+    "Archipelbuurt",
+    "Benoordenhout",
+    "Bezuidenhout",
+    "Duindorp",
+    "Escamp",
+    "Haagse Hout",
+    "Kijkduin",
+    "Laak",
+    "Leidschenveen",
+    "Loosduinen",
+    "Mariahoeve",
+    "Moerwijk",
+    "Schilderswijk",
+    "Segbroek",
+    "Statenkwartier",
+    "Transvaal",
+    "Vogelwijk",
+    "Wateringse Veld",
+    "Ypenburg",
+    "Zeeheldenkwartier"
+  ],
+  "coordinates": {
+    "lat": 52.0705,
+    "lng": 4.3007
+  },
+  "statcode": "GM0518",
+  "parkingRules": {
+    "free": true,
+    "permits": {
+      "required": false
     },
-    "parkingRules": {
-        "free": true,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": true,
-            "notes": "Motoren mogen overal parkeren waar personenauto's ook mogen parkeren. Motoren hoeven hier niet voor te betalen. Dit geldt ook voor Scheveningen. Als je op de stoep staat, zorg ervoor dat je de stoep niet blokkeert en dat je de doorgang voor voetgangers en rolstoelgebruikers vrijlaat."
-        } 
-    },
-    "lastUpdated": "2026-07-14",
-    "sources": [
-        {
-            "name": "Gemeente 's-Gravenhage",
-            "url": "https://www.denhaag.nl/nl/parkeren/parkeren-in-de-binnenstad/"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": true,
+      "notes": "Motoren mogen overal parkeren waar personenauto's ook mogen parkeren. Motoren hoeven hier niet voor te betalen. Dit geldt ook voor Scheveningen. Als je op de stoep staat, zorg ervoor dat je de stoep niet blokkeert en dat je de doorgang voor voetgangers en rolstoelgebruikers vrijlaat."
+    }
+  },
+  "lastUpdated": "2026-07-14",
+  "sources": [
+    {
+      "name": "Gemeente 's-Gravenhage",
+      "url": "https://www.denhaag.nl/nl/parkeren/parkeren-in-de-binnenstad/"
+    }
+  ]
 }

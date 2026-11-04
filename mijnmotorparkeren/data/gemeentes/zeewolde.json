@@ -1,50 +1,30 @@
 {
-    "id": "zeewolde",
-    "name": "Gemeente Zeewolde",
-    "province": "Flevoland",
-    "coordinates": {
-        "lat": 52.33,
-        "lng": 5.54
+  "id": "zeewolde",
+  "name": "Gemeente Zeewolde",
+  "province": "Flevoland",
+  "coordinates": {
+    "lat": 52.33,
+    "lng": 5.54
+  },
+  "parkingRules": {
+    "paid": {
+      "enabled": false
     },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": false,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [
-                {
-                    "location": "Parkeergarage Ravelijn",
-                    "spots": 3,
-                    "coordinates": {
-                        "lat": 52.332,
-                        "lng": 5.545
-                    }
-                }
-            ],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": null,
-            "notes": "Motoren kunnen in heel Zeewolde gratis parkeren. Parkeren op de stoep is toegestaan als het voetgangers niet hindert. Er zijn geen betaalde parkeerzones (voor motorvoertuigen)."
-        }
+    "permits": {
+      "required": false
     },
-    "lastUpdated": "2025-07-12",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Zeewolde",
-            "url": "https://www.zeewolde.nl/parkeren",
-            "date": "2025-07-07"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "notes": "Motoren kunnen in heel Zeewolde gratis parkeren. Parkeren op de stoep is toegestaan als het voetgangers niet hindert. Er zijn geen betaalde parkeerzones (voor motorvoertuigen)."
+    }
+  },
+  "lastUpdated": "2025-07-12",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Zeewolde",
+      "url": "https://www.zeewolde.nl/parkeren",
+      "date": "2025-07-07"
+    }
+  ]
 }

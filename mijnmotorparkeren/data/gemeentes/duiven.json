@@ -1,44 +1,27 @@
 {
-    "id": "duiven",
-    "name": "Gemeente Duiven",
-    "province": "Gelderland",
-    "coordinates": {
-        "lat": 51.936,
-        "lng": 6.012
+  "id": "duiven",
+  "name": "Gemeente Duiven",
+  "province": "Gelderland",
+  "coordinates": {
+    "lat": 51.936,
+    "lng": 6.012
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[5.987,51.913],[5.966,51.939],[5.984,51.943],[5.984,51.972],[6.002,51.978],[6.034,51.971],[6.061,51.982],[6.058,51.958],[6.043,51.917],[5.987,51.913]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": null,
-            "notes": "Ook in onze gemeente (Duiven) is er geen speciaal beleid voor parkeren van motorfietsen. De motor moet in een gewoon parkeervak of op de rijbaan parkeren. In een blauwe zone hoeft de motor geen parkeerschijf te gebruiken!"
-        }
-    },
-    "lastUpdated": "2026-04-22",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Duiven (afd. Realisatie & Beheer)",
-            "date": "2026-04-22"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "notes": "Ook in onze gemeente (Duiven) is er geen speciaal beleid voor parkeren van motorfietsen. De motor moet in een gewoon parkeervak of op de rijbaan parkeren. In een blauwe zone hoeft de motor geen parkeerschijf te gebruiken!"
+    }
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Duiven (afd. Realisatie & Beheer)",
+      "date": "2026-04-22"
+    }
+  ]
 }

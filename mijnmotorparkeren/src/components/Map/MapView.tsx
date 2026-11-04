@@ -5,14 +5,17 @@ import { geoJSON as leafletGeoJson } from 'leaflet'
 import { useMapStore } from '@stores/mapStore'
 import type { Gemeente } from '@/types/gemeente'
 import type { City } from '@/types/city'
-import type { POI, POIScope } from '@/types/poi'
+import type { POI, POIScope, POIType } from '@/types/poi'
 import { POI_TYPE_CONFIG } from '@/types/poi'
 import { useGeolocation } from '@/hooks/useGeolocation'
-import { getMapBoundaryColors } from '@/utils/gemeenteUtils'
+import { BOUNDARY_STYLES, getMapBoundaryColors } from '@/utils/gemeenteUtils'
+import { useToast } from '@/contexts/ToastContext'
+import { POIDot } from '@components/Info/POIDetails'
 import type * as GeoJSONType from 'geojson'
 import type { TileEvent, TileErrorEvent } from 'leaflet'
-import { RotateCcw } from 'lucide-react'
+import { ChevronDown, ChevronUp, RotateCcw } from 'lucide-react'
 import { fetchMunicipalityPOIs } from '@/data/index'
+import { clsx } from 'clsx'
 
 interface MapViewProps {
   gemeentes: Gemeente[]
@@ -26,6 +29,7 @@ interface MapViewProps {
   poiActive?: boolean
   detailsOpen?: boolean
   autoFitGemeenteId?: string | null
+  pois?: POI[]
 }
 
 const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ center, zoom }) => {
@@ -56,59 +60,124 @@ const CityFocuser: React.FC<{ city: City | null; poiActive: boolean }> = ({ city
   return null
 }
 
-const ParkingLegend: React.FC<{ gemeenteSelected: boolean }> = ({ gemeenteSelected }) => {
+const LEGEND_ITEMS = [
+  { status: 'no_info', label: 'Geen informatie' },
+  { status: 'sidewalk_allowed', label: 'Parkeren op stoep toegestaan' },
+  { status: 'free_parking', label: 'Gratis in het vak parkeren' },
+  { status: 'paid_parking', label: 'Alleen (betaald) in het vak' },
+] as const
+
+const StatusPatterns: React.FC = () => (
+  <svg width="0" height="0" className="absolute" aria-hidden="true">
+    <defs>
+      <pattern id="status-free" width="14" height="14" patternUnits="userSpaceOnUse">
+        <rect width="14" height="14" fill="#dcfce7" />
+        <circle cx="7" cy="7" r="1" fill="#16a34a" />
+      </pattern>
+      <pattern
+        id="status-paid"
+        width="14"
+        height="14"
+        patternUnits="userSpaceOnUse"
+        patternTransform="rotate(45)"
+      >
+        <rect width="14" height="14" fill="#fee2e2" />
+        <rect width="1" height="14" fill="#dc2626" />
+      </pattern>
+    </defs>
+  </svg>
+)
+
+const LEGEND_PREF_KEY = 'legend-pref'
+type LegendPref = 'open' | 'collapsed'
+
+const readLegendPref = (): LegendPref | null => {
+  try {
+    const value = localStorage.getItem(LEGEND_PREF_KEY)
+    return value === 'open' || value === 'collapsed' ? value : null
+  } catch {
+    return null
+  }
+}
+
+const ParkingLegend: React.FC<{
+  pois: POI[]
+  collapsible: boolean
+  collapsed: boolean
+  onToggle: () => void
+}> = ({ pois, collapsible, collapsed, onToggle }) => {
+  const hidden = collapsible && collapsed
+  // Only types in this area
+  const poiTypes = (Object.keys(POI_TYPE_CONFIG) as POIType[]).filter((type) =>
+    pois.some((poi) => poi.type === type)
+  )
   return (
-    <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 z-[1000] max-w-xs border border-gray-200">
-      <h4 className="font-semibold text-sm mb-3 text-gray-800">Legenda</h4>
-      <div className="space-y-2 text-xs">
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded border-2 border-gray-400 bg-gray-100"></div>
-          <span>Informatie beschikbaar</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded border-2 border-blue-600 bg-blue-100"></div>
-          <span>Parkeren op stoep toegestaan</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded border-2 border-green-600 bg-green-100"></div>
-          <span>Gratis in het vak parkeren</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded border-2 border-red-600 bg-red-100"></div>
-          <span>Alleen (betaald) in het vak</span>
-        </div>
-        {gemeenteSelected && (
+    <div
+      role="region"
+      aria-label="Legenda"
+      tabIndex={hidden ? undefined : 0}
+      className={clsx(
+        'absolute bottom-4 left-4 bg-white rounded-lg shadow-lg z-[1000] max-w-[min(20rem,calc(100%-2rem))] max-h-[45%] overflow-y-auto border border-gray-200',
+        hidden ? 'px-3' : 'p-4'
+      )}
+    >
+      {collapsible ? (
+        <h4 className={clsx('text-sm text-gray-800', !hidden && '-mt-3 mb-1')}>
+          <button
+            type="button"
+            onClick={onToggle}
+            aria-expanded={!hidden}
+            aria-controls="legend-content"
+            className="flex min-h-11 w-full items-center justify-between gap-2 font-semibold"
+          >
+            Legenda
+            {hidden ? (
+              <ChevronUp className="w-4 h-4" aria-hidden="true" />
+            ) : (
+              <ChevronDown className="w-4 h-4" aria-hidden="true" />
+            )}
+          </button>
+        </h4>
+      ) : (
+        <h4 className="font-semibold text-sm mb-3 text-gray-800">Legenda</h4>
+      )}
+      <div id="legend-content" hidden={hidden} className="space-y-2 text-xs">
+        {LEGEND_ITEMS.map(({ status, label }) => {
+          const style = BOUNDARY_STYLES[status]
+          return (
+            <div key={status} className="flex items-center gap-2">
+              <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 16 16" aria-hidden="true">
+                <rect
+                  x="1"
+                  y="1"
+                  width="14"
+                  height="14"
+                  rx="3"
+                  fill={style.fillColor}
+                  stroke={style.borderColor}
+                  strokeWidth={style.weight}
+                />
+              </svg>
+              <span>{label}</span>
+            </div>
+          )
+        })}
+        {poiTypes.length > 0 && (
           <>
             <div className="mt-3 pt-2 border-t border-gray-200">
               <span className="text-xs font-medium text-gray-600">Parkeerlocaties</span>
             </div>
-            {Object.values(POI_TYPE_CONFIG).map((cfg) => (
-              <div key={cfg.label} className="flex items-center gap-2">
-                <div
-                  className="w-4 h-4 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: cfg.color, border: `2px solid ${cfg.color}` }}
-                />
-                <span>{cfg.label}</span>
-              </div>
-            ))}
+            {poiTypes.map((type) => {
+              const cfg = POI_TYPE_CONFIG[type]
+              return (
+                <div key={cfg.label} className="flex items-center gap-2">
+                  <POIDot type={type} className="w-4 h-4" />
+                  <span>{cfg.label}</span>
+                </div>
+              )
+            })}
           </>
         )}
-      </div>
-      <div className="mt-3 pt-2 border-t border-gray-200 text-xs text-gray-600">
-        <div className="flex items-center gap-1">
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 6v6l4 2" />
-          </svg>
-          <span>Klik op gemeente voor details</span>
-        </div>
       </div>
     </div>
   )
@@ -189,7 +258,8 @@ const CountryBoundariesLayer: React.FC<{
               } as GeoJSONType.Feature
             }
             style={{
-              fillColor: colors.fillColor,
+              // No hatch across whole countries
+              fillColor: colors.plainFill ?? colors.fillColor,
               color: colors.borderColor,
               weight: 2,
               opacity: 0.8,
@@ -261,9 +331,9 @@ const POILayer: React.FC<{
             pane="poi-markers"
             pathOptions={{
               color: config.color,
-              fillColor: config.color,
-              fillOpacity: 0.8,
-              weight: 2,
+              fillColor: config.hollow ? '#ffffff' : config.color,
+              fillOpacity: config.hollow ? 1 : 0.8,
+              weight: config.hollow ? 3 : 2,
             }}
             eventHandlers={{
               click: (e) => {
@@ -690,44 +760,6 @@ const RealBoundariesLayer: React.FC<{
         console.log(`No official boundary found for ${gemeente.name}`)
       }
       notFoundGemeentes.push(gemeente.name)
-
-      // Try to use local boundary as fallback
-      if (gemeente.boundaries) {
-        if (debugEnabled) {
-          console.log(`Using local boundary fallback for ${gemeente.name}`)
-        }
-
-        const colors = getMapBoundaryColors(gemeente)
-        const isSelected = gemeente.id === selectedGemeenteId
-
-        return (
-          <GeoJSON
-            key={`local-fallback-${gemeente.id}`}
-            data={
-              {
-                type: 'Feature',
-                properties: { name: gemeente.name, id: gemeente.id },
-                geometry: gemeente.boundaries,
-              } as GeoJSONType.Feature
-            }
-            style={{
-              fillColor: colors.fillColor,
-              color: colors.borderColor,
-              weight: isSelected ? 4 : 2,
-              opacity: isSelected ? 1 : 0.8,
-              fillOpacity: isSelected ? 0.65 : 0.3,
-              dashArray: isSelected ? undefined : '5, 5',
-            }}
-            eventHandlers={{
-              click: (e) => {
-                e.originalEvent.stopPropagation()
-                onGemeenteSelect(gemeente)
-              },
-            }}
-          />
-        )
-      }
-
       return null
     }
 
@@ -746,7 +778,7 @@ const RealBoundariesLayer: React.FC<{
         style={{
           fillColor: colors.fillColor,
           color: colors.borderColor,
-          weight: isSelected ? 4 : 2,
+          weight: isSelected ? 4 : colors.weight,
           opacity: isSelected ? 1 : 0.8,
           fillOpacity: isSelected ? 0.65 : 0.5,
         }}
@@ -795,25 +827,27 @@ const MapView: React.FC<MapViewProps> = ({
   poiActive = false,
   detailsOpen,
   autoFitGemeenteId,
+  pois = [],
 }) => {
   const { center, zoom, setCenter, setZoom, selectedGemeenteId } = useMapStore()
-  const { getCurrentLocation } = useGeolocation()
+  const { getCurrentLocation, error: locationError } = useGeolocation()
+  const { showToast } = useToast()
   const mapRef = useRef<LeafletMap>(null)
   const [mapReady, setMapReady] = useState(false)
   const [tilesLoaded, setTilesLoaded] = useState(false)
   const [locationLoading, setLocationLoading] = useState(false)
   const [shareLoading, setShareLoading] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
-  const [clipboardCopied, setClipboardCopied] = useState(false)
+  const [legendCollapsible, setLegendCollapsible] = useState(false)
+  const [legendPref, setLegendPref] = useState<LegendPref | null>(readLegendPref)
   const [currentLocation, setCurrentLocation] = useState<LatLngExpression | null>(null)
 
   useEffect(() => {
     const checkMobile = () => {
-      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-      const hasSmallScreen = window.innerWidth < 768
-      setIsMobile(isMobileDevice || hasSmallScreen)
+      // Must match the md:hidden breakpoint
+      setIsMobile(window.innerWidth < 768)
+      // Landscape phones count too
+      setLegendCollapsible(window.innerWidth < 768 || window.innerHeight < 500)
     }
 
     checkMobile()
@@ -848,6 +882,28 @@ const MapView: React.FC<MapViewProps> = ({
       console.log('City selected:', city.name, 'in', city.parent)
     }
   }
+
+  const saveLegendPref = (pref: LegendPref) => {
+    setLegendPref(pref)
+    try {
+      localStorage.setItem(LEGEND_PREF_KEY, pref)
+    } catch {
+      /* preference lasts this session */
+    }
+  }
+
+  // First map touch collapses once
+  useEffect(() => {
+    const container = mapRef.current?.getContainer()
+    if (!container || !mapReady || !legendCollapsible || legendPref) return
+    const collapse = () => saveLegendPref('collapsed')
+    container.addEventListener('pointerdown', collapse, { once: true })
+    return () => container.removeEventListener('pointerdown', collapse)
+  }, [mapReady, legendCollapsible, legendPref])
+
+  useEffect(() => {
+    if (locationError) showToast(locationError, 6000)
+  }, [locationError, showToast])
 
   const handleCurrentLocation = async () => {
     setLocationLoading(true)
@@ -904,8 +960,7 @@ const MapView: React.FC<MapViewProps> = ({
         if (debugEnabled) {
           console.log('URL copied to clipboard as fallback')
         }
-        setClipboardCopied(true)
-        setTimeout(() => setClipboardCopied(false), 2500)
+        showToast('Link gekopieerd!')
       }
     } catch (error) {
       if (debugEnabled) {
@@ -953,6 +1008,7 @@ const MapView: React.FC<MapViewProps> = ({
 
   return (
     <div className="relative w-full h-full">
+      <StatusPatterns />
       <MapContainer
         center={center}
         zoom={zoom}
@@ -1185,7 +1241,14 @@ const MapView: React.FC<MapViewProps> = ({
       )}
 
       {/* Legend; always shown unless debugging is enabled */}
-      {!debugEnabled && <ParkingLegend gemeenteSelected={!!selectedGemeente} />}
+      {!debugEnabled && (
+        <ParkingLegend
+          pois={pois}
+          collapsible={legendCollapsible}
+          collapsed={legendPref === 'collapsed'}
+          onToggle={() => saveLegendPref(legendPref === 'collapsed' ? 'open' : 'collapsed')}
+        />
+      )}
 
       {/* Enhanced debug info at bottom; only when debugging */}
       {debugEnabled && (
@@ -1205,7 +1268,6 @@ const MapView: React.FC<MapViewProps> = ({
               </span>
             </div>
             <div>Container: {mapRef.current ? 'Created' : 'Pending'}</div>
-            <div>Boundaries: {gemeentes.filter((g) => g.boundaries).length} loaded</div>
             <div>
               City Support:{' '}
               <span className={onCitySelect ? 'text-green-600' : 'text-red-600'}>
@@ -1215,12 +1277,6 @@ const MapView: React.FC<MapViewProps> = ({
             {!mapReady && <div className="text-red-600">Map not ready</div>}
             {!tilesLoaded && mapReady && <div className="text-orange-600">Tiles loading</div>}
           </div>
-        </div>
-      )}
-
-      {clipboardCopied && (
-        <div className="absolute top-16 right-3 bg-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg z-[1002] pointer-events-none">
-          Link gekopieerd!
         </div>
       )}
     </div>

@@ -29,7 +29,6 @@ async function buildCityIndex(): Promise<string> {
         parent,
         province: d.province,
         coordinates: d.coordinates,
-        reference: `city/${file}`,
         ...(d.postalCodes ? { postalCodes: d.postalCodes } : {}),
         ...(d.alternativeNames ? { alternativeNames: d.alternativeNames } : {}),
       })
@@ -38,12 +37,7 @@ async function buildCityIndex(): Promise<string> {
 
   if (warnings.length > 0) console.warn('[city/index.json]', warnings.join('; '))
 
-  const index = {
-    lastUpdated: new Date().toISOString(),
-    cities,
-  }
-
-  return JSON.stringify(index)
+  return JSON.stringify({ cities })
 }
 
 export const GET: APIRoute = async () => {

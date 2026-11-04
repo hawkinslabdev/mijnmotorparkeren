@@ -1,42 +1,28 @@
 {
-    "id": "epe",
-    "name": "Gemeente Epe",
-    "province": "Gelderland",
-    "coordinates": {
-        "lat": 52.34,
-        "lng": 6.011
+  "id": "epe",
+  "name": "Gemeente Epe",
+  "province": "Gelderland",
+  "alternativeNames": ["Vaassen", "Oene", "Emst"],
+  "coordinates": {
+    "lat": 52.34,
+    "lng": 6.011
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[6.078,52.364],[6.074,52.331],[6.053,52.331],[6.035,52.295],[6.043,52.279],[6.036,52.269],[6.029,52.277],[5.974,52.273],[5.936,52.274],[5.88,52.265],[5.861,52.256],[5.851,52.269],[5.852,52.28],[5.841,52.304],[5.881,52.335],[5.865,52.351],[5.876,52.358],[5.912,52.387],[5.924,52.391],[5.951,52.398],[5.991,52.379],[6.032,52.367],[6.042,52.357],[6.078,52.364]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "De gemeente Epe heeft geen expliciete beleidsregels voor het parkeren van motoren. Daarom geldt hier de landelijke regelgeving. Er is geen sprake van een gedoogbeleid. De handhaving hiervan ligt bij de dienstdoende boa en/of de politie."
-        }
-    },
-    "lastUpdated": "2025-08-16",
-    "sources": [    {
-        "name": "Klantcontactmedewerker van Gemeente Epe",
-        "url": "#",
-        "date": "2025-08-16"
-    }]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "De gemeente Epe heeft geen expliciete beleidsregels voor het parkeren van motoren. Daarom geldt hier de landelijke regelgeving. Er is geen sprake van een gedoogbeleid. De handhaving hiervan ligt bij de dienstdoende boa en/of de politie."
+    }
+  },
+  "lastUpdated": "2025-08-16",
+  "sources": [
+    {
+      "name": "Klantcontactmedewerker van Gemeente Epe",
+      "date": "2025-08-16"
+    }
+  ]
 }

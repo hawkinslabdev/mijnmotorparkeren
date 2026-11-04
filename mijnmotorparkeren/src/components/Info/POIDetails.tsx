@@ -1,6 +1,6 @@
 import React from 'react'
 import { MapPin, ExternalLink, Calendar, Users, ArrowLeft } from 'lucide-react'
-import type { POI } from '@/types/poi'
+import type { POI, POIType } from '@/types/poi'
 import { POI_TYPE_CONFIG } from '@/types/poi'
 
 interface POIDetailsProps {
@@ -10,17 +10,29 @@ interface POIDetailsProps {
   parentName?: string
 }
 
+// Solid or hollow: not colour alone
+export const POIDot: React.FC<{ type: POIType; className?: string }> = ({ type, className }) => {
+  const { color, hollow } = POI_TYPE_CONFIG[type]
+  return (
+    <span
+      className={`inline-block rounded-full flex-shrink-0 ${className ?? ''}`}
+      style={{ backgroundColor: hollow ? 'transparent' : color, border: `2px solid ${color}` }}
+      aria-hidden="true"
+    />
+  )
+}
+
 export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName }) => {
   const config = POI_TYPE_CONFIG[poi.type]
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div>
       {/* Header — matches ParkingRules structure exactly */}
-      <div className="relative bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6">
+      <div>
         {/* Back to the parent gemeente/city */}
         <button
           onClick={onClose}
-          className="-ml-1 mb-2 inline-flex min-h-[44px] items-center gap-1.5 rounded-full pr-3 pl-2 text-sm font-medium text-gray-600 hover:bg-white/50 transition-colors"
+          className="-ml-1 mb-2 inline-flex min-h-[44px] items-center gap-1.5 rounded-full pr-3 pl-2 text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors"
           aria-label={parentName ? `Terug naar ${parentName}` : 'Terug'}
         >
           <ArrowLeft className="h-4 w-4 flex-none" aria-hidden="true" />
@@ -28,11 +40,12 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName
         </button>
 
         {/* POI type label — subtle, above the name */}
-        <p className="text-xs font-medium mb-1" style={{ color: config.color }}>
+        <p className="text-xs font-medium mb-1 text-gray-700 flex items-center gap-1.5">
+          <POIDot type={poi.type} className="w-2.5 h-2.5" />
           {config.label}
         </p>
 
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">{poi.name}</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">{poi.name}</h2>
 
         {poi.address && (
           <p className="text-sm text-gray-600 flex items-center gap-1">
@@ -43,33 +56,29 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName
       </div>
 
       {/* Content */}
-      <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+      <div className="mt-4 space-y-4">
         {poi.description && (
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4">
-            <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-              {poi.description}
-            </p>
-          </div>
+          <p className="text-base text-gray-800 leading-relaxed whitespace-pre-line">
+            {poi.description}
+          </p>
         )}
 
         {poi.capacity && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
-            <div className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-blue-600 flex-shrink-0" />
-              <p className="text-sm text-blue-900">
-                <span className="font-medium">Capaciteit:</span> {poi.capacity} motoren
-              </p>
-            </div>
+          <div className="flex items-center gap-2">
+            <Users className="h-4 w-4 text-gray-500 flex-shrink-0" aria-hidden="true" />
+            <p className="text-base text-gray-800">
+              <span className="font-medium text-gray-900">Capaciteit:</span> {poi.capacity} motoren
+            </p>
           </div>
         )}
       </div>
 
-      {/* Footer — matches ParkingRules footer exactly */}
-      <div className="bg-gray-50 -mx-4 sm:-mx-6 -mb-4 sm:-mb-6 px-4 sm:px-6 py-4 border-t border-gray-100">
-        <div className="flex flex-col gap-3">
+      {/* Footer — no padded parent here */}
+      <div className="mt-5 border-t border-gray-200 pt-2">
+        <div className="flex flex-wrap items-center justify-between gap-x-4">
           {poi.source?.date && (
-            <div className="flex items-center gap-2 text-xs text-gray-500">
-              <Calendar className="h-3 w-3" />
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <Calendar className="h-3.5 w-3.5 flex-none" aria-hidden="true" />
               <span>{new Date(poi.source.date).toLocaleDateString('nl-NL')}</span>
             </div>
           )}
@@ -81,23 +90,24 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName
                   href={poi.source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 transition-colors group"
+                  className="flex items-center gap-1 min-h-11 text-sm text-blue-700 hover:text-blue-800 transition-colors group"
                 >
-                  <ExternalLink className="h-3 w-3 group-hover:scale-110 transition-transform" />
+                  <ExternalLink
+                    className="h-3.5 w-3.5 flex-none group-hover:scale-110 transition-transform"
+                    aria-hidden="true"
+                  />
                   <span>
                     {poi.source.type === 'reddit'
                       ? 'Reddit'
                       : poi.source.type === 'official'
-                        ? 'Officiële bron'
+                        ? 'Bron'
                         : 'Community bijdrage'}
                   </span>
                 </a>
               ) : (
-                <span className="flex items-center gap-1 text-xs text-gray-400">
-                  <ExternalLink className="h-3 w-3" />
-                  <span>
-                    {poi.source.type === 'official' ? 'Officiële bron' : 'Community bijdrage'}
-                  </span>
+                <span className="flex items-center gap-1 text-sm text-gray-600">
+                  <ExternalLink className="h-3.5 w-3.5 flex-none" aria-hidden="true" />
+                  <span>{poi.source.type === 'official' ? 'Bron' : 'Community bijdrage'}</span>
                 </span>
               )}
             </div>

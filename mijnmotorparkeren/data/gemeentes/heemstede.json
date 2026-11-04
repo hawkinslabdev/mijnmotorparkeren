@@ -1,44 +1,28 @@
 {
-    "id": "heemstede",
-    "name": "Gemeente Heemstede",
-    "province": "Noord-Holland",
-    "coordinates": {
-        "lat": 52.3499,
-        "lng": 4.6228
+  "id": "heemstede",
+  "name": "Gemeente Heemstede",
+  "province": "Noord-Holland",
+  "coordinates": {
+    "lat": 52.3499,
+    "lng": 4.6228
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[4.64,52.339],[4.617,52.331],[4.611,52.322],[4.59,52.329],[4.606,52.363],[4.637,52.361],[4.64,52.339]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Hoewel het RVV 1990 het parkeren van motoren op het trottoir verbiedt, hanteert Heemstede bij handhaving dezelfde benadering als Amsterdam. Bij klachten over overlast door een motor op het trottoir neemt de gemeente contact op met de eigenaar. Vervolgens wordt ter plaatse gezocht naar een geschikte oplossing."
-        }
-    },
-    "lastUpdated": "2026-04-22",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Heemstede (Klantcontactcentrum)",
-            "date": "2026-04-22"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Hoewel het RVV 1990 het parkeren van motoren op het trottoir verbiedt, hanteert Heemstede bij handhaving dezelfde benadering als Amsterdam. Bij klachten over overlast door een motor op het trottoir neemt de gemeente contact op met de eigenaar. Vervolgens wordt ter plaatse gezocht naar een geschikte oplossing."
+    }
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Heemstede (Klantcontactcentrum)",
+      "date": "2026-04-22"
+    }
+  ]
 }

@@ -1,44 +1,28 @@
 {
-    "id": "helmond",
-    "name": "Gemeente Helmond",
-    "province": "Noord-Brabant",
-    "coordinates": {
-        "lat": 51.484,
-        "lng": 5.661
+  "id": "helmond",
+  "name": "Gemeente Helmond",
+  "province": "Noord-Brabant",
+  "coordinates": {
+    "lat": 51.484,
+    "lng": 5.661
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[5.684,51.508],[5.708,51.502],[5.722,51.485],[5.736,51.472],[5.717,51.466],[5.73,51.444],[5.718,51.439],[5.694,51.439],[5.672,51.458],[5.656,51.457],[5.608,51.45],[5.585,51.461],[5.605,51.471],[5.586,51.479],[5.577,51.499],[5.61,51.509],[5.635,51.495],[5.656,51.507],[5.684,51.508]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": false,
-            "notes": "In de Gemeente Helmond maken wij geen uitzondering. Volgens de wet is het niet toegestaan om motoren of andere motorvoertuigen op het trottoir te parkeren; gebruik de aangewezen parkeerplaatsen."
-        }
-    },
-    "lastUpdated": "2026-04-22",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Helmond - Afd. Mobiliteit",
-            "date": "2026-04-22"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "In de Gemeente Helmond maken wij geen uitzondering. Volgens de wet is het niet toegestaan om motoren of andere motorvoertuigen op het trottoir te parkeren; gebruik de aangewezen parkeerplaatsen."
+    }
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Helmond - Afd. Mobiliteit",
+      "date": "2026-04-22"
+    }
+  ]
 }

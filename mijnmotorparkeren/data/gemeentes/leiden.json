@@ -1,45 +1,28 @@
 {
-    "id": "leiden",
-    "name": "Gemeente Leiden",
-    "province": "Zuid-Holland",
-    "coordinates": {
-        "lat": 52.1601,
-        "lng": 4.497
+  "id": "leiden",
+  "name": "Gemeente Leiden",
+  "province": "Zuid-Holland",
+  "coordinates": {
+    "lat": 52.1601,
+    "lng": 4.497
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[4.524,52.147],[4.473,52.119],[4.464,52.127],[4.465,52.149],[4.443,52.145],[4.44,52.156],[4.448,52.162],[4.455,52.171],[4.498,52.184],[4.518,52.182],[4.515,52.161],[4.524,52.147]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Het parkeren op de stoep wordt in Leiden gedoogd. Betaald parkeren is van toepassing op motoren in de gebieden waar betaald parkeren geldt (in het parkeervak)."
-        }
-    },
-    "lastUpdated": "2025-09-23",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Telefonisch medewerker Gemeente Leiden",
-            "date": "2025-09-23"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Het parkeren op de stoep wordt in Leiden gedoogd. Betaald parkeren is van toepassing op motoren in de gebieden waar betaald parkeren geldt (in het parkeervak)."
+    }
+  },
+  "lastUpdated": "2025-09-23",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Telefonisch medewerker Gemeente Leiden",
+      "date": "2025-09-23"
+    }
+  ]
 }

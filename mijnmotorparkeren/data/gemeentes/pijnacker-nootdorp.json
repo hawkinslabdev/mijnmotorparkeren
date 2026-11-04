@@ -1,45 +1,29 @@
 {
-    "id": "pijnacker-nootdorp",
-    "name": "Gemeente Pijnacker-Nootdorp",
-    "province": "Zuid-Holland",
-    "coordinates": {
-        "lat": 52.021,
-        "lng": 4.426
+  "id": "pijnacker-nootdorp",
+  "name": "Gemeente Pijnacker-Nootdorp",
+  "province": "Zuid-Holland",
+  "alternativeNames": ["Pijnacker", "Nootdorp"],
+  "coordinates": {
+    "lat": 52.021,
+    "lng": 4.426
+  },
+  "parkingRules": {
+    "free": true,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[4.422,52.052],[4.451,52.049],[4.477,52.032],[4.457,52.022],[4.459,52.002],[4.428,51.976],[4.408,51.968],[4.397,51.979],[4.386,52.005],[4.395,52.011],[4.38,52.027],[4.373,52.041],[4.394,52.054],[4.422,52.052]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": true,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": false,
-            "freeInPaidZones": true,
-            "notes": "Het is niet toegestaan om motoren op de stoep te parkeren (volgens artikel 10 RVV en APV). In Pijnacker-Nootdorp is er geen betaald parkeren, dus motoren kunnen gratis op reguliere parkeerplaatsen worden geplaatst."
-        }
-    },
-    "lastUpdated": "2025-09-26",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Beleidsmedewerker Team Verkeer Pijnacker-Nootdorp",
-            "date": "2025-09-26"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": true,
+      "notes": "Het is niet toegestaan om motoren op de stoep te parkeren (volgens artikel 10 RVV en APV). In Pijnacker-Nootdorp is er geen betaald parkeren, dus motoren kunnen gratis op reguliere parkeerplaatsen worden geplaatst."
+    }
+  },
+  "lastUpdated": "2025-09-26",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Beleidsmedewerker Team Verkeer Pijnacker-Nootdorp",
+      "date": "2025-09-26"
+    }
+  ]
 }

@@ -16,6 +16,7 @@ import type { Gemeente } from './types/gemeente'
 import { type City } from './types/city'
 import type { POI } from './types/poi'
 import { fetchFullCity, fetchMunicipalityPOIs } from './data/index'
+import { isCityItem, type SearchItem } from '@hooks/useSearch'
 
 import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png?url'
@@ -32,19 +33,34 @@ L.Marker.prototype.options.icon = DefaultIcon
 interface AppProps {
   initialGemeenteId?: string
   initialCityId?: string
+  initialPlaceName?: string
 }
 
-const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) => {
+const MESSAGES = {
+  LOAD_ERROR: 'Kan parkeerregels niet laden. Controleer je internetverbinding.',
+  OFFLINE: 'Je bent offline. Gelezen regels zijn mogelijk verouderd.',
+  RETRY: 'Probeer het opnieuw',
+}
+
+const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, initialPlaceName }) => {
   const [selectedGemeente, setSelectedGemeente] = useState<Gemeente | null>(null)
   const [selectedCity, setSelectedCity] = useState<City | null>(null)
   const [selectedPOI, setSelectedPOI] = useState<POI | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
   const [detailsLoading, setDetailsLoading] = useState(false)
   const [swipeOffset, setSwipeOffset] = useState(0)
+  const [panelPOIs, setPanelPOIs] = useState<POI[]>([])
+  // Only while on the place URL
+  const [placeName, setPlaceName] = useState(initialPlaceName)
+  const [isOffline, setIsOffline] = useState(
+    typeof navigator !== 'undefined' && navigator.onLine === false
+  )
 
   const detailsRef = useRef<HTMLDivElement>(null)
   const panelTouchStartY = useRef<number | null>(null)
   const swipeOffsetRef = useRef(0)
+  const returnFocusRef = useRef<HTMLElement | null>(null)
+  const panelWasOpen = useRef(false)
   const selectedGemeenteRef = useRef<Gemeente | null>(null)
   const selectedCityRef = useRef<City | null>(null)
   // POI id captured from ?poi=<id> at load; consumed once the parent loads.
@@ -54,7 +70,11 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
   const { showToast } = useToast()
   const { setSelectedGemeente: setSelectedGemeenteId, focusOnGemeente, resetView } = useMapStore()
-  const { gemeentes, loading, loadFullGemeente } = useGemeenteData()
+  const { gemeentes, loading, error: indexError, loadFullGemeente } = useGemeenteData()
+
+  useEffect(() => {
+    if (indexError) showToast(MESSAGES.LOAD_ERROR, 6000)
+  }, [indexError, showToast])
 
   useEffect(() => {
     if (initialGemeenteId || initialCityId) return
@@ -87,9 +107,17 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     loadFullGemeente(initialGemeenteId)
       .then((full) => {
         if (full) setSelectedGemeente(full)
+        else showToast(MESSAGES.LOAD_ERROR, 6000)
       })
       .finally(() => setDetailsLoading(false))
-  }, [initialGemeenteId, gemeentes, setSelectedGemeenteId, focusOnGemeente, loadFullGemeente])
+  }, [
+    initialGemeenteId,
+    gemeentes,
+    setSelectedGemeenteId,
+    focusOnGemeente,
+    loadFullGemeente,
+    showToast,
+  ])
 
   useEffect(() => {
     if (!initialCityId) return
@@ -99,9 +127,12 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
         setSelectedCity(city)
         if (city.coordinates) focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
       })
-      .catch(console.error)
+      .catch((error) => {
+        console.error(error)
+        showToast(MESSAGES.LOAD_ERROR, 6000)
+      })
       .finally(() => setDetailsLoading(false))
-  }, [initialCityId, focusOnGemeente])
+  }, [initialCityId, focusOnGemeente, showToast])
 
   useKeyboardShortcuts([
     { key: 'k', ctrlKey: true, callback: () => setSearchOpen(true) },
@@ -118,6 +149,8 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
   const handleGemeenteSelect = useCallback(
     async (lite: Gemeente | null) => {
+      setSelectedPOI(null)
+      setPlaceName(undefined)
       if (!lite) {
         setSelectedGemeente(null)
         setSelectedCity(null)
@@ -137,14 +170,17 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
       setDetailsLoading(true)
       const full = await loadFullGemeente(lite.id)
+      if (!full) showToast(MESSAGES.LOAD_ERROR, 6000)
       setSelectedGemeente(full ?? lite)
       setDetailsLoading(false)
     },
-    [setSelectedGemeenteId, focusOnGemeente, loadFullGemeente]
+    [setSelectedGemeenteId, focusOnGemeente, loadFullGemeente, showToast]
   )
 
   const handleCitySelect = useCallback(
     async (city: City | null) => {
+      setSelectedPOI(null)
+      setPlaceName(undefined)
       if (!city) {
         setSelectedCity(null)
         setSelectedGemeente(null)
@@ -161,11 +197,25 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   )
 
   const handleSearchSelect = useCallback(
-    (gemeente: Gemeente) => {
-      handleGemeenteSelect(gemeente)
+    async (item: SearchItem, place?: string) => {
       setSearchOpen(false)
+      if (!isCityItem(item)) {
+        handleGemeenteSelect(item)
+        setPlaceName(place)
+        return
+      }
+      setSelectedPOI(null)
+      setDetailsLoading(true)
+      try {
+        await handleCitySelect(await fetchFullCity(item.id))
+        setPlaceName(place)
+      } catch {
+        showToast(MESSAGES.LOAD_ERROR, 6000)
+      } finally {
+        setDetailsLoading(false)
+      }
     },
-    [handleGemeenteSelect]
+    [handleGemeenteSelect, handleCitySelect, showToast]
   )
 
   const handlePOISelect = useCallback(
@@ -217,25 +267,84 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       .catch(() => {})
   }, [selectedGemeente, selectedCity, focusOnGemeente])
 
-  const handleDetailsClose = useCallback(() => {
-    setSelectedGemeente(null)
-    setSelectedCity(null)
-    setSelectedPOI(null)
-    setSelectedGemeenteId(null)
-    resetView()
-    window.history.pushState({}, '', '/')
-  }, [setSelectedGemeenteId, resetView])
+  // List map POIs in the panel
+  useEffect(() => {
+    const scope = selectedCity ? 'city' : selectedGemeente ? 'gemeente' : null
+    const municipalityId = selectedCity?.id ?? selectedGemeente?.id
+    if (!scope || !municipalityId) {
+      setPanelPOIs([])
+      return
+    }
+    let stale = false
+    fetchMunicipalityPOIs(municipalityId, scope)
+      .then((pois) => {
+        if (!stale) setPanelPOIs(pois)
+      })
+      .catch(() => {
+        if (!stale) setPanelPOIs([])
+      })
+    return () => {
+      stale = true
+    }
+  }, [selectedGemeente, selectedCity])
 
-  // Swipe-to-dismiss: clears the panel but leaves the map where it is.
-  // Unlike handleDetailsClose, does NOT call resetView() — user swiped to
-  // look at the map, not to navigate away.
-  const handlePanelSwipeDismiss = useCallback(() => {
+  useEffect(() => {
+    const update = () => setIsOffline(!navigator.onLine)
+    window.addEventListener('online', update)
+    window.addEventListener('offline', update)
+    return () => {
+      window.removeEventListener('online', update)
+      window.removeEventListener('offline', update)
+    }
+  }, [])
+
+  const panelTitle = selectedPOI?.name ?? selectedCity?.name ?? selectedGemeente?.name ?? null
+
+  // Move focus to opened panel
+  useEffect(() => {
+    if (loading || detailsLoading) return
+    if (panelTitle) {
+      const active = document.activeElement
+      if (
+        active instanceof HTMLElement &&
+        active !== document.body &&
+        !detailsRef.current?.contains(active)
+      ) {
+        returnFocusRef.current = active
+      }
+      detailsRef.current?.focus({ preventScroll: true })
+      panelWasOpen.current = true
+      // Keep this page for offline reload
+      navigator.serviceWorker?.controller?.postMessage({
+        type: 'CACHE_URLS',
+        urls: [location.pathname + location.search],
+      })
+    } else if (panelWasOpen.current) {
+      panelWasOpen.current = false
+      if (document.activeElement === document.body) {
+        const target = returnFocusRef.current?.isConnected
+          ? returnFocusRef.current
+          : document.getElementById('search-button')
+        target?.focus({ preventScroll: true })
+      }
+      returnFocusRef.current = null
+    }
+  }, [panelTitle, loading, detailsLoading])
+
+  // Closing keeps the current view
+  const handleDetailsClose = useCallback(() => {
+    setPlaceName(undefined)
     setSelectedGemeente(null)
     setSelectedCity(null)
     setSelectedPOI(null)
     setSelectedGemeenteId(null)
     window.history.pushState({}, '', '/')
   }, [setSelectedGemeenteId])
+
+  const handleReset = useCallback(() => {
+    handleDetailsClose()
+    resetView()
+  }, [handleDetailsClose, resetView])
 
   const handlePanelTouchStart = useCallback((e: React.TouchEvent) => {
     if (e.touches.length !== 1) return
@@ -251,16 +360,22 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
   const handlePanelTouchEnd = useCallback(() => {
     if (swipeOffsetRef.current > 80) {
-      handlePanelSwipeDismiss()
+      handleDetailsClose()
     }
     swipeOffsetRef.current = 0
     setSwipeOffset(0)
     panelTouchStartY.current = null
-  }, [handlePanelSwipeDismiss])
+  }, [handleDetailsClose])
 
   const [shareLoading, setShareLoading] = useState(false)
+  const [shareResult, setShareResult] = useState<string | null>(null)
+  const shareResetTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const handleShare = async () => {
     setShareLoading(true)
+    clearTimeout(shareResetTimer.current)
+    setShareResult(null)
+    // Let the arrow finish lifting
+    const lift = new Promise((resolve) => setTimeout(resolve, 240))
     try {
       const shareUrl = window.location.href
       let title = 'MijnMotorParkeren.nl'
@@ -278,12 +393,20 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       const shareData = { title, text, url: shareUrl }
       if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
         await navigator.share(shareData)
+        await lift
+        setShareResult('Gedeeld')
       } else {
         await navigator.clipboard.writeText(shareUrl)
-        showToast('Link gekopieerd!')
+        await lift
+        setShareResult('Link gekopieerd')
       }
+      shareResetTimer.current = setTimeout(() => setShareResult(null), 1800)
     } catch (error) {
-      console.error('Error sharing:', error)
+      // Closing the share sheet isn't an error
+      if (!(error instanceof DOMException && error.name === 'AbortError')) {
+        console.error('Error sharing:', error)
+        showToast(`Delen is niet gelukt. ${MESSAGES.RETRY}.`, 6000)
+      }
     } finally {
       setShareLoading(false)
     }
@@ -346,7 +469,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+        <div role="status" className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Gemeentes laden...</p>
         </div>
@@ -362,17 +485,24 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       <Header onSearchOpen={() => setSearchOpen(true)} />
 
       <main className="flex-1 relative overflow-hidden">
+        <div role="status" className="sr-only">
+          {[detailsLoading && 'Parkeerregels laden', isOffline && MESSAGES.OFFLINE, shareResult]
+            .filter(Boolean)
+            .join('. ')}
+        </div>
+
         <MapView
           gemeentes={gemeentes}
           onGemeenteSelect={handleGemeenteSelect}
           onCitySelect={handleCitySelect}
           onPOISelect={handlePOISelect}
-          onReset={handleDetailsClose}
+          onReset={handleReset}
           selectedGemeente={selectedGemeente}
           selectedCity={selectedCity}
           poiActive={!!selectedPOI}
           detailsOpen={detailsOpen}
           autoFitGemeenteId={initialGemeenteId ?? null}
+          pois={panelPOIs}
         />
 
         <SpotlightSearch
@@ -381,10 +511,20 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
           onSelect={handleSearchSelect}
         />
 
+        {isOffline && (
+          <div className="absolute top-3 left-3 z-[1000] max-w-[calc(100%-5.5rem)] rounded-lg bg-gray-900 px-3 py-2 text-sm text-white shadow-lg">
+            {MESSAGES.OFFLINE}
+          </div>
+        )}
+
         {detailsOpen && (
           <div
             ref={detailsRef}
-            className="fixed sm:absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none max-h-[75vh] sm:max-h-none overflow-y-auto [overscroll-behavior-y:contain] [animation:slide-up_0.3s_ease-out] sm:[animation:none]"
+            role="region"
+            aria-label={panelTitle ? `Parkeerregels: ${panelTitle}` : 'Parkeerregels laden'}
+            aria-busy={detailsLoading}
+            tabIndex={-1}
+            className="outline-none absolute bottom-0 sm:bottom-4 left-0 sm:left-auto w-full right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-xl shadow-2xl px-4 pt-4 max-w-full sm:max-w-sm z-[1001] border-t border-gray-200 sm:border-none max-h-[min(75vh,100%)] sm:max-h-[calc(100%-2rem)] overflow-y-auto [overscroll-behavior-y:contain] [animation:slide-up_0.3s_ease-out] sm:[animation:none]"
             style={{
               boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
               transform: swipeOffset > 0 ? `translateY(${swipeOffset}px)` : undefined,
@@ -398,7 +538,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
             </div>
 
             {detailsLoading ? (
-              <div className="animate-pulse space-y-3 py-2">
+              <div className="animate-pulse space-y-3 pt-2 pb-6">
                 <div className="h-6 bg-gray-200 rounded w-2/3" />
                 <div className="h-4 bg-gray-200 rounded w-1/3" />
                 <div className="h-16 bg-gray-200 rounded" />
@@ -416,39 +556,51 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
                 gemeente={selectedGemeente}
                 city={selectedCity}
                 onClose={handleDetailsClose}
+                pois={panelPOIs}
+                placeName={placeName}
+                onPOISelect={handlePOISelect}
               />
             )}
 
+            {/* Share stays at one spot */}
             {!detailsLoading && (
-              <button
-                type="button"
-                onClick={handleShare}
-                disabled={shareLoading}
-                className="flex w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-lg items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {shareLoading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Delen...</span>
-                  </>
-                ) : (
-                  <>
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-                      <polyline points="16,6 12,2 8,6" />
-                      <line x1="12" y1="2" x2="12" y2="15" />
-                    </svg>
-                    <span>Deel deze locatie</span>
-                  </>
-                )}
-              </button>
+              <div className="sticky bottom-0 -mx-4 mt-4 bg-white p-4 pt-3">
+                <button
+                  type="button"
+                  onClick={handleShare}
+                  disabled={shareLoading}
+                  data-share-state={shareResult ? 'done' : shareLoading ? 'sharing' : 'idle'}
+                  className={`flex w-full text-white font-semibold py-3 px-4 rounded-lg shadow-lg items-center justify-center gap-2 transition-[background-color,scale] duration-200 ease-out active:scale-[0.98] motion-reduce:active:scale-100 disabled:cursor-wait ${
+                    shareResult ? 'bg-green-700' : 'bg-blue-600 hover:bg-blue-700'
+                  }`}
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="overflow-visible"
+                    aria-hidden="true"
+                  >
+                    {shareResult ? (
+                      <path className="share-check" pathLength={1} d="M5 13l4 4L19 7" />
+                    ) : (
+                      <>
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                        <g className="share-arrow" data-flying={shareLoading}>
+                          <polyline points="16,6 12,2 8,6" />
+                          <line x1="12" y1="2" x2="12" y2="15" />
+                        </g>
+                      </>
+                    )}
+                  </svg>
+                  <span>{shareResult ?? 'Deel deze locatie'}</span>
+                </button>
+              </div>
             )}
           </div>
         )}

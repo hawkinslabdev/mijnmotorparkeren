@@ -1,44 +1,28 @@
 {
-    "id": "bergen-op-zoom",
-    "name": "Gemeente Bergen op Zoom",
-    "province": "Noord-Brabant",
-    "coordinates": {
-        "lat": 51.528,
-        "lng": 4.287
+  "id": "bergen-op-zoom",
+  "name": "Gemeente Bergen op Zoom",
+  "province": "Noord-Brabant",
+  "coordinates": {
+    "lat": 51.528,
+    "lng": 4.287
+  },
+  "parkingRules": {
+    "free": false,
+    "permits": {
+      "required": false
     },
-    "boundaries": {
-        "coordinates": [[[4.318,51.551],[4.33,51.528],[4.352,51.514],[4.35,51.503],[4.373,51.488],[4.362,51.476],[4.367,51.457],[4.311,51.46],[4.283,51.44],[4.265,51.44],[4.23,51.489],[4.219,51.505],[4.236,51.55],[4.252,51.571],[4.318,51.551]]],
-        "type": "Polygon"
-    },
-    "parkingRules": {
-        "free": false,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Volgens de parkeerverordening mag u uw motorfiets op de stoep parkeren, mits deze niet hinderlijk staat en voetgangers, rolstoelen, kinderwagens en hulpdiensten vrije doorgang houden; parkeert u in een vak, dan dient u bij de parkeerautomaat te betalen met vermelding van uw kenteken."
-        }
-    },
-    "lastUpdated": "2026-04-22",
-    "sources": [
-        {
-            "type": "official",
-            "name": "Gemeente Bergen op Zoom (Klantcontactcentrum)",
-            "date": "2026-04-22"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Volgens de parkeerverordening mag u uw motorfiets op de stoep parkeren, mits deze niet hinderlijk staat en voetgangers, rolstoelen, kinderwagens en hulpdiensten vrije doorgang houden; parkeert u in een vak, dan dient u bij de parkeerautomaat te betalen met vermelding van uw kenteken."
+    }
+  },
+  "lastUpdated": "2026-04-22",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Gemeente Bergen op Zoom (Klantcontactcentrum)",
+      "date": "2026-04-22"
+    }
+  ]
 }

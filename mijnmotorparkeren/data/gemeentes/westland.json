@@ -1,40 +1,28 @@
 {
-    "id": "westland",
-    "name": "Gemeente Westland",
-    "coordinates": {
-        "lat": 52.002,
-        "lng": 4.175
+  "id": "westland",
+  "name": "Gemeente Westland",
+  "province": "Zuid-Holland",
+  "alternativeNames": ["De Lier", "Honselersdijk", "Kwintsheul", "Maasdijk", "Monster", "Naaldwijk", "Poeldijk", "'s-Gravenzande", "Ter Heijde", "Wateringen"],
+  "coordinates": {
+    "lat": 52.002,
+    "lng": 4.175
+  },
+  "parkingRules": {
+    "permits": {
+      "required": false
     },
-    "parkingRules": {
-        "free": null,
-        "paid": {
-            "enabled": null,
-            "areas": [],
-            "rates": null
-        },
-        "permits": {
-            "required": false,
-            "types": []
-        },
-        "restrictions": {
-            "timeLimit": null,
-            "noParking": []
-        },
-        "contact": null,
-        "motorcycleSpecific": {
-            "dedicatedSpots": [],
-            "allowedOnSidewalk": true,
-            "freeInPaidZones": false,
-            "notes": "Op de stoep mag (lees: wordt gedoogd) als je geen hinder veroorzaakt."
-        }
-    },
-    "lastUpdated": "2025-09-26",
-    "sources": [
-        {
-            "type": "official",
-            "url": "#",
-            "name": "Handhaving gemeente Westland",
-            "date": "2025-09-26"
-        }
-    ]
+    "motorcycleSpecific": {
+      "allowedOnSidewalk": true,
+      "freeInPaidZones": false,
+      "notes": "Op de stoep mag (lees: wordt gedoogd) als je geen hinder veroorzaakt."
+    }
+  },
+  "lastUpdated": "2025-09-26",
+  "sources": [
+    {
+      "type": "official",
+      "name": "Handhaving gemeente Westland",
+      "date": "2025-09-26"
+    }
+  ]
 }
