@@ -107,9 +107,7 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName
               ) : (
                 <span className="flex items-center gap-1 text-sm text-gray-600">
                   <ExternalLink className="h-3.5 w-3.5 flex-none" aria-hidden="true" />
-                  <span>
-                    {poi.source.type === 'official' ? 'Bron' : 'Community bijdrage'}
-                  </span>
+                  <span>{poi.source.type === 'official' ? 'Bron' : 'Community bijdrage'}</span>
                 </span>
               )}
             </div>
