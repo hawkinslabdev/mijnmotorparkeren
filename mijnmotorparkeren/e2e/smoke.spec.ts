@@ -35,4 +35,14 @@ test.describe('Smoke', () => {
     await waitForMap(page)
     await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam', exact: true })).toBeVisible()
   })
+
+  test('unknown route shows branded 404', async ({ page }) => {
+    const response = await page.goto('/bestaat-niet')
+    expect(response?.status()).toBe(404)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+      'Deze pagina staat niet op de kaart'
+    )
+    await page.getByRole('link', { name: 'Terug naar de kaart' }).click()
+    await waitForMap(page)
+  })
 })
