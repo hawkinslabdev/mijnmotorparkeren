@@ -136,6 +136,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
   const handleGemeenteSelect = useCallback(
     async (lite: Gemeente | null) => {
+      setSelectedPOI(null)
       if (!lite) {
         setSelectedGemeente(null)
         setSelectedCity(null)
@@ -164,6 +165,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
   const handleCitySelect = useCallback(
     async (city: City | null) => {
+      setSelectedPOI(null)
       if (!city) {
         setSelectedCity(null)
         setSelectedGemeente(null)
@@ -186,6 +188,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
         handleGemeenteSelect(item)
         return
       }
+      setSelectedPOI(null)
       setDetailsLoading(true)
       try {
         await handleCitySelect(await fetchFullCity(item.id))
@@ -489,7 +492,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
             aria-label={panelTitle ? `Parkeerregels: ${panelTitle}` : 'Parkeerregels laden'}
             aria-busy={detailsLoading}
             tabIndex={-1}
-            className="outline-none absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t border-gray-200 sm:border-none max-h-[min(75vh,100%)] sm:max-h-none overflow-y-auto [overscroll-behavior-y:contain] [animation:slide-up_0.3s_ease-out] sm:[animation:none]"
+            className="outline-none absolute bottom-0 sm:bottom-4 left-0 sm:left-auto w-full right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-xl shadow-2xl px-4 pt-4 max-w-full sm:max-w-sm z-[1001] border-t border-gray-200 sm:border-none max-h-[min(75vh,100%)] sm:max-h-[calc(100%-2rem)] overflow-y-auto [overscroll-behavior-y:contain] [animation:slide-up_0.3s_ease-out] sm:[animation:none]"
             style={{
               boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
               transform: swipeOffset > 0 ? `translateY(${swipeOffset}px)` : undefined,
@@ -503,7 +506,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
             </div>
 
             {detailsLoading ? (
-              <div className="animate-pulse space-y-3 py-2">
+              <div className="animate-pulse space-y-3 pt-2 pb-6">
                 <div className="h-6 bg-gray-200 rounded w-2/3" />
                 <div className="h-4 bg-gray-200 rounded w-1/3" />
                 <div className="h-16 bg-gray-200 rounded" />
@@ -526,36 +529,39 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
               />
             )}
 
+            {/* Share stays at one spot */}
             {!detailsLoading && (
-              <button
-                type="button"
-                onClick={handleShare}
-                disabled={shareLoading}
-                className="flex w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-lg items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {shareLoading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Delen...</span>
-                  </>
-                ) : (
-                  <>
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-                      <polyline points="16,6 12,2 8,6" />
-                      <line x1="12" y1="2" x2="12" y2="15" />
-                    </svg>
-                    <span>Deel deze locatie</span>
-                  </>
-                )}
-              </button>
+              <div className="sticky bottom-0 -mx-4 mt-4 bg-white p-4 pt-3">
+                <button
+                  type="button"
+                  onClick={handleShare}
+                  disabled={shareLoading}
+                  className="flex w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-lg items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {shareLoading ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Delen...</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                        <polyline points="16,6 12,2 8,6" />
+                        <line x1="12" y1="2" x2="12" y2="15" />
+                      </svg>
+                      <span>Deel deze locatie</span>
+                    </>
+                  )}
+                </button>
+              </div>
             )}
           </div>
         )}

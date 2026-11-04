@@ -258,7 +258,8 @@ const CountryBoundariesLayer: React.FC<{
               } as GeoJSONType.Feature
             }
             style={{
-              fillColor: colors.fillColor,
+              // No hatch across whole countries
+              fillColor: colors.plainFill ?? colors.fillColor,
               color: colors.borderColor,
               weight: 2,
               opacity: 0.8,

@@ -78,7 +78,7 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName
         <div className="flex flex-wrap items-center justify-between gap-x-4">
           {poi.source?.date && (
             <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Calendar className="h-3 w-3" />
+              <Calendar className="h-3.5 w-3.5 flex-none" aria-hidden="true" />
               <span>{new Date(poi.source.date).toLocaleDateString('nl-NL')}</span>
             </div>
           )}
@@ -92,20 +92,23 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 min-h-11 text-sm text-blue-700 hover:text-blue-800 transition-colors group"
                 >
-                  <ExternalLink className="h-3 w-3 group-hover:scale-110 transition-transform" />
+                  <ExternalLink
+                    className="h-3.5 w-3.5 flex-none group-hover:scale-110 transition-transform"
+                    aria-hidden="true"
+                  />
                   <span>
                     {poi.source.type === 'reddit'
                       ? 'Reddit'
                       : poi.source.type === 'official'
-                        ? 'Officiële bron'
+                        ? 'Bron'
                         : 'Community bijdrage'}
                   </span>
                 </a>
               ) : (
                 <span className="flex items-center gap-1 text-sm text-gray-600">
-                  <ExternalLink className="h-3 w-3" />
+                  <ExternalLink className="h-3.5 w-3.5 flex-none" aria-hidden="true" />
                   <span>
-                    {poi.source.type === 'official' ? 'Officiële bron' : 'Community bijdrage'}
+                    {poi.source.type === 'official' ? 'Bron' : 'Community bijdrage'}
                   </span>
                 </span>
               )}

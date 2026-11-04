@@ -48,10 +48,7 @@ export function getParkingStatus(entity: Gemeente | City): {
   }
 
   // PRIORITY 1: Check if regular parking is free
-  if (
-    (parkingRules.free === true || motorcycleRules?.freeInPaidZones === true) &&
-    motorcycleRules?.allowedOnSidewalk === true
-  ) {
+  if (parkingRules.free === true || motorcycleRules?.freeInPaidZones === true) {
     return {
       status: 'free_parking',
       label: isCity ? `${entity.name}: Gratis parkeren` : 'Gratis in het vak parkeren',
@@ -70,8 +67,12 @@ export function getParkingStatus(entity: Gemeente | City): {
     }
   }
 
-  // PRIORITY 3: Paid parking required
-  if (parkingRules.paid?.enabled === true || parkingRules.free === false) {
+  // PRIORITY 3: Only in the box
+  if (
+    parkingRules.paid?.enabled === true ||
+    parkingRules.free === false ||
+    motorcycleRules?.allowedOnSidewalk === false
+  ) {
     return {
       status: 'paid_parking',
       label: isCity ? `${entity.name}: Betaald parkeren` : 'Betaald parkeren',
@@ -96,11 +97,13 @@ export const BOUNDARY_STYLES = {
   },
   free_parking: {
     fillColor: 'url(#status-free)', // green-100 dots
+    plainFill: '#dcfce7',
     borderColor: '#16a34a', // green-600
     weight: 2,
   },
   paid_parking: {
     fillColor: 'url(#status-paid)', // red-100 stripes
+    plainFill: '#fee2e2',
     borderColor: '#dc2626', // red-600
     weight: 2,
   },
@@ -116,6 +119,7 @@ export const BOUNDARY_STYLES = {
  */
 export function getMapBoundaryColors(entity: Gemeente | City): {
   fillColor: string
+  plainFill?: string
   borderColor: string
   weight: number
 } {

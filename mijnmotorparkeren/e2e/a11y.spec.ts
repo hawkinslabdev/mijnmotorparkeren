@@ -192,6 +192,72 @@ test.describe('Accessibility', () => {
     expect(box!.height).toBeGreaterThanOrEqual(44)
   })
 
+  test('selecting another area closes the open POI', async ({ page }) => {
+    await page.route(/\/data\/poi\/index\.json/, (r) =>
+      r.fulfill({ json: { pois: [{ municipalityId: 'amsterdam' }] } })
+    )
+    await page.route(/\/data\/poi\/amsterdam\.json/, (r) =>
+      r.fulfill({
+        json: {
+          pois: [
+            {
+              id: 'stalling',
+              type: 'dedicatedMotorcycleSpot',
+              name: 'Motorstalling Centrum',
+              coordinates: { lat: 52.37, lng: 4.89 },
+              municipalityId: 'amsterdam',
+            },
+          ],
+        },
+      })
+    )
+    await page.goto('/gemeente/amsterdam?poi=stalling')
+    await waitForMap(page)
+    await expect(page.getByRole('heading', { name: 'Motorstalling Centrum' })).toBeVisible()
+    await page.getByRole('button', { name: 'Locatie zoeken' }).click()
+    await page.getByRole('combobox').fill('Rotterdam')
+    await expect(page.getByRole('option').first()).toBeVisible()
+    await page.getByRole('combobox').press('Enter')
+    await expect(page.getByRole('heading', { name: 'Motorstalling Centrum' })).toHaveCount(0)
+    await expect(page).not.toHaveURL(/poi=/)
+  })
+
+  test('long source is cut with a tooltip on demand', async ({ page, hasTouch }) => {
+    const name = 'Gemeente West Betuwe (Klantcontactcentrum) en nog een hele lange afdeling'
+    await page.route(/\/data\/gemeentes\/amsterdam\.json/, (r) =>
+      r.fulfill({
+        json: {
+          id: 'amsterdam',
+          name: 'Gemeente Amsterdam',
+          province: 'Noord-Holland',
+          coordinates: { lat: 52.37, lng: 4.89 },
+          parkingRules: { motorcycleSpecific: { allowedOnSidewalk: true, notes: 'Test' } },
+          sources: [{ type: 'official', name }],
+        },
+      })
+    )
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    const button = page.getByRole('button', { name: `Bron: ${name}` })
+    const cut = await button.locator('span').evaluate((el) => el.scrollWidth > el.clientWidth)
+    expect(cut).toBe(true)
+    expect((await button.boundingBox())!.height).toBeGreaterThanOrEqual(44)
+    const bubble = page.locator('.bg-gray-900', { hasText: name })
+    await expect(bubble).toHaveCount(0)
+    if (hasTouch) {
+      await button.tap()
+      await expect(bubble).toBeVisible()
+      await page.locator('h2').first().tap()
+    } else {
+      await button.hover()
+      await expect(bubble).toBeVisible()
+      await button.click()
+      await expect(bubble).toBeVisible()
+      await page.mouse.move(0, 0)
+    }
+    await expect(bubble).toHaveCount(0)
+  })
+
   test('denied location shows a message', async ({ page }) => {
     await page.addInitScript(() => {
       navigator.geolocation.getCurrentPosition = (_ok, fail) =>
@@ -272,6 +338,61 @@ test.describe('Mobile layouts', () => {
     await page.locator('.leaflet-container').click({ position: { x: 40, y: 40 } })
     await expect(page.getByText('Geen informatie')).toBeVisible()
     await expect(page.getByRole('button', { name: 'Legenda' })).toHaveCount(0)
+  })
+
+  test('desktop panel fits its content', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.route(/\/data\/poi\/index\.json/, (r) => r.fulfill({ json: { pois: [] } }))
+    await page.route(/\/data\/gemeentes\/amsterdam\.json/, (r) =>
+      r.fulfill({
+        json: {
+          id: 'amsterdam',
+          name: 'Gemeente Amsterdam',
+          province: 'Noord-Holland',
+          coordinates: { lat: 52.37, lng: 4.89 },
+          parkingRules: { motorcycleSpecific: { allowedOnSidewalk: true, notes: 'Test' } },
+          sources: [{ type: 'official', name: 'Afdeling Handhaving' }],
+        },
+      })
+    )
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    await expect(page.getByText('Bron: Afdeling Handhaving')).toBeVisible()
+    await expect(page.getByText('Nog niet bijgewerkt')).toHaveCount(0)
+    const panel = (await page.getByRole('region', { name: /Parkeerregels:/ }).boundingBox())!
+    const main = (await page.locator('main').boundingBox())!
+    expect(panel.height).toBeLessThan(main.height - 100)
+    expect(panel.width).toBe(384)
+  })
+
+  test('share stays at one spot across areas', async ({ page }) => {
+    const shareY = async (notes: string) => {
+      await page.route(/\/data\/gemeentes\/amsterdam\.json/, (r) =>
+        r.fulfill({
+          json: {
+            id: 'amsterdam',
+            name: 'Gemeente Amsterdam',
+            province: 'Noord-Holland',
+            coordinates: { lat: 52.37, lng: 4.89 },
+            parkingRules: { motorcycleSpecific: { allowedOnSidewalk: true, notes } },
+          },
+        })
+      )
+      await page.goto('/gemeente/amsterdam')
+      await waitForMap(page)
+      const share = page.getByRole('button', { name: 'Deel deze locatie' })
+      await expect(share).toBeInViewport({ ratio: 1 })
+      // Let the slide-up finish
+      await page.waitForTimeout(400)
+      const box = (await share.boundingBox())!
+      const panel = (await page.getByRole('region', { name: /Parkeerregels:/ }).boundingBox())!
+      // Nothing may show below share
+      expect(panel.y + panel.height - (box.y + box.height)).toBeCloseTo(16, 0)
+      return box.y
+    }
+    const short = await shareY('Kort.')
+    const long = await shareY('Lange tekst over parkeren. '.repeat(120))
+    expect(long).toBe(short)
   })
 
   test('landscape phone keeps map controls', async ({ browser }) => {

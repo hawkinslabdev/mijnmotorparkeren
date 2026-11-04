@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   Clock,
   Euro,
@@ -55,6 +55,71 @@ const RuleRow: React.FC<{
   </li>
 )
 
+// Hover on desktop, tap on touch
+const SourceName: React.FC<{ name: string }> = ({ name }) => {
+  const [open, setOpen] = useState(false)
+  const textRef = useRef<HTMLSpanElement>(null)
+  const pointerType = useRef('')
+  const label = `Bron: ${name}`
+  const isCut = () => {
+    const el = textRef.current
+    return !!el && el.scrollWidth > el.clientWidth
+  }
+
+  useEffect(() => {
+    if (!open) return
+    const close = () => setOpen(false)
+    document.addEventListener('pointerdown', close)
+    return () => document.removeEventListener('pointerdown', close)
+  }, [open])
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        className="flex min-h-11 w-full items-center text-left"
+        onPointerDown={(e) => {
+          e.stopPropagation()
+          pointerType.current = e.pointerType
+        }}
+        onClick={() => {
+          // Hover already handles the mouse
+          if (pointerType.current !== 'mouse') setOpen((value) => !value && isCut())
+          pointerType.current = ''
+        }}
+        onPointerEnter={(e) => {
+          if (e.pointerType === 'mouse' && isCut()) setOpen(true)
+        }}
+        onPointerLeave={(e) => {
+          if (e.pointerType === 'mouse') setOpen(false)
+        }}
+        onFocus={(e) => {
+          if (e.target.matches(':focus-visible')) setOpen(isCut())
+        }}
+        onBlur={() => setOpen(false)}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape' && open) {
+            e.stopPropagation()
+            setOpen(false)
+          }
+        }}
+      >
+        <span ref={textRef} className="block min-w-0 truncate">
+          {label}
+        </span>
+      </button>
+      {open && (
+        <div
+          aria-hidden="true"
+          className="absolute bottom-full left-0 z-10 mb-1 max-w-full rounded-lg bg-gray-900 px-3 py-2 text-sm text-white shadow-lg"
+        >
+          {label}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export const ParkingRules: React.FC<ParkingRulesProps> = ({
   gemeente,
   city,
@@ -90,6 +155,11 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
   const paid = parkingRules?.paid
   const restrictions = parkingRules?.restrictions
   const permits = parkingRules?.permits
+
+  const shownSources = data.sources?.slice(0, 2) ?? []
+  const linkedSources = shownSources.filter((source) => source.url)
+  const namedSources = shownSources.filter((source) => !source.url && source.name)
+  const hiddenSourceCount = (data.sources?.length ?? 0) - shownSources.length
 
   const rules = [
     moto?.allowedOnSidewalk === true && (
@@ -251,19 +321,24 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
 
         {/* Modern footer */}
         <div className="border-t border-gray-200 pt-2">
-          <div className="flex flex-wrap items-center justify-between gap-x-4">
-            {/* Last updated */}
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Calendar className="h-3 w-3" />
-              <span>
-                {!data.lastUpdated || data.lastUpdated === ''
-                  ? 'Nog niet bijgewerkt'
-                  : new Date(data.lastUpdated).toLocaleDateString('nl-NL')}
-              </span>
-            </div>
+          <div className="flex flex-wrap items-start justify-between gap-x-4">
+            {/* Omitted when unknown */}
+            {(data.lastUpdated || namedSources.length > 0) && (
+              <div className="min-w-0 grow basis-40 text-sm text-gray-600">
+                {data.lastUpdated && (
+                  <div className="flex min-h-11 items-center gap-2">
+                    <Calendar className="h-3.5 w-3.5 flex-none" aria-hidden="true" />
+                    <span>{new Date(data.lastUpdated).toLocaleDateString('nl-NL')}</span>
+                  </div>
+                )}
+                {namedSources.map((source, index) => (
+                  <SourceName key={index} name={source.name as string} />
+                ))}
+              </div>
+            )}
 
             {/* Contact & Sources in a flex row for mobile, stacked for larger screens */}
-            <div className="flex items-center gap-4">
+            <div className="ml-auto flex flex-shrink-0 items-center gap-4">
               {/* Contact */}
               {'contact' in data && data.contact?.email ? (
                 data.contact.email && data.contact.email !== '#' ? (
@@ -271,55 +346,40 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                     href={`mailto:${data.contact.email}`}
                     className="flex items-center gap-1.5 min-h-11 text-sm text-blue-700 hover:text-blue-800 transition-colors group"
                   >
-                    <Mail className="h-3 w-3 group-hover:scale-110 transition-transform" />
+                    <Mail
+                      className="h-3.5 w-3.5 flex-none group-hover:scale-110 transition-transform"
+                      aria-hidden="true"
+                    />
                     <span>Contact</span>
                   </a>
                 ) : (
                   <span className="flex items-center gap-1.5 text-sm text-gray-600 cursor-not-allowed">
-                    <Mail className="h-3 w-3" />
+                    <Mail className="h-3.5 w-3.5 flex-none" aria-hidden="true" />
                     <span>Contact</span>
                   </span>
                 )
               ) : null}
 
-              {/* Sources */}
-              {data.sources && data.sources.length > 0 && (
-                <div className="flex items-center gap-2">
-                  {data.sources.slice(0, 2).map((source, index) => {
-                    const isDisabled = !source.url
-                    return isDisabled ? (
-                      <span
-                        key={index}
-                        className="flex items-center gap-1 text-sm text-gray-600 cursor-not-allowed py-2"
-                        title={source.name || source.type}
-                      >
-                        <ExternalLink className="h-3 w-3" aria-hidden="true" />
-                        <span className="hidden sm:inline">{source.name || 'Bron'}</span>
-                        <span className="sm:hidden">Bron</span>
-                      </span>
-                    ) : (
-                      <a
-                        key={index}
-                        href={source.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 min-h-11 min-w-11 text-sm text-blue-700 hover:text-blue-800 transition-colors group"
-                        title={source.name || source.type}
-                        aria-label={source.name || 'Bekijk bron'}
-                      >
-                        <ExternalLink
-                          className="h-3 w-3 group-hover:scale-110 transition-transform"
-                          aria-hidden="true"
-                        />
-                        <span className="hidden sm:inline">{source.name || 'Bron'}</span>
-                        <span className="sm:hidden">Bron</span>
-                      </a>
-                    )
-                  })}
-                  {data.sources.length > 2 && (
-                    <span className="text-sm text-gray-600">+{data.sources.length - 2}</span>
-                  )}
-                </div>
+              {/* Linked sources */}
+              {linkedSources.map((source, index) => (
+                <a
+                  key={index}
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 min-h-11 min-w-11 text-sm text-blue-700 hover:text-blue-800 transition-colors group"
+                  title={source.name || source.type}
+                  aria-label={source.name ? `Bron: ${source.name}` : 'Bron'}
+                >
+                  <ExternalLink
+                    className="h-3.5 w-3.5 flex-none group-hover:scale-110 transition-transform"
+                    aria-hidden="true"
+                  />
+                  <span>Bron</span>
+                </a>
+              ))}
+              {hiddenSourceCount > 0 && (
+                <span className="text-sm text-gray-600">+{hiddenSourceCount}</span>
               )}
 
               {/* Report sits with the source */}
