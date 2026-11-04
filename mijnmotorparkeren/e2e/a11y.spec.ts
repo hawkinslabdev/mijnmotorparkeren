@@ -212,6 +212,24 @@ test.describe('Accessibility', () => {
 })
 
 test.describe('Mobile layouts', () => {
+  test('search sheet matches the panel and swipes closed', async ({ page, hasTouch }) => {
+    test.skip(!hasTouch, 'needs touch')
+    await page.goto('/')
+    await waitForMap(page)
+    await page.getByRole('button', { name: 'Locatie zoeken' }).click()
+    await expect(page.getByRole('heading', { name: 'Gemeente of stad zoeken' })).toBeVisible()
+    await expect(page.getByRole('combobox')).toBeFocused()
+
+    const cdp = await page.context().newCDPSession(page)
+    const box = (await page.getByRole('heading', { name: 'Gemeente of stad zoeken' }).boundingBox())!
+    const point = (y: number) => [{ x: box.x + 10, y }]
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: point(box.y) })
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: point(box.y + 60) })
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: point(box.y + 140) })
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
+    await expect(page.getByRole('dialog')).toBeHidden()
+  })
+
   test('legend collapses after first map touch and stays collapsed', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 })
     await page.goto('/')
