@@ -74,6 +74,8 @@ const GemeenteSchema = z.strictObject({
   id: Id,
   name: z.string().min(1),
   province: Province.optional(),
+  alternativeNames: z.array(z.string().min(1)).min(1).optional(),
+  searchOnlyNames: z.array(z.string().min(1)).min(1).optional(),
   coordinates: NlCoordinates,
   zoom: z.number().optional(),
   statcode: z.string().optional(),
@@ -214,6 +216,20 @@ export async function validateData(root: string): Promise<ValidationReport> {
     if (d.parkingRules.paid?.enabled && !d.parkingRules.paid.rates) warn('paid parking without rates', rel)
   }
 
+  // Name or alias to its files
+  const namesInUse = new Map<string, Set<string>>()
+  const trackNames = (
+    rel: string,
+    d: { name: string; alternativeNames?: string[]; searchOnlyNames?: string[] }
+  ) => {
+    for (const name of [d.name, ...(d.alternativeNames ?? []), ...(d.searchOnlyNames ?? [])]) {
+      const key = name.toLowerCase().replace(/^gemeente\s+/, '').trim()
+      if (!namesInUse.has(key)) namesInUse.set(key, new Set())
+      namesInUse.get(key)!.add(rel)
+    }
+  }
+  const statcodes: Array<[string, string]> = []
+
   // Gemeentes and countries
   const gemeenteFiles = await listJson(path.join(root, 'gemeentes'))
   const gemeenteIds = new Set(gemeenteFiles.map((f) => f.slice(0, -'.json'.length)))
@@ -225,6 +241,8 @@ export async function validateData(root: string): Promise<ValidationReport> {
     const d = isCountry ? check(rel, CountrySchema, raw) : check(rel, GemeenteSchema, raw)
     if (!d) continue
     checkCommon(rel, file, d)
+    trackNames(rel, d)
+    if (d.statcode) statcodes.push([rel, d.statcode])
     if (isCountry) continue
     if (!d.province) warn('gemeente without province', rel)
     if (!d.lastUpdated && !d.sources?.length) warn('no researched rules yet', rel)
@@ -244,7 +262,26 @@ export async function validateData(root: string): Promise<ValidationReport> {
     const d = check(rel, CitySchema, raw)
     if (!d) continue
     checkCommon(rel, file, d)
+    trackNames(rel, d)
     if (!gemeenteIds.has(d.parent)) report.errors.push(`${rel}: parent "${d.parent}" has no gemeente file`)
+  }
+
+  // Same place can exist twice
+  for (const [name, files] of namesInUse) {
+    if (files.size > 1) warn('name shared between areas', `${name} (${[...files].join(', ')})`)
+  }
+
+  // Wrong statcode loses the shape
+  if (statcodes.length > 0) {
+    const shapes = (await read('gemeente_2026.geojson')) as
+      | { features?: Array<{ properties?: { statcode?: string } }> }
+      | undefined
+    if (shapes) {
+      const known = new Set(shapes.features?.map((f) => f.properties?.statcode))
+      for (const [rel, code] of statcodes) {
+        if (!known.has(code)) report.errors.push(`${rel}: statcode "${code}" has no map shape`)
+      }
+    }
   }
 
   // POI index must match files.

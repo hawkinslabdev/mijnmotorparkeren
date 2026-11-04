@@ -1,6 +1,7 @@
 {
   "id": "achtkarspelen",
   "name": "Gemeente Achtkarspelen",
+  "province": "Friesland",
   "parkingRules": {
     "motorcycleSpecific": {
       "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."

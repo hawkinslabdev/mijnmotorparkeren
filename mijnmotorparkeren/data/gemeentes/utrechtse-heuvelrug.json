@@ -2,6 +2,7 @@
   "id": "utrechtse-heuvelrug",
   "name": "Gemeente Utrechtse Heuvelrug",
   "province": "Utrecht",
+  "alternativeNames": ["Amerongen", "Doorn", "Driebergen", "Driebergen-Rijsenburg", "Leersum", "Maarn", "Maarsbergen", "Overberg"],
   "coordinates": {
     "lat": 52.045,
     "lng": 5.406

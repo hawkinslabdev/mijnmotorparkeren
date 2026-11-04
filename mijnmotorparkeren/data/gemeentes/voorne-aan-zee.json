@@ -2,6 +2,7 @@
   "id": "voorne-aan-zee",
   "name": "Gemeente Voorne aan Zee",
   "province": "Zuid-Holland",
+  "alternativeNames": ["Brielle", "Hellevoetsluis"],
   "coordinates": {
     "lat": 51.857,
     "lng": 4.12

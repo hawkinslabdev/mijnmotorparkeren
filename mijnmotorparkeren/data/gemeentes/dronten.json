@@ -1,6 +1,7 @@
 {
   "id": "dronten",
   "name": "Gemeente Dronten",
+  "alternativeNames": ["Biddinghuizen", "Swifterbant"],
   "province": "Flevoland",
   "coordinates": {
     "lat": 52.525,

@@ -2,6 +2,7 @@
   "id": "alphen-aan-den-rijn",
   "name": "Gemeente Alphen aan den Rijn",
   "province": "Zuid-Holland",
+  "alternativeNames": ["Aarlanderveen", "Benthuizen", "Boskoop", "Hazerswoude-Dorp", "Hazerswoude-Rijndijk", "Koudekerk aan den Rijn", "Zwammerdam"],
   "coordinates": {
     "lat": 52.1293,
     "lng": 4.6558

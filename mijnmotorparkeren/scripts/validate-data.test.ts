@@ -97,6 +97,37 @@ describe('validateData', () => {
     ])
   })
 
+  it('warns when an alias matches another area', async () => {
+    await write('gemeentes/aalten.json', gemeente({ alternativeNames: ['Bredevoort'] }))
+    await write(
+      'gemeentes/winterswijk.json',
+      gemeente({ id: 'winterswijk', name: 'Gemeente Winterswijk', alternativeNames: ['bredevoort'] })
+    )
+    const report = await validateData(root)
+    expect(report.errors).toEqual([])
+    expect(report.warnings['name shared between areas']).toEqual([
+      'bredevoort (gemeentes/aalten.json, gemeentes/winterswijk.json)',
+    ])
+  })
+
+  it('does not warn when an area repeats its own name', async () => {
+    await write('gemeentes/aalten.json', gemeente({ alternativeNames: ['Aalten'] }))
+    expect((await validateData(root)).warnings['name shared between areas']).toBeUndefined()
+  })
+
+  it('rejects a statcode without a map shape', async () => {
+    await write('gemeente_2026.geojson', {
+      features: [{ properties: { statcode: 'GM0001' } }],
+    })
+    await write('gemeentes/aalten.json', gemeente({ statcode: 'GM9999' }))
+    expect((await validateData(root)).errors).toEqual([
+      'gemeentes/aalten.json: statcode "GM9999" has no map shape',
+    ])
+
+    await write('gemeentes/aalten.json', gemeente({ statcode: 'GM0001' }))
+    expect((await validateData(root)).errors).toEqual([])
+  })
+
   it('rejects a POI index that disagrees with the POI files', async () => {
     await write('poi/index.json', { pois: [{ municipalityId: 'aalten' }] })
     expect((await validateData(root)).errors).toEqual([

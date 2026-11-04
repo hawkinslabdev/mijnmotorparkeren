@@ -2,6 +2,7 @@
   "id": "noordoostpolder",
   "name": "Gemeente Noordoostpolder",
   "province": "Flevoland",
+  "alternativeNames": ["Emmeloord"],
   "coordinates": {
     "lat": 52.711,
     "lng": 5.779

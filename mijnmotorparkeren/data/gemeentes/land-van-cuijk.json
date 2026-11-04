@@ -2,6 +2,7 @@
   "id": "land-van-cuijk",
   "name": "Gemeente Land van Cuijk",
   "province": "Noord-Brabant",
+  "alternativeNames": ["Cuijk", "Boxmeer", "Grave"],
   "coordinates": {
     "lat": 51.715,
     "lng": 5.9

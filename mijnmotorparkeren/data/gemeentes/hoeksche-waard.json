@@ -2,6 +2,7 @@
   "id": "hoeksche-waard",
   "name": "Gemeente Hoeksche Waard",
   "province": "Zuid-Holland",
+  "alternativeNames": ["Oud-Beijerland"],
   "coordinates": {
     "lat": 51.803,
     "lng": 4.484

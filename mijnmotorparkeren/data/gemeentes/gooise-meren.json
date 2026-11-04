@@ -2,6 +2,7 @@
   "id": "gooise-meren",
   "name": "Gemeente Gooise Meren",
   "province": "Noord-Holland",
+  "alternativeNames": ["Bussum", "Naarden", "Muiden", "Muiderberg"],
   "coordinates": {
     "lat": 52.2897,
     "lng": 5.1559

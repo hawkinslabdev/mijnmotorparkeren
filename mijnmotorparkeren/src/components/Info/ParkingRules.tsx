@@ -26,6 +26,7 @@ interface ParkingRulesProps {
   onClose?: () => void
   pois?: POI[]
   onPOISelect?: (poi: POI) => void
+  placeName?: string
 }
 
 const RULE_TONES = {
@@ -127,6 +128,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
   onClose,
   pois = [],
   onPOISelect,
+  placeName,
 }) => {
   // Use city data if available, otherwise use gemeente data
   const data = city || gemeente
@@ -191,24 +193,30 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
         </ul>
       </RuleRow>
     ),
-    paid?.enabled && paid.rates && (
+    paid?.enabled && (
       <RuleRow key="paid" icon={Euro} tone="caution" title="Betaald parkeren">
-        <dl className="space-y-1 tabular-nums">
-          <div className="flex justify-between gap-4">
-            <dt>Per uur:</dt>
-            <dd className="font-medium text-gray-900">€{paid.rates.hourly.toFixed(2)}</dd>
-          </div>
-          {paid.rates.daily && (
-            <div className="flex justify-between gap-4">
-              <dt>Per dag:</dt>
-              <dd className="font-medium text-gray-900">€{paid.rates.daily.toFixed(2)}</dd>
-            </div>
-          )}
-        </dl>
-        {paid.areas && paid.areas.length > 0 && (
-          <p className="mt-2">
-            <span className="font-medium text-gray-900">Gebieden:</span> {paid.areas.join(', ')}
-          </p>
+        {(paid.rates || paid.areas?.length) && (
+          <>
+            {paid.rates && (
+              <dl className="space-y-1 tabular-nums">
+                <div className="flex justify-between gap-4">
+                  <dt>Per uur:</dt>
+                  <dd className="font-medium text-gray-900">€{paid.rates.hourly.toFixed(2)}</dd>
+                </div>
+                {paid.rates.daily && (
+                  <div className="flex justify-between gap-4">
+                    <dt>Per dag:</dt>
+                    <dd className="font-medium text-gray-900">€{paid.rates.daily.toFixed(2)}</dd>
+                  </div>
+                )}
+              </dl>
+            )}
+            {paid.areas && paid.areas.length > 0 && (
+              <p className={clsx(paid.rates && 'mt-2')}>
+                <span className="font-medium text-gray-900">Gebieden:</span> {paid.areas.join(', ')}
+              </p>
+            )}
+          </>
         )}
       </RuleRow>
     ),
@@ -255,7 +263,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
           {onClose && (
             <button
               onClick={onClose}
-              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+              className="-mr-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
               aria-label="Sluiten"
             >
               <X className="h-5 w-5 text-gray-600" aria-hidden="true" />
@@ -265,6 +273,8 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
 
         <div className="order-first min-w-0 grow basis-48">
           <h2 className="text-xl font-bold text-gray-900 break-words">{data.name}</h2>
+
+          {placeName && <p className="text-sm text-gray-600">Geldt ook voor {placeName}</p>}
 
           {/* City indicator if applicable */}
           {isCity && city && (
@@ -389,9 +399,9 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                 rel="noopener noreferrer"
                 title="Probleem melden"
                 aria-label="Probleem melden"
-                className="-mr-3.5 flex min-h-11 min-w-11 items-center justify-center rounded-full text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+                className="-mr-3 flex min-h-11 min-w-11 items-center justify-center rounded-full text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
               >
-                <Flag className="h-4 w-4" aria-hidden="true" />
+                <Flag className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>
           </div>

@@ -2,6 +2,7 @@
   "id": "krimpenerwaard",
   "name": "Gemeente Krimpenerwaard",
   "province": "Zuid-Holland",
+  "alternativeNames": ["Schoonhoven"],
   "coordinates": {
     "lat": 51.963,
     "lng": 4.755

@@ -2,6 +2,7 @@
   "id": "beekdaelen",
   "name": "Gemeente Beekdaelen",
   "province": "Limburg",
+  "alternativeNames": ["Schinnen", "Nuth"],
   "coordinates": {
     "lat": 50.94,
     "lng": 5.95

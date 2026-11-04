@@ -2,6 +2,7 @@
   "id": "nijkerk",
   "name": "Gemeente Nijkerk",
   "province": "Gelderland",
+  "alternativeNames": ["Hoevelaken"],
   "coordinates": {
     "lat": 52.211,
     "lng": 5.507

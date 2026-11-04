@@ -1,6 +1,7 @@
 {
   "id": "hof-van-twente",
   "name": "Gemeente Hof van Twente",
+  "alternativeNames": ["Rijssen", "Goor", "Markelo", "Diepenheim", "Hengevelde", "Bentelo", "Delden"],
   "province": "Overijssel",
   "coordinates": {
     "lat": 52.242,

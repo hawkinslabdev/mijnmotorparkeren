@@ -2,6 +2,30 @@
   "id": "rotterdam",
   "name": "Gemeente Rotterdam",
   "province": "Zuid-Holland",
+  "alternativeNames": [
+    "Hoek van Holland",
+    "Hoogvliet",
+    "Pernis",
+    "Rozenburg"
+  ],
+  "searchOnlyNames": [
+    "Blijdorp",
+    "Charlois",
+    "Crooswijk",
+    "Delfshaven",
+    "Feijenoord",
+    "Hillegersberg",
+    "IJsselmonde",
+    "Katendrecht",
+    "Kop van Zuid",
+    "Kralingen",
+    "Nesselande",
+    "Ommoord",
+    "Overschie",
+    "Prins Alexander",
+    "Schiebroek",
+    "Zevenkamp"
+  ],
   "coordinates": {
     "lat": 51.9225,
     "lng": 4.47917

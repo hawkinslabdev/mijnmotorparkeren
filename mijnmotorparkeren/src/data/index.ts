@@ -22,7 +22,15 @@ export function getIndexUrl() {
 /** Lite gemeente shape returned from the index — sufficient for map rendering. */
 export interface GemeenteLite extends Pick<
   Gemeente,
-  'id' | 'name' | 'province' | 'coordinates' | 'zoom' | 'statcode' | 'parkingStatus'
+  | 'id'
+  | 'name'
+  | 'province'
+  | 'alternativeNames'
+  | 'searchOnlyNames'
+  | 'coordinates'
+  | 'zoom'
+  | 'statcode'
+  | 'parkingStatus'
 > {
   parkingStatus: ParkingStatusValue
 }

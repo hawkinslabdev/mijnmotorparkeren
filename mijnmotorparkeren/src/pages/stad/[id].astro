@@ -4,6 +4,7 @@ import path from 'node:path'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import App from '../../App'
 import { isThinCity } from '../../utils/indexable.js'
+import { findGemeenteByAlias } from '../../utils/gemeenteAlias'
 
 const { id } = Astro.params as { id: string }
 
@@ -22,6 +23,11 @@ try {
   city = JSON.parse(content)
 } catch {
   notFound = true
+}
+
+if (notFound) {
+  const place = await findGemeenteByAlias(id)
+  if (place) return Astro.redirect(`/gemeente/${place.hasLanding ? id : place.gemeente.id}`, 301)
 }
 
 const cityName = city?.name ?? id.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())

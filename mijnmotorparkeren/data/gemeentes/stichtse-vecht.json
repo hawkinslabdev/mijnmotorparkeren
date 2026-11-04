@@ -2,6 +2,7 @@
   "id": "stichtse-vecht",
   "name": "Gemeente Stichtse Vecht",
   "province": "Utrecht",
+  "alternativeNames": ["Maarssen", "Breukelen", "Maarssenbroek", "Kockengen", "Nieuwersluis", "Loenen aan de Vecht", "Vreeland"],
   "coordinates": {
     "lat": 52.206,
     "lng": 5.032

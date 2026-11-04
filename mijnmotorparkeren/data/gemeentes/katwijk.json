@@ -2,6 +2,7 @@
   "id": "katwijk",
   "name": "Gemeente Katwijk",
   "province": "Zuid-Holland",
+  "alternativeNames": ["Katwijk aan Zee"],
   "coordinates": {
     "lat": 52.201,
     "lng": 4.419

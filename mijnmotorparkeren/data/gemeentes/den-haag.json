@@ -1,10 +1,38 @@
 {
   "id": "den-haag",
   "name": "Gemeente Den Haag",
+  "province": "Zuid-Holland",
+  "alternativeNames": [
+    "Scheveningen"
+  ],
+  "searchOnlyNames": [
+    "'s-Gravenhage",
+    "Archipelbuurt",
+    "Benoordenhout",
+    "Bezuidenhout",
+    "Duindorp",
+    "Escamp",
+    "Haagse Hout",
+    "Kijkduin",
+    "Laak",
+    "Leidschenveen",
+    "Loosduinen",
+    "Mariahoeve",
+    "Moerwijk",
+    "Schilderswijk",
+    "Segbroek",
+    "Statenkwartier",
+    "Transvaal",
+    "Vogelwijk",
+    "Wateringse Veld",
+    "Ypenburg",
+    "Zeeheldenkwartier"
+  ],
   "coordinates": {
-    "lat": 52.078,
-    "lng": 4.288
+    "lat": 52.0705,
+    "lng": 4.3007
   },
+  "statcode": "GM0518",
   "parkingRules": {
     "free": true,
     "permits": {

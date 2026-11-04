@@ -1,6 +1,7 @@
 {
   "id": "eindhoven",
   "name": "Gemeente Eindhoven",
+  "province": "Noord-Brabant",
   "coordinates": {
     "lat": 51.441,
     "lng": 5.469

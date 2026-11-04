@@ -2,6 +2,7 @@
   "id": "de-ronde-venen",
   "name": "Gemeente De Ronde Venen",
   "province": "Utrecht",
+  "alternativeNames": ["Amstelhoek", "Baambrugge", "De Hoef", "Mijdrecht", "Vinkeveen", "Waverveen", "Wilnis"],
   "coordinates": {
     "lat": 52.236,
     "lng": 4.936

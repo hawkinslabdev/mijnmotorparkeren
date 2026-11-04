@@ -1,6 +1,7 @@
 {
   "id": "tilburg",
   "name": "Gemeente Tilburg",
+  "province": "Noord-Brabant",
   "coordinates": {
     "lat": 51.555,
     "lng": 5.091

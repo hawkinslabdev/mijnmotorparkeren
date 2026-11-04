@@ -2,6 +2,7 @@
   "id": "zuidplas",
   "name": "Gemeente Zuidplas",
   "province": "Zuid-Holland",
+  "alternativeNames": ["Nieuwerkerk aan den IJssel"],
   "coordinates": {
     "lat": 51.995,
     "lng": 4.61

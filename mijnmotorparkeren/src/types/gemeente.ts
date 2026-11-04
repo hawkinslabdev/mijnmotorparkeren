@@ -64,6 +64,8 @@ export interface Gemeente {
   id: string
   type?: 'gemeente' | 'country'
   name: string
+  alternativeNames?: string[]
+  searchOnlyNames?: string[]
   province: string
   coordinates: Coordinates
   parkingRules?: ParkingRules // optional — not present in lite index entries

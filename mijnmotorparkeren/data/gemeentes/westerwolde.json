@@ -2,6 +2,7 @@
   "id": "westerwolde",
   "name": "Gemeente Westerwolde",
   "province": "Groningen",
+  "alternativeNames": ["Ter Apel"],
   "coordinates": {
     "lat": 53.023,
     "lng": 7.14

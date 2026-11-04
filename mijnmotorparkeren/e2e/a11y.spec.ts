@@ -188,6 +188,7 @@ test.describe('Accessibility', () => {
     const box = await report.boundingBox()
     const close = await page.getByRole('button', { name: 'Sluiten' }).boundingBox()
     expect(box!.y).toBeGreaterThan(close!.y + close!.height)
+    expect(box!.x).toBe(close!.x)
     expect(box!.width).toBeGreaterThanOrEqual(44)
     expect(box!.height).toBeGreaterThanOrEqual(44)
   })
@@ -258,6 +259,103 @@ test.describe('Accessibility', () => {
     await expect(bubble).toHaveCount(0)
   })
 
+  test('paid parking shows without rates', async ({ page }) => {
+    await page.route(/\/data\/gemeentes\/amsterdam\.json/, (r) =>
+      r.fulfill({
+        json: {
+          id: 'amsterdam',
+          name: 'Gemeente Amsterdam',
+          province: 'Noord-Holland',
+          coordinates: { lat: 52.37, lng: 4.89 },
+          parkingRules: {
+            paid: { enabled: true, areas: ['Centrum'] },
+            motorcycleSpecific: { allowedOnSidewalk: false, notes: 'Test' },
+          },
+        },
+      })
+    )
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    await expect(page.getByText('Betaald parkeren')).toBeVisible()
+    await expect(page.getByText('Centrum')).toBeVisible()
+    await expect(page.getByText('Per uur:')).toHaveCount(0)
+  })
+
+  test('places within a gemeente find that gemeente', async ({ page }) => {
+    await page.route(/\/data\/index\.json/, (r) =>
+      r.fulfill({
+        json: {
+          gemeentes: [
+            {
+              id: 'amsterdam',
+              name: 'Gemeente Amsterdam',
+              province: 'Noord-Holland',
+              alternativeNames: ['Testplaats'],
+              coordinates: { lat: 52.37, lng: 4.89 },
+              parkingStatus: 'sidewalk_allowed',
+            },
+          ],
+        },
+      })
+    )
+    await page.goto('/')
+    await waitForMap(page)
+    await search(page, 'Testplaats')
+    await expect(page.getByRole('option', { name: /Gemeente Amsterdam.*ook Testplaats/ })).toBeVisible()
+    await page.getByRole('combobox').press('Enter')
+    await expect(page).toHaveURL(/\/gemeente\/amsterdam/)
+    await expect(page.getByText('Geldt ook voor Testplaats')).toBeVisible()
+  })
+
+  test('share button confirms the result, then resets', async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'canShare', { value: () => false })
+      Object.defineProperty(navigator, 'clipboard', {
+        value: { writeText: () => Promise.resolve() },
+      })
+    })
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    const panel = page.getByRole('region', { name: /Parkeerregels:/ })
+    await panel.getByRole('button', { name: 'Deel deze locatie' }).click()
+    const done = panel.locator('[data-share-state="done"]')
+    await expect(done).toHaveText('Link gekopieerd')
+    await expect(page.getByRole('status').filter({ hasText: 'Link gekopieerd' })).toBeAttached()
+    await expect(panel.getByRole('button', { name: 'Deel deze locatie' })).toBeVisible({
+      timeout: 4000,
+    })
+  })
+
+  test('closing the share sheet stays quiet', async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'canShare', { value: () => true })
+      Object.defineProperty(navigator, 'share', {
+        value: () => Promise.reject(new DOMException('cancelled', 'AbortError')),
+      })
+    })
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    const panel = page.getByRole('region', { name: /Parkeerregels:/ })
+    await panel.getByRole('button', { name: 'Deel deze locatie' }).click()
+    await expect(panel.locator('[data-share-state="idle"]')).toBeVisible()
+    await expect(page.getByText('Delen is niet gelukt')).toHaveCount(0)
+  })
+
+  test('failed index load tells the rider', async ({ page }) => {
+    await page.route(/\/data\/index\.json/, (r) => r.abort())
+    await page.goto('/')
+    await waitForMap(page)
+    await expect(page.getByText(/Kan parkeerregels niet laden/).first()).toBeVisible()
+  })
+
+  test('offline shows the notice', async ({ page, context }) => {
+    await page.goto('/')
+    await waitForMap(page)
+    await context.setOffline(true)
+    await expect(page.getByText(/Gelezen regels zijn mogelijk verouderd/).first()).toBeVisible()
+    await context.setOffline(false)
+  })
+
   test('denied location shows a message', async ({ page }) => {
     await page.addInitScript(() => {
       navigator.geolocation.getCurrentPosition = (_ok, fail) =>
@@ -274,6 +372,78 @@ test.describe('Accessibility', () => {
     await page.goto('/')
     await waitForMap(page)
     await expect(page.getByRole('region', { name: 'Legenda' }).getByText('Geen informatie')).toBeVisible()
+  })
+})
+
+test.describe('Alias URLs', () => {
+  for (const [from, to] of [
+    ['/gemeente/s-gravenhage', '/gemeente/den-haag'],
+    ['/gemeente/ypenburg', '/gemeente/den-haag'],
+    ['/gemeente/edam', '/gemeente/edam-volendam'],
+    ['/stad/hoofddorp', '/gemeente/hoofddorp'],
+    ['/stad/ijmuiden', '/gemeente/velsen'],
+  ]) {
+    test(`${from} redirects from the data`, async ({ request }) => {
+      const res = await request.get(from, { maxRedirects: 0 })
+      expect(res.status()).toBe(301)
+      expect(res.headers().location).toBe(to)
+    })
+  }
+
+  test('place in a gemeente with rules gets its own page', async ({ request }) => {
+    const res = await request.get('/gemeente/hoofddorp', { maxRedirects: 0 })
+    expect(res.status()).toBe(200)
+    const html = await res.text()
+    expect(html).toContain('Motor parkeren in Hoofddorp')
+    expect(html).toContain('href="https://mijnmotorparkeren.nl/gemeente/hoofddorp"')
+    expect(html).not.toContain('noindex')
+    expect(html).toContain('valt onder')
+  })
+
+  test('place page says it also applies, until you move on', async ({ page }) => {
+    const haarlemmermeer = {
+      id: 'haarlemmermeer',
+      name: 'Gemeente Haarlemmermeer',
+      province: 'Noord-Holland',
+      coordinates: { lat: 52.3, lng: 4.69 },
+    }
+    await page.route(/\/data\/index\.json/, (r) =>
+      r.fulfill({ json: { gemeentes: [{ ...haarlemmermeer, parkingStatus: 'no_info' }] } })
+    )
+    await page.route(/\/data\/gemeentes\/haarlemmermeer\.json/, (r) =>
+      r.fulfill({
+        json: {
+          ...haarlemmermeer,
+          parkingRules: { motorcycleSpecific: { allowedOnSidewalk: true, notes: 'Test' } },
+        },
+      })
+    )
+    await page.goto('/gemeente/hoofddorp')
+    await waitForMap(page)
+    const line = page.getByText('Geldt ook voor Hoofddorp')
+    await expect(page.getByRole('heading', { name: 'Gemeente Haarlemmermeer', exact: true })).toBeVisible()
+    await expect(line).toBeVisible()
+
+    await page.getByRole('button', { name: 'Sluiten' }).click()
+    await expect(line).toHaveCount(0)
+    await page.getByRole('button', { name: 'Locatie zoeken' }).click()
+    await page.getByRole('combobox').fill('Haarlemmermeer')
+    await expect(page.getByRole('option').first()).toBeVisible()
+    await page.getByRole('combobox').press('Enter')
+    await expect(page.getByRole('heading', { name: 'Gemeente Haarlemmermeer', exact: true })).toBeVisible()
+    await expect(line).toHaveCount(0)
+  })
+
+  for (const url of ['/gemeente/den-haag', '/gemeente/de-ronde-venen', '/gemeente/hoofddorp', '/gemeente/aalten']) {
+    test(`${url} never says gemeente twice`, async ({ request }) => {
+      const text = (await (await request.get(url)).text()).replace(/<[^>]*>/g, '')
+      expect(text).not.toMatch(/gemeente\s+gemeente/i)
+    })
+  }
+
+  test('unknown slug does not redirect', async ({ request }) => {
+    const res = await request.get('/gemeente/bestaat-niet', { maxRedirects: 0 })
+    expect(res.status()).not.toBe(301)
   })
 })
 

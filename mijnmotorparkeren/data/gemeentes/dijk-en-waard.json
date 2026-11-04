@@ -2,6 +2,7 @@
   "id": "dijk-en-waard",
   "name": "Gemeente Dijk en Waard",
   "province": "Noord-Holland",
+  "alternativeNames": ["Heerhugowaard", "Langedijk"],
   "coordinates": {
     "lat": 52.684,
     "lng": 4.758

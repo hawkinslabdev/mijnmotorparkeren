@@ -2,6 +2,7 @@
   "id": "haarlemmermeer",
   "name": "Gemeente Haarlemmermeer",
   "province": "Noord-Holland",
+  "alternativeNames": ["Hoofddorp", "Nieuw-Vennep", "Badhoevedorp"],
   "coordinates": {
     "lat": 52.3087,
     "lng": 4.6903

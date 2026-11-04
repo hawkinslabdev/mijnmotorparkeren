@@ -1,6 +1,7 @@
 {
   "id": "venlo",
   "name": "Gemeente Venlo",
+  "province": "Limburg",
   "coordinates": {
     "lat": 51.37,
     "lng": 6.172

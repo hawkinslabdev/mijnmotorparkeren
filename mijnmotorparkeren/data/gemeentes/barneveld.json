@@ -2,6 +2,7 @@
   "id": "barneveld",
   "name": "Gemeente Barneveld",
   "province": "Gelderland",
+  "alternativeNames": ["Voorthuizen"],
   "coordinates": {
     "lat": 52.176,
     "lng": 5.655

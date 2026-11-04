@@ -33,12 +33,16 @@ L.Marker.prototype.options.icon = DefaultIcon
 interface AppProps {
   initialGemeenteId?: string
   initialCityId?: string
+  initialPlaceName?: string
 }
 
-const LOAD_ERROR = 'Parkeerregels laden is niet gelukt. Controleer je verbinding.'
-const OFFLINE_MESSAGE = 'Je bent offline. Regels kunnen verouderd zijn.'
+const MESSAGES = {
+  LOAD_ERROR: 'Kan parkeerregels niet laden. Controleer je internetverbinding.',
+  OFFLINE: 'Je bent offline. Gelezen regels zijn mogelijk verouderd.',
+  RETRY: 'Probeer het opnieuw',
+}
 
-const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) => {
+const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, initialPlaceName }) => {
   const [selectedGemeente, setSelectedGemeente] = useState<Gemeente | null>(null)
   const [selectedCity, setSelectedCity] = useState<City | null>(null)
   const [selectedPOI, setSelectedPOI] = useState<POI | null>(null)
@@ -46,6 +50,8 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   const [detailsLoading, setDetailsLoading] = useState(false)
   const [swipeOffset, setSwipeOffset] = useState(0)
   const [panelPOIs, setPanelPOIs] = useState<POI[]>([])
+  // Only while on the place URL
+  const [placeName, setPlaceName] = useState(initialPlaceName)
   const [isOffline, setIsOffline] = useState(
     typeof navigator !== 'undefined' && navigator.onLine === false
   )
@@ -64,7 +70,11 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
   const { showToast } = useToast()
   const { setSelectedGemeente: setSelectedGemeenteId, focusOnGemeente, resetView } = useMapStore()
-  const { gemeentes, loading, loadFullGemeente } = useGemeenteData()
+  const { gemeentes, loading, error: indexError, loadFullGemeente } = useGemeenteData()
+
+  useEffect(() => {
+    if (indexError) showToast(MESSAGES.LOAD_ERROR, 6000)
+  }, [indexError, showToast])
 
   useEffect(() => {
     if (initialGemeenteId || initialCityId) return
@@ -97,7 +107,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     loadFullGemeente(initialGemeenteId)
       .then((full) => {
         if (full) setSelectedGemeente(full)
-        else showToast(LOAD_ERROR, 6000)
+        else showToast(MESSAGES.LOAD_ERROR, 6000)
       })
       .finally(() => setDetailsLoading(false))
   }, [
@@ -117,9 +127,12 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
         setSelectedCity(city)
         if (city.coordinates) focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
       })
-      .catch(console.error)
+      .catch((error) => {
+        console.error(error)
+        showToast(MESSAGES.LOAD_ERROR, 6000)
+      })
       .finally(() => setDetailsLoading(false))
-  }, [initialCityId, focusOnGemeente])
+  }, [initialCityId, focusOnGemeente, showToast])
 
   useKeyboardShortcuts([
     { key: 'k', ctrlKey: true, callback: () => setSearchOpen(true) },
@@ -137,6 +150,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   const handleGemeenteSelect = useCallback(
     async (lite: Gemeente | null) => {
       setSelectedPOI(null)
+      setPlaceName(undefined)
       if (!lite) {
         setSelectedGemeente(null)
         setSelectedCity(null)
@@ -156,7 +170,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
       setDetailsLoading(true)
       const full = await loadFullGemeente(lite.id)
-      if (!full) showToast(LOAD_ERROR, 6000)
+      if (!full) showToast(MESSAGES.LOAD_ERROR, 6000)
       setSelectedGemeente(full ?? lite)
       setDetailsLoading(false)
     },
@@ -166,6 +180,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   const handleCitySelect = useCallback(
     async (city: City | null) => {
       setSelectedPOI(null)
+      setPlaceName(undefined)
       if (!city) {
         setSelectedCity(null)
         setSelectedGemeente(null)
@@ -182,18 +197,20 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   )
 
   const handleSearchSelect = useCallback(
-    async (item: SearchItem) => {
+    async (item: SearchItem, place?: string) => {
       setSearchOpen(false)
       if (!isCityItem(item)) {
         handleGemeenteSelect(item)
+        setPlaceName(place)
         return
       }
       setSelectedPOI(null)
       setDetailsLoading(true)
       try {
         await handleCitySelect(await fetchFullCity(item.id))
+        setPlaceName(place)
       } catch {
-        showToast(LOAD_ERROR, 6000)
+        showToast(MESSAGES.LOAD_ERROR, 6000)
       } finally {
         setDetailsLoading(false)
       }
@@ -316,6 +333,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
   // Closing keeps the current view
   const handleDetailsClose = useCallback(() => {
+    setPlaceName(undefined)
     setSelectedGemeente(null)
     setSelectedCity(null)
     setSelectedPOI(null)
@@ -350,8 +368,14 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   }, [handleDetailsClose])
 
   const [shareLoading, setShareLoading] = useState(false)
+  const [shareResult, setShareResult] = useState<string | null>(null)
+  const shareResetTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const handleShare = async () => {
     setShareLoading(true)
+    clearTimeout(shareResetTimer.current)
+    setShareResult(null)
+    // Let the arrow finish lifting
+    const lift = new Promise((resolve) => setTimeout(resolve, 240))
     try {
       const shareUrl = window.location.href
       let title = 'MijnMotorParkeren.nl'
@@ -369,12 +393,20 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       const shareData = { title, text, url: shareUrl }
       if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
         await navigator.share(shareData)
+        await lift
+        setShareResult('Gedeeld')
       } else {
         await navigator.clipboard.writeText(shareUrl)
-        showToast('Link gekopieerd!')
+        await lift
+        setShareResult('Link gekopieerd')
       }
+      shareResetTimer.current = setTimeout(() => setShareResult(null), 1800)
     } catch (error) {
-      console.error('Error sharing:', error)
+      // Closing the share sheet isn't an error
+      if (!(error instanceof DOMException && error.name === 'AbortError')) {
+        console.error('Error sharing:', error)
+        showToast(`Delen is niet gelukt. ${MESSAGES.RETRY}.`, 6000)
+      }
     } finally {
       setShareLoading(false)
     }
@@ -454,7 +486,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
       <main className="flex-1 relative overflow-hidden">
         <div role="status" className="sr-only">
-          {[detailsLoading && 'Parkeerregels laden', isOffline && OFFLINE_MESSAGE]
+          {[detailsLoading && 'Parkeerregels laden', isOffline && MESSAGES.OFFLINE, shareResult]
             .filter(Boolean)
             .join('. ')}
         </div>
@@ -481,7 +513,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
         {isOffline && (
           <div className="absolute top-3 left-3 z-[1000] max-w-[calc(100%-5.5rem)] rounded-lg bg-gray-900 px-3 py-2 text-sm text-white shadow-lg">
-            {OFFLINE_MESSAGE}
+            {MESSAGES.OFFLINE}
           </div>
         )}
 
@@ -525,6 +557,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
                 city={selectedCity}
                 onClose={handleDetailsClose}
                 pois={panelPOIs}
+                placeName={placeName}
                 onPOISelect={handlePOISelect}
               />
             )}
@@ -536,30 +569,36 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
                   type="button"
                   onClick={handleShare}
                   disabled={shareLoading}
-                  className="flex w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-lg items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  data-share-state={shareResult ? 'done' : shareLoading ? 'sharing' : 'idle'}
+                  className={`flex w-full text-white font-semibold py-3 px-4 rounded-lg shadow-lg items-center justify-center gap-2 transition-[background-color,scale] duration-200 ease-out active:scale-[0.98] motion-reduce:active:scale-100 disabled:cursor-wait ${
+                    shareResult ? 'bg-green-700' : 'bg-blue-600 hover:bg-blue-700'
+                  }`}
                 >
-                  {shareLoading ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>Delen...</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="overflow-visible"
+                    aria-hidden="true"
+                  >
+                    {shareResult ? (
+                      <path className="share-check" pathLength={1} d="M5 13l4 4L19 7" />
+                    ) : (
+                      <>
                         <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-                        <polyline points="16,6 12,2 8,6" />
-                        <line x1="12" y1="2" x2="12" y2="15" />
-                      </svg>
-                      <span>Deel deze locatie</span>
-                    </>
-                  )}
+                        <g className="share-arrow" data-flying={shareLoading}>
+                          <polyline points="16,6 12,2 8,6" />
+                          <line x1="12" y1="2" x2="12" y2="15" />
+                        </g>
+                      </>
+                    )}
+                  </svg>
+                  <span>{shareResult ?? 'Deel deze locatie'}</span>
                 </button>
               </div>
             )}

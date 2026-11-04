@@ -88,6 +88,9 @@ export function getParkingStatus(entity: Gemeente | City): {
   }
 }
 
+// Names often start with Gemeente
+export const withoutGemeentePrefix = (name: string) => name.replace(/^gemeente\s+/i, '')
+
 // Patterns: status readable without colour
 export const BOUNDARY_STYLES = {
   sidewalk_allowed: {
@@ -213,7 +216,7 @@ export function getGemeenteDisplayName(entity: Gemeente | City): string {
   }
 
   // It's a gemeente
-  return entity.name.startsWith('Gemeente ') ? entity.name : `Gemeente ${entity.name}`
+  return `Gemeente ${withoutGemeentePrefix(entity.name)}`
 }
 
 /**

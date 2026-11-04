@@ -1,6 +1,7 @@
 {
   "id": "maastricht",
   "name": "Gemeente Maastricht",
+  "province": "Limburg",
   "coordinates": {
     "lat": 50.851,
     "lng": 5.69

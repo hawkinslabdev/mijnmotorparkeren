@@ -1,6 +1,8 @@
 {
   "id": "sittard-geleen",
   "name": "Gemeente Sittard-Geleen",
+  "province": "Limburg",
+  "alternativeNames": ["Sittard", "Geleen"],
   "coordinates": {
     "lat": 51.009,
     "lng": 5.868

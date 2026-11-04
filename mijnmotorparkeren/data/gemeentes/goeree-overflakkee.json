@@ -2,6 +2,7 @@
   "id": "goeree-overflakkee",
   "name": "Gemeente Goeree-Overflakkee",
   "province": "Zuid-Holland",
+  "alternativeNames": ["Middelharnis"],
   "coordinates": {
     "lat": 51.765,
     "lng": 4.09

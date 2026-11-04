@@ -1,6 +1,7 @@
 {
   "id": "breda",
   "name": "Gemeente Breda",
+  "province": "Noord-Brabant",
   "coordinates": {
     "lat": 51.571,
     "lng": 4.768

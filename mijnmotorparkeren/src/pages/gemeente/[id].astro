@@ -4,6 +4,8 @@ import path from 'node:path'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import App from '../../App'
 import { isThinGemeente } from '../../utils/indexable.js'
+import { findGemeenteByAlias } from '../../utils/gemeenteAlias'
+import { withoutGemeentePrefix } from '../../utils/gemeenteUtils'
 
 const { id } = Astro.params as { id: string }
 
@@ -14,6 +16,7 @@ let gemeente: {
   [key: string]: unknown
 } | null = null
 let notFound = false
+let placeName: string | undefined
 
 try {
   const filePath = path.join(process.cwd(), 'data', 'gemeentes', `${id}.json`)
@@ -28,32 +31,44 @@ try {
   notFound = true
 }
 
+if (notFound) {
+  const place = await findGemeenteByAlias(id)
+  if (place && !place.hasLanding) return Astro.redirect(`/gemeente/${place.gemeente.id}`, 301)
+  if (place) {
+    gemeente = place.gemeente
+    placeName = place.name
+    notFound = false
+  }
+}
+
 const gemeenteName =
   gemeente?.name ?? id.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())
+const areaName = placeName ?? gemeenteName
+const shortName = withoutGemeentePrefix(gemeenteName)
 const canonical = `https://mijnmotorparkeren.nl/gemeente/${id}`
 
 // Stub data: JSON exists but no actual parking rules researched yet
 const isThinData = gemeente !== null && isThinGemeente(gemeente)
 
 const title = gemeente
-  ? `Motor parkeren in ${gemeenteName} | Parkeerregels`
+  ? `Motor parkeren in ${areaName} | Parkeerregels`
   : `Gemeente niet gevonden | MijnMotorParkeren.nl`
 
 const description = gemeente
-  ? `Mag de motor op de stoep in ${gemeenteName}? Bekijk de actuele parkeerregels voor ${gemeenteName} op MijnMotorParkeren.nl.`
-  : `De gemeente ${gemeenteName} werd niet gevonden. Bekijk andere gemeenten op MijnMotorParkeren.nl.`
+  ? `Mag de motor op de stoep in ${areaName}? Bekijk de actuele parkeerregels voor ${gemeenteName} op MijnMotorParkeren.nl.`
+  : `De gemeente ${shortName} werd niet gevonden. Bekijk andere gemeenten op MijnMotorParkeren.nl.`
 
 const schemaMarkup = gemeente
   ? {
       '@context': 'https://schema.org',
       '@type': 'Place',
-      name: gemeenteName,
-      description: `Motor parkeerregels voor gemeente ${gemeenteName}`,
+      name: areaName,
+      description: `Motor parkeerregels voor ${areaName}`,
       url: canonical,
       address: {
         '@type': 'PostalAddress',
         addressCountry: 'NL',
-        addressLocality: gemeenteName,
+        addressLocality: areaName,
       },
       ...(gemeente.coordinates && {
         geo: {
@@ -102,7 +117,7 @@ if (gemeente) {
       })
     )
     childCities = parsed
-      .filter((c) => c && c.parent === id && c.id && c.name)
+      .filter((c) => c && c.parent === gemeente?.id && c.id && c.name)
       .map((c) => ({ id: c.id as string, name: c.name as string }))
       .sort((a, b) => a.name.localeCompare(b.name))
   } catch {
@@ -117,10 +132,10 @@ if (gemeente) {
   canonical={canonical}
   noindex={notFound || isThinData}
   image="https://mijnmotorparkeren.nl/android-chrome-512x512.png"
-  keywords={`motor, parkeren, motor op de stoep, mijn motor parkeren, motor parkeren, ${gemeenteName}`}
+  keywords={`motor, parkeren, motor op de stoep, mijn motor parkeren, motor parkeren, ${areaName}`}
   schemaMarkup={schemaMarkup}
 >
-  <App client:only="react" initialGemeenteId={id} />
+  <App client:only="react" initialGemeenteId={gemeente?.id ?? id} initialPlaceName={placeName} />
 
   {gemeente && (
     <article class="mx-auto max-w-2xl px-4 py-10 text-gray-800">
@@ -129,17 +144,36 @@ if (gemeente) {
           Home
         </a>
         {' › '}
-        <span>Gemeente {gemeenteName}</span>
+        {placeName ? (
+          <>
+            <a href={`/gemeente/${gemeente.id}`} class="underline">
+              {gemeenteName}
+            </a>
+            {' › '}
+            <span>{placeName}</span>
+          </>
+        ) : (
+          <span>Gemeente {shortName}</span>
+        )}
       </nav>
-      <h1 class="mt-3 text-2xl font-bold text-gray-900">Motor parkeren in {gemeenteName}</h1>
+      <h1 class="mt-3 text-2xl font-bold text-gray-900">Motor parkeren in {areaName}</h1>
+      {placeName && (
+        <p class="mt-2 text-gray-600">
+          {placeName} valt onder{' '}
+          <a href={`/gemeente/${gemeente.id}`} class="text-blue-600 underline">
+            {gemeenteName}
+          </a>
+          , dus hier gelden de parkeerregels van die gemeente.
+        </p>
+      )}
 
       {rules ? (
         <>
           <p class="mt-2 text-gray-600">
-            De actuele parkeerregels voor motorrijders in gemeente {gemeenteName}.
+            De actuele parkeerregels voor motorrijders in gemeente {shortName}.
           </p>
           <h2 class="mt-8 text-lg font-semibold text-gray-900">
-            Parkeerregels voor motoren in {gemeenteName}
+            Parkeerregels voor motoren in {areaName}
           </h2>
           <ul class="mt-3 space-y-2">
             {moto?.allowedOnSidewalk === true && <li>Op de stoep parkeren is toegestaan.</li>}
@@ -159,15 +193,13 @@ if (gemeente) {
         </>
       ) : (
         <p class="mt-2 text-gray-600">
-          De parkeerregels voor motoren in gemeente {gemeenteName} worden nog verzameld.
+          De parkeerregels voor motoren in gemeente {shortName} worden nog verzameld.
         </p>
       )}
 
       {childCities.length > 0 && (
         <>
-          <h2 class="mt-8 text-lg font-semibold text-gray-900">
-            Plaatsen in gemeente {gemeenteName}
-          </h2>
+          <h2 class="mt-8 text-lg font-semibold text-gray-900">Plaatsen in gemeente {shortName}</h2>
           <ul class="mt-3 space-y-1">
             {childCities.map((c) => (
               <li>

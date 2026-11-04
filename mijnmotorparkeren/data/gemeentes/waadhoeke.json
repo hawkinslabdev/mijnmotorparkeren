@@ -2,6 +2,7 @@
   "id": "waadhoeke",
   "name": "Gemeente Waadhoeke",
   "province": "Friesland",
+  "alternativeNames": ["Franeker"],
   "coordinates": {
     "lat": 53.25,
     "lng": 5.75

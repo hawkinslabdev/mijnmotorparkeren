@@ -2,6 +2,7 @@
   "id": "wijdemeren",
   "name": "Gemeente Wijdemeren",
   "province": "Noord-Holland",
+  "alternativeNames": ["Loosdrecht"],
   "coordinates": {
     "lat": 52.2379,
     "lng": 5.0788

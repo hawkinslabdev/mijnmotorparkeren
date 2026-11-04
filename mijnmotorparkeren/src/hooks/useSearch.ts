@@ -22,6 +22,7 @@ const SEARCH_OPTIONS = {
     { name: 'name', weight: 0.7 },
     { name: 'province', weight: 0.3 },
     { name: 'alternativeNames', weight: 0.5 },
+    { name: 'searchOnlyNames', weight: 0.5 },
   ],
   threshold: 0.3,
   includeScore: true,

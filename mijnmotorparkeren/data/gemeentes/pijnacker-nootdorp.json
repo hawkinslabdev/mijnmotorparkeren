@@ -2,6 +2,7 @@
   "id": "pijnacker-nootdorp",
   "name": "Gemeente Pijnacker-Nootdorp",
   "province": "Zuid-Holland",
+  "alternativeNames": ["Pijnacker", "Nootdorp"],
   "coordinates": {
     "lat": 52.021,
     "lng": 4.426

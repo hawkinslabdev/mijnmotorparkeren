@@ -2,6 +2,7 @@
   "id": "velsen",
   "name": "Gemeente Velsen",
   "province": "Noord-Holland",
+  "alternativeNames": ["IJmuiden", "Driehuis", "Santpoort"],
   "coordinates": {
     "lat": 52.4599,
     "lng": 4.6297

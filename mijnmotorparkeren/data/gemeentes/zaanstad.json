@@ -2,6 +2,7 @@
   "id": "zaanstad",
   "name": "Gemeente Zaanstad",
   "province": "Noord-Holland",
+  "alternativeNames": ["Assendelft", "Westzaan", "Zaandijk", "Wormerveer"],
   "coordinates": {
     "lat": 52.457,
     "lng": 4.7513

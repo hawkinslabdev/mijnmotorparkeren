@@ -2,6 +2,7 @@
   "id": "altena",
   "name": "Gemeente Altena",
   "province": "Noord-Brabant",
+  "alternativeNames": ["Woudrichem", "Werkendam"],
   "coordinates": {
     "lat": 51.776,
     "lng": 4.9

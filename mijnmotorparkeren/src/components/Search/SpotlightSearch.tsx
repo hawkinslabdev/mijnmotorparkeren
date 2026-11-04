@@ -18,7 +18,7 @@ const CITY_DISPLAY = { icon: MapPin, tone: 'text-gray-900' }
 interface SpotlightSearchProps {
   open: boolean
   onOpenChange: (open: boolean) => void
-  onSelect: (item: SearchItem) => void
+  onSelect: (item: SearchItem, placeName?: string) => void
 }
 
 export const SpotlightSearch: React.FC<SpotlightSearchProps> = ({
@@ -82,6 +82,16 @@ export const SpotlightSearch: React.FC<SpotlightSearchProps> = ({
     listRef.current?.children[selectedIndex]?.scrollIntoView({ block: 'nearest' })
   }, [selectedIndex])
 
+  // Explain why this result matches
+  const matchedAlias = (item: SearchItem) => {
+    const needle = query.trim().toLowerCase()
+    const names = [
+      ...(item.alternativeNames ?? []),
+      ...(('searchOnlyNames' in item && item.searchOnlyNames) || []),
+    ]
+    return needle && names.find((name) => name.toLowerCase().includes(needle))
+  }
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
       case 'ArrowDown':
@@ -107,7 +117,7 @@ export const SpotlightSearch: React.FC<SpotlightSearchProps> = ({
 
   const handleSelect = (item: SearchItem) => {
     selectionMade.current = true
-    onSelect(item)
+    onSelect(item, matchedAlias(item) || undefined)
     onOpenChange(false)
     setQuery('')
     setSelectedIndex(0)
@@ -175,7 +185,7 @@ export const SpotlightSearch: React.FC<SpotlightSearchProps> = ({
                 Gemeente of stad zoeken
               </Dialog.Title>
               <Dialog.Close
-                className="flex min-h-11 min-w-11 items-center justify-center rounded-full hover:bg-gray-100 transition-colors sm:hidden"
+                className="-mr-3 flex min-h-11 min-w-11 items-center justify-center rounded-full hover:bg-gray-100 transition-colors sm:hidden"
                 aria-label="Sluiten"
               >
                 <X className="h-5 w-5 text-gray-600" aria-hidden="true" />
@@ -267,7 +277,15 @@ export const SpotlightSearch: React.FC<SpotlightSearchProps> = ({
                         aria-hidden="true"
                       />
                       <div className="min-w-0">
-                        <div className="text-base font-medium text-gray-900">{item.name}</div>
+                        <div className="text-base font-medium text-gray-900">
+                          {item.name}
+                          {matchedAlias(item) && (
+                            <span className="font-normal text-gray-600">
+                              {' '}
+                              (ook {matchedAlias(item)})
+                            </span>
+                          )}
+                        </div>
                         <div className="text-sm text-gray-600">
                           <span className={clsx('font-medium', tone)}>
                             {parkingStatus?.label ?? 'Eigen regels'}

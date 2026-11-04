@@ -2,6 +2,7 @@
   "id": "midden-groningen",
   "name": "Gemeente Midden-Groningen",
   "province": "Groningen",
+  "alternativeNames": ["Hoogezand"],
   "coordinates": {
     "lat": 53.17,
     "lng": 6.91

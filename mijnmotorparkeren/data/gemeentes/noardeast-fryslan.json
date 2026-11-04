@@ -2,6 +2,7 @@
   "id": "noardeast-fryslan",
   "name": "Gemeente Noardeast-Fryslân",
   "province": "Friesland",
+  "alternativeNames": ["Dokkum"],
   "coordinates": {
     "lat": 53.32,
     "lng": 6.09

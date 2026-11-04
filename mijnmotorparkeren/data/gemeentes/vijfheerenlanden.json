@@ -2,6 +2,7 @@
   "id": "vijfheerenlanden",
   "name": "Gemeente Vijfheerenlanden",
   "province": "Utrecht",
+  "alternativeNames": ["Vianen", "Leerdam"],
   "coordinates": {
     "lat": 51.942,
     "lng": 5.09

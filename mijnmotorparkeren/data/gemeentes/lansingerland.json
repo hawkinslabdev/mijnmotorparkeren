@@ -2,6 +2,7 @@
   "id": "lansingerland",
   "name": "Gemeente Lansingerland",
   "province": "Zuid-Holland",
+  "alternativeNames": ["Bergschenhoek", "Berkel en Rodenrijs", "Bleiswijk"],
   "coordinates": {
     "lat": 52.002,
     "lng": 4.5057

@@ -2,6 +2,7 @@
   "id": "het-hogeland",
   "name": "Gemeente Het Hogeland",
   "province": "Groningen",
+  "alternativeNames": ["Winsum", "Uithuizen"],
   "coordinates": {
     "lat": 53.4,
     "lng": 6.65

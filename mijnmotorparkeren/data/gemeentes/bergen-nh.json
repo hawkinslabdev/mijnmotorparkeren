@@ -2,6 +2,7 @@
   "id": "bergen-nh",
   "name": "Gemeente Bergen (NH.)",
   "province": "Noord-Holland",
+  "alternativeNames": ["Schoorl", "Egmond", "Bergen aan Zee", "Aagtdorp"],
   "coordinates": {
     "lat": 52.6697,
     "lng": 4.6987

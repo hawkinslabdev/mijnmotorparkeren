@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getParkingStatus } from './gemeenteUtils'
+import { getParkingStatus, withoutGemeentePrefix } from './gemeenteUtils'
 import type { Gemeente } from '../types/gemeente'
 
 const status = (parkingRules: unknown) =>
@@ -27,5 +27,16 @@ describe('getParkingStatus', () => {
   it('keeps unknown rules as no info', () => {
     expect(status({ motorcycleSpecific: { notes: 'n' } })).toBe('no_info')
     expect(status(undefined)).toBe('no_info')
+  })
+})
+
+describe('withoutGemeentePrefix', () => {
+  it.each([
+    ['Gemeente Den Haag', 'Den Haag'],
+    ['gemeente Ede', 'Ede'],
+    ['Weesp (Gemeente Amsterdam)', 'Weesp (Gemeente Amsterdam)'],
+    ['Duitsland', 'Duitsland'],
+  ])('%s becomes %s', (name, expected) => {
+    expect(withoutGemeentePrefix(name)).toBe(expected)
   })
 })

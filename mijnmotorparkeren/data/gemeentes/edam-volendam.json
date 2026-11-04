@@ -2,6 +2,7 @@
   "id": "edam-volendam",
   "name": "Gemeente Edam-Volendam",
   "province": "Noord-Holland",
+  "alternativeNames": ["Edam", "Volendam"],
   "coordinates": {
     "lat": 52.5117,
     "lng": 5.0484

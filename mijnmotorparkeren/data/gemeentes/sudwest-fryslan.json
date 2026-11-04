@@ -2,6 +2,7 @@
   "id": "sudwest-fryslan",
   "name": "Gemeente Súdwest-Fryslân",
   "province": "Friesland",
+  "alternativeNames": ["Sneek", "Bolsward"],
   "coordinates": {
     "lat": 53.09,
     "lng": 5.57

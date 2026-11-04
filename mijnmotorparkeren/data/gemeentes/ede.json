@@ -1,6 +1,7 @@
 {
   "id": "ede",
   "name": "Gemeente Ede",
+  "province": "Gelderland",
   "coordinates": {
     "lat": 52.0414,
     "lng": 5.67285

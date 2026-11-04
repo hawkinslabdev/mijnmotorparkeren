@@ -1,6 +1,8 @@
 {
   "id": "westland",
   "name": "Gemeente Westland",
+  "province": "Zuid-Holland",
+  "alternativeNames": ["De Lier", "Honselersdijk", "Kwintsheul", "Maasdijk", "Monster", "Naaldwijk", "Poeldijk", "'s-Gravenzande", "Ter Heijde", "Wateringen"],
   "coordinates": {
     "lat": 52.002,
     "lng": 4.175

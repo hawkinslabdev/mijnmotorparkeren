@@ -20,6 +20,8 @@ async function buildIndex(): Promise<string> {
         ...(d.type ? { type: d.type } : {}),
         name: d.name,
         province: d.province,
+        ...(d.alternativeNames ? { alternativeNames: d.alternativeNames } : {}),
+        ...(d.searchOnlyNames ? { searchOnlyNames: d.searchOnlyNames } : {}),
         coordinates: d.coordinates,
         ...(d.zoom != null ? { zoom: d.zoom } : {}),
         ...(d.statcode ? { statcode: d.statcode } : {}),

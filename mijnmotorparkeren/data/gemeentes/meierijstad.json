@@ -2,6 +2,7 @@
   "id": "meierijstad",
   "name": "Gemeente Meierijstad",
   "province": "Noord-Brabant",
+  "alternativeNames": ["Veghel", "Schijndel"],
   "coordinates": {
     "lat": 51.601,
     "lng": 5.527

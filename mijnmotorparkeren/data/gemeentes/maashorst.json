@@ -2,6 +2,7 @@
   "id": "maashorst",
   "name": "Gemeente Maashorst",
   "province": "Noord-Brabant",
+  "alternativeNames": ["Uden"],
   "coordinates": {
     "lat": 51.7,
     "lng": 5.65

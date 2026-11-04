@@ -1,6 +1,7 @@
 {
   "id": "lelystad",
   "name": "Gemeente Lelystad",
+  "alternativeNames": ["Lelystad Airport"],
   "province": "Flevoland",
   "coordinates": {
     "lat": 52.508,

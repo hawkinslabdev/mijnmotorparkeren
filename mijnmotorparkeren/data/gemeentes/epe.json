@@ -2,6 +2,7 @@
   "id": "epe",
   "name": "Gemeente Epe",
   "province": "Gelderland",
+  "alternativeNames": ["Vaassen", "Oene", "Emst"],
   "coordinates": {
     "lat": 52.34,
     "lng": 6.011

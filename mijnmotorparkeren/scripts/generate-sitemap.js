@@ -2,6 +2,7 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs/promises';
+import { landingSlugs } from '../src/utils/indexable.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,10 +26,19 @@ async function getGemeenteAndCityIds() {
 
     const lastmods = {};
     gemeentes.forEach(g => { lastmods[`/gemeente/${g.id}`] = getLastmod(g); });
+
+    // Real gemeente files win
+    const ids = new Set(gemeentes.map(g => g.id));
+    const placeRoutes = gemeentes.flatMap(g => landingSlugs(g)
+        .filter(slug => !ids.has(slug))
+        .map(slug => {
+            lastmods[`/gemeente/${slug}`] = getLastmod(g);
+            return `/gemeente/${slug}`;
+        }));
     cities.forEach(c => { lastmods[`/stad/${c.id}`] = c.lastUpdated; });
 
     return {
-        gemeenteRoutes: gemeentes.map(g => `/gemeente/${g.id}`),
+        gemeenteRoutes: [...gemeentes.map(g => `/gemeente/${g.id}`), ...placeRoutes],
         // FIX: Use /stad instead of /city to match router
         cityRoutes: cities.map(c => `/stad/${c.id}`),
         lastmods
