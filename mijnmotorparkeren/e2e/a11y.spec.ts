@@ -435,8 +435,10 @@ test.describe('Alias URLs', () => {
   })
 
   for (const url of ['/gemeente/den-haag', '/gemeente/de-ronde-venen', '/gemeente/hoofddorp', '/gemeente/aalten']) {
-    test(`${url} never says gemeente twice`, async ({ request }) => {
-      const text = (await (await request.get(url)).text()).replace(/<[^>]*>/g, '')
+    test(`${url} never says gemeente twice`, async ({ page }) => {
+      await page.goto(url)
+      const text = await page.locator('article').innerText()
+      expect(text).toMatch(/motor parkeren/i)
       expect(text).not.toMatch(/gemeente\s+gemeente/i)
     })
   }
