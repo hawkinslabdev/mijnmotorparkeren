@@ -102,17 +102,12 @@ test.describe('Accessibility', () => {
     )
     await page.goto('/gemeente/amsterdam?poi=stalling')
     await waitForMap(page)
-    const heading = page.getByRole('heading', { name: 'Motorstalling Centrum' })
     const link = page.getByRole('link', { name: 'Community bijdrage' })
     await expect(link).toBeVisible()
-    const clipped = await link.evaluate((el) => {
-      const box = el.getBoundingClientRect()
-      const card = el.closest('[class*="overflow-hidden"]')!.getBoundingClientRect()
-      return box.bottom > card.bottom || box.left < card.left
-    })
-    expect(clipped).toBe(false)
-    const [linkBox, headingBox] = [await link.boundingBox(), await heading.boundingBox()]
-    expect(linkBox!.x).toBe(headingBox!.x)
+    const panel = await page.getByRole('region', { name: /Parkeerregels:/ }).boundingBox()
+    const linkBox = await link.boundingBox()
+    expect(linkBox!.x).toBeGreaterThanOrEqual(panel!.x)
+    expect(linkBox!.x + linkBox!.width).toBeLessThanOrEqual(panel!.x + panel!.width)
   })
 
   test('legend lists only POI types in the area', async ({ page }) => {
@@ -184,6 +179,17 @@ test.describe('Accessibility', () => {
 
     await page.getByRole('button', { name: 'Reset kaart' }).click()
     await expect.poll(() => shape.getAttribute('d')).not.toBe(before)
+  })
+
+  test('report link sits below the rules', async ({ page }) => {
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    const report = page.getByRole('link', { name: 'Probleem melden' })
+    const box = await report.boundingBox()
+    const close = await page.getByRole('button', { name: 'Sluiten' }).boundingBox()
+    expect(box!.y).toBeGreaterThan(close!.y + close!.height)
+    expect(box!.width).toBeGreaterThanOrEqual(44)
+    expect(box!.height).toBeGreaterThanOrEqual(44)
   })
 
   test('denied location shows a message', async ({ page }) => {

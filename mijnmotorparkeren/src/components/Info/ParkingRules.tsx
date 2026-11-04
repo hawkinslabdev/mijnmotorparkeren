@@ -4,7 +4,7 @@ import {
   Euro,
   MapPin,
   AlertTriangle,
-  Bike,
+  Flag,
   X,
   Check,
   ExternalLink,
@@ -29,10 +29,10 @@ interface ParkingRulesProps {
 }
 
 const RULE_TONES = {
-  positive: 'text-green-700',
-  negative: 'text-red-700',
-  caution: 'text-amber-700',
-  neutral: 'text-gray-500',
+  positive: 'text-green-800',
+  negative: 'text-red-800',
+  caution: 'text-amber-800',
+  neutral: 'text-gray-900',
 }
 
 // Icon shape and wording carry status
@@ -42,14 +42,14 @@ const RuleRow: React.FC<{
   title: string
   children?: React.ReactNode
 }> = ({ icon: Icon, tone, title, children }) => (
-  <li className="flex gap-3 py-3">
+  <li className="flex gap-3">
     <Icon
-      className={clsx('mt-0.5 h-5 w-5 flex-none', RULE_TONES[tone])}
+      className={clsx('h-6 w-6 flex-none', RULE_TONES[tone])}
       strokeWidth={2.5}
       aria-hidden="true"
     />
     <div className="min-w-0 grow">
-      <p className="text-base font-medium leading-snug text-gray-900">{title}</p>
+      <p className={clsx('text-lg font-semibold leading-6', RULE_TONES[tone])}>{title}</p>
       {children && <div className="mt-1 text-sm leading-relaxed text-gray-700">{children}</div>}
     </div>
   </li>
@@ -176,35 +176,16 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
   ].filter(Boolean)
 
   return (
-    <div
-      className={clsx(
-        'bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden',
-        className
-      )}
-    >
+    <div className={className}>
       {/* Header */}
-      <div className="flex flex-wrap-reverse items-center gap-x-1 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6">
+      <div className="flex flex-wrap-reverse items-center gap-x-1">
         {/* Header buttons; wrap above long titles */}
         <div className="ml-auto flex flex-shrink-0 items-center gap-1">
-          {/* Report/Help button */}
-          <a
-            href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-white/50 transition-colors group"
-            aria-label="Probleem melden"
-          >
-            <AlertTriangle
-              className="h-5 w-5 text-rose-700 group-hover:text-rose-800 transition-colors"
-              aria-hidden="true"
-            />
-          </a>
-
           {/* Close button */}
           {onClose && (
             <button
               onClick={onClose}
-              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-white/50 transition-colors"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
               aria-label="Sluiten"
             >
               <X className="h-5 w-5 text-gray-600" aria-hidden="true" />
@@ -213,9 +194,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
         </div>
 
         <div className="order-first min-w-0 grow basis-48">
-          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 break-words">
-            {data.name}
-          </h2>
+          <h2 className="text-xl font-bold text-gray-900 break-words">{data.name}</h2>
 
           {/* City indicator if applicable */}
           {isCity && city && (
@@ -227,34 +206,25 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
       </div>
 
       {/* Content */}
-      <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+      <div className="mt-3 space-y-5">
         {!parkingRules && (
           <p className="text-sm text-gray-600">
             Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente.
           </p>
         )}
 
-        {(rules.length > 0 || moto?.notes) && (
-          <div>
-            <h3 className="mb-1 flex items-center text-base font-semibold text-gray-900 sm:text-lg">
-              <Bike className="mr-2 h-5 w-5" aria-hidden="true" />
-              Parkeren
-            </h3>
+        {rules.length > 0 && <ul className="space-y-3 break-words">{rules}</ul>}
 
-            {rules.length > 0 && <ul className="divide-y divide-gray-100 break-words">{rules}</ul>}
-
-            {moto?.notes && (
-              <p className="mt-3 whitespace-pre-line break-words text-sm leading-relaxed text-gray-700">
-                {moto.notes}
-              </p>
-            )}
-          </div>
+        {moto?.notes && (
+          <p className="whitespace-pre-line break-words border-t border-gray-200 pt-4 text-base leading-relaxed text-gray-800">
+            {moto.notes}
+          </p>
         )}
 
         {/* Keyboard route to map POIs */}
         {pois.length > 0 && onPOISelect && (
           <div className="space-y-2">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+            <h3 className="text-base font-semibold text-gray-900">
               Parkeerlocaties ({pois.length})
             </h3>
             <ul className="divide-y divide-gray-200 rounded-lg border border-gray-200">
@@ -267,8 +237,8 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                   >
                     <POIDot type={poi.type} className="w-3 h-3" />
                     <span className="min-w-0">
-                      <span className="block text-sm font-medium text-gray-900">{poi.name}</span>
-                      <span className="block text-xs text-gray-600">
+                      <span className="block text-base font-medium text-gray-900">{poi.name}</span>
+                      <span className="block text-sm text-gray-600">
                         {POI_TYPE_CONFIG[poi.type].label}
                       </span>
                     </span>
@@ -280,10 +250,10 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
         )}
 
         {/* Modern footer */}
-        <div className="bg-gray-50 -mx-4 sm:-mx-6 mt-6 px-4 sm:px-6 py-4 border-t border-gray-100">
-          <div className="flex flex-col gap-3">
+        <div className="border-t border-gray-200 pt-2">
+          <div className="flex flex-wrap items-center justify-between gap-x-4">
             {/* Last updated */}
-            <div className="flex items-center gap-2 text-xs text-gray-500">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
               <Calendar className="h-3 w-3" />
               <span>
                 {!data.lastUpdated || data.lastUpdated === ''
@@ -293,19 +263,19 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
             </div>
 
             {/* Contact & Sources in a flex row for mobile, stacked for larger screens */}
-            <div className="flex flex-col sm:flex-row sm:justify-between gap-2 sm:gap-4">
+            <div className="flex items-center gap-4">
               {/* Contact */}
               {'contact' in data && data.contact?.email ? (
                 data.contact.email && data.contact.email !== '#' ? (
                   <a
                     href={`mailto:${data.contact.email}`}
-                    className="flex items-center gap-1.5 min-h-11 text-xs text-blue-700 hover:text-blue-800 transition-colors group"
+                    className="flex items-center gap-1.5 min-h-11 text-sm text-blue-700 hover:text-blue-800 transition-colors group"
                   >
                     <Mail className="h-3 w-3 group-hover:scale-110 transition-transform" />
                     <span>Contact</span>
                   </a>
                 ) : (
-                  <span className="flex items-center gap-1.5 text-xs text-gray-600 cursor-not-allowed">
+                  <span className="flex items-center gap-1.5 text-sm text-gray-600 cursor-not-allowed">
                     <Mail className="h-3 w-3" />
                     <span>Contact</span>
                   </span>
@@ -320,7 +290,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                     return isDisabled ? (
                       <span
                         key={index}
-                        className="flex items-center gap-1 text-xs text-gray-600 cursor-not-allowed py-2"
+                        className="flex items-center gap-1 text-sm text-gray-600 cursor-not-allowed py-2"
                         title={source.name || source.type}
                       >
                         <ExternalLink className="h-3 w-3" aria-hidden="true" />
@@ -333,7 +303,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                         href={source.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 min-h-11 min-w-11 text-xs text-blue-700 hover:text-blue-800 transition-colors group"
+                        className="flex items-center gap-1 min-h-11 min-w-11 text-sm text-blue-700 hover:text-blue-800 transition-colors group"
                         title={source.name || source.type}
                         aria-label={source.name || 'Bekijk bron'}
                       >
@@ -347,10 +317,22 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                     )
                   })}
                   {data.sources.length > 2 && (
-                    <span className="text-xs text-gray-600">+{data.sources.length - 2}</span>
+                    <span className="text-sm text-gray-600">+{data.sources.length - 2}</span>
                   )}
                 </div>
               )}
+
+              {/* Report sits with the source */}
+              <a
+                href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Probleem melden"
+                aria-label="Probleem melden"
+                className="-mr-3.5 flex min-h-11 min-w-11 items-center justify-center rounded-full text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+              >
+                <Flag className="h-4 w-4" aria-hidden="true" />
+              </a>
             </div>
           </div>
         </div>

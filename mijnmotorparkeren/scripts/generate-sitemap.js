@@ -6,31 +6,36 @@ import fs from 'fs/promises';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-function getGemeenteAndCityIds() {
-    // Dynamically load gemeente and city ids from data files
-    const gemeenteDir = path.resolve(__dirname, '../data/gemeentes');
-    const cityDir = path.resolve(__dirname, '../data/city');
-    return Promise.all([
-        fs.readdir(gemeenteDir),
-        fs.readdir(cityDir)
-    ]).then(([gemeenteFiles, cityFiles]) => {
-        const gemeenteIds = gemeenteFiles
-            .filter(f => f.endsWith('.json') && f !== 'index.json')
-            .map(f => f.replace('.json', ''));
-        
-        const cityIds = cityFiles
-            .filter(f => f.endsWith('.json') && f !== 'index.json')
-            .map(f => f.replace('.json', ''));
-        
-        return {
-            gemeenteRoutes: gemeenteIds.map(id => `/gemeente/${id}`),
-            // FIX: Use /stad instead of /city to match router
-            cityRoutes: cityIds.map(id => `/stad/${id}`)
-        };
-    });
+async function readEntities(dir) {
+    const files = (await fs.readdir(dir)).filter(f => f.endsWith('.json') && f !== 'index.json');
+    return Promise.all(files.map(async f => JSON.parse(await fs.readFile(path.join(dir, f), 'utf-8'))));
 }
 
-function generateSitemap({ baseUrl, routes }) {
+const FALLBACK_LASTMOD = '2026-09-11';
+
+// Fall back to newest source date
+export function getLastmod(entity) {
+    return entity.lastUpdated ?? entity.sources?.map(s => s.date).filter(Boolean).sort().at(-1);
+}
+
+async function getGemeenteAndCityIds() {
+    // Dynamically load gemeente and city ids from data files
+    const gemeentes = await readEntities(path.resolve(__dirname, '../data/gemeentes'));
+    const cities = await readEntities(path.resolve(__dirname, '../data/city'));
+
+    const lastmods = {};
+    gemeentes.forEach(g => { lastmods[`/gemeente/${g.id}`] = getLastmod(g); });
+    cities.forEach(c => { lastmods[`/stad/${c.id}`] = c.lastUpdated; });
+
+    return {
+        gemeenteRoutes: gemeentes.map(g => `/gemeente/${g.id}`),
+        // FIX: Use /stad instead of /city to match router
+        cityRoutes: cities.map(c => `/stad/${c.id}`),
+        lastmods
+    };
+}
+
+export function generateSitemap({ baseUrl, routes, lastmods = {} }) {
     const langOrder = [];
     
     // Don't process alternates or x-default when langOrder is empty
@@ -72,7 +77,7 @@ function generateSitemap({ baseUrl, routes }) {
             }
             
             // Add lastmod for better crawling
-            sitemap += `    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n`;
+            sitemap += `    <lastmod>${lastmods[route] ?? FALLBACK_LASTMOD}</lastmod>\n`;
             sitemap += '  </url>\n';
         }
     }
@@ -82,19 +87,19 @@ function generateSitemap({ baseUrl, routes }) {
 }
 
 // Enhanced error handling and logging
-(async () => {
+if (process.argv[1] === __filename) (async () => {
     try {
         const baseUrl = 'https://mijnmotorparkeren.nl';
         console.log('🔧 Generating sitemap...');
         
-        const { gemeenteRoutes, cityRoutes } = await getGemeenteAndCityIds();
+        const { gemeenteRoutes, cityRoutes, lastmods } = await getGemeenteAndCityIds();
         console.log(`Found ${gemeenteRoutes.length} gemeente routes`);
         console.log(`Found ${cityRoutes.length} city routes`);
         
         const allRoutes = ['/', ...gemeenteRoutes, ...cityRoutes];
         console.log(`📋 Total routes: ${allRoutes.length}`);
         
-        const sitemap = generateSitemap({ baseUrl, routes: allRoutes });
+        const sitemap = generateSitemap({ baseUrl, routes: allRoutes, lastmods });
         
         // Write to dist/client directory (Astro's static file output)
         const outputPath = path.resolve(__dirname, '../dist/client/sitemap.xml');

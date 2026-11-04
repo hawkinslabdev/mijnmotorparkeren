@@ -3,6 +3,7 @@ import { readFile, readdir } from 'node:fs/promises'
 import path from 'node:path'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import App from '../../App'
+import { isThinGemeente } from '../../utils/indexable.js'
 
 const { id } = Astro.params as { id: string }
 
@@ -32,8 +33,7 @@ const gemeenteName =
 const canonical = `https://mijnmotorparkeren.nl/gemeente/${id}`
 
 // Stub data: JSON exists but no actual parking rules researched yet
-const isThinData =
-  gemeente !== null && !gemeente.lastUpdated && (gemeente.sources as unknown[])?.length === 0
+const isThinData = gemeente !== null && isThinGemeente(gemeente)
 
 const title = gemeente
   ? `Motor parkeren in ${gemeenteName} | Parkeerregels`
