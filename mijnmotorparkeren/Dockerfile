@@ -1,5 +1,5 @@
 # Build stage
-FROM node:24-slim AS builder
+FROM node:26-slim AS builder
 
 WORKDIR /app
 
@@ -25,7 +25,7 @@ ENV PUBLIC_DATA_VERSION=$PUBLIC_DATA_VERSION
 RUN npm run build
 
 # Production stage
-FROM node:24-slim AS production
+FROM node:26-slim AS production
 
 WORKDIR /app
 
