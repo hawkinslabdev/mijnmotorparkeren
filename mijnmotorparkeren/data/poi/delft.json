@@ -1,0 +1,34 @@
+{
+  "id": "delft-pois",
+  "municipalityId": "delft",
+  "pois": [
+    {
+      "id": "delft-kampveldgarage",
+      "type": "dedicatedMotorcycleSpot",
+      "name": "Kampveldgarage",
+      "coordinates": {
+        "lat": 52.014928626822,
+        "lng": 4.35166792530308
+      },
+      "source": {
+        "type": "official",
+        "url": "https://parkerendelft.com/parkeerloket/motor/",
+        "date": "2025-07-15"
+      }
+    },
+    {
+      "id": "delft-marktgarage",
+      "type": "dedicatedMotorcycleSpot",
+      "name": "Marktgarage",
+      "coordinates": {
+        "lat": 52.014417739418285,
+        "lng": 4.365921782975937
+      },
+      "source": {
+        "type": "official",
+        "url": "https://parkerendelft.com/parkeerloket/motor/",
+        "date": "2025-07-15"
+      }
+    }
+  ]
+}

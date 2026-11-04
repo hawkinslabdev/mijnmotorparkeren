@@ -8,16 +8,6 @@
   },
   "parkingRules": {
     "motorcycleSpecific": {
-      "dedicatedSpots": [
-        {
-          "location": "Brinkstraat",
-          "spots": 3,
-          "coordinates": {
-            "lat": 52.9945,
-            "lng": 6.5636
-          }
-        }
-      ],
       "allowedOnSidewalk": true,
       "freeInPaidZones": false,
       "notes": "Parkeren op de stoep gedoogd, mits er voldoende ruimte overblijft voor voetgangers en rolstoelgebruikers. Motoren mogen ook op reguliere parkeerplaatsen parkeren, maar moeten dan wel parkeergeld betalen (indien van toepassing)."

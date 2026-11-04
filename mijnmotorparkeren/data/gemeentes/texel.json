@@ -7,12 +7,24 @@
     "lng": 4.8074
   },
   "parkingRules": {
+    "paid": {
+      "enabled": true
+    },
     "permits": {
       "required": false
     },
     "motorcycleSpecific": {
-      "notes": "Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente."
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "Parkeren op de stoep is niet toegestaan. Motoren staan in een vak en betalen daar parkeerbelasting. In de blauwe zone geldt voor motoren geen tijdsduurbeperking, maar parkeren in een vak is wel verplicht."
     }
   },
-  "sources": []
+  "lastUpdated": "2025-05-28",
+  "sources": [
+    {
+      "type": "regulation",
+      "name": "Parkeerverordening Texel 2021",
+      "date": "2025-05-28"
+    }
+  ]
 }

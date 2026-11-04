@@ -14,16 +14,6 @@
       "required": false
     },
     "motorcycleSpecific": {
-      "dedicatedSpots": [
-        {
-          "location": "Parkeergarage Ravelijn",
-          "spots": 3,
-          "coordinates": {
-            "lat": 52.332,
-            "lng": 5.545
-          }
-        }
-      ],
       "allowedOnSidewalk": true,
       "notes": "Motoren kunnen in heel Zeewolde gratis parkeren. Parkeren op de stoep is toegestaan als het voetgangers niet hindert. Er zijn geen betaalde parkeerzones (voor motorvoertuigen)."
     }

@@ -1,0 +1,20 @@
+{
+  "id": "assen-pois",
+  "municipalityId": "assen",
+  "pois": [
+    {
+      "id": "assen-brinkstraat",
+      "type": "dedicatedMotorcycleSpot",
+      "name": "Brinkstraat",
+      "coordinates": {
+        "lat": 52.9945,
+        "lng": 6.5636
+      },
+      "capacity": 3,
+      "source": {
+        "type": "official",
+        "date": "2025-01-07"
+      }
+    }
+  ]
+}

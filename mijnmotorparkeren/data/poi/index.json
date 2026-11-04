@@ -6,6 +6,15 @@
     },
     {
       "municipalityId": "amsterdam"
+    },
+    {
+      "municipalityId": "zeewolde"
+    },
+    {
+      "municipalityId": "assen"
+    },
+    {
+      "municipalityId": "delft"
     }
   ]
 }

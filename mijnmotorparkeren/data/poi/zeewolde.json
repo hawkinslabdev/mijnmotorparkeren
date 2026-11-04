@@ -1,0 +1,21 @@
+{
+  "id": "zeewolde-pois",
+  "municipalityId": "zeewolde",
+  "pois": [
+    {
+      "id": "zeewolde-ravelijn",
+      "type": "dedicatedMotorcycleSpot",
+      "name": "Parkeergarage Ravelijn",
+      "coordinates": {
+        "lat": 52.332,
+        "lng": 5.545
+      },
+      "capacity": 3,
+      "source": {
+        "type": "official",
+        "url": "https://www.zeewolde.nl/parkeren",
+        "date": "2025-07-07"
+      }
+    }
+  ]
+}
