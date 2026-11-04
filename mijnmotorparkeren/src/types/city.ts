@@ -20,6 +20,12 @@ export interface City {
   effectiveDate?: string
 }
 
+/** City entry from the city index. */
+export type CityLite = Pick<
+  City,
+  'id' | 'name' | 'parent' | 'province' | 'coordinates' | 'alternativeNames'
+>
+
 export interface ParkingRuleContext {
   location: Coordinates
   gemeente: string

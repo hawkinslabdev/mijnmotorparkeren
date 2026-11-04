@@ -1,0 +1,294 @@
+import { test, expect, waitForMap } from './fixtures'
+
+const search = async (page: import('@playwright/test').Page, query: string) => {
+  await page.getByRole('button', { name: 'Locatie zoeken' }).click()
+  await page.getByRole('combobox').fill(query)
+}
+
+test.describe('Accessibility', () => {
+  test('search exposes combobox and listbox', async ({ page }) => {
+    await page.goto('/')
+    await waitForMap(page)
+    await search(page, 'Amsterdam')
+    const combobox = page.getByRole('combobox')
+    await expect(page.getByRole('listbox')).toBeVisible()
+    await expect(combobox).toHaveAttribute('aria-activedescendant', 'search-option-0')
+    await expect(page.getByRole('option').first()).toHaveAttribute('aria-selected', 'true')
+    await expect(page.getByRole('status').filter({ hasText: /resultaat|resultaten/ })).toBeAttached()
+  })
+
+  test('selecting a result moves focus to the panel', async ({ page }) => {
+    await page.goto('/')
+    await waitForMap(page)
+    await search(page, 'Amsterdam')
+    await page.getByRole('option').first().click()
+    await expect(page.getByRole('region', { name: /Parkeerregels: .*Amsterdam/ })).toBeFocused()
+  })
+
+  test('closing the panel restores focus', async ({ page }) => {
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    await page.getByRole('button', { name: 'Sluiten' }).click()
+    await expect(page.getByRole('button', { name: 'Locatie zoeken' })).toBeFocused()
+  })
+
+  test('cities are searchable', async ({ page }) => {
+    const city = {
+      id: 'schiphol',
+      name: 'Schiphol',
+      parent: 'haarlemmermeer',
+      province: 'Noord-Holland',
+      coordinates: { lat: 52.31, lng: 4.76 },
+    }
+    await page.route(/\/data\/city\/index\.json/, (r) => r.fulfill({ json: { cities: [city] } }))
+    await page.route(/\/data\/city\/schiphol\.json/, (r) =>
+      r.fulfill({
+        json: { ...city, area: { type: 'FeatureCollection', features: [] }, lastUpdated: '', sources: [] },
+      })
+    )
+    await page.goto('/')
+    await waitForMap(page)
+    await search(page, 'Schiphol')
+    await expect(page.getByRole('option', { name: /Schiphol/ })).toBeVisible()
+    await page.getByRole('combobox').press('Enter')
+    await expect(page).toHaveURL(/\/stad\/schiphol/)
+    await expect(page.getByRole('region', { name: 'Parkeerregels: Schiphol' })).toBeFocused()
+  })
+
+  test('POIs are reachable from the panel', async ({ page }) => {
+    await page.route(/\/data\/poi\/index\.json/, (r) =>
+      r.fulfill({ json: { pois: [{ municipalityId: 'amsterdam' }] } })
+    )
+    await page.route(/\/data\/poi\/amsterdam\.json/, (r) =>
+      r.fulfill({
+        json: {
+          pois: [
+            {
+              id: 'stalling',
+              type: 'dedicatedMotorcycleSpot',
+              name: 'Motorstalling Centrum',
+              coordinates: { lat: 52.37, lng: 4.89 },
+              municipalityId: 'amsterdam',
+            },
+          ],
+        },
+      })
+    )
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    await page.getByRole('button', { name: /Motorstalling Centrum/ }).click()
+    await expect(page.getByRole('heading', { name: 'Motorstalling Centrum' })).toBeVisible()
+  })
+
+  test('POI source link is not clipped', async ({ page }) => {
+    await page.route(/\/data\/poi\/index\.json/, (r) =>
+      r.fulfill({ json: { pois: [{ municipalityId: 'amsterdam' }] } })
+    )
+    await page.route(/\/data\/poi\/amsterdam\.json/, (r) =>
+      r.fulfill({
+        json: {
+          pois: [
+            {
+              id: 'stalling',
+              type: 'dedicatedMotorcycleSpot',
+              name: 'Motorstalling Centrum',
+              coordinates: { lat: 52.37, lng: 4.89 },
+              municipalityId: 'amsterdam',
+              source: { type: 'community', url: 'https://example.com', date: '2026-07-14' },
+            },
+          ],
+        },
+      })
+    )
+    await page.goto('/gemeente/amsterdam?poi=stalling')
+    await waitForMap(page)
+    const heading = page.getByRole('heading', { name: 'Motorstalling Centrum' })
+    const link = page.getByRole('link', { name: 'Community bijdrage' })
+    await expect(link).toBeVisible()
+    const clipped = await link.evaluate((el) => {
+      const box = el.getBoundingClientRect()
+      const card = el.closest('[class*="overflow-hidden"]')!.getBoundingClientRect()
+      return box.bottom > card.bottom || box.left < card.left
+    })
+    expect(clipped).toBe(false)
+    const [linkBox, headingBox] = [await link.boundingBox(), await heading.boundingBox()]
+    expect(linkBox!.x).toBe(headingBox!.x)
+  })
+
+  test('legend lists only POI types in the area', async ({ page }) => {
+    await page.route(/\/data\/poi\/index\.json/, (r) =>
+      r.fulfill({ json: { pois: [{ municipalityId: 'amsterdam' }] } })
+    )
+    await page.route(/\/data\/poi\/amsterdam\.json/, (r) =>
+      r.fulfill({
+        json: {
+          pois: [
+            {
+              id: 'stalling',
+              type: 'dedicatedMotorcycleSpot',
+              name: 'Motorstalling Centrum',
+              coordinates: { lat: 52.37, lng: 4.89 },
+              municipalityId: 'amsterdam',
+            },
+          ],
+        },
+      })
+    )
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    const legend = page.getByRole('region', { name: 'Legenda' })
+    await expect(legend.getByText('Motorstalplaats')).toHaveCount(1)
+    await expect(legend.getByText('Gratis straatparkeren')).toHaveCount(0)
+  })
+
+  test('legend hides POI section without POIs', async ({ page }) => {
+    await page.route(/\/data\/poi\/index\.json/, (r) => r.fulfill({ json: { pois: [] } }))
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam', exact: true })).toBeVisible()
+    await expect(page.getByRole('region', { name: 'Legenda' }).getByText('Parkeerlocaties')).toHaveCount(0)
+  })
+
+  test('spot without a count shows no placeholder', async ({ page }) => {
+    await page.route(/\/data\/gemeentes\/amsterdam\.json/, (r) =>
+      r.fulfill({
+        json: {
+          id: 'amsterdam',
+          name: 'Gemeente Amsterdam',
+          province: 'Noord-Holland',
+          coordinates: { lat: 52.37, lng: 4.89 },
+          parkingRules: {
+            motorcycleSpecific: { dedicatedSpots: [{ location: 'Garage' }], notes: 'Test' },
+          },
+        },
+      })
+    )
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    await expect(page.getByText('Garage')).toBeVisible()
+    await expect(page.getByText('undefined')).toHaveCount(0)
+  })
+
+  test('closing keeps the view; reset zooms out', async ({ page }) => {
+    await page.goto('/gemeente/amsterdam')
+    await waitForMap(page)
+    const shape = page.locator('path.leaflet-interactive').first()
+    await expect(shape).toBeAttached()
+    await page.waitForTimeout(800)
+    const before = await shape.getAttribute('d')
+
+    await page.getByRole('button', { name: 'Sluiten' }).click()
+    await expect(page).toHaveURL(/\/$/)
+    await page.waitForTimeout(800)
+    expect(await shape.getAttribute('d')).toBe(before)
+
+    await page.getByRole('button', { name: 'Reset kaart' }).click()
+    await expect.poll(() => shape.getAttribute('d')).not.toBe(before)
+  })
+
+  test('denied location shows a message', async ({ page }) => {
+    await page.addInitScript(() => {
+      navigator.geolocation.getCurrentPosition = (_ok, fail) =>
+        fail?.({ code: 1 } as GeolocationPositionError)
+    })
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/')
+    await waitForMap(page)
+    await page.getByRole('button', { name: 'Ga naar huidige locatie' }).click()
+    await expect(page.getByText(/Geen toegang tot je locatie/).first()).toBeVisible()
+  })
+
+  test('legend names missing information', async ({ page }) => {
+    await page.goto('/')
+    await waitForMap(page)
+    await expect(page.getByRole('region', { name: 'Legenda' }).getByText('Geen informatie')).toBeVisible()
+  })
+})
+
+test.describe('Mobile layouts', () => {
+  test('legend collapses after first map touch and stays collapsed', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/')
+    await waitForMap(page)
+    const entry = page.getByText('Geen informatie')
+    const toggle = page.getByRole('button', { name: 'Legenda' })
+    await expect(entry).toBeVisible()
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true')
+
+    await page.locator('.leaflet-container').click({ position: { x: 40, y: 40 } })
+    await expect(entry).toBeHidden()
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    const box = await toggle.boundingBox()
+    expect(box!.height).toBeGreaterThanOrEqual(44)
+
+    await page.reload()
+    await waitForMap(page)
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false')
+  })
+
+  test('reopened legend stays open', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/')
+    await waitForMap(page)
+    const toggle = page.getByRole('button', { name: 'Legenda' })
+    await page.locator('.leaflet-container').click({ position: { x: 40, y: 40 } })
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    await toggle.click()
+    await expect(page.getByText('Geen informatie')).toBeVisible()
+    await page.locator('.leaflet-container').click({ position: { x: 40, y: 40 } })
+    await page.reload()
+    await waitForMap(page)
+    await expect(page.getByText('Geen informatie')).toBeVisible()
+  })
+
+  test('desktop legend stays open', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.goto('/')
+    await waitForMap(page)
+    await page.locator('.leaflet-container').click({ position: { x: 40, y: 40 } })
+    await expect(page.getByText('Geen informatie')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Legenda' })).toHaveCount(0)
+  })
+
+  test('landscape phone keeps map controls', async ({ browser }) => {
+    const context = await browser.newContext({
+      viewport: { width: 844, height: 390 },
+      userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) Mobile/15E148 Safari/604.1',
+      baseURL: 'http://localhost:4321',
+      serviceWorkers: 'block',
+    })
+    const page = await context.newPage()
+    await page.route(/tile\.openstreetmap\.org/, (r) => r.abort())
+    await page.goto('/')
+    await waitForMap(page)
+    await expect(page.getByRole('button', { name: 'Ga naar huidige locatie' })).toBeVisible()
+    await context.close()
+  })
+
+  test('primary controls meet 44px', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/')
+    await waitForMap(page)
+    for (const control of [
+      page.getByRole('button', { name: 'Locatie zoeken' }),
+      page.getByRole('button', { name: 'Sluit melding' }),
+      page.getByRole('link', { name: 'Melden' }),
+      page.getByRole('link', { name: 'Ga naar de hoofdpagina' }),
+    ]) {
+      const box = await control.boundingBox()
+      expect(box!.height).toBeGreaterThanOrEqual(44)
+      expect(box!.width).toBeGreaterThanOrEqual(44)
+    }
+  })
+
+  test('doubled text keeps header controls on screen', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/')
+    await waitForMap(page)
+    await page.addStyleTag({ content: 'html{font-size:200%}' })
+    const box = await page.getByRole('button', { name: 'Open menu' }).boundingBox()
+    expect(box!.x + box!.width).toBeLessThanOrEqual(390)
+    const title = await page.getByText('MijnMotorParkeren.nl').boundingBox()
+    expect(title!.width).toBeGreaterThan(150)
+  })
+})

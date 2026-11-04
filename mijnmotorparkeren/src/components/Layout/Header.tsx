@@ -29,13 +29,13 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
   return (
     <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 sm:h-16">
+        <div className="flex flex-wrap items-center justify-between gap-x-2 min-h-14 sm:min-h-16 py-1">
           {/* Logo and Title */}
-          <div className="flex items-center space-x-2">
+          <div className="flex grow basis-40 items-center space-x-2 min-w-0">
             <a
               href="/"
               aria-label="Ga naar de hoofdpagina"
-              className="focus:outline-none focus:ring-2 focus:ring-blue-400 rounded flex-shrink-0"
+              className="-ml-1.5 flex min-h-11 min-w-11 items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 rounded flex-shrink-0"
             >
               <img
                 src="/logo.svg"
@@ -44,11 +44,11 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                 aria-hidden="true"
               />
             </a>
-            <div>
-              <span className="block text-lg sm:text-xl font-semibold text-gray-900 leading-tight">
+            <div className="min-w-0">
+              <span className="block truncate text-lg sm:text-xl font-semibold text-gray-900 leading-tight">
                 MijnMotorParkeren.nl
               </span>
-              <p className="text-xs text-gray-500">Even snel je motor parkeren</p>
+              <p className="truncate text-xs text-gray-500">Even snel je motor parkeren</p>
             </div>
           </div>
 
@@ -61,16 +61,17 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
           )}
 
           {/* Actions */}
-          <div className="flex items-center space-x-3">
+          <div className="ml-auto flex flex-shrink-0 items-center space-x-3">
             {/* Search Button */}
             <button
+              id="search-button"
               onClick={onSearchOpen}
               aria-label="Locatie zoeken"
-              className="flex items-center px-3 h-11 sm:h-9 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
+              className="flex items-center justify-center px-3 h-11 min-w-11 sm:h-9 pointer-coarse:h-11 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
             >
               <Search className="w-4 h-4 text-gray-600" aria-hidden="true" />
               <span className="hidden sm:inline text-sm text-gray-600 ml-2">Locatie zoeken...</span>
-              <kbd className="hidden lg:inline-flex items-center px-2 py-1 bg-white border border-gray-300 rounded text-xs font-sans text-gray-400 ml-2">
+              <kbd className="hidden lg:inline-flex items-center px-2 py-1 bg-white border border-gray-300 rounded text-xs font-sans text-gray-500 ml-2">
                 ⌘K
               </kbd>
             </button>
@@ -82,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Meld een fout op de kaart (opent GitHub)"
-                className="flex items-center space-x-2 px-3 h-9 bg-[#dbede3] hover:bg-[#c2e2d1] rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-green-800 hover:text-green-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
+                className="flex items-center space-x-2 px-3 h-9 pointer-coarse:h-11 pointer-coarse:min-w-11 bg-[#dbede3] hover:bg-[#c2e2d1] rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-green-800 hover:text-green-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Bekijken op GitHub"
-                className="group flex items-center px-3 h-9 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-gray-600 hover:text-gray-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
+                className="group flex items-center justify-center px-3 h-9 pointer-coarse:h-11 pointer-coarse:min-w-11 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-gray-600 hover:text-gray-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
               >
                 {/* lucide-react 1.0 dropped brand icons; paths copied from its 0.525 Github icon */}
                 <svg
@@ -133,7 +134,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Steun mij met een koffie"
-                className="group flex items-center px-3 h-9 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-yellow-800 hover:text-yellow-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
+                className="group flex items-center justify-center px-3 h-9 pointer-coarse:h-11 pointer-coarse:min-w-11 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-all duration-150 ease-out hover:shadow-sm active:scale-[0.97] active:shadow-none text-yellow-800 hover:text-yellow-900 motion-reduce:transition-none motion-reduce:hover:shadow-none motion-reduce:active:scale-100"
               >
                 <Coffee
                   className="w-4 h-4 transition-transform duration-200 ease-out group-hover:scale-110 motion-reduce:transition-none"

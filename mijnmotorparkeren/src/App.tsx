@@ -16,6 +16,7 @@ import type { Gemeente } from './types/gemeente'
 import { type City } from './types/city'
 import type { POI } from './types/poi'
 import { fetchFullCity, fetchMunicipalityPOIs } from './data/index'
+import { isCityItem, type SearchItem } from '@hooks/useSearch'
 
 import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png?url'
@@ -34,6 +35,9 @@ interface AppProps {
   initialCityId?: string
 }
 
+const LOAD_ERROR = 'Parkeerregels laden is niet gelukt. Controleer je verbinding.'
+const OFFLINE_MESSAGE = 'Je bent offline. Regels kunnen verouderd zijn.'
+
 const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) => {
   const [selectedGemeente, setSelectedGemeente] = useState<Gemeente | null>(null)
   const [selectedCity, setSelectedCity] = useState<City | null>(null)
@@ -41,10 +45,16 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   const [searchOpen, setSearchOpen] = useState(false)
   const [detailsLoading, setDetailsLoading] = useState(false)
   const [swipeOffset, setSwipeOffset] = useState(0)
+  const [panelPOIs, setPanelPOIs] = useState<POI[]>([])
+  const [isOffline, setIsOffline] = useState(
+    typeof navigator !== 'undefined' && navigator.onLine === false
+  )
 
   const detailsRef = useRef<HTMLDivElement>(null)
   const panelTouchStartY = useRef<number | null>(null)
   const swipeOffsetRef = useRef(0)
+  const returnFocusRef = useRef<HTMLElement | null>(null)
+  const panelWasOpen = useRef(false)
   const selectedGemeenteRef = useRef<Gemeente | null>(null)
   const selectedCityRef = useRef<City | null>(null)
   // POI id captured from ?poi=<id> at load; consumed once the parent loads.
@@ -87,9 +97,17 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
     loadFullGemeente(initialGemeenteId)
       .then((full) => {
         if (full) setSelectedGemeente(full)
+        else showToast(LOAD_ERROR, 6000)
       })
       .finally(() => setDetailsLoading(false))
-  }, [initialGemeenteId, gemeentes, setSelectedGemeenteId, focusOnGemeente, loadFullGemeente])
+  }, [
+    initialGemeenteId,
+    gemeentes,
+    setSelectedGemeenteId,
+    focusOnGemeente,
+    loadFullGemeente,
+    showToast,
+  ])
 
   useEffect(() => {
     if (!initialCityId) return
@@ -137,10 +155,11 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
       setDetailsLoading(true)
       const full = await loadFullGemeente(lite.id)
+      if (!full) showToast(LOAD_ERROR, 6000)
       setSelectedGemeente(full ?? lite)
       setDetailsLoading(false)
     },
-    [setSelectedGemeenteId, focusOnGemeente, loadFullGemeente]
+    [setSelectedGemeenteId, focusOnGemeente, loadFullGemeente, showToast]
   )
 
   const handleCitySelect = useCallback(
@@ -161,11 +180,22 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   )
 
   const handleSearchSelect = useCallback(
-    (gemeente: Gemeente) => {
-      handleGemeenteSelect(gemeente)
+    async (item: SearchItem) => {
       setSearchOpen(false)
+      if (!isCityItem(item)) {
+        handleGemeenteSelect(item)
+        return
+      }
+      setDetailsLoading(true)
+      try {
+        await handleCitySelect(await fetchFullCity(item.id))
+      } catch {
+        showToast(LOAD_ERROR, 6000)
+      } finally {
+        setDetailsLoading(false)
+      }
     },
-    [handleGemeenteSelect]
+    [handleGemeenteSelect, handleCitySelect, showToast]
   )
 
   const handlePOISelect = useCallback(
@@ -217,25 +247,83 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       .catch(() => {})
   }, [selectedGemeente, selectedCity, focusOnGemeente])
 
-  const handleDetailsClose = useCallback(() => {
-    setSelectedGemeente(null)
-    setSelectedCity(null)
-    setSelectedPOI(null)
-    setSelectedGemeenteId(null)
-    resetView()
-    window.history.pushState({}, '', '/')
-  }, [setSelectedGemeenteId, resetView])
+  // List map POIs in the panel
+  useEffect(() => {
+    const scope = selectedCity ? 'city' : selectedGemeente ? 'gemeente' : null
+    const municipalityId = selectedCity?.id ?? selectedGemeente?.id
+    if (!scope || !municipalityId) {
+      setPanelPOIs([])
+      return
+    }
+    let stale = false
+    fetchMunicipalityPOIs(municipalityId, scope)
+      .then((pois) => {
+        if (!stale) setPanelPOIs(pois)
+      })
+      .catch(() => {
+        if (!stale) setPanelPOIs([])
+      })
+    return () => {
+      stale = true
+    }
+  }, [selectedGemeente, selectedCity])
 
-  // Swipe-to-dismiss: clears the panel but leaves the map where it is.
-  // Unlike handleDetailsClose, does NOT call resetView() — user swiped to
-  // look at the map, not to navigate away.
-  const handlePanelSwipeDismiss = useCallback(() => {
+  useEffect(() => {
+    const update = () => setIsOffline(!navigator.onLine)
+    window.addEventListener('online', update)
+    window.addEventListener('offline', update)
+    return () => {
+      window.removeEventListener('online', update)
+      window.removeEventListener('offline', update)
+    }
+  }, [])
+
+  const panelTitle = selectedPOI?.name ?? selectedCity?.name ?? selectedGemeente?.name ?? null
+
+  // Move focus to opened panel
+  useEffect(() => {
+    if (loading || detailsLoading) return
+    if (panelTitle) {
+      const active = document.activeElement
+      if (
+        active instanceof HTMLElement &&
+        active !== document.body &&
+        !detailsRef.current?.contains(active)
+      ) {
+        returnFocusRef.current = active
+      }
+      detailsRef.current?.focus({ preventScroll: true })
+      panelWasOpen.current = true
+      // Keep this page for offline reload
+      navigator.serviceWorker?.controller?.postMessage({
+        type: 'CACHE_URLS',
+        urls: [location.pathname + location.search],
+      })
+    } else if (panelWasOpen.current) {
+      panelWasOpen.current = false
+      if (document.activeElement === document.body) {
+        const target = returnFocusRef.current?.isConnected
+          ? returnFocusRef.current
+          : document.getElementById('search-button')
+        target?.focus({ preventScroll: true })
+      }
+      returnFocusRef.current = null
+    }
+  }, [panelTitle, loading, detailsLoading])
+
+  // Closing keeps the current view
+  const handleDetailsClose = useCallback(() => {
     setSelectedGemeente(null)
     setSelectedCity(null)
     setSelectedPOI(null)
     setSelectedGemeenteId(null)
     window.history.pushState({}, '', '/')
   }, [setSelectedGemeenteId])
+
+  const handleReset = useCallback(() => {
+    handleDetailsClose()
+    resetView()
+  }, [handleDetailsClose, resetView])
 
   const handlePanelTouchStart = useCallback((e: React.TouchEvent) => {
     if (e.touches.length !== 1) return
@@ -251,12 +339,12 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
 
   const handlePanelTouchEnd = useCallback(() => {
     if (swipeOffsetRef.current > 80) {
-      handlePanelSwipeDismiss()
+      handleDetailsClose()
     }
     swipeOffsetRef.current = 0
     setSwipeOffset(0)
     panelTouchStartY.current = null
-  }, [handlePanelSwipeDismiss])
+  }, [handleDetailsClose])
 
   const [shareLoading, setShareLoading] = useState(false)
   const handleShare = async () => {
@@ -346,7 +434,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+        <div role="status" className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Gemeentes laden...</p>
         </div>
@@ -362,17 +450,24 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
       <Header onSearchOpen={() => setSearchOpen(true)} />
 
       <main className="flex-1 relative overflow-hidden">
+        <div role="status" className="sr-only">
+          {[detailsLoading && 'Parkeerregels laden', isOffline && OFFLINE_MESSAGE]
+            .filter(Boolean)
+            .join('. ')}
+        </div>
+
         <MapView
           gemeentes={gemeentes}
           onGemeenteSelect={handleGemeenteSelect}
           onCitySelect={handleCitySelect}
           onPOISelect={handlePOISelect}
-          onReset={handleDetailsClose}
+          onReset={handleReset}
           selectedGemeente={selectedGemeente}
           selectedCity={selectedCity}
           poiActive={!!selectedPOI}
           detailsOpen={detailsOpen}
           autoFitGemeenteId={initialGemeenteId ?? null}
+          pois={panelPOIs}
         />
 
         <SpotlightSearch
@@ -381,10 +476,20 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
           onSelect={handleSearchSelect}
         />
 
+        {isOffline && (
+          <div className="absolute top-3 left-3 z-[1000] max-w-[calc(100%-5.5rem)] rounded-lg bg-gray-900 px-3 py-2 text-sm text-white shadow-lg">
+            {OFFLINE_MESSAGE}
+          </div>
+        )}
+
         {detailsOpen && (
           <div
             ref={detailsRef}
-            className="fixed sm:absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none max-h-[75vh] sm:max-h-none overflow-y-auto [overscroll-behavior-y:contain] [animation:slide-up_0.3s_ease-out] sm:[animation:none]"
+            role="region"
+            aria-label={panelTitle ? `Parkeerregels: ${panelTitle}` : 'Parkeerregels laden'}
+            aria-busy={detailsLoading}
+            tabIndex={-1}
+            className="outline-none absolute bottom-0 sm:top-4 left-0 sm:left-auto w-full sm:w-auto right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-lg shadow-2xl p-4 max-w-full sm:max-w-sm z-[1001] border-t sm:border-none max-h-[min(75vh,100%)] sm:max-h-none overflow-y-auto [overscroll-behavior-y:contain] [animation:slide-up_0.3s_ease-out] sm:[animation:none]"
             style={{
               boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
               transform: swipeOffset > 0 ? `translateY(${swipeOffset}px)` : undefined,
@@ -416,6 +521,8 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId }) =>
                 gemeente={selectedGemeente}
                 city={selectedCity}
                 onClose={handleDetailsClose}
+                pois={panelPOIs}
+                onPOISelect={handlePOISelect}
               />
             )}
 

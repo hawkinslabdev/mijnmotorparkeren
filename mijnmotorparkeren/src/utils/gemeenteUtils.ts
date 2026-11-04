@@ -87,35 +87,41 @@ export function getParkingStatus(entity: Gemeente | City): {
   }
 }
 
+// Patterns: status readable without colour
+export const BOUNDARY_STYLES = {
+  sidewalk_allowed: {
+    fillColor: '#dbeafe', // blue-100
+    borderColor: '#2563eb', // blue-600
+    weight: 2,
+  },
+  free_parking: {
+    fillColor: 'url(#status-free)', // green-100 dots
+    borderColor: '#16a34a', // green-600
+    weight: 2,
+  },
+  paid_parking: {
+    fillColor: 'url(#status-paid)', // red-100 stripes
+    borderColor: '#dc2626', // red-600
+    weight: 2,
+  },
+  no_info: {
+    fillColor: '#f3f4f6', // gray-100
+    borderColor: '#9ca3af', // gray-400
+    weight: 1,
+  },
+}
+
 /**
  * Get map boundary colors based on parking status
  */
 export function getMapBoundaryColors(entity: Gemeente | City): {
   fillColor: string
   borderColor: string
+  weight: number
 } {
   const status = getParkingStatus(entity)
 
-  const colorMap = {
-    sidewalk_allowed: {
-      fillColor: '#dbeafe', // blue-100
-      borderColor: '#2563eb', // blue-600
-    },
-    free_parking: {
-      fillColor: '#dcfce7', // green-100
-      borderColor: '#16a34a', // green-600
-    },
-    paid_parking: {
-      fillColor: '#fee2e2', // red-100
-      borderColor: '#dc2626', // red-600
-    },
-    no_info: {
-      fillColor: '#f3f4f6', // gray-100
-      borderColor: '#9ca3af', // gray-400
-    },
-  }
-
-  return colorMap[status.status]
+  return BOUNDARY_STYLES[status.status]
 }
 
 /**

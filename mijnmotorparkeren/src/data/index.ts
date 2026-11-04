@@ -1,5 +1,5 @@
 import type { Gemeente, ParkingStatusValue } from '../types/gemeente'
-import type { City } from '../types/city'
+import type { City, CityLite } from '../types/city'
 import type { POI, POIIndex, POIScope } from '../types/poi'
 
 let DATA_VERSION = import.meta.env.PUBLIC_DATA_VERSION
@@ -45,6 +45,25 @@ export function fetchGemeenteIndex(): Promise<GemeenteLite[]> {
       })
   }
   return indexPromise
+}
+
+let cityIndexPromise: Promise<CityLite[]> | null = null
+
+/** Fetch the city index for search. */
+export function fetchCityIndex(): Promise<CityLite[]> {
+  if (!cityIndexPromise) {
+    cityIndexPromise = fetch(getVersionedJsonUrl('city', 'index'))
+      .then((res) => {
+        if (!res.ok) throw new Error(`Failed to fetch city index: ${res.status}`)
+        return res.json()
+      })
+      .then((json) => (json.cities ?? []) as CityLite[])
+      .catch((err) => {
+        cityIndexPromise = null
+        throw err
+      })
+  }
+  return cityIndexPromise
 }
 
 /** Fetch the full gemeente data for a single gemeente (on demand). */

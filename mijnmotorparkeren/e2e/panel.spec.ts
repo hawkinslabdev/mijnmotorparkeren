@@ -31,7 +31,7 @@ test.describe('Detail panel', () => {
     await page.goto('/')
     await waitForMap(page)
     await page.getByRole('button', { name: 'Locatie zoeken' }).click()
-    await page.getByPlaceholder('Zoek gemeente...').fill('Amsterdam')
+    await page.getByPlaceholder('Zoek gemeente of stad...').fill('Amsterdam')
     await page.getByText('Amsterdam').first().click()
     await expect(page.getByText(/parkeren/i).first()).toBeVisible()
   })

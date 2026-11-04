@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react'
 
 interface ToastContextType {
-  showToast: (message: string) => void
+  showToast: (message: string, duration?: number) => void
 }
 
 export const ToastContext = createContext<ToastContextType>({ showToast: () => {} })

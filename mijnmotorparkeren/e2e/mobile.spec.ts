@@ -27,7 +27,7 @@ test.describe('Mobile UX', () => {
     await page.goto('/gemeente/amsterdam')
     await waitForMap(page)
     await expect(page.getByRole('heading', { name: 'Gemeente Amsterdam', exact: true })).toBeVisible()
-    const panel = page.getByRole('heading', { name: 'Gemeente Amsterdam', exact: true }).locator('xpath=ancestor::div[contains(@class,"fixed")]')
+    const panel = page.getByRole('region', { name: /Parkeerregels/ })
     const box = await panel.first().boundingBox()
     const viewport = page.viewportSize()!
     // Panel should not exceed viewport width

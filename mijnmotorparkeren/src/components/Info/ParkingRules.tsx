@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Clock,
+  Euro,
   MapPin,
   AlertTriangle,
   Bike,
@@ -9,9 +10,13 @@ import {
   ExternalLink,
   Mail,
   Calendar,
+  type LucideIcon,
 } from 'lucide-react'
 import type { Gemeente } from '../../types/gemeente'
 import type { City } from '../../types/city'
+import type { POI } from '../../types/poi'
+import { POI_TYPE_CONFIG } from '../../types/poi'
+import { POIDot } from './POIDetails'
 import { clsx } from 'clsx'
 
 interface ParkingRulesProps {
@@ -19,13 +24,44 @@ interface ParkingRulesProps {
   city?: City | null
   className?: string
   onClose?: () => void
+  pois?: POI[]
+  onPOISelect?: (poi: POI) => void
 }
+
+const RULE_TONES = {
+  positive: 'text-green-700',
+  negative: 'text-red-700',
+  caution: 'text-amber-700',
+  neutral: 'text-gray-500',
+}
+
+// Icon shape and wording carry status
+const RuleRow: React.FC<{
+  icon: LucideIcon
+  tone: keyof typeof RULE_TONES
+  title: string
+  children?: React.ReactNode
+}> = ({ icon: Icon, tone, title, children }) => (
+  <li className="flex gap-3 py-3">
+    <Icon
+      className={clsx('mt-0.5 h-5 w-5 flex-none', RULE_TONES[tone])}
+      strokeWidth={2.5}
+      aria-hidden="true"
+    />
+    <div className="min-w-0 grow">
+      <p className="text-base font-medium leading-snug text-gray-900">{title}</p>
+      {children && <div className="mt-1 text-sm leading-relaxed text-gray-700">{children}</div>}
+    </div>
+  </li>
+)
 
 export const ParkingRules: React.FC<ParkingRulesProps> = ({
   gemeente,
   city,
   className,
   onClose,
+  pois = [],
+  onPOISelect,
 }) => {
   // Use city data if available, otherwise use gemeente data
   const data = city || gemeente
@@ -50,6 +86,94 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
   }
 
   const { parkingRules } = data
+  const moto = parkingRules?.motorcycleSpecific
+  const paid = parkingRules?.paid
+  const restrictions = parkingRules?.restrictions
+  const permits = parkingRules?.permits
+
+  const rules = [
+    moto?.allowedOnSidewalk === true && (
+      <RuleRow key="sidewalk" icon={Check} tone="positive" title="Op de stoep toegestaan" />
+    ),
+    moto?.allowedOnSidewalk === false && (
+      <RuleRow key="sidewalk" icon={X} tone="negative" title="Niet op de stoep" />
+    ),
+    moto?.freeInPaidZones === true && (
+      <RuleRow key="free" icon={Check} tone="positive" title="Gratis in betaalzones" />
+    ),
+    moto?.freeInPaidZones === false && (
+      <RuleRow key="free" icon={AlertTriangle} tone="caution" title="Niet gratis in het vak" />
+    ),
+    moto?.dedicatedSpots && moto.dedicatedSpots.length > 0 && (
+      <RuleRow
+        key="spots"
+        icon={MapPin}
+        tone="neutral"
+        title={`Aangewezen motorvakken (${moto.dedicatedSpots.length})`}
+      >
+        <ul className="space-y-1">
+          {moto.dedicatedSpots.map((spot, index) => (
+            <li key={index} className="flex justify-between gap-4">
+              <span>{spot.location}</span>
+              {spot.spots && <span className="flex-none tabular-nums">{spot.spots} plaatsen</span>}
+            </li>
+          ))}
+        </ul>
+      </RuleRow>
+    ),
+    paid?.enabled && paid.rates && (
+      <RuleRow key="paid" icon={Euro} tone="caution" title="Betaald parkeren">
+        <dl className="space-y-1 tabular-nums">
+          <div className="flex justify-between gap-4">
+            <dt>Per uur:</dt>
+            <dd className="font-medium text-gray-900">€{paid.rates.hourly.toFixed(2)}</dd>
+          </div>
+          {paid.rates.daily && (
+            <div className="flex justify-between gap-4">
+              <dt>Per dag:</dt>
+              <dd className="font-medium text-gray-900">€{paid.rates.daily.toFixed(2)}</dd>
+            </div>
+          )}
+        </dl>
+        {paid.areas && paid.areas.length > 0 && (
+          <p className="mt-2">
+            <span className="font-medium text-gray-900">Gebieden:</span> {paid.areas.join(', ')}
+          </p>
+        )}
+      </RuleRow>
+    ),
+    restrictions?.timeLimit && (
+      <RuleRow key="limit" icon={Clock} tone="caution" title="Tijdslimiet">
+        Maximaal {restrictions.timeLimit} uur parkeren
+      </RuleRow>
+    ),
+    permits?.required && (
+      <RuleRow key="permit" icon={AlertTriangle} tone="caution" title="Vergunning vereist">
+        {permits.types?.length ? (
+          <ul className="list-disc space-y-1 pl-4">
+            {permits.types.map((type, index) => (
+              <li key={index}>{type}</li>
+            ))}
+          </ul>
+        ) : (
+          'Er is een vergunning vereist voor parkeren.'
+        )}
+      </RuleRow>
+    ),
+    restrictions?.noParking && restrictions.noParking.length > 0 && (
+      <RuleRow key="ban" icon={X} tone="negative" title="Parkeerverbod">
+        <div className="space-y-1">
+          {restrictions.noParking.map((restriction, index) => (
+            <div key={index}>
+              <span className="font-medium text-gray-900">{restriction.location}</span>
+              {restriction.days && <span className="ml-2">({restriction.days.join(', ')})</span>}
+              {restriction.times && <span className="ml-2">{restriction.times}</span>}
+            </div>
+          ))}
+        </div>
+      </RuleRow>
+    ),
+  ].filter(Boolean)
 
   return (
     <div
@@ -59,9 +183,9 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
       )}
     >
       {/* Header */}
-      <div className="relative bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6">
-        {/* Header buttons; vertically centered */}
-        <div className="absolute top-1/2 right-4 transform -translate-y-1/2 flex items-center gap-1">
+      <div className="flex flex-wrap-reverse items-center gap-x-1 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6">
+        {/* Header buttons; wrap above long titles */}
+        <div className="ml-auto flex flex-shrink-0 items-center gap-1">
           {/* Report/Help button */}
           <a
             href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
@@ -71,7 +195,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
             aria-label="Probleem melden"
           >
             <AlertTriangle
-              className="h-5 w-5 text-rose-400 group-hover:text-rose-600 transition-colors"
+              className="h-5 w-5 text-rose-700 group-hover:text-rose-800 transition-colors"
               aria-hidden="true"
             />
           </a>
@@ -88,229 +212,71 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
           )}
         </div>
 
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 pr-20">{data.name}</h2>
+        <div className="order-first min-w-0 grow basis-48">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 break-words">
+            {data.name}
+          </h2>
 
-        {/* City indicator if applicable */}
-        {isCity && city && (
-          <p className="text-sm text-gray-600">
-            in Gemeente {city.parent.charAt(0).toUpperCase() + city.parent.slice(1)}
-          </p>
-        )}
+          {/* City indicator if applicable */}
+          {isCity && city && (
+            <p className="text-sm text-gray-600">
+              in Gemeente {city.parent.charAt(0).toUpperCase() + city.parent.slice(1)}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Content */}
       <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
         {!parkingRules && (
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-gray-600 text-sm text-center">
+          <p className="text-sm text-gray-600">
             Er zijn geen gegevens over parkeerregels beschikbaar voor deze gemeente.
+          </p>
+        )}
+
+        {(rules.length > 0 || moto?.notes) && (
+          <div>
+            <h3 className="mb-1 flex items-center text-base font-semibold text-gray-900 sm:text-lg">
+              <Bike className="mr-2 h-5 w-5" aria-hidden="true" />
+              Parkeren
+            </h3>
+
+            {rules.length > 0 && <ul className="divide-y divide-gray-100 break-words">{rules}</ul>}
+
+            {moto?.notes && (
+              <p className="mt-3 whitespace-pre-line break-words text-sm leading-relaxed text-gray-700">
+                {moto.notes}
+              </p>
+            )}
           </div>
         )}
 
-        {parkingRules && (
-          <>
-            {/* Motorcycle parking section */}
-            {parkingRules.motorcycleSpecific && (
-              <div className="space-y-4">
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 flex items-center">
-                  <Bike className="mr-2 h-5 w-5" />
-                  Parkeren
-                </h3>
-
-                <div className="grid gap-3 sm:gap-4">
-                  {/* Sidewalk parking */}
-                  {(parkingRules.motorcycleSpecific.allowedOnSidewalk === true ||
-                    parkingRules.motorcycleSpecific.allowedOnSidewalk === false) && (
-                    <div
-                      className={clsx(
-                        'flex items-start gap-3 rounded-xl border p-3.5 sm:p-4',
-                        parkingRules.motorcycleSpecific.allowedOnSidewalk
-                          ? 'bg-green-50 border-green-200'
-                          : 'bg-red-50 border-red-200'
-                      )}
-                    >
-                      <span
-                        className={clsx(
-                          'grid h-9 w-9 flex-none place-items-center rounded-lg text-white',
-                          parkingRules.motorcycleSpecific.allowedOnSidewalk
-                            ? 'bg-green-700'
-                            : 'bg-red-700'
-                        )}
-                        aria-hidden="true"
-                      >
-                        {parkingRules.motorcycleSpecific.allowedOnSidewalk ? (
-                          <Check className="h-5 w-5" />
-                        ) : (
-                          <X className="h-5 w-5" />
-                        )}
+        {/* Keyboard route to map POIs */}
+        {pois.length > 0 && onPOISelect && (
+          <div className="space-y-2">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+              Parkeerlocaties ({pois.length})
+            </h3>
+            <ul className="divide-y divide-gray-200 rounded-lg border border-gray-200">
+              {pois.map((poi) => (
+                <li key={poi.id}>
+                  <button
+                    type="button"
+                    onClick={() => onPOISelect(poi)}
+                    className="flex w-full min-h-11 items-center gap-3 px-3 py-2 text-left hover:bg-gray-50 transition-colors"
+                  >
+                    <POIDot type={poi.type} className="w-3 h-3" />
+                    <span className="min-w-0">
+                      <span className="block text-sm font-medium text-gray-900">{poi.name}</span>
+                      <span className="block text-xs text-gray-600">
+                        {POI_TYPE_CONFIG[poi.type].label}
                       </span>
-                      <div className="min-w-0 self-center">
-                        <p
-                          className={clsx(
-                            'text-sm font-medium leading-tight sm:text-base',
-                            parkingRules.motorcycleSpecific.allowedOnSidewalk
-                              ? 'text-green-950'
-                              : 'text-red-950'
-                          )}
-                        >
-                          {parkingRules.motorcycleSpecific.allowedOnSidewalk
-                            ? 'Op de stoep toegestaan'
-                            : 'Niet op de stoep'}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Free in paid zones */}
-                  {parkingRules.motorcycleSpecific.freeInPaidZones === true && (
-                    <div className="flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 p-3.5 sm:p-4">
-                      <span
-                        className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-green-700 text-white"
-                        aria-hidden="true"
-                      >
-                        <Check className="h-5 w-5" />
-                      </span>
-                      <p className="min-w-0 text-sm font-medium leading-tight text-green-950 sm:text-base">
-                        Gratis in betaalzones
-                      </p>
-                    </div>
-                  )}
-                  {parkingRules.motorcycleSpecific.freeInPaidZones === false && (
-                    <div className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 p-3.5 sm:p-4">
-                      <span
-                        className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-amber-600 text-white"
-                        aria-hidden="true"
-                      >
-                        <AlertTriangle className="h-5 w-5" />
-                      </span>
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium leading-tight text-amber-950 sm:text-base">
-                          Niet gratis in het vak
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Dedicated spots */}
-                  {parkingRules.motorcycleSpecific.dedicatedSpots &&
-                    parkingRules.motorcycleSpecific.dedicatedSpots.length > 0 && (
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
-                        <h4 className="font-medium text-blue-900 mb-2 flex items-center">
-                          <MapPin className="h-4 w-4 mr-1" />
-                          Aangewezen motorvakken (
-                          {parkingRules.motorcycleSpecific.dedicatedSpots.length})
-                        </h4>
-                        <div className="space-y-2">
-                          {parkingRules.motorcycleSpecific.dedicatedSpots.map((spot, index) => (
-                            <div key={index} className="flex justify-between items-center text-sm">
-                              <span className="text-blue-800">{spot.location}</span>
-                              <span className="bg-blue-200 text-blue-900 px-2 py-1 rounded text-xs">
-                                {spot.spots} plaatsen
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                  {/* Notes */}
-                  {parkingRules.motorcycleSpecific.notes && (
-                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4 mt-4">
-                      <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-                        {parkingRules.motorcycleSpecific.notes}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* Paid parking */}
-            {parkingRules.paid?.enabled && parkingRules.paid.rates && (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                <h4 className="font-medium text-amber-900 mb-3 flex items-center">
-                  <Clock className="h-4 w-4 mr-2" />
-                  Betaald parkeren
-                </h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-amber-800">Per uur:</span>
-                    <span className="font-medium text-amber-900">
-                      €{parkingRules.paid.rates.hourly.toFixed(2)}
                     </span>
-                  </div>
-                  {parkingRules.paid.rates.daily && (
-                    <div className="flex justify-between">
-                      <span className="text-amber-800">Per dag:</span>
-                      <span className="font-medium text-amber-900">
-                        €{parkingRules.paid.rates.daily.toFixed(2)}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                {parkingRules.paid.areas && parkingRules.paid.areas.length > 0 && (
-                  <div className="mt-3">
-                    <span className="text-sm font-medium text-amber-800">Gebieden:</span>
-                    <p className="text-sm text-amber-700 mt-1">
-                      {parkingRules.paid.areas.join(', ')}
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Time restrictions */}
-            {parkingRules.restrictions?.timeLimit && (
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                <h4 className="font-medium text-orange-900 mb-2 flex items-center">
-                  <Clock className="h-4 w-4 mr-2" />
-                  Tijdslimiet
-                </h4>
-                <p className="text-sm text-orange-800">
-                  Maximaal {parkingRules.restrictions.timeLimit} uur parkeren
-                </p>
-              </div>
-            )}
-
-            {/* Permits */}
-            {parkingRules.permits?.required && (
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                <h4 className="font-medium text-purple-900 mb-2">Vergunning vereist</h4>
-                {parkingRules.permits.types?.length ? (
-                  <ul className="text-sm text-purple-800 space-y-1">
-                    {parkingRules.permits.types.map((type, index) => (
-                      <li key={index}>• {type}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm text-purple-800">
-                    Er is een vergunning vereist voor parkeren.
-                  </p>
-                )}
-              </div>
-            )}
-
-            {/* No parking zones */}
-            {parkingRules.restrictions?.noParking &&
-              parkingRules.restrictions.noParking.length > 0 && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <h4 className="font-medium text-red-900 mb-2 flex items-center">
-                    <X className="h-4 w-4 mr-2" />
-                    Parkeerverbod
-                  </h4>
-                  <div className="space-y-1">
-                    {parkingRules.restrictions.noParking.map((restriction, index) => (
-                      <div key={index} className="text-sm text-red-800">
-                        <span className="font-medium">{restriction.location}</span>
-                        {restriction.days && (
-                          <span className="ml-2">({restriction.days.join(', ')})</span>
-                        )}
-                        {restriction.times && <span className="ml-2">{restriction.times}</span>}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-          </>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
 
         {/* Modern footer */}
@@ -333,13 +299,13 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                 data.contact.email && data.contact.email !== '#' ? (
                   <a
                     href={`mailto:${data.contact.email}`}
-                    className="flex items-center gap-1.5 text-xs text-blue-600 hover:text-blue-800 transition-colors group"
+                    className="flex items-center gap-1.5 min-h-11 text-xs text-blue-700 hover:text-blue-800 transition-colors group"
                   >
                     <Mail className="h-3 w-3 group-hover:scale-110 transition-transform" />
                     <span>Contact</span>
                   </a>
                 ) : (
-                  <span className="flex items-center gap-1.5 text-xs text-gray-400 cursor-not-allowed">
+                  <span className="flex items-center gap-1.5 text-xs text-gray-600 cursor-not-allowed">
                     <Mail className="h-3 w-3" />
                     <span>Contact</span>
                   </span>
@@ -354,7 +320,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                     return isDisabled ? (
                       <span
                         key={index}
-                        className="flex items-center gap-1 text-xs text-gray-400 cursor-not-allowed py-2"
+                        className="flex items-center gap-1 text-xs text-gray-600 cursor-not-allowed py-2"
                         title={source.name || source.type}
                       >
                         <ExternalLink className="h-3 w-3" aria-hidden="true" />
@@ -367,7 +333,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                         href={source.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 transition-colors group py-2"
+                        className="flex items-center gap-1 min-h-11 min-w-11 text-xs text-blue-700 hover:text-blue-800 transition-colors group"
                         title={source.name || source.type}
                         aria-label={source.name || 'Bekijk bron'}
                       >
@@ -381,7 +347,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
                     )
                   })}
                   {data.sources.length > 2 && (
-                    <span className="text-xs text-gray-400">+{data.sources.length - 2}</span>
+                    <span className="text-xs text-gray-600">+{data.sources.length - 2}</span>
                   )}
                 </div>
               )}

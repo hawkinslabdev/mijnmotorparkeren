@@ -3,7 +3,6 @@
   "short_name": "MotorParkeren",
   "start_url": "/",
   "display": "standalone",
-  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#4f46e5",
   "description": "Vind motorparkeerplekken en regels per gemeente in Nederland.",

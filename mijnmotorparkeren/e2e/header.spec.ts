@@ -15,7 +15,7 @@ test.describe('Header', () => {
   test('search button opens spotlight', async ({ page }) => {
     await page.getByRole('button', { name: 'Locatie zoeken' }).click()
     await expect(page.getByRole('dialog')).toBeVisible()
-    await expect(page.getByPlaceholder('Zoek gemeente...')).toBeFocused()
+    await expect(page.getByPlaceholder('Zoek gemeente of stad...')).toBeFocused()
   })
 
   test('Cmd+K opens spotlight', async ({ page }) => {
@@ -32,7 +32,7 @@ test.describe('Header', () => {
 
   test('search shows results and allows selection', async ({ page }) => {
     await page.getByRole('button', { name: 'Locatie zoeken' }).click()
-    await page.getByPlaceholder('Zoek gemeente...').fill('Amsterdam')
+    await page.getByPlaceholder('Zoek gemeente of stad...').fill('Amsterdam')
     await expect(page.getByText('Amsterdam').first()).toBeVisible()
     await page.getByText('Amsterdam').first().click()
     await expect(page.getByRole('dialog')).not.toBeVisible()

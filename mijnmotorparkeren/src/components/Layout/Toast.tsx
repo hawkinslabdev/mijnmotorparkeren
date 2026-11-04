@@ -6,14 +6,15 @@ interface ToastItem {
   id: number
   message: string
   open: boolean
+  duration?: number
 }
 
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<ToastItem[]>([])
 
-  const showToast = useCallback((message: string) => {
+  const showToast = useCallback((message: string, duration?: number) => {
     const id = Date.now()
-    setToasts((prev) => [...prev, { id, message, open: true }])
+    setToasts((prev) => [...prev, { id, message, open: true, duration }])
   }, [])
 
   const dismissToast = useCallback((id: number) => {
@@ -28,6 +29,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           <RadixToast.Root
             key={toast.id}
             open={toast.open}
+            duration={toast.duration}
             onOpenChange={(open) => {
               if (!open) dismissToast(toast.id)
             }}
