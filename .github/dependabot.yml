@@ -4,6 +4,13 @@ updates:
     directory: /mijnmotorparkeren
     schedule:
       interval: weekly
+    ignore:
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+      - dependency-name: eslint
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@eslint/js"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: docker
     directory: /mijnmotorparkeren
