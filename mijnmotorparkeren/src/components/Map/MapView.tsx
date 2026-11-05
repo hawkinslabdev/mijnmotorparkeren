@@ -38,13 +38,14 @@ const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ cent
   const map = useMap()
   useEffect(() => {
     const focus = () => {
-      // Centre above the POI sheet
-      const sheet = isBottomSheet() ? document.querySelector<HTMLElement>('[data-poi-sheet]') : null
-      const offset = (sheet?.offsetHeight ?? 0) / 2
-      map.setView(
-        offset ? map.unproject(map.project(center, zoom).add([0, offset]), zoom) : center,
-        zoom
-      )
+      // Keep POI clear of panel
+      const sheet = document.querySelector<HTMLElement>('[data-poi-sheet]')
+      const offset: [number, number] = !sheet
+        ? [0, 0]
+        : isBottomSheet()
+          ? [0, sheet.offsetHeight / 2]
+          : [sheet.offsetWidth / 2 + 8, 0]
+      map.setView(sheet ? map.unproject(map.project(center, zoom).add(offset), zoom) : center, zoom)
     }
     // Leaflet drops moves during zoom
     if ((map as LeafletMap & { _animatingZoom?: boolean })._animatingZoom) {

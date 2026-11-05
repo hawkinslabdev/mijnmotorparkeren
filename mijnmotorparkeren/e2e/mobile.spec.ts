@@ -145,4 +145,22 @@ test.describe('Mobile POI sheet', () => {
     await waitForMap(page)
     await expect(page.locator('path.leaflet-user-location-indicator')).toBeAttached()
   })
+
+  test.describe('side panel', () => {
+    test.use({ viewport: { width: 700, height: 800 } })
+
+    test('selected POI stays clear of the panel', async ({ page }) => {
+      await page.goto('/gemeente/amsterdam?poi=stalling')
+      await waitForMap(page)
+      await expect(page.getByRole('heading', { name: poi.name })).toBeVisible()
+      const panel = page.getByRole('region', { name: /Parkeerregels/ })
+      const marker = page.locator('.leaflet-poi-markers-pane path')
+      await expect
+        .poll(async () => {
+          const [m, p] = await Promise.all([marker.boundingBox(), panel.boundingBox()])
+          return m && p ? m.x + m.width < p.x && m.x > 0 : false
+        })
+        .toBe(true)
+    })
+  })
 })
