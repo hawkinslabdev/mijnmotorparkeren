@@ -1,6 +1,7 @@
 {
   "id": "tytsjerksteradiel",
   "name": "Gemeente Tytsjerksteradiel",
+  "alternativeNames": ["Tytsjerk", "Burgum"],
   "province": "Friesland",
   "coordinates": {
     "lat": 53.21,

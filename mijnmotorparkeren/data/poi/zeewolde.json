@@ -6,9 +6,10 @@
       "id": "zeewolde-ravelijn",
       "type": "dedicatedMotorcycleSpot",
       "name": "Parkeergarage Ravelijn",
+      "description": "In de parkeergarage, bij binnenkomst aan de rechterzijde. Deze garage is 's nachts gesloten voor personen en voertuigen. Je hebt geen parkeerschijf nodig.",
       "coordinates": {
-        "lat": 52.33073138076786,
-        "lng": 5.544579723954244
+        "lat": 52.3303730539989, 
+        "lng": 5.544665241078313
       },
       "capacity": 3,
       "source": {

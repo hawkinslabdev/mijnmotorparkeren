@@ -26,6 +26,16 @@ export async function waitForMap(page: Page) {
 export const test = base.extend<{ page: Page }>({
   page: async ({ page }, use) => {
     await mockRoutes(page)
+    // Measure settled layout, not animation
+    await page.addInitScript(() => {
+      addEventListener('DOMContentLoaded', () => {
+        const style = document.createElement('style')
+        // Dev toolbar blocks sheet clicks
+        style.textContent =
+          '[role="region"] { animation: none !important; } astro-dev-toolbar { display: none; }'
+        document.head.append(style)
+      })
+    })
     await use(page)
   },
 })

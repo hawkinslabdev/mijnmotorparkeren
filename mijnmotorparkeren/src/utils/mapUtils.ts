@@ -55,3 +55,6 @@ export const calculateOptimalZoom = (area: FeatureCollection): number => {
     return 13
   }
 }
+
+// Matches Tailwind's sm breakpoint
+export const isBottomSheet = () => window.matchMedia('(max-width: 639.98px)').matches

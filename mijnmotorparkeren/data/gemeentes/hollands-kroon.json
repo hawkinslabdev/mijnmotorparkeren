@@ -1,6 +1,7 @@
 {
   "id": "hollands-kroon",
   "name": "Gemeente Hollands Kroon",
+  "alternativeNames": ["Anna Paulowna", "Middenmeer", "Wieringerwerf"],
   "province": "Noord-Holland",
   "coordinates": {
     "lat": 52.8669,

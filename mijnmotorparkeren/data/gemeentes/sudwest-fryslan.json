@@ -2,7 +2,7 @@
   "id": "sudwest-fryslan",
   "name": "Gemeente Súdwest-Fryslân",
   "province": "Friesland",
-  "alternativeNames": ["Sneek", "Bolsward"],
+  "alternativeNames": ["Sneek", "Bolsward", "Makkum", "IJlst", "Stavoren", "Workum", "Woudsend", "Hindeloopen", "Koudum", "Oudemirdum"],
   "coordinates": {
     "lat": 53.09,
     "lng": 5.57

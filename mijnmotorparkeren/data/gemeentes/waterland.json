@@ -1,8 +1,8 @@
 {
   "id": "waterland",
   "name": "Gemeente Waterland",
+  "alternativeNames": ["Monnickendam", "Broek in Waterland"],
   "province": "Noord-Holland",
-  "alternativeNames": ["Monnickendam"],
   "coordinates": {
     "lat": 52.4426,
     "lng": 5.0402

@@ -135,7 +135,10 @@ if (gemeente) {
   keywords={`motor, parkeren, motor op de stoep, mijn motor parkeren, motor parkeren, ${areaName}`}
   schemaMarkup={schemaMarkup}
 >
-  <App client:only="react" initialGemeenteId={gemeente?.id ?? id} initialPlaceName={placeName} />
+  <App client:only="react" initialGemeenteId={gemeente?.id ?? id} initialPlaceName={placeName}>
+    <!-- Keeps article below the fold -->
+    <div slot="fallback" class="h-dvh bg-gray-50"></div>
+  </App>
 
   {gemeente && (
     <article class="mx-auto max-w-2xl px-4 py-10 text-gray-800">

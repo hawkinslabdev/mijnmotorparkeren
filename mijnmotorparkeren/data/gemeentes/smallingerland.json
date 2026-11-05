@@ -1,6 +1,7 @@
 {
   "id": "smallingerland",
   "name": "Gemeente Smallingerland",
+  "alternativeNames": ["Drachten"],
   "province": "Friesland",
   "coordinates": {
     "lat": 53.16,

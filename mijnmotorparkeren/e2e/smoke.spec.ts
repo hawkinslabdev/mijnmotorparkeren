@@ -45,4 +45,40 @@ test.describe('Smoke', () => {
     await page.getByRole('link', { name: 'Terug naar de kaart' }).click()
     await waitForMap(page)
   })
+
+  for (const path of ['/gemeente/amsterdam', '/stad/abcoude']) {
+    test(`${path} keeps the article below the fold before the app mounts`, async ({ page }) => {
+      await page.route(/\/src\/App\.tsx/, async (r) => {
+        await new Promise((resolve) => setTimeout(resolve, 3000))
+        await r.continue()
+      })
+      await page.goto(path, { waitUntil: 'domcontentloaded' })
+      const article = page.locator('article')
+      await expect(article).toBeAttached()
+      const box = await article.boundingBox()
+      expect(box!.y).toBeGreaterThanOrEqual(page.viewportSize()!.height)
+    })
+
+    test(`${path} hides the article and locks page scroll once mounted`, async ({ page }) => {
+      await page.goto(path)
+      await waitForMap(page)
+      await expect(page.locator('article')).toBeAttached()
+      await expect(page.locator('article')).toBeHidden()
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollHeight - document.documentElement.clientHeight
+      )
+      expect(overflow).toBe(0)
+    })
+  }
+
+  test.describe('without JavaScript', () => {
+    test.use({ javaScriptEnabled: false })
+
+    for (const path of ['/gemeente/amsterdam', '/stad/abcoude']) {
+      test(`${path} still shows the article`, async ({ page }) => {
+        await page.goto(path)
+        await expect(page.locator('article')).toBeVisible()
+      })
+    }
+  })
 })

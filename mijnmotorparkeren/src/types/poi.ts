@@ -40,7 +40,7 @@ export const POI_TYPE_CONFIG: Record<
 > = {
   freeStreetParking: {
     label: 'Gratis straatparkeren',
-    color: '#22c55e',
+    color: '#16a34a',
     icon: 'P',
     hollow: false,
   },

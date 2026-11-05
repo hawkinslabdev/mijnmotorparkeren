@@ -1,6 +1,7 @@
 {
   "id": "buren",
   "name": "Gemeente Buren",
+  "alternativeNames": ["Asch", "Beusichem", "Maurik", "Zoelen"],
   "province": "Gelderland",
   "coordinates": {
     "lat": 51.909,

@@ -1,6 +1,7 @@
 {
   "id": "utrecht",
   "name": "Gemeente Utrecht",
+  "alternativeNames": ["De Meern", "Vleuten", "Leidsche Rijn"],
   "province": "Utrecht",
   "coordinates": {
     "lat": 52.0907,

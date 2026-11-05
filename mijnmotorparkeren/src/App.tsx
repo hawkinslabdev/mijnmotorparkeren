@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
+import { ChevronUp } from 'lucide-react'
 import { ToastProvider } from './components/Layout/Toast'
 import { useToast } from './contexts/ToastContext'
 import 'leaflet/dist/leaflet.css'
@@ -6,7 +7,7 @@ import '@fontsource-variable/inter/wght.css'
 import MapView from '@components/Map/MapView'
 import { SpotlightSearch } from '@components/Search/SpotlightSearch'
 import { ParkingRules } from '@components/Info/ParkingRules'
-import { POIDetails } from '@components/Info/POIDetails'
+import { POIDetails, POIDot } from '@components/Info/POIDetails'
 import { Header } from '@components/Layout/Header'
 import { PromoBar } from '@components/Layout/PromoBar'
 import { useMapStore } from '@stores/mapStore'
@@ -17,6 +18,7 @@ import { type City } from './types/city'
 import type { POI } from './types/poi'
 import { fetchFullCity, fetchMunicipalityPOIs } from './data/index'
 import { isCityItem, type SearchItem } from '@hooks/useSearch'
+import { isBottomSheet } from './utils/mapUtils'
 
 import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png?url'
@@ -46,6 +48,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
   const [selectedGemeente, setSelectedGemeente] = useState<Gemeente | null>(null)
   const [selectedCity, setSelectedCity] = useState<City | null>(null)
   const [selectedPOI, setSelectedPOI] = useState<POI | null>(null)
+  const [sheetPeek, setSheetPeek] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [detailsLoading, setDetailsLoading] = useState(false)
   const [swipeOffset, setSwipeOffset] = useState(0)
@@ -68,9 +71,22 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
     typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('poi') : null
   )
 
+  // POI links own the initial view
+  const [openedOnPOI] = useState(() => !!pendingPoiId.current)
+
   const { showToast } = useToast()
   const { setSelectedGemeente: setSelectedGemeenteId, focusOnGemeente, resetView } = useMapStore()
   const { gemeentes, loading, error: indexError, loadFullGemeente } = useGemeenteData()
+
+  // SEO article: crawlers, no-JS only
+  useEffect(() => {
+    const article = document.querySelector('article')
+    if (!article) return
+    article.hidden = true
+    return () => {
+      article.hidden = false
+    }
+  }, [])
 
   useEffect(() => {
     if (indexError) showToast(MESSAGES.LOAD_ERROR, 6000)
@@ -147,9 +163,28 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
     },
   ])
 
+  const toggleSheetPeek = useCallback(
+    (peek: boolean) => {
+      // Keep focus out of hidden content
+      detailsRef.current?.focus({ preventScroll: true })
+      setSheetPeek(peek)
+      // Recentre above the resized sheet
+      if (selectedPOI) {
+        focusOnGemeente([selectedPOI.coordinates.lat, selectedPOI.coordinates.lng], 17)
+      }
+    },
+    [selectedPOI, focusOnGemeente]
+  )
+
   const handleGemeenteSelect = useCallback(
     async (lite: Gemeente | null) => {
+      // Same minimized area: only reopen
+      if (sheetPeek && lite && lite.id === selectedGemeente?.id) {
+        toggleSheetPeek(false)
+        return
+      }
       setSelectedPOI(null)
+      setSheetPeek(false)
       setPlaceName(undefined)
       if (!lite) {
         setSelectedGemeente(null)
@@ -174,12 +209,26 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
       setSelectedGemeente(full ?? lite)
       setDetailsLoading(false)
     },
-    [setSelectedGemeenteId, focusOnGemeente, loadFullGemeente, showToast]
+    [
+      sheetPeek,
+      selectedGemeente,
+      toggleSheetPeek,
+      setSelectedGemeenteId,
+      focusOnGemeente,
+      loadFullGemeente,
+      showToast,
+    ]
   )
 
   const handleCitySelect = useCallback(
     async (city: City | null) => {
+      // Same minimized area: only reopen
+      if (sheetPeek && city && city.id === selectedCity?.id) {
+        toggleSheetPeek(false)
+        return
+      }
       setSelectedPOI(null)
+      setSheetPeek(false)
       setPlaceName(undefined)
       if (!city) {
         setSelectedCity(null)
@@ -193,7 +242,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
       if (city.coordinates) focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
       setSelectedCity(city)
     },
-    [setSelectedGemeenteId, focusOnGemeente]
+    [sheetPeek, selectedCity, toggleSheetPeek, setSelectedGemeenteId, focusOnGemeente]
   )
 
   const handleSearchSelect = useCallback(
@@ -221,6 +270,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
   const handlePOISelect = useCallback(
     (poi: POI) => {
       setSelectedPOI(poi)
+      setSheetPeek(false)
       focusOnGemeente([poi.coordinates.lat, poi.coordinates.lng], 17)
       // Make the POI shareable via ?poi=<id> on the current gemeente/city path.
       const base = window.location.pathname
@@ -337,6 +387,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
     setSelectedGemeente(null)
     setSelectedCity(null)
     setSelectedPOI(null)
+    setSheetPeek(false)
     setSelectedGemeenteId(null)
     window.history.pushState({}, '', '/')
   }, [setSelectedGemeenteId])
@@ -358,14 +409,23 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
   // preventDefault() from blocking pull-to-refresh. We attach a non-passive
   // native listener in useEffect instead (see below).
 
-  const handlePanelTouchEnd = useCallback(() => {
-    if (swipeOffsetRef.current > 80) {
-      handleDetailsClose()
-    }
-    swipeOffsetRef.current = 0
-    setSwipeOffset(0)
-    panelTouchStartY.current = null
-  }, [handleDetailsClose])
+  const handlePanelTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      const startY = panelTouchStartY.current
+      // Collapsed sheet has little travel
+      const swipedDown = swipeOffsetRef.current > (sheetPeek ? 30 : 80)
+      const swipedUp = startY !== null && startY - e.changedTouches[0].clientY > 30
+      if (!isBottomSheet() || (sheetPeek && swipedDown)) {
+        if (swipedDown) handleDetailsClose()
+      } else if (sheetPeek ? swipedUp : swipedDown) {
+        toggleSheetPeek(!sheetPeek)
+      }
+      swipeOffsetRef.current = 0
+      setSwipeOffset(0)
+      panelTouchStartY.current = null
+    },
+    [handleDetailsClose, sheetPeek, toggleSheetPeek]
+  )
 
   const [shareLoading, setShareLoading] = useState(false)
   const [shareResult, setShareResult] = useState<string | null>(null)
@@ -500,8 +560,9 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
           selectedGemeente={selectedGemeente}
           selectedCity={selectedCity}
           poiActive={!!selectedPOI}
+          selectedPoiId={selectedPOI?.id}
           detailsOpen={detailsOpen}
-          autoFitGemeenteId={initialGemeenteId ?? null}
+          autoFitGemeenteId={openedOnPOI ? null : (initialGemeenteId ?? null)}
           pois={panelPOIs}
         />
 
@@ -524,6 +585,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
             aria-label={panelTitle ? `Parkeerregels: ${panelTitle}` : 'Parkeerregels laden'}
             aria-busy={detailsLoading}
             tabIndex={-1}
+            data-poi-sheet={selectedPOI ? '' : undefined}
             className="outline-none absolute bottom-0 sm:bottom-4 left-0 sm:left-auto w-full right-0 sm:right-4 bg-white rounded-t-2xl sm:rounded-xl shadow-2xl px-4 pt-4 max-w-full sm:max-w-sm z-[1001] border-t border-gray-200 sm:border-none max-h-[min(75vh,100%)] sm:max-h-[calc(100%-2rem)] overflow-y-auto [overscroll-behavior-y:contain] [animation:slide-up_0.3s_ease-out] sm:[animation:none]"
             style={{
               boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
@@ -533,75 +595,98 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
             onTouchStart={handlePanelTouchStart}
             onTouchEnd={handlePanelTouchEnd}
           >
-            <div className="sm:hidden flex justify-center mb-2">
-              <div className="w-12 h-1.5 bg-gray-300 rounded-full" />
-            </div>
-
-            {detailsLoading ? (
-              <div className="animate-pulse space-y-3 pt-2 pb-6">
-                <div className="h-6 bg-gray-200 rounded w-2/3" />
-                <div className="h-4 bg-gray-200 rounded w-1/3" />
-                <div className="h-16 bg-gray-200 rounded" />
-                <div className="h-16 bg-gray-200 rounded" />
-                <div className="h-10 bg-gray-200 rounded w-3/4" />
-              </div>
-            ) : selectedPOI ? (
-              <POIDetails
-                poi={selectedPOI}
-                onClose={handlePOIClose}
-                parentName={selectedCity?.name ?? selectedGemeente?.name}
-              />
+            {panelTitle && !detailsLoading ? (
+              <button
+                type="button"
+                onClick={() => toggleSheetPeek(!sheetPeek)}
+                aria-expanded={!sheetPeek}
+                aria-controls="panel-content"
+                aria-label={`Details van ${panelTitle}`}
+                className="sm:hidden -mt-2 flex min-h-11 w-full flex-col items-center gap-2 rounded-lg pt-2 outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              >
+                <span className="w-12 h-1.5 bg-gray-500 rounded-full" />
+                {sheetPeek && (
+                  <span className="flex max-w-full items-center gap-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-base font-semibold text-gray-900">
+                    {selectedPOI && <POIDot type={selectedPOI.type} className="w-2.5 h-2.5" />}
+                    <span className="truncate">{panelTitle}</span>
+                    <ChevronUp className="h-4 w-4 flex-none text-gray-600" aria-hidden="true" />
+                  </span>
+                )}
+              </button>
             ) : (
-              <ParkingRules
-                gemeente={selectedGemeente}
-                city={selectedCity}
-                onClose={handleDetailsClose}
-                pois={panelPOIs}
-                placeName={placeName}
-                onPOISelect={handlePOISelect}
-              />
-            )}
-
-            {/* Share stays at one spot */}
-            {!detailsLoading && (
-              <div className="sticky bottom-0 -mx-4 mt-4 bg-white p-4 pt-3">
-                <button
-                  type="button"
-                  onClick={handleShare}
-                  disabled={shareLoading}
-                  data-share-state={shareResult ? 'done' : shareLoading ? 'sharing' : 'idle'}
-                  className={`flex w-full text-white font-semibold py-3 px-4 rounded-lg shadow-lg items-center justify-center gap-2 transition-[background-color,scale] duration-200 ease-out active:scale-[0.98] motion-reduce:active:scale-100 disabled:cursor-wait ${
-                    shareResult ? 'bg-green-700' : 'bg-blue-600 hover:bg-blue-700'
-                  }`}
-                >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="overflow-visible"
-                    aria-hidden="true"
-                  >
-                    {shareResult ? (
-                      <path className="share-check" pathLength={1} d="M5 13l4 4L19 7" />
-                    ) : (
-                      <>
-                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-                        <g className="share-arrow" data-flying={shareLoading}>
-                          <polyline points="16,6 12,2 8,6" />
-                          <line x1="12" y1="2" x2="12" y2="15" />
-                        </g>
-                      </>
-                    )}
-                  </svg>
-                  <span>{shareResult ?? 'Deel deze locatie'}</span>
-                </button>
+              <div className="sm:hidden flex justify-center mb-2">
+                <div className="w-12 h-1.5 bg-gray-300 rounded-full" />
               </div>
             )}
+
+            <div id="panel-content" className={sheetPeek ? 'max-sm:hidden' : undefined}>
+              {detailsLoading ? (
+                <div className="animate-pulse space-y-3 pt-2 pb-6">
+                  <div className="h-6 bg-gray-200 rounded w-2/3" />
+                  <div className="h-4 bg-gray-200 rounded w-1/3" />
+                  <div className="h-16 bg-gray-200 rounded" />
+                  <div className="h-16 bg-gray-200 rounded" />
+                  <div className="h-10 bg-gray-200 rounded w-3/4" />
+                </div>
+              ) : selectedPOI ? (
+                <POIDetails
+                  poi={selectedPOI}
+                  onClose={handlePOIClose}
+                  onDismiss={handleDetailsClose}
+                  parentName={selectedCity?.name ?? selectedGemeente?.name}
+                />
+              ) : (
+                <ParkingRules
+                  gemeente={selectedGemeente}
+                  city={selectedCity}
+                  onClose={handleDetailsClose}
+                  pois={panelPOIs}
+                  placeName={placeName}
+                  onPOISelect={handlePOISelect}
+                />
+              )}
+
+              {/* Share stays at one spot */}
+              {!detailsLoading && (
+                <div className="sticky bottom-0 -mx-4 mt-4 bg-white p-4 pt-3">
+                  <button
+                    type="button"
+                    onClick={handleShare}
+                    disabled={shareLoading}
+                    data-share-state={shareResult ? 'done' : shareLoading ? 'sharing' : 'idle'}
+                    className={`flex w-full text-white font-semibold py-3 px-4 rounded-lg shadow-lg items-center justify-center gap-2 transition-[background-color,scale] duration-200 ease-out active:scale-[0.98] motion-reduce:active:scale-100 disabled:cursor-wait ${
+                      shareResult ? 'bg-green-700' : 'bg-blue-600 hover:bg-blue-700'
+                    }`}
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="overflow-visible"
+                      aria-hidden="true"
+                    >
+                      {shareResult ? (
+                        <path className="share-check" pathLength={1} d="M5 13l4 4L19 7" />
+                      ) : (
+                        <>
+                          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                          <g className="share-arrow" data-flying={shareLoading}>
+                            <polyline points="16,6 12,2 8,6" />
+                            <line x1="12" y1="2" x2="12" y2="15" />
+                          </g>
+                        </>
+                      )}
+                    </svg>
+                    <span>{shareResult ?? 'Deel deze locatie'}</span>
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </main>

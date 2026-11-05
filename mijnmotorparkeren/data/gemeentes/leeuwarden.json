@@ -1,6 +1,7 @@
 {
   "id": "leeuwarden",
   "name": "Gemeente Leeuwarden",
+  "alternativeNames": ["Stiens", "Ljouwert"],
   "province": "Friesland",
   "coordinates": {
     "lat": 53.2014,

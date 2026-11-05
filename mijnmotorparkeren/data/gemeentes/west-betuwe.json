@@ -1,8 +1,8 @@
 {
   "id": "west-betuwe",
   "name": "Gemeente West Betuwe",
+  "alternativeNames": ["Geldermalsen", "Tielenwaard"],
   "province": "Gelderland",
-  "alternativeNames": ["Geldermalsen"],
   "coordinates": {
     "lat": 51.877,
     "lng": 5.202

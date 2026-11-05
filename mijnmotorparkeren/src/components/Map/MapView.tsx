@@ -9,6 +9,7 @@ import type { POI, POIScope, POIType } from '@/types/poi'
 import { POI_TYPE_CONFIG } from '@/types/poi'
 import { useGeolocation } from '@/hooks/useGeolocation'
 import { BOUNDARY_STYLES, getMapBoundaryColors } from '@/utils/gemeenteUtils'
+import { isBottomSheet } from '@/utils/mapUtils'
 import { useToast } from '@/contexts/ToastContext'
 import { POIDot } from '@components/Info/POIDetails'
 import type * as GeoJSONType from 'geojson'
@@ -27,15 +28,36 @@ interface MapViewProps {
   selectedGemeente?: Gemeente | null
   selectedCity?: City | null
   poiActive?: boolean
+  selectedPoiId?: string
   detailsOpen?: boolean
   autoFitGemeenteId?: string | null
   pois?: POI[]
 }
 
+// Keeps streets readable under POI
+const POI_AREA_OPACITY = 0.15
+
 const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ center, zoom }) => {
   const map = useMap()
   useEffect(() => {
-    map.setView(center, zoom)
+    const focus = () => {
+      // Keep POI clear of panel
+      const sheet = document.querySelector<HTMLElement>('[data-poi-sheet]')
+      const offset: [number, number] = !sheet
+        ? [0, 0]
+        : isBottomSheet()
+          ? [0, sheet.offsetHeight / 2]
+          : [sheet.offsetWidth / 2 + 8, 0]
+      map.setView(sheet ? map.unproject(map.project(center, zoom).add(offset), zoom) : center, zoom)
+    }
+    // Leaflet drops moves during zoom
+    if ((map as LeafletMap & { _animatingZoom?: boolean })._animatingZoom) {
+      map.once('zoomend', focus)
+      return () => {
+        map.off('zoomend', focus)
+      }
+    }
+    focus()
   }, [map, center, zoom])
   return null
 }
@@ -220,7 +242,8 @@ const MobileShareButton: React.FC<{
 const CountryBoundariesLayer: React.FC<{
   countries: Gemeente[]
   onSelect: (g: Gemeente) => void
-}> = ({ countries, onSelect }) => {
+  poiAreaId?: string | null
+}> = ({ countries, onSelect, poiAreaId }) => {
   const [boundaries, setBoundaries] = useState<Map<string, GeoJSONType.Geometry>>(new Map())
   const fetchedIds = useRef<Set<string>>(new Set())
 
@@ -263,7 +286,7 @@ const CountryBoundariesLayer: React.FC<{
               color: colors.borderColor,
               weight: 2,
               opacity: 0.8,
-              fillOpacity: 0.45,
+              fillOpacity: country.id === poiAreaId ? POI_AREA_OPACITY : 0.45,
             }}
             eventHandlers={{
               click: (e) => {
@@ -282,8 +305,9 @@ const POILayer: React.FC<{
   municipalityId: string
   scope?: POIScope
   onPOISelect?: (poi: POI) => void
+  selectedPoiId?: string
   debugEnabled?: boolean
-}> = ({ municipalityId, scope = 'gemeente', onPOISelect, debugEnabled = false }) => {
+}> = ({ municipalityId, scope = 'gemeente', onPOISelect, selectedPoiId, debugEnabled = false }) => {
   const map = useMap()
   const [pois, setPois] = useState<POI[]>([])
   const [loading, setLoading] = useState(true)
@@ -330,9 +354,11 @@ const POILayer: React.FC<{
             radius={8}
             pane="poi-markers"
             pathOptions={{
-              color: config.color,
+              // Selection: outline, not size
+              color:
+                poi.id === selectedPoiId ? '#111827' : config.hollow ? config.color : '#ffffff',
               fillColor: config.hollow ? '#ffffff' : config.color,
-              fillOpacity: config.hollow ? 1 : 0.8,
+              fillOpacity: 1,
               weight: config.hollow ? 3 : 2,
             }}
             eventHandlers={{
@@ -387,8 +413,9 @@ let cityDataCache: City[] | null = null
 const CityBoundariesLayer: React.FC<{
   gemeentes: Gemeente[]
   onCitySelect: (city: City) => void
+  poiAreaId?: string | null
   debugEnabled?: boolean
-}> = ({ gemeentes, onCitySelect, debugEnabled = false }) => {
+}> = ({ gemeentes, onCitySelect, poiAreaId, debugEnabled = false }) => {
   const [cities, setCities] = useState<City[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -508,7 +535,7 @@ const CityBoundariesLayer: React.FC<{
               color: colors.borderColor,
               weight: 3,
               opacity: 1,
-              fillOpacity: 0.6,
+              fillOpacity: city.parent === poiAreaId ? POI_AREA_OPACITY : 0.6,
               dashArray: '8, 4',
             }
           })()}
@@ -527,7 +554,7 @@ const CityBoundariesLayer: React.FC<{
               const layer = e.target
               layer.setStyle({
                 weight: 4,
-                fillOpacity: 0.8,
+                fillOpacity: city.parent === poiAreaId ? POI_AREA_OPACITY : 0.8,
               })
 
               // Also stop propagation on hover to prevent gemeente events
@@ -537,7 +564,7 @@ const CityBoundariesLayer: React.FC<{
               const layer = e.target
               layer.setStyle({
                 weight: 3,
-                fillOpacity: 0.6,
+                fillOpacity: city.parent === poiAreaId ? POI_AREA_OPACITY : 0.6,
               })
 
               e.originalEvent?.stopPropagation()
@@ -564,12 +591,14 @@ const RealBoundariesLayer: React.FC<{
   gemeentes: Gemeente[]
   onGemeenteSelect: (gemeente: Gemeente) => void
   selectedGemeenteId?: string | null
+  poiAreaId?: string | null
   autoFitGemeenteId?: string | null
   debugEnabled?: boolean
 }> = ({
   gemeentes,
   onGemeenteSelect,
   selectedGemeenteId,
+  poiAreaId,
   autoFitGemeenteId,
   debugEnabled = false,
 }) => {
@@ -780,7 +809,7 @@ const RealBoundariesLayer: React.FC<{
           color: colors.borderColor,
           weight: isSelected ? 4 : colors.weight,
           opacity: isSelected ? 1 : 0.8,
-          fillOpacity: isSelected ? 0.65 : 0.5,
+          fillOpacity: gemeente.id === poiAreaId ? POI_AREA_OPACITY : isSelected ? 0.65 : 0.5,
         }}
         eventHandlers={{
           click: (e) => {
@@ -825,11 +854,14 @@ const MapView: React.FC<MapViewProps> = ({
   selectedGemeente,
   selectedCity,
   poiActive = false,
+  selectedPoiId,
   detailsOpen,
   autoFitGemeenteId,
   pois = [],
 }) => {
-  const { center, zoom, setCenter, setZoom, selectedGemeenteId } = useMapStore()
+  const { center, zoom, focusOnGemeente, selectedGemeenteId } = useMapStore()
+  // Only the POI's own area lightens
+  const poiAreaId = poiActive ? (selectedCity?.parent ?? selectedGemeenteId) : null
   const { getCurrentLocation, error: locationError } = useGeolocation()
   const { showToast } = useToast()
   const mapRef = useRef<LeafletMap>(null)
@@ -866,6 +898,11 @@ const MapView: React.FC<MapViewProps> = ({
     if (!mapRef.current.getPane('poi-markers')) {
       mapRef.current.createPane('poi-markers')
       mapRef.current.getPane('poi-markers')!.style.zIndex = '500'
+    }
+    // Position always tops every area
+    if (!mapRef.current.getPane('user-location')) {
+      mapRef.current.createPane('user-location')
+      mapRef.current.getPane('user-location')!.style.zIndex = '510'
     }
   }, [mapReady])
 
@@ -905,14 +942,34 @@ const MapView: React.FC<MapViewProps> = ({
     if (locationError) showToast(locationError, 6000)
   }, [locationError, showToast])
 
+  // Show marker without prompting
+  useEffect(() => {
+    let status: PermissionStatus | undefined
+    const showIfGranted = () => {
+      if (status?.state !== 'granted') return
+      navigator.geolocation.getCurrentPosition(
+        (pos) => setCurrentLocation([pos.coords.latitude, pos.coords.longitude]),
+        () => {},
+        { timeout: 10000, maximumAge: 5 * 60 * 1000 }
+      )
+    }
+    navigator.permissions
+      ?.query({ name: 'geolocation' })
+      .then((result) => {
+        status = result
+        status.addEventListener('change', showIfGranted)
+        showIfGranted()
+      })
+      .catch(() => {})
+    return () => status?.removeEventListener('change', showIfGranted)
+  }, [])
+
   const handleCurrentLocation = async () => {
     setLocationLoading(true)
     try {
       const location = await getCurrentLocation()
       if (location && mapRef.current) {
-        setCenter(location)
-        setZoom(13)
-        mapRef.current.setView(location, 13)
+        focusOnGemeente(location, 13)
         setTimeout(() => mapRef.current?.invalidateSize(), 150)
         setCurrentLocation(location)
         if (debugEnabled) {
@@ -1007,7 +1064,7 @@ const MapView: React.FC<MapViewProps> = ({
   }, [detailsOpen, mapReady])
 
   return (
-    <div className={clsx('relative w-full h-full', poiActive && 'map-poi-focus')}>
+    <div className="relative w-full h-full">
       <StatusPatterns />
       <MapContainer
         center={center}
@@ -1089,6 +1146,7 @@ const MapView: React.FC<MapViewProps> = ({
                   gemeentes={visibleGemeentes}
                   onGemeenteSelect={handleGemeenteSelect}
                   selectedGemeenteId={selectedGemeenteId}
+                  poiAreaId={poiAreaId}
                   autoFitGemeenteId={autoFitGemeenteId}
                   debugEnabled={debugEnabled}
                 />
@@ -1098,6 +1156,7 @@ const MapView: React.FC<MapViewProps> = ({
                 <CityBoundariesLayer
                   gemeentes={visibleGemeentes}
                   onCitySelect={handleCitySelect}
+                  poiAreaId={poiAreaId}
                   debugEnabled={debugEnabled}
                 />
               )}
@@ -1107,6 +1166,7 @@ const MapView: React.FC<MapViewProps> = ({
                   municipalityId={selectedGemeente.id}
                   scope="gemeente"
                   onPOISelect={onPOISelect}
+                  selectedPoiId={selectedPoiId}
                   debugEnabled={debugEnabled}
                 />
               )}
@@ -1117,6 +1177,7 @@ const MapView: React.FC<MapViewProps> = ({
                   municipalityId={selectedCity.id}
                   scope="city"
                   onPOISelect={onPOISelect}
+                  selectedPoiId={selectedPoiId}
                   debugEnabled={debugEnabled}
                 />
               )}
@@ -1125,6 +1186,7 @@ const MapView: React.FC<MapViewProps> = ({
                 <CountryBoundariesLayer
                   countries={visibleCountries}
                   onSelect={handleGemeenteSelect}
+                  poiAreaId={poiAreaId}
                 />
               )}
             </>
@@ -1132,10 +1194,22 @@ const MapView: React.FC<MapViewProps> = ({
         })()}
 
         {/* Current location indicator (map only) */}
-        {currentLocation && (
+        {mapReady && currentLocation && (
+          // Halo separates it from POIs
+          <CircleMarker
+            center={currentLocation}
+            radius={18}
+            pane="user-location"
+            interactive={false}
+            pathOptions={{ stroke: false, fillColor: '#2563eb', fillOpacity: 0.2 }}
+          />
+        )}
+        {mapReady && currentLocation && (
           <CircleMarker
             center={currentLocation}
             radius={7}
+            pane="user-location"
+            interactive={false}
             pathOptions={{
               color: '#fff', // white border
               fillColor: '#2563eb', // blue fill

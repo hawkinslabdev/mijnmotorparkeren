@@ -1,6 +1,7 @@
 {
   "id": "castricum",
   "name": "Gemeente Castricum",
+  "alternativeNames": ["Bakkum", "Castricum aan Zee", "Limmen", "Akersloot"],
   "province": "Noord-Holland",
   "coordinates": {
     "lat": 52.548,

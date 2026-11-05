@@ -1,6 +1,7 @@
 {
   "id": "aa-en-hunze",
   "name": "Gemeente Aa en Hunze",
+  "alternativeNames": ["Gieten", "Annen", "Zuidlaren"],
   "province": "Drenthe",
   "coordinates": {
     "lat": 53.001,
