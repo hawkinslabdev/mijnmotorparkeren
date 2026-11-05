@@ -6,7 +6,7 @@
       "id": "ams-rokin",
       "type": "freeStreetParking",
       "name": "Rokin",
-      "description": "Gratis motorparkeren op stoep (mits geen hinder)",
+      "description": "Eenvoudig motorparkeren op stoep bij Rokin, nabij de Dam. Kan in de loop van de ochtend vol raken.",
       "coordinates": { 
         "lat": 52.370462, 
         "lng": 4.892617 
@@ -19,8 +19,8 @@
       "name": "Nieuwezijds Kolk",
       "description": "Lange scooter-/motorstrook bij het politiebureau op Nieuwezijds Kolk, nabij Rokin 75. Kan in de loop van de ochtend vol raken.",
       "coordinates": { 
-        "lat": 52.374000, 
-        "lng": 4.893000 
+        "lat": 52.37635566658649, 
+        "lng": 4.8939342
       },
       "address": "Nieuwezijds Kolk, Amsterdam"
     },
@@ -28,10 +28,10 @@
       "id": "ams-spiegelgracht",
       "type": "freeStreetParking",
       "name": "Spiegelgracht",
-      "description": "Gratis motorparkeren langs de Spiegelgracht",
+      "description": "Eenvoudig motorparkeren nabij de Spiegelgracht, richting het Rijksmuseum.",
       "coordinates": { 
-        "lat": 52.363100, 
-        "lng": 4.893000 
+        "lat": 52.36132236803336,
+        "lng": 4.886719793394413
       },
       "address": "Spiegelgracht, Amsterdam"
     }

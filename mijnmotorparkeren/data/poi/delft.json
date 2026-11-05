@@ -3,31 +3,23 @@
   "municipalityId": "delft",
   "pois": [
     {
-      "id": "delft-kampveldgarage",
-      "type": "dedicatedMotorcycleSpot",
-      "name": "Kampveldgarage",
-      "coordinates": {
-        "lat": 52.014928626822,
-        "lng": 4.35166792530308
-      },
-      "source": {
-        "type": "official",
-        "url": "https://parkerendelft.com/parkeerloket/motor/",
-        "date": "2025-07-15"
-      }
-    },
-    {
       "id": "delft-marktgarage",
       "type": "dedicatedMotorcycleSpot",
       "name": "Marktgarage",
+      "description": "Nabij de ingang van de Marktgarage, richting Nieuwe Langedijk. Gebruik de middenberm hiervoor.",
       "coordinates": {
-        "lat": 52.014417739418285,
-        "lng": 4.365921782975937
-      },
-      "source": {
-        "type": "official",
-        "url": "https://parkerendelft.com/parkeerloket/motor/",
-        "date": "2025-07-15"
+        "lat": 52.0130874, 
+        "lng": 4.3633004  
+      }
+    },
+    {
+      "id": "delft-station-coenderstraat",
+      "type": "dedicatedMotorcycleSpot",
+      "name": "Station Delft",
+      "description": "Tegenover de ingang van de parkeergarage aan de Coenderstraat, nabij het station. Gebruik de zijstrook hiervoor.",
+      "coordinates": {
+        "lat": 52.0076352,
+        "lng": 4.355635
       }
     }
   ]

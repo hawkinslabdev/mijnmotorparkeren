@@ -6,6 +6,7 @@
       "id": "assen-brinkstraat",
       "type": "dedicatedMotorcycleSpot",
       "name": "Brinkstraat",
+      "description": "Makkelijk parkeren op de stoep bij Brinkstraat, nabij de Brink.",
       "coordinates": {
         "lat": 52.9945,
         "lng": 6.5636
