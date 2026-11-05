@@ -7,7 +7,10 @@
       "type": "dedicatedMotorcycleSpot",
       "name": "Motorparkeerplaats Schiphol",
       "description": "Gratis parkeerplaats voor motoren tegenover de aankomsthal. Kosteloos en praktisch als je per motor naar Schiphol reist.",
-      "coordinates": { "lat": 52.30904373837207, "lng": 4.760494757709773 },
+      "coordinates": { 
+        "lat": 52.308944444876936, 
+        "lng": 4.760623132093456
+      },
       "address": "Schiphol, tegenover de aankomsthal",
       "source": {
         "type": "community",

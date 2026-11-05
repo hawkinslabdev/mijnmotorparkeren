@@ -7,8 +7,8 @@
       "type": "dedicatedMotorcycleSpot",
       "name": "Parkeergarage Ravelijn",
       "coordinates": {
-        "lat": 52.332,
-        "lng": 5.545
+        "lat": 52.33073138076786,
+        "lng": 5.544579723954244
       },
       "capacity": 3,
       "source": {
