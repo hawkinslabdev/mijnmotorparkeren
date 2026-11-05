@@ -1007,7 +1007,7 @@ const MapView: React.FC<MapViewProps> = ({
   }, [detailsOpen, mapReady])
 
   return (
-    <div className="relative w-full h-full">
+    <div className={clsx('relative w-full h-full', poiActive && 'map-poi-focus')}>
       <StatusPatterns />
       <MapContainer
         center={center}

@@ -223,6 +223,36 @@ test.describe('Accessibility', () => {
     await expect(page).not.toHaveURL(/poi=/)
   })
 
+  test('open POI lightens map tint until closed', async ({ page }) => {
+    await page.route(/\/data\/poi\/index\.json/, (r) =>
+      r.fulfill({ json: { pois: [{ municipalityId: 'amsterdam' }] } })
+    )
+    await page.route(/\/data\/poi\/amsterdam\.json/, (r) =>
+      r.fulfill({
+        json: {
+          pois: [
+            {
+              id: 'stalling',
+              type: 'dedicatedMotorcycleSpot',
+              name: 'Motorstalling Centrum',
+              coordinates: { lat: 52.37, lng: 4.89 },
+              municipalityId: 'amsterdam',
+            },
+          ],
+        },
+      })
+    )
+    await page.goto('/gemeente/amsterdam?poi=stalling')
+    await waitForMap(page)
+    const heading = page.getByRole('heading', { name: 'Motorstalling Centrum' })
+    await expect(heading).toBeVisible()
+    const boundary = page.locator('.leaflet-overlay-pane path').first()
+    await expect(boundary).toHaveCSS('fill-opacity', '0.15')
+    await page.keyboard.press('Escape')
+    await expect(heading).toHaveCount(0)
+    await expect(boundary).toHaveCSS('fill-opacity', '0.5')
+  })
+
   test('long source is cut with a tooltip on demand', async ({ page, hasTouch }) => {
     const name = 'Gemeente West Betuwe (Klantcontactcentrum) en nog een hele lange afdeling'
     await page.route(/\/data\/gemeentes\/amsterdam\.json/, (r) =>

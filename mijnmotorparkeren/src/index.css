@@ -95,6 +95,12 @@
   }
 }
 
+/* Keep streets readable under POI */
+.map-poi-focus .leaflet-overlay-pane path:not(.leaflet-user-location-indicator),
+.map-poi-focus .leaflet-city-boundaries-pane path {
+  fill-opacity: 0.15;
+}
+
 /* Astro island element should be block-level */
 astro-island {
   display: block;
