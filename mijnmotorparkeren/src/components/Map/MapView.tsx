@@ -28,6 +28,7 @@ interface MapViewProps {
   selectedGemeente?: Gemeente | null
   selectedCity?: City | null
   poiActive?: boolean
+  selectedPoiId?: string
   detailsOpen?: boolean
   autoFitGemeenteId?: string | null
   pois?: POI[]
@@ -299,8 +300,9 @@ const POILayer: React.FC<{
   municipalityId: string
   scope?: POIScope
   onPOISelect?: (poi: POI) => void
+  selectedPoiId?: string
   debugEnabled?: boolean
-}> = ({ municipalityId, scope = 'gemeente', onPOISelect, debugEnabled = false }) => {
+}> = ({ municipalityId, scope = 'gemeente', onPOISelect, selectedPoiId, debugEnabled = false }) => {
   const map = useMap()
   const [pois, setPois] = useState<POI[]>([])
   const [loading, setLoading] = useState(true)
@@ -347,9 +349,11 @@ const POILayer: React.FC<{
             radius={8}
             pane="poi-markers"
             pathOptions={{
-              color: config.color,
+              // Selection: outline, not size
+              color:
+                poi.id === selectedPoiId ? '#111827' : config.hollow ? config.color : '#ffffff',
               fillColor: config.hollow ? '#ffffff' : config.color,
-              fillOpacity: config.hollow ? 1 : 0.8,
+              fillOpacity: 1,
               weight: config.hollow ? 3 : 2,
             }}
             eventHandlers={{
@@ -842,6 +846,7 @@ const MapView: React.FC<MapViewProps> = ({
   selectedGemeente,
   selectedCity,
   poiActive = false,
+  selectedPoiId,
   detailsOpen,
   autoFitGemeenteId,
   pois = [],
@@ -1144,6 +1149,7 @@ const MapView: React.FC<MapViewProps> = ({
                   municipalityId={selectedGemeente.id}
                   scope="gemeente"
                   onPOISelect={onPOISelect}
+                  selectedPoiId={selectedPoiId}
                   debugEnabled={debugEnabled}
                 />
               )}
@@ -1154,6 +1160,7 @@ const MapView: React.FC<MapViewProps> = ({
                   municipalityId={selectedCity.id}
                   scope="city"
                   onPOISelect={onPOISelect}
+                  selectedPoiId={selectedPoiId}
                   debugEnabled={debugEnabled}
                 />
               )}

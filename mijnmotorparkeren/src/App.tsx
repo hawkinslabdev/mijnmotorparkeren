@@ -529,6 +529,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
           selectedGemeente={selectedGemeente}
           selectedCity={selectedCity}
           poiActive={!!selectedPOI}
+          selectedPoiId={selectedPOI?.id}
           detailsOpen={detailsOpen}
           autoFitGemeenteId={openedOnPOI ? null : (initialGemeenteId ?? null)}
           pois={panelPOIs}
