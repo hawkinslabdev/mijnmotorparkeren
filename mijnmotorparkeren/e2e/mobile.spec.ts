@@ -146,6 +146,22 @@ test.describe('Mobile POI sheet', () => {
     await expect(page.locator('path.leaflet-user-location-indicator')).toBeAttached()
   })
 
+  test('Street View is a plain link and contacts nothing on load', async ({ page }) => {
+    const googleRequests: string[] = []
+    page.on('request', (r) => {
+      if (new URL(r.url()).hostname.includes('google')) googleRequests.push(r.url())
+    })
+    await page.goto('/gemeente/amsterdam?poi=stalling')
+    await waitForMap(page)
+    const link = page.getByRole('link', { name: 'Bekijk in Street View' })
+    await expect(link).toHaveAttribute(
+      'href',
+      'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=52.37,4.89'
+    )
+    await expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+    expect(googleRequests).toEqual([])
+  })
+
   test.describe('side panel', () => {
     test.use({ viewport: { width: 700, height: 800 } })
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { MapPin, ExternalLink, Calendar, Users, ArrowLeft } from 'lucide-react'
+import { MapPin, ExternalLink, Calendar, Users, ArrowLeft, PersonStanding } from 'lucide-react'
 import type { POI, POIType } from '@/types/poi'
 import { POI_TYPE_CONFIG } from '@/types/poi'
 
@@ -71,6 +71,17 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName
             </p>
           </div>
         )}
+
+        {/* Google only contacted on click */}
+        <a
+          href={`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${poi.coordinates.lat},${poi.coordinates.lng}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex w-fit min-h-11 items-center gap-2 text-base text-blue-700 hover:text-blue-800 transition-colors"
+        >
+          <PersonStanding className="h-4 w-4 flex-none" aria-hidden="true" />
+          <span>Bekijk in Street View</span>
+        </a>
       </div>
 
       {/* Footer — no padded parent here */}
