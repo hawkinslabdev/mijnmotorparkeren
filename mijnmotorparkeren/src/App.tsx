@@ -79,6 +79,16 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
   const { setSelectedGemeente: setSelectedGemeenteId, focusOnGemeente, resetView } = useMapStore()
   const { gemeentes, loading, error: indexError, loadFullGemeente } = useGemeenteData()
 
+  // SEO article: crawlers, no-JS only
+  useEffect(() => {
+    const article = document.querySelector('article')
+    if (!article) return
+    article.hidden = true
+    return () => {
+      article.hidden = false
+    }
+  }, [])
+
   useEffect(() => {
     if (indexError) showToast(MESSAGES.LOAD_ERROR, 6000)
   }, [indexError, showToast])
