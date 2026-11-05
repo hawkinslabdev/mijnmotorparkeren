@@ -1,11 +1,13 @@
 import React from 'react'
-import { MapPin, ExternalLink, Calendar, Users, ArrowLeft, PersonStanding } from 'lucide-react'
+import { MapPin, ExternalLink, Calendar, Users, ArrowLeft, PersonStanding, X } from 'lucide-react'
 import type { POI, POIType } from '@/types/poi'
 import { POI_TYPE_CONFIG } from '@/types/poi'
 
 interface POIDetailsProps {
   poi: POI
   onClose: () => void
+  /** Closes the whole panel. */
+  onDismiss: () => void
   /** Name of the parent gemeente/city, shown on the back button. */
   parentName?: string
 }
@@ -22,7 +24,7 @@ export const POIDot: React.FC<{ type: POIType; className?: string }> = ({ type, 
   )
 }
 
-export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName }) => {
+export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, onDismiss, parentName }) => {
   const config = POI_TYPE_CONFIG[poi.type]
 
   return (
@@ -30,14 +32,23 @@ export const POIDetails: React.FC<POIDetailsProps> = ({ poi, onClose, parentName
       {/* Header — matches ParkingRules structure exactly */}
       <div>
         {/* Back to the parent gemeente/city */}
-        <button
-          onClick={onClose}
-          className="-ml-1 mb-2 inline-flex min-h-[44px] items-center gap-1.5 rounded-full pr-3 pl-2 text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors"
-          aria-label={parentName ? `Terug naar ${parentName}` : 'Terug'}
-        >
-          <ArrowLeft className="h-4 w-4 flex-none" aria-hidden="true" />
-          <span className="truncate">{parentName ? `Terug naar ${parentName}` : 'Terug'}</span>
-        </button>
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <button
+            onClick={onClose}
+            className="-ml-1 inline-flex min-h-[44px] min-w-0 items-center gap-1.5 rounded-full pr-3 pl-2 text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors"
+            aria-label={parentName ? `Terug naar ${parentName}` : 'Terug'}
+          >
+            <ArrowLeft className="h-4 w-4 flex-none" aria-hidden="true" />
+            <span className="truncate">{parentName ? `Terug naar ${parentName}` : 'Terug'}</span>
+          </button>
+          <button
+            onClick={onDismiss}
+            className="-mr-3 min-w-[44px] min-h-[44px] flex flex-shrink-0 items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+            aria-label="Sluiten"
+          >
+            <X className="h-5 w-5 text-gray-600" aria-hidden="true" />
+          </button>
+        </div>
 
         {/* POI type label — subtle, above the name */}
         <p className="text-xs font-medium mb-1 text-gray-700 flex items-center gap-1.5">

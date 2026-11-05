@@ -899,6 +899,11 @@ const MapView: React.FC<MapViewProps> = ({
       mapRef.current.createPane('poi-markers')
       mapRef.current.getPane('poi-markers')!.style.zIndex = '500'
     }
+    // Position always tops every area
+    if (!mapRef.current.getPane('user-location')) {
+      mapRef.current.createPane('user-location')
+      mapRef.current.getPane('user-location')!.style.zIndex = '510'
+    }
   }, [mapReady])
 
   // Handle gemeente selection
@@ -1189,19 +1194,22 @@ const MapView: React.FC<MapViewProps> = ({
         })()}
 
         {/* Current location indicator (map only) */}
-        {currentLocation && (
+        {mapReady && currentLocation && (
           // Halo separates it from POIs
           <CircleMarker
             center={currentLocation}
             radius={18}
+            pane="user-location"
             interactive={false}
             pathOptions={{ stroke: false, fillColor: '#2563eb', fillOpacity: 0.2 }}
           />
         )}
-        {currentLocation && (
+        {mapReady && currentLocation && (
           <CircleMarker
             center={currentLocation}
             radius={7}
+            pane="user-location"
+            interactive={false}
             pathOptions={{
               color: '#fff', // white border
               fillColor: '#2563eb', // blue fill

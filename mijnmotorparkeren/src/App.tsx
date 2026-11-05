@@ -48,8 +48,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
   const [selectedGemeente, setSelectedGemeente] = useState<Gemeente | null>(null)
   const [selectedCity, setSelectedCity] = useState<City | null>(null)
   const [selectedPOI, setSelectedPOI] = useState<POI | null>(null)
-  const [poiPeeked, setPoiPeeked] = useState(false)
-  const poiPeek = poiPeeked && !!selectedPOI
+  const [sheetPeek, setSheetPeek] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [detailsLoading, setDetailsLoading] = useState(false)
   const [swipeOffset, setSwipeOffset] = useState(0)
@@ -164,9 +163,28 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
     },
   ])
 
+  const toggleSheetPeek = useCallback(
+    (peek: boolean) => {
+      // Keep focus out of hidden content
+      detailsRef.current?.focus({ preventScroll: true })
+      setSheetPeek(peek)
+      // Recentre above the resized sheet
+      if (selectedPOI) {
+        focusOnGemeente([selectedPOI.coordinates.lat, selectedPOI.coordinates.lng], 17)
+      }
+    },
+    [selectedPOI, focusOnGemeente]
+  )
+
   const handleGemeenteSelect = useCallback(
     async (lite: Gemeente | null) => {
+      // Same minimized area: only reopen
+      if (sheetPeek && lite && lite.id === selectedGemeente?.id) {
+        toggleSheetPeek(false)
+        return
+      }
       setSelectedPOI(null)
+      setSheetPeek(false)
       setPlaceName(undefined)
       if (!lite) {
         setSelectedGemeente(null)
@@ -191,12 +209,26 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
       setSelectedGemeente(full ?? lite)
       setDetailsLoading(false)
     },
-    [setSelectedGemeenteId, focusOnGemeente, loadFullGemeente, showToast]
+    [
+      sheetPeek,
+      selectedGemeente,
+      toggleSheetPeek,
+      setSelectedGemeenteId,
+      focusOnGemeente,
+      loadFullGemeente,
+      showToast,
+    ]
   )
 
   const handleCitySelect = useCallback(
     async (city: City | null) => {
+      // Same minimized area: only reopen
+      if (sheetPeek && city && city.id === selectedCity?.id) {
+        toggleSheetPeek(false)
+        return
+      }
       setSelectedPOI(null)
+      setSheetPeek(false)
       setPlaceName(undefined)
       if (!city) {
         setSelectedCity(null)
@@ -210,7 +242,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
       if (city.coordinates) focusOnGemeente([city.coordinates.lat, city.coordinates.lng], 12)
       setSelectedCity(city)
     },
-    [setSelectedGemeenteId, focusOnGemeente]
+    [sheetPeek, selectedCity, toggleSheetPeek, setSelectedGemeenteId, focusOnGemeente]
   )
 
   const handleSearchSelect = useCallback(
@@ -238,7 +270,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
   const handlePOISelect = useCallback(
     (poi: POI) => {
       setSelectedPOI(poi)
-      setPoiPeeked(false)
+      setSheetPeek(false)
       focusOnGemeente([poi.coordinates.lat, poi.coordinates.lng], 17)
       // Make the POI shareable via ?poi=<id> on the current gemeente/city path.
       const base = window.location.pathname
@@ -355,6 +387,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
     setSelectedGemeente(null)
     setSelectedCity(null)
     setSelectedPOI(null)
+    setSheetPeek(false)
     setSelectedGemeenteId(null)
     window.history.pushState({}, '', '/')
   }, [setSelectedGemeenteId])
@@ -363,18 +396,6 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
     handleDetailsClose()
     resetView()
   }, [handleDetailsClose, resetView])
-
-  const setPOIPeek = useCallback(
-    (peek: boolean) => {
-      if (!selectedPOI) return
-      // Keep focus out of hidden content
-      detailsRef.current?.focus({ preventScroll: true })
-      setPoiPeeked(peek)
-      // Recentre above the resized sheet
-      focusOnGemeente([selectedPOI.coordinates.lat, selectedPOI.coordinates.lng], 17)
-    },
-    [selectedPOI, focusOnGemeente]
-  )
 
   const handlePanelTouchStart = useCallback((e: React.TouchEvent) => {
     if (e.touches.length !== 1) return
@@ -391,18 +412,19 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
   const handlePanelTouchEnd = useCallback(
     (e: React.TouchEvent) => {
       const startY = panelTouchStartY.current
-      const swipedDown = swipeOffsetRef.current > 80
-      if (selectedPOI && isBottomSheet()) {
-        const swipedUp = startY !== null && startY - e.changedTouches[0].clientY > 30
-        if (poiPeek ? swipedUp : swipedDown) setPOIPeek(!poiPeek)
-      } else if (swipedDown) {
-        handleDetailsClose()
+      // Collapsed sheet has little travel
+      const swipedDown = swipeOffsetRef.current > (sheetPeek ? 30 : 80)
+      const swipedUp = startY !== null && startY - e.changedTouches[0].clientY > 30
+      if (!isBottomSheet() || (sheetPeek && swipedDown)) {
+        if (swipedDown) handleDetailsClose()
+      } else if (sheetPeek ? swipedUp : swipedDown) {
+        toggleSheetPeek(!sheetPeek)
       }
       swipeOffsetRef.current = 0
       setSwipeOffset(0)
       panelTouchStartY.current = null
     },
-    [handleDetailsClose, selectedPOI, poiPeek, setPOIPeek]
+    [handleDetailsClose, sheetPeek, toggleSheetPeek]
   )
 
   const [shareLoading, setShareLoading] = useState(false)
@@ -496,14 +518,13 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
       const delta = e.touches[0].clientY - panelTouchStartY.current
       if (delta > 0) {
         e.preventDefault()
-        if (poiPeek) return
         swipeOffsetRef.current = delta
         setSwipeOffset(delta)
       }
     }
     el.addEventListener('touchmove', onTouchMove, { passive: false })
     return () => el.removeEventListener('touchmove', onTouchMove)
-  }, [selectedGemeente, selectedCity, detailsLoading, poiPeek])
+  }, [selectedGemeente, selectedCity, detailsLoading])
 
   if (loading) {
     return (
@@ -574,20 +595,20 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
             onTouchStart={handlePanelTouchStart}
             onTouchEnd={handlePanelTouchEnd}
           >
-            {selectedPOI && !detailsLoading ? (
+            {panelTitle && !detailsLoading ? (
               <button
                 type="button"
-                onClick={() => setPOIPeek(!poiPeek)}
-                aria-expanded={!poiPeek}
+                onClick={() => toggleSheetPeek(!sheetPeek)}
+                aria-expanded={!sheetPeek}
                 aria-controls="panel-content"
-                aria-label={`Details van ${selectedPOI.name}`}
+                aria-label={`Details van ${panelTitle}`}
                 className="sm:hidden -mt-2 flex min-h-11 w-full flex-col items-center gap-2 rounded-lg pt-2 outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 <span className="w-12 h-1.5 bg-gray-500 rounded-full" />
-                {poiPeek && (
+                {sheetPeek && (
                   <span className="flex max-w-full items-center gap-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-base font-semibold text-gray-900">
-                    <POIDot type={selectedPOI.type} className="w-2.5 h-2.5" />
-                    <span className="truncate">{selectedPOI.name}</span>
+                    {selectedPOI && <POIDot type={selectedPOI.type} className="w-2.5 h-2.5" />}
+                    <span className="truncate">{panelTitle}</span>
                     <ChevronUp className="h-4 w-4 flex-none text-gray-600" aria-hidden="true" />
                   </span>
                 )}
@@ -598,7 +619,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
               </div>
             )}
 
-            <div id="panel-content" className={poiPeek ? 'max-sm:hidden' : undefined}>
+            <div id="panel-content" className={sheetPeek ? 'max-sm:hidden' : undefined}>
               {detailsLoading ? (
                 <div className="animate-pulse space-y-3 pt-2 pb-6">
                   <div className="h-6 bg-gray-200 rounded w-2/3" />
@@ -611,6 +632,7 @@ const AppContent: React.FC<AppProps> = ({ initialGemeenteId, initialCityId, init
                 <POIDetails
                   poi={selectedPOI}
                   onClose={handlePOIClose}
+                  onDismiss={handleDetailsClose}
                   parentName={selectedCity?.name ?? selectedGemeente?.name}
                 />
               ) : (
