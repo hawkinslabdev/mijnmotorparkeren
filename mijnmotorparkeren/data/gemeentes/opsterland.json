@@ -1,6 +1,7 @@
 {
   "id": "opsterland",
   "name": "Gemeente Opsterland",
+  "alternativeNames": ["Gorredijk"],
   "province": "Friesland",
   "coordinates": {
     "lat": 53.0832,

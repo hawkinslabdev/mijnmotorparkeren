@@ -1,6 +1,7 @@
 {
   "id": "den-helder",
   "name": "Gemeente Den Helder",
+  "alternativeNames": ["Den Helder", "Julianadorp", "De Kooy"],
   "province": "Noord-Holland",
   "coordinates": {
     "lat": 52.958,

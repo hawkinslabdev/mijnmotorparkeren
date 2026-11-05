@@ -1,6 +1,7 @@
 {
   "id": "schagen",
   "name": "Gemeente Schagen",
+  "alternativeNames": ["Schagen", "Petten", "Callantsoog"],
   "province": "Noord-Holland",
   "coordinates": {
     "lat": 52.7892,

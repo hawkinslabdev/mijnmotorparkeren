@@ -1,6 +1,7 @@
 {
   "id": "woerden",
   "name": "Gemeente Woerden",
+  "alternativeNames": ["Zegveld", "Harmelen", "Linschoten"],
   "province": "Utrecht",
   "coordinates": {
     "lat": 52.085,

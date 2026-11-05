@@ -1,6 +1,7 @@
 {
   "id": "tynaarlo",
   "name": "Gemeente Tynaarlo",
+  "alternativeNames": ["Eelde", "Vries", "Zuidlaren", "Groningen Airport Eelde"],
   "province": "Drenthe",
   "coordinates": {
     "lat": 53.112,

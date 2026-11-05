@@ -1,6 +1,7 @@
 {
   "id": "groningen",
   "name": "Gemeente Groningen",
+  "alternativeNames": ["Haren"],
   "province": "Groningen",
   "coordinates": {
     "lat": 53.2194,
