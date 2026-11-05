@@ -9,6 +9,7 @@ import type { POI, POIScope, POIType } from '@/types/poi'
 import { POI_TYPE_CONFIG } from '@/types/poi'
 import { useGeolocation } from '@/hooks/useGeolocation'
 import { BOUNDARY_STYLES, getMapBoundaryColors } from '@/utils/gemeenteUtils'
+import { isBottomSheet } from '@/utils/mapUtils'
 import { useToast } from '@/contexts/ToastContext'
 import { POIDot } from '@components/Info/POIDetails'
 import type * as GeoJSONType from 'geojson'
@@ -35,7 +36,23 @@ interface MapViewProps {
 const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ center, zoom }) => {
   const map = useMap()
   useEffect(() => {
-    map.setView(center, zoom)
+    const focus = () => {
+      // Centre above the POI sheet
+      const sheet = isBottomSheet() ? document.querySelector<HTMLElement>('[data-poi-sheet]') : null
+      const offset = (sheet?.offsetHeight ?? 0) / 2
+      map.setView(
+        offset ? map.unproject(map.project(center, zoom).add([0, offset]), zoom) : center,
+        zoom
+      )
+    }
+    // Leaflet drops moves during zoom
+    if ((map as LeafletMap & { _animatingZoom?: boolean })._animatingZoom) {
+      map.once('zoomend', focus)
+      return () => {
+        map.off('zoomend', focus)
+      }
+    }
+    focus()
   }, [map, center, zoom])
   return null
 }
@@ -829,7 +846,7 @@ const MapView: React.FC<MapViewProps> = ({
   autoFitGemeenteId,
   pois = [],
 }) => {
-  const { center, zoom, setCenter, setZoom, selectedGemeenteId } = useMapStore()
+  const { center, zoom, focusOnGemeente, selectedGemeenteId } = useMapStore()
   const { getCurrentLocation, error: locationError } = useGeolocation()
   const { showToast } = useToast()
   const mapRef = useRef<LeafletMap>(null)
@@ -905,14 +922,34 @@ const MapView: React.FC<MapViewProps> = ({
     if (locationError) showToast(locationError, 6000)
   }, [locationError, showToast])
 
+  // Show marker without prompting
+  useEffect(() => {
+    let status: PermissionStatus | undefined
+    const showIfGranted = () => {
+      if (status?.state !== 'granted') return
+      navigator.geolocation.getCurrentPosition(
+        (pos) => setCurrentLocation([pos.coords.latitude, pos.coords.longitude]),
+        () => {},
+        { timeout: 10000, maximumAge: 5 * 60 * 1000 }
+      )
+    }
+    navigator.permissions
+      ?.query({ name: 'geolocation' })
+      .then((result) => {
+        status = result
+        status.addEventListener('change', showIfGranted)
+        showIfGranted()
+      })
+      .catch(() => {})
+    return () => status?.removeEventListener('change', showIfGranted)
+  }, [])
+
   const handleCurrentLocation = async () => {
     setLocationLoading(true)
     try {
       const location = await getCurrentLocation()
       if (location && mapRef.current) {
-        setCenter(location)
-        setZoom(13)
-        mapRef.current.setView(location, 13)
+        focusOnGemeente(location, 13)
         setTimeout(() => mapRef.current?.invalidateSize(), 150)
         setCurrentLocation(location)
         if (debugEnabled) {
@@ -1132,6 +1169,15 @@ const MapView: React.FC<MapViewProps> = ({
         })()}
 
         {/* Current location indicator (map only) */}
+        {currentLocation && (
+          // Halo separates it from POIs
+          <CircleMarker
+            center={currentLocation}
+            radius={18}
+            interactive={false}
+            pathOptions={{ stroke: false, fillColor: '#2563eb', fillOpacity: 0.2 }}
+          />
+        )}
         {currentLocation && (
           <CircleMarker
             center={currentLocation}
