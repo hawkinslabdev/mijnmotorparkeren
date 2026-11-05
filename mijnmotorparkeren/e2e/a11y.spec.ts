@@ -223,7 +223,7 @@ test.describe('Accessibility', () => {
     await expect(page).not.toHaveURL(/poi=/)
   })
 
-  test('open POI lightens map tint until closed', async ({ page }) => {
+  test('open POI lightens only its own area until closed', async ({ page }) => {
     await page.route(/\/data\/poi\/index\.json/, (r) =>
       r.fulfill({ json: { pois: [{ municipalityId: 'amsterdam' }] } })
     )
@@ -246,11 +246,14 @@ test.describe('Accessibility', () => {
     await waitForMap(page)
     const heading = page.getByRole('heading', { name: 'Motorstalling Centrum' })
     await expect(heading).toBeVisible()
-    const boundary = page.locator('.leaflet-overlay-pane path').first()
-    await expect(boundary).toHaveCSS('fill-opacity', '0.15')
+    const opacity = (value: string) =>
+      page.locator(`.leaflet-overlay-pane path[fill-opacity="${value}"]`)
+    await expect(opacity('0.15')).toHaveCount(1)
+    await expect(opacity('0.5')).toHaveCount(1)
     await page.keyboard.press('Escape')
     await expect(heading).toHaveCount(0)
-    await expect(boundary).toHaveCSS('fill-opacity', '0.5')
+    await expect(opacity('0.15')).toHaveCount(0)
+    await expect(opacity('0.5')).toHaveCount(2)
   })
 
   test('long source is cut with a tooltip on demand', async ({ page, hasTouch }) => {

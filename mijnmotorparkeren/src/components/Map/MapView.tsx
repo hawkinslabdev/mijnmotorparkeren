@@ -34,6 +34,9 @@ interface MapViewProps {
   pois?: POI[]
 }
 
+// Keeps streets readable under POI
+const POI_AREA_OPACITY = 0.15
+
 const MapUpdater: React.FC<{ center: LatLngExpression; zoom: number }> = ({ center, zoom }) => {
   const map = useMap()
   useEffect(() => {
@@ -239,7 +242,8 @@ const MobileShareButton: React.FC<{
 const CountryBoundariesLayer: React.FC<{
   countries: Gemeente[]
   onSelect: (g: Gemeente) => void
-}> = ({ countries, onSelect }) => {
+  poiAreaId?: string | null
+}> = ({ countries, onSelect, poiAreaId }) => {
   const [boundaries, setBoundaries] = useState<Map<string, GeoJSONType.Geometry>>(new Map())
   const fetchedIds = useRef<Set<string>>(new Set())
 
@@ -282,7 +286,7 @@ const CountryBoundariesLayer: React.FC<{
               color: colors.borderColor,
               weight: 2,
               opacity: 0.8,
-              fillOpacity: 0.45,
+              fillOpacity: country.id === poiAreaId ? POI_AREA_OPACITY : 0.45,
             }}
             eventHandlers={{
               click: (e) => {
@@ -409,8 +413,9 @@ let cityDataCache: City[] | null = null
 const CityBoundariesLayer: React.FC<{
   gemeentes: Gemeente[]
   onCitySelect: (city: City) => void
+  poiAreaId?: string | null
   debugEnabled?: boolean
-}> = ({ gemeentes, onCitySelect, debugEnabled = false }) => {
+}> = ({ gemeentes, onCitySelect, poiAreaId, debugEnabled = false }) => {
   const [cities, setCities] = useState<City[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -530,7 +535,7 @@ const CityBoundariesLayer: React.FC<{
               color: colors.borderColor,
               weight: 3,
               opacity: 1,
-              fillOpacity: 0.6,
+              fillOpacity: city.parent === poiAreaId ? POI_AREA_OPACITY : 0.6,
               dashArray: '8, 4',
             }
           })()}
@@ -549,7 +554,7 @@ const CityBoundariesLayer: React.FC<{
               const layer = e.target
               layer.setStyle({
                 weight: 4,
-                fillOpacity: 0.8,
+                fillOpacity: city.parent === poiAreaId ? POI_AREA_OPACITY : 0.8,
               })
 
               // Also stop propagation on hover to prevent gemeente events
@@ -559,7 +564,7 @@ const CityBoundariesLayer: React.FC<{
               const layer = e.target
               layer.setStyle({
                 weight: 3,
-                fillOpacity: 0.6,
+                fillOpacity: city.parent === poiAreaId ? POI_AREA_OPACITY : 0.6,
               })
 
               e.originalEvent?.stopPropagation()
@@ -586,12 +591,14 @@ const RealBoundariesLayer: React.FC<{
   gemeentes: Gemeente[]
   onGemeenteSelect: (gemeente: Gemeente) => void
   selectedGemeenteId?: string | null
+  poiAreaId?: string | null
   autoFitGemeenteId?: string | null
   debugEnabled?: boolean
 }> = ({
   gemeentes,
   onGemeenteSelect,
   selectedGemeenteId,
+  poiAreaId,
   autoFitGemeenteId,
   debugEnabled = false,
 }) => {
@@ -802,7 +809,7 @@ const RealBoundariesLayer: React.FC<{
           color: colors.borderColor,
           weight: isSelected ? 4 : colors.weight,
           opacity: isSelected ? 1 : 0.8,
-          fillOpacity: isSelected ? 0.65 : 0.5,
+          fillOpacity: gemeente.id === poiAreaId ? POI_AREA_OPACITY : isSelected ? 0.65 : 0.5,
         }}
         eventHandlers={{
           click: (e) => {
@@ -853,6 +860,8 @@ const MapView: React.FC<MapViewProps> = ({
   pois = [],
 }) => {
   const { center, zoom, focusOnGemeente, selectedGemeenteId } = useMapStore()
+  // Only the POI's own area lightens
+  const poiAreaId = poiActive ? (selectedCity?.parent ?? selectedGemeenteId) : null
   const { getCurrentLocation, error: locationError } = useGeolocation()
   const { showToast } = useToast()
   const mapRef = useRef<LeafletMap>(null)
@@ -1050,7 +1059,7 @@ const MapView: React.FC<MapViewProps> = ({
   }, [detailsOpen, mapReady])
 
   return (
-    <div className={clsx('relative w-full h-full', poiActive && 'map-poi-focus')}>
+    <div className="relative w-full h-full">
       <StatusPatterns />
       <MapContainer
         center={center}
@@ -1132,6 +1141,7 @@ const MapView: React.FC<MapViewProps> = ({
                   gemeentes={visibleGemeentes}
                   onGemeenteSelect={handleGemeenteSelect}
                   selectedGemeenteId={selectedGemeenteId}
+                  poiAreaId={poiAreaId}
                   autoFitGemeenteId={autoFitGemeenteId}
                   debugEnabled={debugEnabled}
                 />
@@ -1141,6 +1151,7 @@ const MapView: React.FC<MapViewProps> = ({
                 <CityBoundariesLayer
                   gemeentes={visibleGemeentes}
                   onCitySelect={handleCitySelect}
+                  poiAreaId={poiAreaId}
                   debugEnabled={debugEnabled}
                 />
               )}
@@ -1170,6 +1181,7 @@ const MapView: React.FC<MapViewProps> = ({
                 <CountryBoundariesLayer
                   countries={visibleCountries}
                   onSelect={handleGemeenteSelect}
+                  poiAreaId={poiAreaId}
                 />
               )}
             </>

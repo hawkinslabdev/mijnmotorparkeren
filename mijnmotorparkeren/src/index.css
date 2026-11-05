@@ -95,12 +95,6 @@
   }
 }
 
-/* Keep streets readable under POI */
-.map-poi-focus .leaflet-overlay-pane path:not(.leaflet-user-location-indicator),
-.map-poi-focus .leaflet-city-boundaries-pane path {
-  fill-opacity: 0.15;
-}
-
 /* Lift POI markers off busy tiles */
 .leaflet-poi-markers-pane svg {
   filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.4));
