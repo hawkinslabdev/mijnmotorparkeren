@@ -3,7 +3,8 @@ import Fuse from 'fuse.js'
 import { useGemeenteData } from './useGemeenteData'
 import type { Gemeente } from '@/types/gemeente'
 import type { CityLite } from '@/types/city'
-import { fetchCityIndex } from '@/data/index'
+import { fetchCityIndex } from '../data/index'
+import { withoutGemeentePrefix } from '../utils/gemeenteUtils'
 
 export type SearchItem = Gemeente | CityLite
 
@@ -29,6 +30,22 @@ const SEARCH_OPTIONS = {
   minMatchCharLength: 1,
   ignoreLocation: true,
   shouldSort: true,
+}
+
+const bareName = (name: string): string => withoutGemeentePrefix(name.trim()).toLowerCase()
+
+// Exact name, then exact alias, then Fuse
+export function sortExactFirst(items: SearchItem[], query: string): SearchItem[] {
+  const target = bareName(query)
+  const rank = (item: SearchItem): number => {
+    if (bareName(item.name) === target) return 0
+    const aliases = [
+      ...(item.alternativeNames ?? []),
+      ...('searchOnlyNames' in item ? (item.searchOnlyNames ?? []) : []),
+    ]
+    return aliases.some((alias) => bareName(alias) === target) ? 1 : 2
+  }
+  return [...items].sort((a, b) => rank(a) - rank(b))
 }
 
 export function useSearch(): UseSearchReturn {
@@ -94,9 +111,10 @@ export function useSearch(): UseSearchReturn {
         try {
           const searchResults = fuse.search(query)
 
-          const searchedResults: SearchItem[] = searchResults
-            .slice(0, 10)
-            .map((result) => result.item)
+          const searchedResults = sortExactFirst(
+            searchResults.map((result) => result.item),
+            query
+          ).slice(0, 10)
 
           if (isMounted.current) {
             setResults(searchedResults)
