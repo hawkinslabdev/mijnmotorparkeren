@@ -45,4 +45,18 @@ test.describe('Smoke', () => {
     await page.getByRole('link', { name: 'Terug naar de kaart' }).click()
     await waitForMap(page)
   })
+
+  for (const path of ['/gemeente/amsterdam', '/stad/abcoude']) {
+    test(`${path} keeps the article below the fold before the app mounts`, async ({ page }) => {
+      await page.route(/\/src\/App\.tsx/, async (r) => {
+        await new Promise((resolve) => setTimeout(resolve, 3000))
+        await r.continue()
+      })
+      await page.goto(path, { waitUntil: 'domcontentloaded' })
+      const article = page.locator('article')
+      await expect(article).toBeAttached()
+      const box = await article.boundingBox()
+      expect(box!.y).toBeGreaterThanOrEqual(page.viewportSize()!.height)
+    })
+  }
 })
