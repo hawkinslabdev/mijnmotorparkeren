@@ -203,7 +203,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                     rel="noopener noreferrer"
                     className="flex px-3 py-3 text-sm text-gray-700 hover:bg-yellow-100 rounded-lg items-center justify-between"
                   >
-                    <span>Trakteer mij op een koffie ☕</span>
+                    <span>Trakteer op een koffie ☕</span>
                     <ExternalLink className="w-4 h-4 ml-2 flex-shrink-0" aria-hidden="true" />
                   </a>
                 </div>
