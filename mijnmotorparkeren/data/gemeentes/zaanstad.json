@@ -2,26 +2,40 @@
   "id": "zaanstad",
   "name": "Gemeente Zaanstad",
   "province": "Noord-Holland",
-  "alternativeNames": ["Assendelft", "Westzaan", "Zaandijk", "Wormerveer"],
+  "alternativeNames": [
+    "Zaandam",
+    "Assendelft",
+    "Westzaan",
+    "Zaandijk",
+    "Wormerveer",
+    "Koog aan de Zaan",
+    "Krommenie"
+  ],
   "coordinates": {
     "lat": 52.457,
     "lng": 4.7513
   },
   "parkingRules": {
+    "free": false,
+    "paid": {
+      "enabled": true
+    },
     "permits": {
       "required": false
     },
     "motorcycleSpecific": {
-      "allowedOnSidewalk": true,
-      "notes": "In Zaanstad mogen motoren op de stoep staan, mits ze geen hinder veroorzaken voor voetgangers en hulpdiensten. In de praktijk kan dit meestal alleen op brede stoepgedeelten."
+      "allowedOnSidewalk": false,
+      "freeInPaidZones": false,
+      "notes": "In Zaanstad mag je je motor niet op de stoep of het trottoir parkeren; dat is in de hele gemeente verboden en levert direct een boete op, ook als voetgangers er nog langs kunnen. In zones voor betaald parkeren gelden de regels ook voor motoren: parkeer netjes in een regulier vak en betaal het parkeergeld of gebruik de parkeerapp."
     }
   },
-  "lastUpdated": "2026-04-22",
+  "lastUpdated": "2026-11-13",
   "sources": [
     {
       "type": "official",
       "name": "Gemeente Zaanstad",
-      "date": "2026-04-22"
+      "url": "https://www.zaanstad.nl/direct-regelen/parkeren-verkeer-havens-vaarwegen/parkeren/betaald-parkeren/",
+      "date": "2026-11-13"
     }
   ]
 }
