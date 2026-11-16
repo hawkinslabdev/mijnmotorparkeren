@@ -394,7 +394,7 @@ export const ParkingRules: React.FC<ParkingRulesProps> = ({
 
               {/* Report sits with the source */}
               <a
-                href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
+                href="https://github.com/mijnmotorparkeren/mijnmotorparkeren/issues"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Probleem melden"

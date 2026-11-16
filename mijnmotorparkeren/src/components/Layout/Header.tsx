@@ -79,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
             {/* Report issue — Desktop Only */}
             <div className="hidden md:block">
               <a
-                href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues/new/choose"
+                href="https://github.com/mijnmotorparkeren/mijnmotorparkeren/issues/new/choose"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Meld een fout op de kaart (opent GitHub)"
@@ -107,7 +107,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
             {/* GitHub & Coffee — Desktop Only */}
             <div className="hidden md:flex items-center space-x-2">
               <a
-                href="https://github.com/hawkinslabdev/mijnmotorparkeren"
+                href="https://github.com/mijnmotorparkeren/mijnmotorparkeren"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Bekijken op GitHub"
@@ -180,7 +180,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
 
                 <div className="space-y-1">
                   <a
-                    href="https://github.com/hawkinslabdev/mijnmotorparkeren/issues"
+                    href="https://github.com/mijnmotorparkeren/mijnmotorparkeren/issues"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex px-3 py-3 text-sm text-gray-700 hover:bg-gray-100 rounded-lg items-center justify-between"
@@ -189,7 +189,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchOpen, onMenuToggle, sele
                     <ExternalLink className="w-4 h-4 ml-2 flex-shrink-0" aria-hidden="true" />
                   </a>
                   <a
-                    href="https://github.com/hawkinslabdev/mijnmotorparkeren"
+                    href="https://github.com/mijnmotorparkeren/mijnmotorparkeren"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex px-3 py-3 text-sm text-gray-700 hover:bg-gray-100 rounded-lg items-center justify-between"

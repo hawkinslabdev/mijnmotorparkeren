@@ -1,12 +1,12 @@
 # MijnMotorParkeren.nl
 
-[![License](https://img.shields.io/github/license/hawkinslabdev/mijnmotorparkeren)](LICENSE)
-[![Last commit](https://img.shields.io/github/last-commit/hawkinslabdev/mijnmotorparkeren)](https://github.com/hawkinslabdev/mijnmotorparkeren/commits/main)
+[![License](https://img.shields.io/github/license/mijnmotorparkeren/mijnmotorparkeren)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/mijnmotorparkeren/mijnmotorparkeren)](https://github.com/mijnmotorparkeren/mijnmotorparkeren/commits/main)
 [![Support](https://img.shields.io/badge/Support-Buy%20me%20a%20coffee-fdd734?logo=buy-me-a-coffee)](https://coff.ee/hawkinslabdev)
 
 [**Visit the website**](https://mijnmotorparkeren.nl) • [**Contribute data**](#contributing) • [**Donate**](#sponsors)
 
-<img width="100%" alt="MijnMotorParkeren.nl screenshot" src="https://github.com/hawkinslabdev/mijnmotorparkeren/blob/main/.github/assets/screenshot.png?raw=true" />
+<img width="100%" alt="MijnMotorParkeren.nl screenshot" src="https://github.com/mijnmotorparkeren/mijnmotorparkeren/blob/main/.github/assets/screenshot.png?raw=true" />
 
 ## Project
 
@@ -16,7 +16,7 @@ Because the project is open-source and file-based, anyone can help keep the data
 
 ## Contributing
 
-Anyone can help keep the data fresh! The easiest way is to [open a GitHub issue](https://github.com/hawkinslabdev/mijnmotorparkeren/issues) to report anything, whether that's an update on a specific area or something that looks off. 
+Anyone can help keep the data fresh! The easiest way is to [open a GitHub issue](https://github.com/mijnmotorparkeren/mijnmotorparkeren/issues) to report anything, whether that's an update on a specific area or something that looks off. 
 
 Rather jump straight into the code? Submit a Pull Request with your changes, just make sure to include official sources and use ISO 8601 date formats. You can run `npm run validate:data` locally to test your changes before submitting. All submissions are reviewed before they get merged.
 

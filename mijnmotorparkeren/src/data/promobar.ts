@@ -7,7 +7,7 @@ export interface PromoBarItem {
 export const promoBarItems: PromoBarItem[] = [
   {
     text: 'Klopt er iets niet? Help de informatie te verbeteren!',
-    link: 'https://github.com/hawkinslabdev/mijnmotorparkeren?tab=readme-ov-file#contributing',
+    link: 'https://github.com/mijnmotorparkeren/mijnmotorparkeren?tab=readme-ov-file#contributing',
     linkText: 'Melden',
   },
 ]
