@@ -115,5 +115,6 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+        build-args: PUBLIC_DATA_VERSION=${{ github.sha }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
