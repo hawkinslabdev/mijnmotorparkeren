@@ -1,6 +1,6 @@
 services:
   mijnmotorparkeren:
-    image: ghcr.io/hawkinslabdev/mijnmotorparkeren:latest
+    image: ghcr.io/mijnmotorparkeren/mijnmotorparkeren:latest
     container_name: mijnmotorparkeren
     ports:
       - "3000:4321"
