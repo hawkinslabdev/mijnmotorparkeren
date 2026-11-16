@@ -37,9 +37,13 @@ async function buildIndex(): Promise<string> {
   return JSON.stringify({ gemeentes: [...seen.values()] })
 }
 
-export const GET: APIRoute = async () => {
+export async function getIndex(): Promise<string> {
   if (!cache || import.meta.env.DEV) cache = await buildIndex()
-  return new Response(cache, {
+  return cache
+}
+
+export const GET: APIRoute = async () => {
+  return new Response(await getIndex(), {
     headers: {
       'Content-Type': 'application/json',
       'Cache-Control': import.meta.env.DEV ? 'no-store' : 'public, max-age=3600',
