@@ -1,6 +1,6 @@
 # MijnMotorParkeren.nl
 
-[![License](https://img.shields.io/github/license/mijnmotorparkeren/mijnmotorparkeren)](LICENSE)
+[![License: EUPL 1.2](https://img.shields.io/badge/License-EUPL_1.2-blue)](LICENSE)
 [![Last commit](https://img.shields.io/github/last-commit/mijnmotorparkeren/mijnmotorparkeren)](https://github.com/mijnmotorparkeren/mijnmotorparkeren/commits/main)
 [![Support](https://img.shields.io/badge/Support-Buy%20me%20a%20coffee-fdd734?logo=buy-me-a-coffee)](https://coff.ee/hawkinslabdev)
 
